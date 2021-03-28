@@ -4,15 +4,8 @@ Plataforma de venta online de componentes electrónicos "CompuGlobalHyperMega Co
 
 Tres componentes:
 
--Usuarios:
-    -Registrarse
-    -Tener varias direcciones y métodos de pago
-    -Realizar pedidos
--Productos: tienen valoraciones de usuarios que hayan adquirido dichos productos
--Manager: nos permite realizar todas las acciones
-    -Añadir productos
-    -Añadir  usuarios
-    -Gestionar información personal y los pedidos
+-Usuarios: pueden registrarse, realizar pedidos, pueden tener varios direcciones y métodos de pago.
 
-CLASES:
+-Productos: puede tener valoraciones de los usuarios que hayan adquirido dichos productos
 
+-Manager: lo gestiona todo. Realiza todas las acciones disponibles: añadir nuevos productos a la plataforma; añadir nuevos usuarios y gestionar la información personal y los pedidos.
