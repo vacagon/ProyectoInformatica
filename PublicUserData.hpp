@@ -3,7 +3,6 @@
 
 #include <string>
 #include <vector>
-#include "User.hpp"
 #include "Address.hpp"
 #include "PaymentMethod.hpp"
 #include "Order.hpp"
