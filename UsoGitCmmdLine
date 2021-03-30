@@ -1,0 +1,107 @@
+1. Clonar el repositorio remoto (https://github.com/vacagon/ProyectoInformatica):
+
+	git clone https://github.com/vacagon/ProyectoInformatica
+
+Te habrá aparecido una carpeta en el directorio en el que estuvieras que se llama ProyectoInformatica en la que están todos los archivos del proyecto. Para abrir el proyecto en Qt, vete a abrir proyecto existente, y abres el .pro del repositorio.
+
+2. En la ventana de comandos vete al repositorio con:
+
+	cd ProyectoInformatica
+	
+Con ls puedes ver lo que hay
+
+3. Cada vez que te metas para trabajar, nunca olvides hacer:
+
+	git pull origin main (para actualizar la rama main, o simplemente) git pull (para actualizar todo el proyecto, te vale 											para actualizar nuevas ramas que haya añadido yo)
+	
+Con eso se te actualiza el repositorio local del proyecto y coges las posibles actualizaciones de la rama main que yo haya podido hacer
+
+4. Para trabajar en cualquier cosa, no se te olvide crear una nueva rama, a ser posible con un nombre descriptivo de lo que vas a hacer a continuación, además, puedes ver todas las ramas activas, tanto en el repositorio remoto como en el tuyo local con:
+
+	git branch <nombre-de-la-nueva-rama> 
+	
+	git push --set-upstream origin <nombre-de-la-rama> (para crear la rama en el repositorio remoto)
+	
+	git branch -a 
+	
+En verde te saldrá la rama en la que estás, en blanco otras ramas de tu repositorio local, y en rojo las del repositorio remoto
+
+Para eliminar una rama del repositorio local (tienes que encontrarte en otra rama o te dará un error):
+
+	git branch -d <nombre-de-la-rama>
+	
+Si la rama está en el repositorio remoto:
+	
+	git push --delete origin <nombre-de-la-rama>
+
+
+5. Lo primero que debes hacer al crear una nueva rama es moverte a ella para añadir los cambios que realices a su staging area para posteriormente hacer el commit dentro de la rama de los cambios que estás realizando, para ello:
+
+	git checkout <nombre-de-la-nueva-rama>
+	
+Recuerda que puedes ver en que rama estás con el comando del punto 4, la nueva rama te tiene que apareceer en verde
+
+6. Para añadir los cambios, lo puedes hacer desde Qt yendo a Tools -> Git -> Local repository. Sin embargo yo prefiero hacerlo desde la linea de comandos (estando obviamente dentro del directorio local del proyecto)
+
+Con el siguiente comando puedes ver si has realizado algún cambio en alguno de los archivo del proyecto
+
+	git status
+	
+En rojo te saldrán los archivos donde has realizado cambios. Para añadirlos a la staging area (paso antes de hacer un commit con ellos):
+
+	git add <nombre del archivo> o más facil: git add -A (para añadir todos los cambios)
+	
+7. El siguiente paso es hacer un commit, añadiendo comentarios de las cosas que has cambiado en ese commit:
+
+	git commit -m "COMENTARIOS DE CAMBIOS" (sin añadir aunque sea un caracter no te dejará hacer el commit)
+	
+8. Una vez has hecho el commit, podrás ver que en el status no hay cambios 'to be commited'. Cuando hayas terminado con una rama, toca fusionarla con la rama main. Para hacerlo, primero tienes que volver a la rama main con git checkout main. Para fusionarlas (merge):
+
+	git merge <nombre-de-la-rama-a-fusionar>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
