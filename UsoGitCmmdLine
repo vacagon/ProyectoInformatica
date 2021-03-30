@@ -55,53 +55,21 @@ En rojo te saldrán los archivos donde has realizado cambios. Para añadirlos a 
 
 	git commit -m "COMENTARIOS DE CAMBIOS" (sin añadir aunque sea un caracter no te dejará hacer el commit)
 	
-8. Una vez has hecho el commit, podrás ver que en el status no hay cambios 'to be commited'. Cuando hayas terminado con una rama, toca fusionarla con la rama main. Para hacerlo, primero tienes que volver a la rama main con git checkout main. Para fusionarlas (merge):
+8. Una vez has hecho el commit, podrás ver que en el status no hay cambios 'to be commited'. Cuando hayas terminado de hacer cambios en una rama, aunque vayas a seguir trabajando con ella mas adelante, sube la rama al repositorio remoto:
+
+	git push -u origin <nombre-de-la-rama>
+	
+De esta manera se creará una rama en el repositorio remoto con el mismo nombre que la local y que irá registrando los cambios en dicha rama (si no es la primera vez que lo utilzias por cada rama, puedes omitir la -u, pero la primera vez es necesario para interconectar ambas ramas)
+
+Cuando hayas terminado con una rama, toca fusionarla con la rama main. Para hacerlo, primero tienes que volver a la rama main con [git checkout main]. Para fusionarlas (merge):
 
 	git merge <nombre-de-la-rama-a-fusionar>
+	
+	git push origin main (para subir la nueva rama principal al repositorio remoto)
+	
+Una vez fusionada con la rama principal, puedes eliminarla, o seguir trabajando con ella, pero los cambios ya estarán en la rama main.
 
+Además otro comando que te puede resultar de utilidad:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	git log (registro de los commits realizados, por quien, con comentario, 'q' para salir) o git log --oneline (mas resumido)
+	
