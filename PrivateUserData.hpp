@@ -31,6 +31,8 @@ public:
 
     PrivateUserData(string& em, string& pas): email(em), password(pas){}
 
+    ~PrivateUserData();
+
 protected:
 
     string email, password;

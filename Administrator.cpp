@@ -1,6 +1,7 @@
 #include "Administrator.hpp"
 
-Administrator::Administrator()
-{
+Administrator::Administrator() {}
 
+bool Administrator::isAdmin() {
+    return true;
 }

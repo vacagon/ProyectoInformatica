@@ -15,15 +15,19 @@ class PublicUserData
 
 public:
 
-    string getUsername() const { return username; };
+    void setUsername(string& us) const;
 
-    int getReputation() const { return reputation; };
+    string getUsername() const { return username; }
+
+    int getReputation() const { return reputation; }
 
     void increaseReputation() { reputation++; }
 
-    void decreaseReputation() { if (reputation > 0) reputation--; };
+    void decreaseReputation() { if (reputation > 0) reputation--; }
 
-    PublicUserData(string& us): username(us), reputation(0) {}
+    PublicUserData(string& us, int rep = 0): username(us), reputation(rep) {}
+
+    ~PublicUserData();
 
 protected:
 

@@ -13,11 +13,13 @@ class User: public PrivateUserData , public PublicUserData {
 
 protected:
     
-    User();
+    User(): PrivateUserData(), PublicUserData() {};
 
 public:
-    
-    User(string& username, string& email, string password): PrivateUserData(email, password), PublicUserData(username) {};
+
+    User(string& user_name, string& email, string& password, int reputation = 0);
+
+    virtual ~User();
 
     /**
      * @brief Returns false if the user is not an administrator
