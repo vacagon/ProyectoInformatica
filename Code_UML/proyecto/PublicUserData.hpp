@@ -1,9 +1,9 @@
+#ifndef PUBLICUSERDATA_HPP
+#define PUBLICUSERDATA_HPP
 
-#ifndef PUBLICUSERDATA_H
-#define PUBLICUSERDATA_H
-
-#include string
-
+#include <string>
+#include "User.hpp"
+#include "Review.hpp"
 
 /**
   * class PublicUserData

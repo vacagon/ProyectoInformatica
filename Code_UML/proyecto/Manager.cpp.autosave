@@ -1,14 +1,14 @@
-#include "PrivateUserData.h"
+#include "Manager.hpp"
 
 // Constructors/Destructors
 //  
 
-PrivateUserData::PrivateUserData()
+Manager::Manager()
 {
 	initAttributes();
 }
 
-PrivateUserData::~PrivateUserData()
+Manager::~Manager()
 {
 }
 
@@ -24,7 +24,8 @@ PrivateUserData::~PrivateUserData()
 // Other methods
 //  
 
-void PrivateUserData::initAttributes()
+void Manager::initAttributes()
 {
+	current_member = -1;
 }
 
