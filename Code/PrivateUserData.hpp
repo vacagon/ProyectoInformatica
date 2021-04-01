@@ -3,47 +3,97 @@
 
 #include <string>
 #include <vector>
+#include "User.hpp"
 #include "Address.hpp"
-#include "PaymentMethod.hpp"
 #include "Order.hpp"
+#include "PaymentMethod.hpp"
 
 using namespace std;
 
-/** @brief Private data of the user*/
+/** @brief Store private data of a user */
 class PrivateUserData
 {
 
 public:
 
-    string getEmail() const { return email; };
+    /**
+     * @brief Parametric constructor
+     * @param em: Email
+     * @param pas: Password
+     */
+    PrivateUserData(string &em, string& pas);
 
-    void setEmail(string& em) { email = em; }
+    /** @brief Empty Destructor */
+	virtual ~PrivateUserData();
 
-    string getPassword() const { return password; };
+    /**
+     * @brief Set the value of email
+     */
+    void setEmail(string& em);
 
-    void setPassword(string& pas) { password = pas; }
+    /**
+     * @brief Get the value of email
+     */
+    const string& getEmail () const;
 
-    const Address& getAddress();
+    /**
+     * @brief Set the value of password
+     */
+    void setPassword(string& pas);
 
-    const PaymentMethod& getPaymentMethod();
+    /**
+     * @brief Get the value of password
+     */
+    const string& getPassword() const;
 
-    const Order& getOrder();
+    /**
+     * @brief Get the vector of
+     * pointers to Address registered by the user
+     */
+    vector<Address*> getAddresses() const;
 
-    PrivateUserData(string& em, string& pas): email(em), password(pas){}
+    /**
+     * @brief Get the vector of pointers
+     * to PaymentMethod of the user
+     */
+    vector<PaymentMethod*> getPayment_methods () const;
 
-    ~PrivateUserData();
+    /**
+     * @brief Get the vector of pointers
+     * to Order made by the user
+     */
+    vector<Order*> getOrders() const;
+
+    friend PaymentMethod;
 
 protected:
 
-    string email, password;
+    /** @brief Empty Constructor */
+    PrivateUserData();
 
-    vector<Address*> adresses;
+    string email;
 
+    string password;
+
+    /**
+     * @brief Store all the addresses registered
+     * by the user
+     */
+    vector<Address*> addresses;
+
+    /**
+     * @brief Store all the payment methods
+     * recorded by the user
+     */
     vector<PaymentMethod*> payment_methods;
 
+
+    /**
+     * @brief Stores the orders made
+     * by the user
+     */
     vector<Order*> orders;
 
-    PrivateUserData();
 };
 
 #endif // PRIVATEUSERDATA_HPP

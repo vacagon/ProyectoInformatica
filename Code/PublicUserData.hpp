@@ -2,40 +2,76 @@
 #define PUBLICUSERDATA_HPP
 
 #include <string>
-#include <vector>
-#include "Address.hpp"
-#include "PaymentMethod.hpp"
-#include "Order.hpp"
+#include "User.hpp"
+#include "Review.hpp"
 
 using namespace std;
 
-/** @brief Public data of the user */
+/**
+  * @brief Store public data of a user
+  */
 class PublicUserData
 {
 
 public:
 
-    void setUsername(string& us) const;
+    /**
+     * @brief Parametric constructor
+     * @param us_name: Username
+     * @param rep: Reputation, initialice to 0
+     */
+    PublicUserData(string& us_name, int rep = 0);
 
-    string getUsername() const { return username; }
+	/**
+     * @brief Empty Destructor
+	 */
+	virtual ~PublicUserData();
 
-    int getReputation() const { return reputation; }
+    /**
+     * @brief Get the value of username
+     */
+    const string& getUsername() const;
 
-    void increaseReputation() { reputation++; }
+    /**
+     * @brief Sets the username
+     */
+    void setUsername(string& us);
 
-    void decreaseReputation() { if (reputation > 0) reputation--; }
+	/**
+     * @brief Gets user's reputation
+	 */
+    int getReputation() const;
 
-    PublicUserData(string& us, int rep = 0): username(us), reputation(rep) {}
+    /**
+     * @brief Increase the value of
+     * reputation in one unit
+     */
+    void increaseReputation();
 
-    ~PublicUserData();
+    /**
+     * @brief Decrease user's reputation in one
+     * unit whenever it is bigger than 0
+     */
+    void decreaseReputation();
 
 protected:
 
-    string username;
+    /**
+     * @brief Empty Constructor
+     */
+    PublicUserData();
 
+    /**
+     * @brief User's username
+     */
+	string username;
+
+    /**
+     * @brief Reputation according to other users
+     *score on his reviws
+     */
     int reputation;
 
-    PublicUserData();
 };
 
-#endif // PUBLICUSERDATA_HPP
+#endif // PUBLICUSERDATA_H

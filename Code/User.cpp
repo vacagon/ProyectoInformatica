@@ -1,12 +1,14 @@
 #include "User.hpp"
 
-User::User(string& username, string& email, string& password, int reputation){
-    PrivateUserData(email, password);
-    PublicUserData(username, reputation);
-};
+User::User(string& us, string& em, string& pas) {
+    int rep = 0;
+    PublicUserData(us,rep);
+    PrivateUserData(em, pas);
+}
 
 User::~User() {}
 
 bool User::isAdmin() {
     return false;
 }
+
