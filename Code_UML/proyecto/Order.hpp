@@ -1,302 +1,86 @@
+#ifndef ORDER_HPP
+#define ORDER_HPP
 
-#ifndef ORDER_H
-#define ORDER_H
+#include <string>
+#include <ctime>
+#include "PrivateUserData.hpp"
 
-#include string
-
+using namespace std;
 
 /**
-  * class Order
-  * Order made by any user.
-  */
+ * @brief Order made by any user.
+ */
+class Order {
 
-class Order
-{
 public:
-	// Constructors/Destructors
-	//  
 
+    Order(unsigned long ref, vector<unsigned long> prod, int ad, int pm, float tot);
 
-	/**
-	 * Empty Constructor
-	 */
-	Order();
+    Order(unsigned long ref, int ad, int pm);
 
-	/**
-	 * Empty Destructor
-	 */
-	virtual ~Order();
+    ~Order();
 
-	// Static Public attributes
-	//  
+    void setReference (unsigned long ref);
 
-	// Public attributes
-	//  
+    unsigned long getReference() const;
 
+    vector<unsigned long> getProducts() const;
 
-	// Public attribute accessor methods
-	//  
+    void addProduct(unsigned long ref);
 
+    time_t getDate() const;
 
-	// Public attribute accessor methods
-	//  
+    int getDeliveryAddress() const;
 
+    void setDeliveryAddress(int ad);
 
+    int getPaymentMethod() const;
 
-	/**
-	 */
-	void setReference()
-	{
-	}
+    void setPaymentMethod(int pm);
 
+    float getTotal() const;
 
-	/**
-	 * @return unsigned long
-	 */
-	unsigned long getReference() const
-	{
-	}
-
-
-	/**
-	 * @return unsigned long
-	 */
-	unsigned long getProduct()
-	{
-	}
-
-
-	/**
-	 * Recibe la referencia del nuevo producto y la añade al vector products
-	 */
-	void addProduct()
-	{
-	}
-
-
-	/**
-	 * @return time_t
-	 */
-	time_t getDate() const
-	{
-	}
-
-
-	/**
-	 * @return Address
-	 */
-	Address getDeliveryAddress()
-	{
-	}
-
-
-	/**
-	 * @param  address
-	 */
-	void setDeliveryAddress(Address address)
-	{
-	}
-
-
-	/**
-	 * @param  payment_method
-	 */
-	void setPaymentMethod(PaymentMethod payment_method)
-	{
-	}
-
-
-	/**
-	 * @return PaymentMethod
-	 */
-	PaymentMethod getPaymentMethod() const
-	{
-	}
-
-
-	/**
-	 */
-	void setTotal()
-	{
-	}
-
-
-	/**
-	 * @return float
-	 */
-	float getTotal() const
-	{
-	}
-
-protected:
-	// Static Protected attributes
-	//  
-
-	// Protected attributes
-	//  
-
-
-	// Protected attribute accessor methods
-	//  
-
-
-	// Protected attribute accessor methods
-	//
+    void setTotal();
 
 private:
-	// Static Private attributes
-	//  
 
-	// Private attributes
-	//  
+    Order();
 
-	// Uniquee identifier for the order.
-	unsigned long reference;
-	// Vector of unsigned long which store all the references of the productos in one order.
-	vector<unsigned long> products;
-	// Unix time, stores the moment in which the order was created.
-	time_t date;
-	// ID of the shipping address of the order.
-	int delivery_address;
-	// ID of the payment method chose by user to pay the order
-	int payment_method;
-	// Cost of the order. Sum of the prices of the products in the order (minus the 7.5% in case de costumer is an Administrator)
-	float total;
+    /**
+     * @brief Uniquee identifier
+     */
+    unsigned long reference;
 
-	// Private attribute accessor methods
-	//  
+    /**
+     * @brief Stores the references of the products
+     */
+    vector<unsigned long> products;
 
+    /**
+     * @brief Stores the date in which the order
+     * was made by the user
+     */
+    time_t date;
 
-	// Private attribute accessor methods
-	//  
+    /**
+     * @brief Address in which the order
+     * will be delivered. It will be one of
+     * the previously registered addresses (ID)
+     */
+    int delivery_address;
 
+    /**
+     * @brief Payment method chose
+     * to pay the order. It will be one of
+     * the previously registered addresses (ID)
+     */
+    int payment_method;
 
-	/**
-	 * Set the value of reference
-	 * Uniquee identifier for the order.
-	 * @param value the new value of reference
-	 */
-	void setReference(unsigned long value)
-	{
-		reference = value;
-	}
-
-	/**
-	 * Get the value of reference
-	 * Uniquee identifier for the order.
-	 * @return the value of reference
-	 */
-	unsigned long getReference()
-	{
-		return reference;
-	}
-
-	/**
-	 * Set the value of products
-	 * Vector of unsigned long which store all the references of the productos in one
-	 * order.
-	 * @param value the new value of products
-	 */
-	void setProducts(vector<unsigned long> value)
-	{
-		products = value;
-	}
-
-	/**
-	 * Get the value of products
-	 * Vector of unsigned long which store all the references of the productos in one
-	 * order.
-	 * @return the value of products
-	 */
-	vector<unsigned long> getProducts()
-	{
-		return products;
-	}
-
-	/**
-	 * Set the value of date
-	 * Unix time, stores the moment in which the order was created.
-	 * @param value the new value of date
-	 */
-	void setDate(time_t value)
-	{
-		date = value;
-	}
-
-	/**
-	 * Get the value of date
-	 * Unix time, stores the moment in which the order was created.
-	 * @return the value of date
-	 */
-	time_t getDate()
-	{
-		return date;
-	}
-
-	/**
-	 * Set the value of delivery_address
-	 * ID of the shipping address of the order.
-	 * @param value the new value of delivery_address
-	 */
-	void setDelivery_address(int value)
-	{
-		delivery_address = value;
-	}
-
-	/**
-	 * Get the value of delivery_address
-	 * ID of the shipping address of the order.
-	 * @return the value of delivery_address
-	 */
-	int getDelivery_address()
-	{
-		return delivery_address;
-	}
-
-	/**
-	 * Set the value of payment_method
-	 * ID of the payment method chose by user to pay the order
-	 * @param value the new value of payment_method
-	 */
-	void setPayment_method(int value)
-	{
-		payment_method = value;
-	}
-
-	/**
-	 * Get the value of payment_method
-	 * ID of the payment method chose by user to pay the order
-	 * @return the value of payment_method
-	 */
-	int getPayment_method()
-	{
-		return payment_method;
-	}
-
-	/**
-	 * Set the value of total
-	 * Cost of the order. Sum of the prices of the products in the order (minus the
-	 * 7.5% in case de costumer is an Administrator)
-	 * @param value the new value of total
-	 */
-	void setTotal(float value)
-	{
-		total = value;
-	}
-
-	/**
-	 * Get the value of total
-	 * Cost of the order. Sum of the prices of the products in the order (minus the
-	 * 7.5% in case de costumer is an Administrator)
-	 * @return the value of total
-	 */
-	float getTotal()
-	{
-		return total;
-	}
-
-	void initAttributes();
+    /**
+     * @brief Price of the order
+     */
+    float total;
 
 };
 
-#endif // ORDER_H
+#endif // ORDER_HPP

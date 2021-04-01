@@ -15,46 +15,56 @@ class PrivateUserData
 {
 
 public:
+
+    /**
+     * @brief Parametric constructor
+     * @param em: Email
+     * @param pas: Password
+     */
+    PrivateUserData(string &em, string& pas);
+
     /** @brief Empty Destructor */
 	virtual ~PrivateUserData();
 
     /**
      * @brief Set the value of email
      */
-    void setEmail(string& em) { email = em; }
+    void setEmail(string& em);
 
     /**
      * @brief Get the value of email
      */
-    string getEmail () const { return email; }
+    const string& getEmail () const;
 
     /**
      * @brief Set the value of password
      */
-    void setPassword(string& pas) { password = pas; }
+    void setPassword(string& pas);
 
     /**
      * @brief Get the value of password
      */
-    string getPassword() { return password; }
+    const string& getPassword() const;
 
     /**
      * @brief Get the vector of
      * pointers to Address registered by the user
      */
-    vector<Address*> getAddresses() const { return addresses; }
+    vector<Address*> getAddresses() const;
 
     /**
      * @brief Get the vector of pointers
      * to PaymentMethod of the user
      */
-    vector<PaymentMethod*> getPayment_methods () const { return payment_methods; }
+    vector<PaymentMethod*> getPayment_methods () const;
 
     /**
      * @brief Get the vector of pointers
      * to Order made by the user
      */
-    vector<Order*> getOrders() const { return orders; }
+    vector<Order*> getOrders() const;
+
+    friend PaymentMethod;
 
 protected:
 

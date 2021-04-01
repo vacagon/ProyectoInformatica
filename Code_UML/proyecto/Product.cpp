@@ -1,60 +1,52 @@
-#include "Product.h"
+#include "Product.hpp"
 
-// Constructors/Destructors
-//  
-
-Product::Product()
-{
-	initAttributes();
+Product::Product(string& n, string& d, unsigned long ref, float p) {
+    setName(n);
+    setDescription(d);
+    setReference(ref);
+    setPrice(p);
 }
 
-Product::~Product()
-{
+Product::~Product() {}
+
+void Product::setName(string& n) {
+    name = n;
 }
 
-//  
-// Methods
-//  
-
-
-// Accessor methods
-//  
-
-
-/**
- * Add a Purchaser object to the m_purchaserVector List
- */
-void Product::addPurchaser (User * add_object) {
-	m_purchaserVector.push_back(add_object);
+const string& Product::getName() const {
+    return name;
 }
 
-/**
- * Remove a Purchaser object from m_purchaserVector List
- */
-void Product::removePurchaser (User * remove_object) {
-	int i, size = m_purchaserVector.size();
-	for (i = 0; i < size; ++i) {
-		User * item = m_purchaserVector.at(i);
-		if(item == remove_object) {
-			std::vector<User *>::iterator it = m_purchaserVector.begin() + i;
-			m_purchaserVector.erase(it);
-			return;
-		}
-	 }
+void Product::setDescription(string &d) {
+    description = d;
 }
 
-/**
- * Get the list of Purchaser objects held by m_purchaserVector
- * @return std::vector<User *> list of Purchaser objects held by m_purchaserVector
- */
-std::vector<User *> Product::getPurchaserList() {
-	return m_purchaserVector;
+const string& Product::getDescription() const {
+    return description;
 }
 
-// Other methods
-//  
-
-void Product::initAttributes()
-{
+void Product::setReference(unsigned long ref) {
+    reference = ref;
 }
 
+unsigned long Product::getReference() const {
+    return reference;
+}
+
+void Product::setPrice(float p) {
+    price = p;
+}
+
+float Product::getPrice() const {
+    return price;
+}
+
+vector<Review*> Product::getReviews() const {
+    return reviews;
+}
+
+void Product::addReview(Review* r) {}
+
+ostream& operator<<(ostream& os, const Product& p) {
+    return os;
+}

@@ -1,30 +1,29 @@
-#include "CreditCard.h"
+#include "CreditCard.hpp"
 
-// Constructors/Destructors
-//  
-
-CreditCard::CreditCard()
-{
-	initAttributes();
+CreditCard::CreditCard(int i, Address* ad, unsigned long num, string& carhol): PaymentMethod(i, ad) {
+    setNumber(num);
+    setCardholder(carhol);
 }
 
-CreditCard::~CreditCard()
-{
+CreditCard::~CreditCard() {}
+
+void CreditCard::setNumber(unsigned long num) {
+    number = num;
 }
 
-//  
-// Methods
-//  
-
-
-// Accessor methods
-//  
-
-
-// Other methods
-//  
-
-void CreditCard::initAttributes()
-{
+unsigned long CreditCard::getNumber() const {
+    return number;
 }
 
+void CreditCard::setCardholder(string carhol) {
+    cardholder = carhol;
+}
+
+const string& CreditCard::getCardholder() const {
+    return cardholder;
+}
+
+const string CreditCard::show() const {
+    string output;
+    return output;
+}

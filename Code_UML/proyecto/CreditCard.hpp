@@ -1,181 +1,67 @@
+#ifndef CREDITCARD_HPP
+#define CREDITCARD_HPP
 
-#ifndef CREDITCARD_H
-#define CREDITCARD_H
+#include <string>
+#include "PaymentMethod.hpp"
 
-#include string
-
+using namespace std;
 
 /**
-  * class CreditCard
-  * Payment method type through a bank card
+  * @brief Payment method type through a bank card
   */
+class CreditCard: public PaymentMethod {
 
-class CreditCard
-{
 public:
-	// Constructors/Destructors
-	//  
 
-
-	/**
-	 * Empty Constructor
-	 */
-	CreditCard();
-
-	/**
-	 * Empty Destructor
-	 */
 	virtual ~CreditCard();
 
-	// Static Public attributes
-	//  
+    /**
+     * @brief Parametric constructor
+     */
+    CreditCard(int i, Address* ad, unsigned long num, string& carhol);
 
-	// Public attributes
-	//  
+    /**
+     * @brief Set the value of number
+     */
+    void setNumber(unsigned long num);
 
-	PaymentMethod PaymentMethod;
+    /**
+     * @brief Get the credit card number
+     */
+    unsigned long getNumber() const;
 
-	// Public attribute accessor methods
-	//  
+    /**
+     * @brief Set the name of the card holder
+     */
+    void setCardholder(string carhol);
 
-
-	// Public attribute accessor methods
-	//  
-
-
-	/**
-	 * Set the value of PaymentMethod
-	 * @param value the new value of PaymentMethod
-	 */
-	void setPaymentMethod(PaymentMethod value)
-	{
-		PaymentMethod = value;
-	}
-
-	/**
-	 * Get the value of PaymentMethod
-	 * @return the value of PaymentMethod
-	 */
-	PaymentMethod getPaymentMethod()
-	{
-		return PaymentMethod;
-	}
+    /**
+     * @brief Get the name of the card holder
+     */
+    const string& getCardholder() const;
 
 
 	/**
-	 */
-	void setNumber()
-	{
-	}
-
-
-	/**
-	 * @return unsigned long
-	 */
-	unsigned long getNumber() const
-	{
-	}
-
-
-	/**
-	 */
-	void setCardholder()
-	{
-	}
-
-
-	/**
-	 * @return string&
-	 */
-	string& getCardholder() const
-	{
-	}
-
-
-	/**
-	 * \tid {id} - Credit Card:
+     * @brief \tid {id} - Credit Card:
 	 * \tBilling address: {billing address}
 	 * \t{number} - {cardholder}
-	 * @return string&
 	 */
-	string& show()
-	{
-	}
-
-protected:
-	// Static Protected attributes
-	//  
-
-	// Protected attributes
-	//  
-
-
-	// Protected attribute accessor methods
-	//  
-
-
-	// Protected attribute accessor methods
-	//
+    const string show() const;
 
 private:
-	// Static Private attributes
-	//  
 
-	// Private attributes
-	//  
+    CreditCard();
 
-	// Credit card number
+    /**
+     * @brief Credit card number (16 digits)
+     */
 	unsigned long number;
+
+    /**
+     * @brief Name of the card holder
+     */
 	string cardholder;
-
-	// Private attribute accessor methods
-	//  
-
-
-	// Private attribute accessor methods
-	//  
-
-
-	/**
-	 * Set the value of number
-	 * Credit card number
-	 * @param value the new value of number
-	 */
-	void setNumber(unsigned long value)
-	{
-		number = value;
-	}
-
-	/**
-	 * Get the value of number
-	 * Credit card number
-	 * @return the value of number
-	 */
-	unsigned long getNumber()
-	{
-		return number;
-	}
-
-	/**
-	 * Set the value of cardholder
-	 * @param value the new value of cardholder
-	 */
-	void setCardholder(string value)
-	{
-		cardholder = value;
-	}
-
-	/**
-	 * Get the value of cardholder
-	 * @return the value of cardholder
-	 */
-	string getCardholder()
-	{
-		return cardholder;
-	}
-
-	void initAttributes();
 
 };
 
-#endif // CREDITCARD_H
+#endif // CREDITCARD_HPP

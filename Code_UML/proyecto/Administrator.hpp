@@ -1,127 +1,57 @@
+#ifndef ADMINISTRATOR_HPP
+#define ADMINISTRATOR_HPP
 
-#ifndef ADMINISTRATOR_H
-#define ADMINISTRATOR_H
+#include <string>
+#include "User.hpp"
 
-#include string
-
+using namespace std;
 
 /**
-  * class Administrator
-  * Users which are also employees of the compan. They get a 7.5% discount as
+  * @brief Users which are also employees of the compan. They get a 7.5% discount as
   * costumers. They are identified by an employee code which has to be uniquee.
   */
+class Administrator: public User {
 
-class Administrator
-{
 public:
-	// Constructors/Destructors
-	//  
 
+    /**
+     * @brief Parametric constructor
+     * @param us: Username
+     * @param em: Email
+     * @param pas: Password
+     * @param emcode: Employee code
+     */
+    Administrator(string& us, string& em, string& pas, unsigned long emcode);
 
 	/**
-	 * Empty Constructor
-	 */
-	Administrator();
-
-	/**
-	 * Empty Destructor
+     * @brief Empty Destructor
 	 */
 	virtual ~Administrator();
 
-	// Static Public attributes
-	//  
-
-	// Public attributes
-	//  
-
-	User User;
-
-	// Public attribute accessor methods
-	//  
-
-
-	// Public attribute accessor methods
-	//  
-
-
 	/**
-	 * Set the value of User
-	 * @param value the new value of User
+     * @brief Gets employee's uniquee code
 	 */
-	void setUser(User value)
-	{
-		User = value;
-	}
+    unsigned long getEmployeeCode() const;
 
-	/**
-	 * Get the value of User
-	 * @return the value of User
-	 */
-	User getUser()
-	{
-		return User;
-	}
+    /**
+     * @brief Sets employee's uniquee code
+     */
+    void setEmployeeCode(unsigned long emcode);
 
-
-	/**
-	 * @return unsigned long
-	 */
-	unsigned long getEmployeeCode() const
-	{
-	}
-
-protected:
-	// Static Protected attributes
-	//  
-
-	// Protected attributes
-	//  
-
-
-	// Protected attribute accessor methods
-	//  
-
-
-	// Protected attribute accessor methods
-	//
+    bool isAdmin();
 
 private:
-	// Static Private attributes
-	//  
 
-	// Private attributes
-	//  
-
-	unsigned long employee_code;
-
-	// Private attribute accessor methods
-	//  
-
-
-	// Private attribute accessor methods
-	//  
-
+    /**
+     * @brief Empty Constructor
+     */
+    Administrator();
 
 	/**
-	 * Set the value of employee_code
-	 * @param value the new value of employee_code
+     * @brief Uniquee for each employee
 	 */
-	void setEmployee_code(unsigned long value)
-	{
-		employee_code = value;
-	}
-
-	/**
-	 * Get the value of employee_code
-	 * @return the value of employee_code
-	 */
-	unsigned long getEmployee_code()
-	{
-		return employee_code;
-	}
-
-	void initAttributes();
+    unsigned long employee_code;
 
 };
 
-#endif // ADMINISTRATOR_H
+#endif // ADMINISTRATOR_HPP

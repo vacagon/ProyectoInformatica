@@ -1,451 +1,300 @@
+#ifndef MANAGER_HPP
+#define MANAGER_HPP
 
-#ifndef MANAGER_H
-#define MANAGER_H
+#include <string>
+#include <vector>
+#include "User.hpp"
+#include "Product.hpp"
 
-#include string
-
+using namespace std;
 
 /**
-  * class Manager
-  * In charge of the application running and provides all the functionality to it.
+  * @brief In charge of the application running and provides all the functionality to it.
   */
+class Manager {
 
-class Manager
-{
 public:
-	// Constructors/Destructors
-	//  
 
+    //################# PRIMERA ENTREGA ############################//
 
 	/**
-	 * Empty Constructor
+     * @brief Empty Constructor initialices
+     * all the parameters to default values
 	 */
 	Manager();
 
-	/**
-	 * Empty Destructor
-	 */
 	virtual ~Manager();
 
-	// Static Public attributes
-	//  
+    /**
+     * @brief Get all the users registered in the platform.
+     */
+    const vector<User*> getUsers() const;
 
-	// Public attributes
-	//  
-
-
-	// Public attribute accessor methods
-	//  
-
-
-	// Public attribute accessor methods
-	//  
-
+    /**
+     * @brief Get all products selled in the platform.
+     */
+    vector<Product*> getProducts() const;
 
 
 	/**
-	 * @return User
-	 */
-	User getUsers() const
-	{
-	}
-
-
-	/**
-	 * @return Product
-	 */
-	Product getProducts()
-	{
-	}
-
-
-	/**
-	 * Check user's credentials when trying to log into the platform. Returns: true, if
-	 * the credentials are correct and there's not any other user already logged; false
-	 * otherwise.
-	 * @return bool
+     * @brief Check user's credentials when trying to log into the platform.
+     * @return true, if the credentials are correct
+     * and there's not any other user already logged
+     * false otherwise
 	 * @param  email
 	 * @param  password
 	 */
-	bool login(string email, string password)
-	{
-	}
-
+    bool login(string em, string pas);
 
 	/**
-	 * Close user's session in the platform. True: succes; false otherwise.
-	 * @return bool
+     * @brief Close user's session in the platform.
+     * @return True: succes; false otherwise.
 	 */
-	bool logout()
-	{
-	}
-
+    bool logout();
 
 	/**
-	 * Know if there's any user logged in the platform. True: there is; False
-	 * otherwise.
-	 * @return bool
+     * @brief Know if there's any user logged in the platform.
+     * @return True: there is; False otherwise.
 	 */
-	bool isLogged()
-	{
-	}
-
+    bool isLogged();
 
 	/**
-	 * Get public and private information of the currently logged user. Returns a
-	 * pointer to the logged user in case there's one, otherwise nullptr.
-	 * @return User
+     * @brief Get public and private information of
+     * the currently logged user
+     * @return Pointer to the logged user in case there's one
+     * otherwise nullptr.
 	 */
-	User getCurrentMember()
-	{
-	}
-
+    User* getCurrentMember();
 
 	/**
-	 * Creates a new user. It checks wether the mail, or username, is already used.
-	 * True: succes; otherwise False
-	 * @return bool
-	 * @param  username
-	 * @param  email
-	 * @param  password
+     * @brief Creates a new user
+     * it checks wether the mail, or username,
+     * is already used.
+     * @return True: succes; otherwise False
+     * @param  us: username
+     * @param  em: email
+     * @param  pas: password
 	 */
-	bool addUser(string username, string email, string password)
-	{
-	}
+    bool addUser(string us, string em, string pas);
 
 
 	/**
-	 * Same ass "addUser" method, but in this case it creates an Administrator instead
-	 * a normal User. It also takes employee code as parameter.
-	 * @return bool
-	 * @param  username
-	 * @param  email
-	 * @param  password
-	 * @param  employee_code
+     * @brief Same ass "addUser" method
+     * but in this case it creates an Administrator instead.
+     * It also takes employee code as parameter.
+     * @return True: succes; otherwise False
+     * @param  us: username
+     * @param  em: email
+     * @param  pas: password
+     * @param  emcode: employee_code
 	 */
-	bool addAdministrator(string username, string email, string password, unsigned long employee_code)
-	{
-	}
+    bool addAdministrator(string us, string em, string pas, unsigned long emcode);
 
 
 	/**
-	 * Allow the user logged to unsuscribe of the platform.
-	 * @return bool
+     * @brief Allow the user logged
+     * to unsuscribe of the platform.
+     * @return True: succes; otherwise False
 	 */
-	bool eraseCurrentMember()
-	{
-	}
+    bool eraseCurrentMember();
 
 
 	/**
-	 * True: success, otherwise False
-	 * @return bool
+     * @brief Allow the logger user to edit
+     * his username
+     * @return True: success, otherwise False
 	 * @param  new_username
 	 */
-	bool editUsername(string new_username)
-	{
-	}
-
+    bool editUsername(string new_username);
 
 	/**
-	 * True: success, otherwise False
-	 * @return bool
+     * @brief Allow the logger user to edit
+     * his email
+     * @return True: success, otherwise False
 	 * @param  new_email
 	 */
-	bool editEmail(string new_email)
-	{
-	}
+    bool editEmail(string new_email);
 
 
 	/**
-	 * True: success, otherwise False
-	 * @return bool
+     * @brief Allow the logger user to edit
+     * his password
+     * @return True: success, otherwise False
 	 * @param  new_password
 	 */
-	bool editPassword(string new_password)
-	{
-	}
+    bool editPassword(string new_password);
 
 
 	/**
-	 * True: success, otherwise False
-	 * @return bool
-	 * @param  address
-	 * @param  city
-	 * @param  province
-	 * @param  postal_code
+     * @brief Allow currently logged user to
+     * register a new address
+     * @return True: success, otherwise False
+     * @param  a: address
+     * @param  c: city
+     * @param  p: province
+     * @param  pcode: postal_code
 	 */
-	bool addAddress(string address, string city, string province, usigned int postal_code)
-	{
-	}
-
+    bool addAddress(string a, string c, string p, unsigned int pcode);
 
 	/**
-	 * True: success, otherwise False
-	 * @return bool
-	 * @param  Address
-	 * @param  number
-	 * @param  cardholder
+     * @brief Allow currently logged user to
+     * register a new credit card
+     * @return True: success, otherwise False
+     * @param  a: billing address
+     * @param  n: credit card's number
+     * @param  cholder: cardholder
 	 */
-	bool addCreditcard(Address Address, unsigned long number, string cardholder)
-	{
-	}
-
+    bool addCreditcard(Address* a, unsigned long n, string& cholder);
 
 	/**
-	 * True: success, otherwise False
-	 * @return bool
-	 * @param  Address
-	 * @param  email
+     * @brief Allow currently logged user to
+     * register a new paypal account
+     * @return True: success, otherwise False
+     * @param  a: billing address
+     * @param  em: email
 	 */
-	bool addPaypal(Address Address, string email)
-	{
-	}
+    bool addPaypal(Address* a, string& em);
 
+    //################# SEGUNDA ENTREGA ############################//
 
 	/**
-	 * Only logged users which are administrator con do it.
-	 * @return bool
-	 * @param  name
-	 * @param  description
-	 * @param  reference
-	 * @param  price
+     * @brief Adds a new product to the platform.
+     * Only logged users which are administrator con do it.
+     * @return True: success, otherwise False
+     * @param  n: name
+     * @param  d: description
+     * @param  r: reference
+     * @param  p: price
 	 */
-	bool addProduct(string name, string description, unsigned long reference, float price)
-	{
-	}
-
+    bool addProduct(string n, string d, unsigned long r, float p);
 
 	/**
-	 * It stores a vector of pointers to PublicUserData. Show the public data of all
-	 * the registered members. It can only be called by an Administrator, otherwise it
+     * @brief It stores a vector of pointers to PublicUserData.
+     * Show the public data of all
+     * the registered members.
+     * It can only be called by an Administrator, otherwise it
 	 * returns an empty vector.
-	 * @return PublicUserData
 	 */
-	PublicUserData showMembers() const
-	{
-	}
-
+    vector<PublicUserData*> showMembers() const;
 
 	/**
-	 * Calculates the price taking into account if the user is an administrator or not,
-	 * and asignates the order a uniquee reference. A new order is created, and it is
-	 * added to the order history of the user currently logged. True: success, false
-	 * otherwise.
-	 * @return bool
-	 * @param  products
-	 * @param  payment_method
-	 * @param  delivery_address
+     * @brief Calculates the price taking into account
+     * if the user is an administrator or not,
+     * and asignates the order a uniquee reference.
+     * A new order is created, and it is
+     * added to the order history of the user currently logged.
+     * @return True: success, false otherwise.
+     * @param  pr: products
+     * @param  pm: payment_method
+     * @param  ddaddress: delivery_address
 	 */
-	bool makeOrder(vector<unsigned long> products, int payment_method, int delivery_address)
-	{
-	}
-
+    bool makeOrder(vector<unsigned long> pr, int pm, int ddaddress);
 
 	/**
-	 * This allow the logged user to review a product, but ONLY if the user has already
-	 * bought the product. Creates the review and adds it to the rest of the reviews of
+     * @brief This allow the logged user to review a product
+     * but ONLY if the user has already
+     * bought the product.
+     * Creates the review and adds it to the rest of the reviews of
 	 * the specific product, with a unique id.
-	 * @return bool
-	 * @param  reference Reference of the product to review
-	 * @param  rating 0-5
-	 * @param  text
+     * @return True: success, false otherwise.
+     * @param  ref: Reference of the product to review
+     * @param  rat: rating 0-5
+     * @param  t: text
 	 */
-	bool createReview(unsigned long reference, int rating, string text)
-	{
-	}
-
+    bool createReview(unsigned long ref, int rat, string t);
 
 	/**
-	 * Allows us to filter reviews of a product by rating.
-	 * @return Review
-	 * @param  reference Reference of the product which reviews we are trying to filter
-	 * @param  rating Rating by which the user want to filter the ratings
+     * @brief Allows us to filter reviews of a product by rating.
+     * @return Reviews with a given rating
+     * @param  ref: Reference of the product which
+     * reviews we are trying to filter
+     * @param  ret: Rating by which the user
+     * want to filter the ratings
 	 */
-	Review getReviewsByRating(usigned long reference, int rating)
-	{
-	}
-
+    vector<Review*> getReviewsByRating(unsigned long ref, int rat);
 
 	/**
-	 * Increase votes of an specific review, and so it does to the reviewer's
-	 * reputation. Any user can only vote once for each review, and they can not vote
-	 * for their own reviews. True: succes, false otherwise.
-	 * @return bool
-	 * @param  id Id of the review
+     * @brief Increase votes of an specific review
+     * and so it does to the reviewer's
+     * reputation. Any user can only vote once for each review,
+     * and they can not vote for their own reviews.
+     * @return True: succes, false otherwise
+     * @param  i: Id of the review
 	 */
-	bool upvoteReview(unsigned long id)
-	{
-	}
-
+    bool upvoteReview(unsigned long i);
 
 	/**
-	 * Decrease votes of an specific review, and so it does to the reviewer's
-	 * reputation. Any user can only vote once for each review, and they can not vote
-	 * for their own reviews. True: succes, false otherwise.
-	 * @return bool
-	 * @param  id Id of the review voted
+     * @brief Decrease votes of an specific review
+     * and so it does to the reviewer's
+     * reputation. Any user can only vote once for each review,
+     * and they can not vote for their own reviews
+     * @return True: succes, false otherwise
+     * @param i: Id of the review voted
 	 */
-	bool downvoteReview(unsigned long id)
-	{
-	}
-
+    bool downvoteReview(unsigned long i);
 
 	/**
-	 * Allows the logged user to change a review's rating. True: success, otherwise
-	 * false.
-	 * @return bool
-	 * @param  id
-	 * @param  new_rating 0-5 stars
+     * @brief Allows the logged user to change a review's rating.
+     * @return True: success, otherwise false
+     * @param  i: ID of the review
+     * @param  new_rating: 0-5 stars
 	 */
-	bool modifyReviewRating(unsigned long id, int new_rating)
-	{
-	}
-
+    bool modifyReviewRating(unsigned long i, int new_rating);
 
 	/**
-	 * Allows the logged user to change a review's text. True: success, otherwise
-	 * false.
-	 * @return bool
-	 * @param  id
+     * @brief Allows the logged user to change a review's text.
+     * @return True: success, otherwise false.
+     * @param  i: ID of the review
 	 * @param  new_text
 	 */
-	bool modifyReviewText(unsigned long id, string new_text)
-	{
-	}
-
+    bool modifyReviewText(unsigned long i, string& new_text);
 
 	/**
-	 * Allow the currently logged user to delete a review of his own. Only
-	 * administrators can delete reviews which are not made by them. True success,
-	 * otherwise false
-	 * @return bool
-	 * @param  id
+     * @brief Allow the currently logged user to delete
+     * a review of his own. Only administrators can delete reviews
+     * which are not made by them.
+     * @return True success, otherwise false
+     * @param  i: ID of the review
 	 */
-	bool deleteReview(unsigned long id)
-	{
-	}
+    bool deleteReview(unsigned long i);
 
+    //################# TERCERA ENTREGA ############################//
 
 	/**
-	 * Writes all the information of the system to a given file: users and their
-	 * information; products and their reviews.
-	 * @param  route Route to the file where the information is gonna be stored
+     * @brief Writes all the information of the system
+     * to a given file: users and their information;
+     * products and their reviews.
+     * @param route: Route to the file where
+     * the information is gonna be stored
 	 */
-	void saveToFile(string route)
-	{
-	}
-
+    void saveToFile(string& route);
 
 	/**
-	 * Restores all the system's information stored in a given file
-	 * @param  route Route to the file where the information is stored
+     * @brief Restores all the system's information
+     * stored in a given file
+     * @param route: Route to the file where the information is stored
 	 */
-	void loadFromFile(string route)
-	{
-	}
-
-protected:
-	// Static Protected attributes
-	//  
-
-	// Protected attributes
-	//  
-
-
-	// Protected attribute accessor methods
-	//  
-
-
-	// Protected attribute accessor methods
-	//
+    void loadFromFile(string route);
 
 private:
-	// Static Private attributes
-	//  
 
-	// Private attributes
-	//  
+    /**
+     * @brief Vector which store pointers to every user registered in the platform.
+     */
+    vector<User*> users;
 
-	// Vector which store pointers to every user registered in the platform.
-	User users;
-	// Vector which stores pointers to every product selled in the platform.
-	Product products;
-	// Tells the user currently logged in the system, and corresponds to the position in the vector users of the user. Value of -1 when there is no user logged.
+    /**
+     * @brief Vector which stores pointers to every product selled in the platform.
+     */
+    vector<Product*> products;
+
+    /**
+     * @brief Tells the corresponding position in the vector
+     * of users of the user currently logged in the system
+     * Value of -1 when there is no user logged.
+     */
 	int current_member;
-
-	// Private attribute accessor methods
-	//  
-
-
-	// Private attribute accessor methods
-	//  
-
-
-	/**
-	 * Set the value of users
-	 * Vector which store pointers to every user registered in the platform.
-	 * @param value the new value of users
-	 */
-	void setUsers(User value)
-	{
-		users = value;
-	}
-
-	/**
-	 * Get the value of users
-	 * Vector which store pointers to every user registered in the platform.
-	 * @return the value of users
-	 */
-	User getUsers()
-	{
-		return users;
-	}
-
-	/**
-	 * Set the value of products
-	 * Vector which stores pointers to every product selled in the platform.
-	 * @param value the new value of products
-	 */
-	void setProducts(Product value)
-	{
-		products = value;
-	}
-
-	/**
-	 * Get the value of products
-	 * Vector which stores pointers to every product selled in the platform.
-	 * @return the value of products
-	 */
-	Product getProducts()
-	{
-		return products;
-	}
-
-	/**
-	 * Set the value of current_member
-	 * Tells the user currently logged in the system, and corresponds to the position
-	 * in the vector users of the user. Value of -1 when there is no user logged.
-	 * @param value the new value of current_member
-	 */
-	void setCurrent_member(int value)
-	{
-		current_member = value;
-	}
-
-	/**
-	 * Get the value of current_member
-	 * Tells the user currently logged in the system, and corresponds to the position
-	 * in the vector users of the user. Value of -1 when there is no user logged.
-	 * @return the value of current_member
-	 */
-	int getCurrent_member()
-	{
-		return current_member;
-	}
-
-	void initAttributes();
 
 };
 
-#endif // MANAGER_H
+#endif // MANAGER_HPP

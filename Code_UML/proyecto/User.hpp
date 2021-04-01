@@ -1,5 +1,5 @@
-#ifndef USER_H
-#define USER_H
+#ifndef USER_HPP
+#define USER_HPP
 
 #include <string>
 #include <vector>
@@ -15,14 +15,12 @@ using namespace std;
   * @brief Can order products. Have one or more shipping address, and one or more payment
   * methods
   */
-
 class User: public PublicUserData, public PrivateUserData {
 
 public:
 
     User(string& us, string& em, string& pas);
 
-    /** Empty Destructor */
 	virtual ~User();
 
 	/**
@@ -33,9 +31,8 @@ public:
 
 protected:
 
-    /** Empty Constructor */
     User();
 
 };
 
-#endif // USER_H
+#endif // USER_HPP

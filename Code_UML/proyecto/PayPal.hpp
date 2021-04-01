@@ -1,147 +1,46 @@
+#ifndef PAYPAL_HPP
+#define PAYPAL_HPP
 
-#ifndef PAYPAL_H
-#define PAYPAL_H
+#include <string>
+#include "PaymentMethod.hpp"
 
-#include string
+using namespace std;
 
 
 /**
-  * class PayPal
-  * Payment method through a Paypal account
-  */
+ * @brief Payment method through a Paypal account
+ */
+class PayPal: public PaymentMethod {
 
-class PayPal
-{
 public:
-	// Constructors/Destructors
-	//  
 
+    PayPal(int i, Address* ad, string& em);
 
-	/**
-	 * Empty Constructor
-	 */
-	PayPal();
-
-	/**
-	 * Empty Destructor
-	 */
 	virtual ~PayPal();
 
-	// Static Public attributes
-	//  
+    /**
+     * @brief Email associated with the Paypal account
+     */
+    void setEmail(string& em);
 
-	// Public attributes
-	//  
-
-	PaymentMethod PaymentMethod;
-
-	// Public attribute accessor methods
-	//  
-
-
-	// Public attribute accessor methods
-	//  
-
+    /**
+     * @brief Get the email associated with the Paypal account
+     */
+    const string& getEmail() const;
 
 	/**
-	 * Set the value of PaymentMethod
-	 * @param value the new value of PaymentMethod
-	 */
-	void setPaymentMethod(PaymentMethod value)
-	{
-		PaymentMethod = value;
-	}
-
-	/**
-	 * Get the value of PaymentMethod
-	 * @return the value of PaymentMethod
-	 */
-	PaymentMethod getPaymentMethod()
-	{
-		return PaymentMethod;
-	}
-
-
-	/**
-	 */
-	void setEmail()
-	{
-	}
-
-
-	/**
-	 * @return string&
-	 */
-	string& getEmail()
-	{
-	}
-
-
-	/**
-	 * \tid {id} -Paypal Account:
+     * @brief \tid {id} -Paypal Account:
 	 * \tBilling address: {billing_address}
 	 * \{email}
-	 * @return string&
 	 */
-	string& show()
-	{
-	}
-
-protected:
-	// Static Protected attributes
-	//  
-
-	// Protected attributes
-	//  
-
-
-	// Protected attribute accessor methods
-	//  
-
-
-	// Protected attribute accessor methods
-	//
+     const string show() const;
 
 private:
-	// Static Private attributes
-	//  
 
-	// Private attributes
-	//  
+    PayPal();
 
-	// Email associated with the Paypal account
-	string email;
-
-	// Private attribute accessor methods
-	//  
-
-
-	// Private attribute accessor methods
-	//  
-
-
-	/**
-	 * Set the value of email
-	 * Email associated with the Paypal account
-	 * @param value the new value of email
-	 */
-	void setEmail(string value)
-	{
-		email = value;
-	}
-
-	/**
-	 * Get the value of email
-	 * Email associated with the Paypal account
-	 * @return the value of email
-	 */
-	string getEmail()
-	{
-		return email;
-	}
-
-	void initAttributes();
+    string email;
 
 };
 
-#endif // PAYPAL_H
+#endif // PAYPAL_HPP
