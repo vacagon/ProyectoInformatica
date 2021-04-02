@@ -9,8 +9,8 @@ SOURCES += \
         CreditCard.cpp \
         Manager.cpp \
         Order.cpp \
-        PayPal.cpp \
         PaymentMethod.cpp \
+        Paypal.cpp \
         PrivateUserData.cpp \
         Product.cpp \
         PublicUserData.cpp \
@@ -24,8 +24,8 @@ HEADERS += \
     CreditCard.hpp \
     Manager.hpp \
     Order.hpp \
-    PayPal.hpp \
     PaymentMethod.hpp \
+    Paypal.hpp \
     PrivateUserData.hpp \
     Product.hpp \
     PublicUserData.hpp \
