@@ -1,0 +1,14 @@
+LISTA DE CLASES:
+
+-User
+-PrivateUserData
+-PublicUserData
+-Administrator
+-Address
+-PaymentMethod
+-CreditCard
+-Paypal
+-Order
+-Product
+-Review
+-Manager
