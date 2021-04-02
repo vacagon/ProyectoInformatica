@@ -1,4 +1,5 @@
 #include "CreditCard.hpp"
+#include "PaymentMethod.hpp"
 
 CreditCard::CreditCard(int i, Address* ad, unsigned long num, string& carhol): PaymentMethod(i, ad) {
     setNumber(num);

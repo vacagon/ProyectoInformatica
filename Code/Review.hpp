@@ -4,7 +4,6 @@
 #include <string>
 #include <ctime>
 #include "PublicUserData.hpp"
-#include "Product.hpp"
 
 using namespace std;
 

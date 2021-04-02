@@ -6,7 +6,7 @@ Manager::Manager() {}
 
 Manager::~Manager() {}
 
-const vector<User*> Manager::getUsers() const {
+vector<User*> Manager::getUsers() const {
     return users;
 }
 
@@ -58,7 +58,7 @@ bool Manager::addAddress(string a, string c, string p, unsigned int pcode) {
     return false;
 }
 
-bool Manager::addCreditcard(Address* a, unsigned long n, string& cholder) {
+bool Manager::addCreditCard(Address* a, unsigned long n, string& cholder) {
     return false;
 }
 
@@ -103,7 +103,7 @@ bool Manager::modifyReviewRating(unsigned long i, int new_rating) {
 }
 
 bool Manager::modifyReviewText(unsigned long i, string& new_text){
-    false;
+    return false;
 }
 
 bool Manager::deleteReview(unsigned long i) {

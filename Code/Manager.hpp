@@ -4,7 +4,17 @@
 #include <string>
 #include <vector>
 #include "User.hpp"
+#include "Administrator.hpp"
+#include "PrivateUserData.hpp"
+#include "PublicUserData.hpp"
+#include "Address.hpp"
+#include "PaymentMethod.hpp"
+#include "CreditCard.hpp"
+#include "Paypal.hpp"
+#include "Order.hpp"
 #include "Product.hpp"
+#include "Review.hpp"
+#include "Interface.hpp"
 
 using namespace std;
 
@@ -28,7 +38,7 @@ public:
     /**
      * @brief Get all the users registered in the platform.
      */
-    const vector<User*> getUsers() const;
+    vector<User*> getUsers() const;
 
     /**
      * @brief Get all products selled in the platform.
@@ -144,7 +154,7 @@ public:
      * @param  n: credit card's number
      * @param  cholder: cardholder
 	 */
-    bool addCreditcard(Address* a, unsigned long n, string& cholder);
+    bool addCreditCard(Address* a, unsigned long n, string& cholder);
 
 	/**
      * @brief Allow currently logged user to

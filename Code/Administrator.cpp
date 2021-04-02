@@ -1,7 +1,8 @@
 #include "Administrator.hpp"
 
-Administrator::Administrator(string& us, string& em, string& pas, unsigned long emcode) {
-    User(us,em,pas);
+Administrator::Administrator(string& us, string& em, string& pas, unsigned long emcode):
+    User(us,em,pas)
+{
     setEmployeeCode(emcode);
 }
 

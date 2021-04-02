@@ -3,11 +3,8 @@
 
 #include <string>
 #include <vector>
-#include "Product.hpp"
 #include "PublicUserData.hpp"
 #include "PrivateUserData.hpp"
-#include "Manager.hpp"
-#include "Administrator.hpp"
 
 using namespace std;
 
