@@ -12,3 +12,4 @@ LISTA DE CLASES:
 -Product
 -Review
 -Manager
+-Interface
