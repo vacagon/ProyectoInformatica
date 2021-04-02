@@ -2,8 +2,8 @@
 #define ORDER_HPP
 
 #include <string>
+#include <vector>
 #include <ctime>
-#include "PrivateUserData.hpp"
 
 using namespace std;
 

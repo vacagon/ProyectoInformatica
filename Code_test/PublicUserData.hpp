@@ -2,8 +2,6 @@
 #define PUBLICUSERDATA_HPP
 
 #include <string>
-#include "User.hpp"
-#include "Review.hpp"
 
 using namespace std;
 

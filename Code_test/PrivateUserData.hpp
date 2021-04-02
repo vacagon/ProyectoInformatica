@@ -3,7 +3,6 @@
 
 #include <string>
 #include <vector>
-#include "User.hpp"
 #include "Address.hpp"
 #include "Order.hpp"
 #include "PaymentMethod.hpp"
@@ -11,8 +10,7 @@
 using namespace std;
 
 /** @brief Store private data of a user */
-class PrivateUserData
-{
+class PrivateUserData {
 
 public:
 
@@ -56,7 +54,7 @@ public:
      * @brief Get the vector of pointers
      * to PaymentMethod of the user
      */
-    vector<PaymentMethod*> getPayment_methods () const;
+    vector<PaymentMethod*> getPaymentMethods () const;
 
     /**
      * @brief Get the vector of pointers

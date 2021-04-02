@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/gonzalo/ProyectoInformatica/Code_test/Interface.cpp
+Interface.hpp
+/home/gonzalo/ProyectoInformatica/Code_test/Interface.hpp
+
+/home/gonzalo/ProyectoInformatica/Code_test/Interface.hpp
+
+/home/gonzalo/ProyectoInformatica/Code_test/main.cpp
+iostream
+-
+

@@ -3,7 +3,6 @@
 
 #include <string>
 #include <vector>
-#include "Manager.hpp"
 #include "User.hpp"
 #include "Review.hpp"
 

@@ -27,7 +27,7 @@ vector<Address*> PrivateUserData::getAddresses() const {
     return addresses;
 }
 
-vector<PaymentMethod*> PrivateUserData::getPayment_methods () const {
+vector<PaymentMethod*> PrivateUserData::getPaymentMethods () const {
     return payment_methods;
 }
 

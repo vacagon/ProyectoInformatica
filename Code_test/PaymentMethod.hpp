@@ -2,9 +2,6 @@
 #define PAYMENTMETHOD_HPP
 
 #include <string>
-#include "CreditCard.hpp"
-#include "Paypal.hpp"
-#include "PrivateUserData.hpp"
 #include "Address.hpp"
 
 using namespace std;
@@ -31,6 +28,14 @@ public:
      * about payment method
      */
     virtual const string show() const = 0;
+
+    int getId() const;
+
+    void setId(int i);
+
+    Address* getBillingAddress() const;
+
+    void setBillingAddress(const Address* a);
 
 protected:
 
