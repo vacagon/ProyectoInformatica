@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.13.2, 2021-04-02T20:28:14. -->
+<!-- Written by QtCreator 4.13.2, 2021-04-02T20:52:57. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -65,6 +65,17 @@
     <value type="bool" key="AutoTest.Framework.QtTest">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="AutoTest.CheckStates">
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code/tests/test_basic.cpp:ManagerCanCreateAddress">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code/tests/test_basic.cpp:ManagerCanCreateAndShowMembers">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code/tests/test_basic.cpp:ManagerCanCreatePaymentMethods">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code/tests/test_basic.cpp:ManagerCanEraseLoggedMember">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code/tests/test_basic.cpp:ManagerCanLoginMember">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code/tests/test_basic.cpp:ManagerCanLogoutMember">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code/tests/test_basic.cpp:ManagerCannotDuplicateMember">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code/tests/test_basic.cpp:ManagerCannotLoginMemberTwice">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code/tests/test_basic.cpp:ManagerLoggedMemberCanEditProfile">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code/tests/test_basic.cpp:ManagerWrongMemberCannotLogin">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code/tests/test_basic.cpp:TestBasic">Checked</value>
     <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code_test/tests/test_basic.cpp:ManagerCanCreateAddress">Checked</value>
     <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code_test/tests/test_basic.cpp:ManagerCanCreateAndShowMembers">Checked</value>
     <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code_test/tests/test_basic.cpp:ManagerCanCreatePaymentMethods">Checked</value>
