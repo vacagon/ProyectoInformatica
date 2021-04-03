@@ -1,15 +1,116 @@
 LISTA DE CLASES:
-
+---------------------------------------------------------
 -User
--PrivateUserData
--PublicUserData
--Administrator
--Address
--PaymentMethod
--CreditCard
--Paypal
--Order
--Product
--Review
--Manager
+	-Constructor paramétrico
+	-Constructor vacío
+	-Método virtual isAdmin
+----------------------------------------------------------
+-PrivateUserData:
+	-String email, getEmail, setEmail.
+	-String password, getPassword, setPassword.
+	-vector<Address*> addresses, getAddresses.
+	-vector<PaymentMethod*> payment_methods, getPaymentMethod.
+	-vector<Order*> orders, getOrders.
+	-Constructor paramétrico
+	-Constructor vacío
+----------------------------------------------------------
+-PublicUserData:
+	-String username, getUsername, setUsername.
+	-Int reputation, getReputation, increaseReputation, decreaseReputation.
+	-Constructor paramétrico
+	-Constructor vacío
+----------------------------------------------------------
+-Administrator:
+	-Constructor paramétrico
+	-Constructor vacío
+	-Unsigned long employee_code
+	-isAdmin
+----------------------------------------------------------
+-Address:
+	-Constructor paramétrico
+	-Constructor vacío
+	-int id, setId, getId
+	-string address, setAddress, getAddress
+	-string city, setCity, getCity
+	-string province, setProvince, getProvince
+	-unsigned int postal_code, setPostalCode, getPostalCode
+	-show
+----------------------------------------------------------
+-PaymentMethod:
+	-Constructor paramétrico
+	-Constructor vacío
+	-show
+	-int id, getId, setId
+	-Address* billing_address, getBillingAddress, setBillingAddress
+----------------------------------------------------------
+-CreditCard:
+	-Constructor paramétrico
+	-Constructor vacío
+	-show
+	-unsigned long number, setNumber, getNumber
+	-string cardholder, getCardholder, setCardholder
+----------------------------------------------------------
+-Paypal:
+	-Constructor paramétrico
+	-Constructor vacío
+	-show
+	-string email, setEmail, getEmail
+----------------------------------------------------------
+-Order:
+	-Constructor paramétrico1
+	-Constructor paramétrico2
+	-Constructor vacío
+	-Unsigned long reference, setReference, getReference
+	-vector<unsigned long> products, getProducts, addProduct.
+	-time_t date, getDate
+	-int delivery_address, setDeliveryAddress, getDeliveryAddress
+	-int payment_method, setPaymentMethod, getPaymentMethod
+	-float total, setTotal, getTotal
+----------------------------------------------------------
+-Product:
+	-Constructor paramétrico
+	-Constructor vacío
+	-sobrecarga de <<
+	-string name, setName, getName
+	-string description, setDescription, getDescription
+	-unsigned long reference, setReference, getReference
+	-vector<Review*> reviews, getReviews, addReview
+----------------------------------------------------------
+-Review:
+	-Constructor paramétrico
+	-Constructor vacío
+	-show
+	-unsigned long id, getId
+	-time_t date, getDate
+	-int rating, setRating, getRating
+	-string text, setText, getText
+	-int votes, getVotes, incrementVotes, decrementVotes
+	-PublicUserData* author, getAuthor
+----------------------------------------------------------
+-Manager:
+	-Constructor vacío
+	-Destructor
+	-vector<User*> users, getUsers
+	-vector<Product*> product, getProductos
+	-int current_member
+	-bool login
+	-bool logout
+	-bool isLogged
+	-getCurrentMember
+	-bool addUser
+	-bool addAdministrator
+	-bool eraseCurrentMember
+	-bool editUsername, editEmail, editPassword
+	-bool addAddress, addCreditCard, addPaypal
+	-bool addProduct
+	-showMembers
+	-bool makeOrder
+	-bool createReview
+	-getReviewsByRating
+	-upvoteReview, downvoteReview
+	-modifyReviewRating, modifyReviewText
+	-deleteReview
+	-saveToFile
+	-loadFromFile
+----------------------------------------------------------
 -Interface
