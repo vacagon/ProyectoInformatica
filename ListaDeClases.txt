@@ -68,12 +68,12 @@ LISTA DE CLASES:
 	-float total, setTotal, getTotal
 ----------------------------------------------------------
 -Product:
-	-Constructor paramétrico
-	-Constructor vacío
-	-sobrecarga de <<
+	-Constructor paramétrico (+)
+	-Constructor vacío (+)
+	-sobrecarga de << (+)
 	-string name, setName, getName (+)
-	-string description, setDescription, getDescription
-	-unsigned long reference, setReference, getReference
+	-string description, setDescription, getDescription (+)
+	-unsigned long reference, setReference, getReference (+)
 	-vector<Review*> reviews, getReviews, addReview
 ----------------------------------------------------------
 -Review:

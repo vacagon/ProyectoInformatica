@@ -1,6 +1,6 @@
 #include "Product.hpp"
 
-Product::Product(string& n, string& d, unsigned long ref, float p) {
+Product::Product(const string& n, const string& d, unsigned long ref, float p) {
     setName(n);
     setDescription(d);
     setReference(ref);
@@ -9,7 +9,7 @@ Product::Product(string& n, string& d, unsigned long ref, float p) {
 
 Product::~Product() {}
 
-void Product::setName(string& n) {
+void Product::setName(const string& n) {
     name = n;
 }
 
@@ -17,7 +17,7 @@ const string& Product::getName() const {
     return name;
 }
 
-void Product::setDescription(string &d) {
+void Product::setDescription(const string &d) {
     description = d;
 }
 
@@ -25,11 +25,11 @@ const string& Product::getDescription() const {
     return description;
 }
 
-void Product::setReference(unsigned long ref) {
+void Product::setReference(const unsigned long& ref) {
     reference = ref;
 }
 
-unsigned long Product::getReference() const {
+const unsigned long& Product::getReference() const {
     return reference;
 }
 
@@ -37,7 +37,7 @@ void Product::setPrice(float p) {
     price = p;
 }
 
-float Product::getPrice() const {
+const float& Product::getPrice() const {
     return price;
 }
 
@@ -48,5 +48,16 @@ vector<Review*> Product::getReviews() const {
 void Product::addReview(Review* r) {}
 
 ostream& operator<<(ostream& os, const Product& p) {
+    os << p.getReference() << " - "
+       << p.getName() << endl
+       << p.getDescription() << endl
+       << p.getPrice() << endl;
+    if (p.reviews.size() > 0) {
+        os << "\t-- User reviews --" << endl;
+        for (unsigned int i = 0; i < p.reviews.size(); i++) {
+            os << "\t" << p.reviews[i]->show()
+               << "\t----" << endl;
+        }
+    }
     return os;
 }

@@ -22,25 +22,25 @@ public:
      * @param ref: Reference
      * @param p: Price
      */
-    Product(string& n, string& d, unsigned long ref, float p);
+    Product(const string& n, const string& d, unsigned long ref, float p);
 
     ~Product();
 
-    void setName(string& n);
+    void setName(const string& n);
 
     const string& getName() const;
 
-    void setDescription(string& d);
+    void setDescription(const string& d);
 
     const string& getDescription() const;
 
-    void setReference(unsigned long ref);
+    void setReference(const unsigned long& ref);
 
-    unsigned long getReference() const;
+    const unsigned long& getReference() const;
 
     void setPrice(float p);
 
-    float getPrice() const;
+    const float& getPrice() const;
 
     vector<Review*> getReviews() const;
 
