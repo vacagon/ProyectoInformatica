@@ -45,7 +45,9 @@ vector<Review*> Product::getReviews() const {
     return reviews;
 }
 
-void Product::addReview(Review* r) {}
+void Product::addReview(Review* r) {
+    reviews.push_back(r);
+}
 
 ostream& operator<<(ostream& os, const Product& p) {
     os << p.getReference() << " - "
