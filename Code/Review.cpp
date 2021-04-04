@@ -2,11 +2,20 @@
 
 Review::Review(unsigned long i, int r, string& t, PublicUserData* a) {
     id = i;
-    date = time(0);
-    setRating(r);
+    //Making sure rating is between 0 and 5
+    if (r < 0) {
+        setRating(0);
+    } else {
+        if (r > 5) {
+            setRating(5);
+        } else {
+            setRating(r);
+        }
+    }
     setText(t);
     author = a;
     votes = 0;
+    date = time(0);
 }
 
 Review::~Review() {}

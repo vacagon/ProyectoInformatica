@@ -77,8 +77,8 @@ LISTA DE CLASES:
 	-vector<Review*> reviews, getReviews, addReview (+)
 ----------------------------------------------------------
 -Review:
-	-Constructor paramétrico
-	-Constructor vacío
+	-Constructor paramétrico (+)
+	-Constructor vacío (+)
 	-show
 	-unsigned long id, getId
 	-time_t date, getDate
