@@ -114,10 +114,18 @@ Review.hpp
 string
 -
 
+/home/gonzalo/ProyectoInformatica/Code/Review.cpp
+Review.hpp
+/home/gonzalo/ProyectoInformatica/Code/Review.hpp
+
 /home/gonzalo/ProyectoInformatica/Code/Review.hpp
 string
 -
+sstream
+-
 ctime
+-
+time.h
 -
 PublicUserData.hpp
 /home/gonzalo/ProyectoInformatica/Code/PublicUserData.hpp

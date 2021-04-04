@@ -2,7 +2,9 @@
 #define REVIEW_HPP
 
 #include <string>
+#include <sstream>
 #include <ctime>
+#include <time.h>
 #include "PublicUserData.hpp"
 
 using namespace std;
@@ -21,7 +23,7 @@ public:
      * @param t: Text
      * @param a: Author
      */
-    Review(unsigned long i, int r, string& t, PublicUserData* a);
+    Review(unsigned long i, int r, const string& t, PublicUserData* a);
 
 	virtual ~Review();
 
@@ -44,7 +46,7 @@ public:
 
     int getRating() const;
 
-    void setText(string& t);
+    void setText(const string& t);
 
     const string& getText() const;
 

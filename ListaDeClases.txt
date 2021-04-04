@@ -79,7 +79,7 @@ LISTA DE CLASES:
 -Review:
 	-Constructor paramétrico (+)
 	-Constructor vacío (+)
-	-show
+	-show (+)
 	-unsigned long id, getId
 	-time_t date, getDate
 	-int rating, setRating, getRating
