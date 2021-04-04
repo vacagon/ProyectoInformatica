@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.13.2, 2021-04-02T20:52:57. -->
+<!-- Written by QtCreator 4.13.2, 2021-04-04T11:18:27. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -76,17 +76,6 @@
     <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code/tests/test_basic.cpp:ManagerLoggedMemberCanEditProfile">Checked</value>
     <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code/tests/test_basic.cpp:ManagerWrongMemberCannotLogin">Checked</value>
     <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code/tests/test_basic.cpp:TestBasic">Checked</value>
-    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code_test/tests/test_basic.cpp:ManagerCanCreateAddress">Checked</value>
-    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code_test/tests/test_basic.cpp:ManagerCanCreateAndShowMembers">Checked</value>
-    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code_test/tests/test_basic.cpp:ManagerCanCreatePaymentMethods">Checked</value>
-    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code_test/tests/test_basic.cpp:ManagerCanEraseLoggedMember">Checked</value>
-    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code_test/tests/test_basic.cpp:ManagerCanLoginMember">Checked</value>
-    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code_test/tests/test_basic.cpp:ManagerCanLogoutMember">Checked</value>
-    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code_test/tests/test_basic.cpp:ManagerCannotDuplicateMember">Checked</value>
-    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code_test/tests/test_basic.cpp:ManagerCannotLoginMemberTwice">Checked</value>
-    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code_test/tests/test_basic.cpp:ManagerLoggedMemberCanEditProfile">Checked</value>
-    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code_test/tests/test_basic.cpp:ManagerWrongMemberCannotLogin">Checked</value>
-    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Code_test/tests/test_basic.cpp:TestBasic">Checked</value>
    </valuemap>
    <value type="int" key="AutoTest.RunAfterBuild">0</value>
    <value type="bool" key="AutoTest.UseGlobal">true</value>
