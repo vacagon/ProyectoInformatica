@@ -114,7 +114,7 @@ bool Manager::editUsername(const string& new_username) {
         return false;
     } else {
         for (unsigned long i = 0; i < users.size(); i++) {
-            if (users[i]->getEmail() == new_username) {
+            if (users[i]->getUsername() == new_username) {
                 flag = false;
             }
         }
@@ -128,7 +128,22 @@ bool Manager::editUsername(const string& new_username) {
 }
 
 bool Manager::editEmail(string new_email) {
-    return false;
+    bool flag = true;
+    if (!isLogged()) {
+        return false;
+    } else {
+        for (unsigned long i = 0; i < users.size(); i++) {
+            if (users[i]->getEmail() == new_email) {
+                flag = false;
+            }
+        }
+        if (flag) {
+           users[current_member]->setEmail(new_email);
+           return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 bool Manager::editPassword(string new_password) {
