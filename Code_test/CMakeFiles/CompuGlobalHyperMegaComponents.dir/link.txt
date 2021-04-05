@@ -1,1 +1,0 @@
-/usr/bin/g++  -g   CMakeFiles/CompuGlobalHyperMegaComponents.dir/Interface.cpp.o CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o  -o CompuGlobalHyperMegaComponents  libCompuGlobalHyperMegaComponentsLib.a 
