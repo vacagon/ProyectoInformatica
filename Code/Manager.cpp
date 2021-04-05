@@ -2,7 +2,11 @@
 
 //################# PRIMERA ENTREGA ############################//
 
-Manager::Manager() {}
+Manager::Manager() {
+    users.push_back(nullptr);
+    products.push_back(nullptr);
+    current_member = -1;
+}
 
 Manager::~Manager() {}
 

@@ -88,7 +88,7 @@ LISTA DE CLASES:
 	-PublicUserData* author, getAuthor (+)
 ----------------------------------------------------------
 -Manager:
-	-Constructor vacío
+	-Constructor vacío (+)
 	-Destructor
 	-vector<User*> users, getUsers
 	-vector<Product*> product, getProductos
