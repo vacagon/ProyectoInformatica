@@ -27,10 +27,22 @@ vector<Address*> PrivateUserData::getAddresses() const {
     return addresses;
 }
 
+void PrivateUserData::addAddress(Address *new_address) {
+    addresses.push_back(new_address);
+}
+
 vector<PaymentMethod*> PrivateUserData::getPaymentMethods () const {
     return payment_methods;
 }
 
+void PrivateUserData::addPaymentMethod(PaymentMethod* new_paymentmethod) {
+    payment_methods.push_back(new_paymentmethod);
+}
+
 vector<Order*> PrivateUserData::getOrders() const {
     return orders;
+}
+
+void PrivateUserData::addOrder(Order* new_order) {
+    orders.push_back(new_order);
 }

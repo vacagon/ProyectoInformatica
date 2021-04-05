@@ -155,8 +155,14 @@ bool Manager::editPassword(const string& new_password) {
     }
 }
 
-bool Manager::addAddress(string a, string c, string p, unsigned int pcode) {
-    return false;
+bool Manager::addAddress(const string &a, const string &c, const string &p, unsigned int pcode) {
+    bool flag = false;
+    int id = users[current_member]->getAddresses().size();
+    if (isLogged()) {
+        Address* new_address = new Address(id, a, c, p, pcode);
+        users[current_member]->addAddress(new_address);
+    }
+    return flag;
 }
 
 bool Manager::addCreditCard(Address* a, unsigned long n, string& cholder) {

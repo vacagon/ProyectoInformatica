@@ -9,8 +9,11 @@ LISTA DE CLASES:
 	-String email, getEmail, setEmail.
 	-String password, getPassword, setPassword.
 	-vector<Address*> addresses, getAddresses.
+	-addAddress (+)
 	-vector<PaymentMethod*> payment_methods, getPaymentMethod.
+	-addPaymentMethod (+)
 	-vector<Order*> orders, getOrders.
+	-addOrder (+)
 	-Constructor paramétrico
 	-Constructor vacío
 ----------------------------------------------------------
@@ -88,6 +91,7 @@ LISTA DE CLASES:
 	-PublicUserData* author, getAuthor (+)
 ----------------------------------------------------------
 -Manager:
+////////////////PRIMERA ENTREGA/////////////////////////
 	-Constructor vacío (+)
 	-Destructor (+)
 	-vector<User*> users, getUsers (+)
@@ -103,15 +107,21 @@ LISTA DE CLASES:
 	-bool editUsername (+)
 	-bool editEmail (+)
 	-bool editPassword (+)
-	-bool addAddress, addCreditCard, addPaypal
+	-bool addAddress (+)
+	-bool addCreditCard
+	-bool addPaypal
+////////////////SEGUNDA ENTREGA/////////////////////////
 	-bool addProduct
 	-showMembers
 	-bool makeOrder
 	-bool createReview
 	-getReviewsByRating
-	-upvoteReview, downvoteReview
-	-modifyReviewRating, modifyReviewText
+	-upvoteReview
+	-downvoteReview
+	-modifyReviewRating
+	-modifyReviewText
 	-deleteReview
+////////////////TERCERA ENTREGA/////////////////////////
 	-saveToFile
 	-loadFromFile
 ----------------------------------------------------------

@@ -150,7 +150,7 @@ public:
      * @param  p: province
      * @param  pcode: postal_code
 	 */
-    bool addAddress(string a, string c, string p, unsigned int pcode);
+    bool addAddress(const string& a, const string& c, const string& p, unsigned int pcode);
 
 	/**
      * @brief Allow currently logged user to
@@ -181,7 +181,7 @@ public:
      * @param  d: description
      * @param  r: reference
      * @param  p: price
-	 */
+     */
     bool addProduct(string n, string d, unsigned long r, float p);
 
 	/**

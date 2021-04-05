@@ -15,7 +15,7 @@ class Address {
 
 public:
 
-    Address(int i, string& ad, string& cit, string& prov, unsigned int pcode);
+    Address(int i, const string& ad, const string& cit, const string& prov, unsigned int pcode);
 
 	virtual ~Address();
 
@@ -25,15 +25,15 @@ public:
 
     const string& getAddress() const;
 
-    void setAddress(string& ad);
+    void setAddress(const string& ad);
 
     const string& getCity() const;
 
-    void setCity(string& cit);
+    void setCity(const string& cit);
 
     const string& getProvince() const;
 
-    void setProvince(string& prov);
+    void setProvince(const string& prov);
 
     unsigned int getPostalCode() const;
 

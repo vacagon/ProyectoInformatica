@@ -1,6 +1,6 @@
 #include "Address.hpp"
 
-Address::Address(int i, string& ad, string& cit, string& prov, unsigned int pcode) {
+Address::Address(int i, const string &ad, const string &cit, const string &prov, unsigned int pcode) {
     setId(i);
     setAddress(ad);
     setCity(cit);
@@ -22,7 +22,7 @@ const string& Address::getAddress() const {
     return address;
 }
 
-void Address::setAddress(string &ad) {
+void Address::setAddress(const string &ad) {
     address = ad;
 }
 
@@ -30,7 +30,7 @@ const string& Address::getCity() const {
     return city;
 }
 
-void Address::setCity(string &cit){
+void Address::setCity(const string &cit){
     city = cit;
 }
 
@@ -38,7 +38,7 @@ const string& Address::getProvince() const {
     return province;
 }
 
-void Address::setProvince(string &prov) {
+void Address::setProvince(const string &prov) {
     province = prov;
 }
 
