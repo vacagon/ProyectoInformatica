@@ -49,7 +49,7 @@ bool Manager::logout() {
 
 bool Manager::isLogged() {
     bool flag = false;
-    if (current_member != -1) {
+    if ((current_member != -1) && (current_member < (int)users.size())) {
         flag = true;
     }
     return flag;
@@ -82,35 +82,107 @@ bool Manager::addUser(const string& us, const string& em, const string& pas) {
 }
 
 bool Manager::addAdministrator(string us, string em, string pas, unsigned long emcode) {
-    return false;
+    //Falta comprobar que no haya otro administrador con el mismo codigo de empleado
+    bool flag = true;
+    for (unsigned long i = 0; i < users.size(); i++) {
+        if ((users[i]->getEmail() == em)||(users[i]->getUsername() == us)) {
+            flag = false;
+        }
+    }
+    if (flag) {
+        Administrator* new_admin = new Administrator(us,em,pas,emcode);
+        users.push_back(new_admin);
+        return true;
+    } else {
+        return false;
+    }
 }
 
 bool Manager::eraseCurrentMember() {
-    return false;
+    bool flag = false;
+    if (isLogged()) {
+        delete users[current_member];
+        users.erase(users.begin() + current_member);
+        flag = true;
+    }
+    return flag;
 }
 
-bool Manager::editUsername(string new_username) {
-    return false;
+bool Manager::editUsername(const string& new_username) {
+    bool flag = true;
+    if (!isLogged()) {
+        return false;
+    } else {
+        for (unsigned long i = 0; i < users.size(); i++) {
+            if (users[i]->getUsername() == new_username) {
+                flag = false;
+            }
+        }
+        if (flag) {
+           users[current_member]->setUsername(new_username);
+           return true;
+        } else {
+            return false;
+        }
+    }
 }
 
-bool Manager::editEmail(string new_email) {
-    return false;
+bool Manager::editEmail(const string& new_email) {
+    bool flag = true;
+    if (!isLogged()) {
+        return false;
+    } else {
+        for (unsigned long i = 0; i < users.size(); i++) {
+            if (users[i]->getEmail() == new_email) {
+                flag = false;
+            }
+        }
+        if (flag) {
+           users[current_member]->setEmail(new_email);
+           return true;
+        } else {
+            return false;
+        }
+    }
 }
 
-bool Manager::editPassword(string new_password) {
-    return false;
+bool Manager::editPassword(const string& new_password) {
+    if (!isLogged()) {
+        return false;
+    } else {
+        users[current_member]->setPassword(new_password);
+        return true;
+    }
 }
 
-bool Manager::addAddress(string a, string c, string p, unsigned int pcode) {
-    return false;
+bool Manager::addAddress(const string &a, const string &c, const string &p, unsigned int pcode) {
+    bool flag = false;
+    int id = users[current_member]->getAddresses().size();
+    if (isLogged()) {
+        Address* new_address = new Address(id, a, c, p, pcode);
+        users[current_member]->addAddress(new_address);
+    }
+    return flag;
 }
 
 bool Manager::addCreditCard(Address* a, unsigned long n, string& cholder) {
-    return false;
+    bool flag = false;
+    int id = users[current_member]->getPaymentMethods().size();
+    if (isLogged()) {
+        CreditCard* new_creditcard = new CreditCard(id, a, n, cholder);
+        users[current_member]->addPaymentMethod(new_creditcard);
+    }
+    return flag;
 }
 
 bool Manager::addPaypal(Address* a, string& em) {
-    return false;
+    bool flag = false;
+    int id = users[current_member]->getPaymentMethods().size();
+    if (isLogged()) {
+        Paypal* new_paypal = new Paypal(id, a, em);
+        users[current_member]->addPaymentMethod(new_paypal);
+    }
+    return flag;
 }
 
 //################# SEGUNDA ENTREGA ############################//

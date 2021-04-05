@@ -27,7 +27,7 @@ public:
     /**
      * @brief Set the value of email
      */
-    void setEmail(string& em);
+    void setEmail(const string& em);
 
     /**
      * @brief Get the value of email
@@ -37,7 +37,7 @@ public:
     /**
      * @brief Set the value of password
      */
-    void setPassword(string& pas);
+    void setPassword(const string& pas);
 
     /**
      * @brief Get the value of password
@@ -51,16 +51,31 @@ public:
     vector<Address*> getAddresses() const;
 
     /**
+     * @brief Let the manager add a new address
+     */
+    void addAddress(Address* new_address);
+
+    /**
      * @brief Get the vector of pointers
      * to PaymentMethod of the user
      */
     vector<PaymentMethod*> getPaymentMethods () const;
 
     /**
+     * @brief Let the manager add a new payment method
+     */
+    void addPaymentMethod(PaymentMethod* new_paymentmethod);
+
+    /**
      * @brief Get the vector of pointers
      * to Order made by the user
      */
     vector<Order*> getOrders() const;
+
+    /**
+     * @brief Let the manager add a new order
+     */
+    void addOrder(Order* new_order);
 
     friend PaymentMethod;
 
