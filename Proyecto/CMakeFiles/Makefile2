@@ -208,8 +208,8 @@ CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/clean:
 # Target rules for target googletest-build/googlemock/CMakeFiles/gmock_main.dir
 
 # All Build rule for target.
-googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: googletest-build/googletest/CMakeFiles/gtest.dir/all
 googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: googletest-build/googlemock/CMakeFiles/gmock.dir/all
+googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make googletest-build/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make googletest-build/googlemock/CMakeFiles/gmock_main.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gonzalo/ProyectoInformatica/Proyecto/CMakeFiles --progress-num=19,20 "Built target gmock_main"
@@ -317,9 +317,9 @@ googletest-build/googletest/CMakeFiles/gtest.dir/clean:
 # Target rules for target tests/CMakeFiles/test_basic.dir
 
 # All Build rule for target.
+tests/CMakeFiles/test_basic.dir/all: CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/all
 tests/CMakeFiles/test_basic.dir/all: googletest-build/googletest/CMakeFiles/gtest_main.dir/all
 tests/CMakeFiles/test_basic.dir/all: googletest-build/googletest/CMakeFiles/gtest.dir/all
-tests/CMakeFiles/test_basic.dir/all: CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/all
 	$(MAKE) -f tests/CMakeFiles/test_basic.dir/build.make tests/CMakeFiles/test_basic.dir/depend
 	$(MAKE) -f tests/CMakeFiles/test_basic.dir/build.make tests/CMakeFiles/test_basic.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gonzalo/ProyectoInformatica/Proyecto/CMakeFiles --progress-num=25,26 "Built target test_basic"
