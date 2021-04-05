@@ -82,7 +82,19 @@ bool Manager::addUser(const string& us, const string& em, const string& pas) {
 }
 
 bool Manager::addAdministrator(string us, string em, string pas, unsigned long emcode) {
-    return false;
+    bool flag = true;
+    for (unsigned long i = 0; i < users.size(); i++) {
+        if ((users[i]->getEmail() == em)||(users[i]->getUsername() == us)) {
+            flag = false;
+        }
+    }
+    if (flag) {
+        Administrator* new_admin = new Administrator(us,em,pas,emcode);
+        users.push_back(new_admin);
+        return true;
+    } else {
+        return false;
+    }
 }
 
 bool Manager::eraseCurrentMember() {
