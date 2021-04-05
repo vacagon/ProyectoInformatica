@@ -53,6 +53,8 @@ string
 -
 vector
 -
+algorithm
+-
 User.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/User.hpp
 Administrator.hpp
@@ -77,10 +79,6 @@ Review.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 Interface.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Interface.hpp
-
-/home/gonzalo/ProyectoInformatica/Proyecto/Order.cpp
-Order.hpp
-/home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
 string
@@ -140,17 +138,9 @@ User.hpp
 Review.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 
-/home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.cpp
-PublicUserData.hpp
-/home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
-
 /home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
 string
 -
-
-/home/gonzalo/ProyectoInformatica/Proyecto/Review.cpp
-Review.hpp
-/home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 string

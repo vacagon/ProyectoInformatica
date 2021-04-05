@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD
 <<<<<<< HEAD:Proyecto/CMakeLists.txt.user
 <!-- Written by QtCreator 4.13.2, 2021-04-05T10:40:19. -->
 =======
 <!-- Written by QtCreator 4.13.2, 2021-04-05T11:02:58. -->
 >>>>>>> manager:Code/CMakeLists.txt.user
+=======
+<!-- Written by QtCreator 4.13.2, 2021-04-05T12:50:59. -->
+>>>>>>> manager
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>

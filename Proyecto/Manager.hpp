@@ -6,6 +6,7 @@
  */
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "User.hpp"
 #include "Administrator.hpp"
 #include "PrivateUserData.hpp"
@@ -120,7 +121,7 @@ public:
      * @return True: success, otherwise False
 	 * @param  new_username
 	 */
-    bool editUsername(string new_username);
+    bool editUsername(const string& new_username);
 
 	/**
      * @brief Allow the logger user to edit
@@ -128,7 +129,7 @@ public:
      * @return True: success, otherwise False
 	 * @param  new_email
 	 */
-    bool editEmail(string new_email);
+    bool editEmail(const string& new_email);
 
 
 	/**
@@ -137,7 +138,7 @@ public:
      * @return True: success, otherwise False
 	 * @param  new_password
 	 */
-    bool editPassword(string new_password);
+    bool editPassword(const string& new_password);
 
 
 	/**
@@ -149,7 +150,7 @@ public:
      * @param  p: province
      * @param  pcode: postal_code
 	 */
-    bool addAddress(string a, string c, string p, unsigned int pcode);
+    bool addAddress(const string& a, const string& c, const string& p, unsigned int pcode);
 
 	/**
      * @brief Allow currently logged user to
@@ -180,7 +181,7 @@ public:
      * @param  d: description
      * @param  r: reference
      * @param  p: price
-	 */
+     */
     bool addProduct(string n, string d, unsigned long r, float p);
 
 	/**
