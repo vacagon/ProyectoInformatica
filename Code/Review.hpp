@@ -62,7 +62,7 @@ public:
 	 */
     void decremVotes();
 
-    const PublicUserData& getAuthor() const;
+    const PublicUserData* getAuthor() const;
 
 private:
 

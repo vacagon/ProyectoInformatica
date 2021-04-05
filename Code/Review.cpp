@@ -21,8 +21,8 @@ Review::Review(unsigned long i, int r, const string& t, PublicUserData* a) {
 Review::~Review() {}
 
 const string Review::show() const {
-    //Giving format to date
 
+    //Giving format to date
     struct tm* timeinfo;
     timeinfo = localtime(&date);
     char dat[24];
@@ -38,7 +38,7 @@ const string Review::show() const {
     v << getVotes();
     v >> votes;
     string output;
-    output = "\t" + rating + " stars on " + date + " by " + getAuthor().getUsername()+ "\n";
+    output = "\t" + rating + " stars on " + dat + " by " + getAuthor()->getUsername() + "\n";
     output += "\t" + text + "\n";
     output += "\t" + votes +" votes"+ "\n";
     return output;
@@ -77,10 +77,12 @@ void Review::incrementVotes() {
 }
 
 void Review::decremVotes() {
-    --votes;
+    if (votes>0) {
+        --votes;
+    }
 }
 
-const PublicUserData& Review::getAuthor() const {
-    return *author;
+const PublicUserData* Review::getAuthor() const {
+    return author;
 }
 
