@@ -76,7 +76,7 @@ LISTA DE CLASES:
 	-unsigned long reference, setReference, getReference (+)
 	-vector<Review*> reviews, getReviews, addReview (+)
 ----------------------------------------------------------
--Review:
+-Review: (+)
 	-Constructor paramétrico (+)
 	-Constructor vacío (+)
 	-show (+)
@@ -94,7 +94,7 @@ LISTA DE CLASES:
 	-vector<Product*> product, getProducts (+)
 	-int current_member (+)
 	-bool login (+)
-	-bool logout
+	-bool logout (+)
 	-bool isLogged
 	-getCurrentMember
 	-bool addUser

@@ -33,7 +33,12 @@ bool Manager::login(string em, string pas) {
 }
 
 bool Manager::logout() {
-    return false;
+    bool flag = false;
+    if (current_member != -1) {
+        current_member = -1;
+        flag = true;
+    }
+    return flag;
 }
 
 bool Manager::isLogged() {
