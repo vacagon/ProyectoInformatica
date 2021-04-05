@@ -49,8 +49,14 @@ bool Manager::isLogged() {
     return flag;
 }
 
-User* Manager::getCurrentMember() {
-    return nullptr;
+const User* Manager::getCurrentMember() {
+    User* cmember;
+    if (isLogged()) {
+        cmember = users[current_member];
+    } else {
+        cmember = nullptr;
+    }
+    return cmember;
 }
 
 bool Manager::addUser(string us, string em, string pas) {

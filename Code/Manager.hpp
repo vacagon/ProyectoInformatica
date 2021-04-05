@@ -79,7 +79,7 @@ public:
      * @return Pointer to the logged user in case there's one
      * otherwise nullptr.
 	 */
-    User* getCurrentMember();
+    const User* getCurrentMember();
 
 	/**
      * @brief Creates a new user
