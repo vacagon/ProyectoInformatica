@@ -49,7 +49,7 @@ bool Manager::logout() {
 
 bool Manager::isLogged() {
     bool flag = false;
-    if (current_member != -1) {
+    if ((current_member != -1) && (current_member < (int)users.size())) {
         flag = true;
     }
     return flag;
@@ -100,7 +100,7 @@ bool Manager::addAdministrator(string us, string em, string pas, unsigned long e
 
 bool Manager::eraseCurrentMember() {
     bool flag = false;
-    if ((isLogged()) && (current_member < (int)users.size())) {
+    if (isLogged()) {
         delete users[current_member];
         users.erase(users.begin() + current_member);
         flag = true;
@@ -127,7 +127,7 @@ bool Manager::editUsername(const string& new_username) {
     }
 }
 
-bool Manager::editEmail(string new_email) {
+bool Manager::editEmail(const string& new_email) {
     bool flag = true;
     if (!isLogged()) {
         return false;
@@ -146,8 +146,13 @@ bool Manager::editEmail(string new_email) {
     }
 }
 
-bool Manager::editPassword(string new_password) {
-    return false;
+bool Manager::editPassword(const string& new_password) {
+    if (!isLogged()) {
+        return false;
+    } else {
+        users[current_member]->setPassword(new_password);
+        return true;
+    }
 }
 
 bool Manager::addAddress(string a, string c, string p, unsigned int pcode) {

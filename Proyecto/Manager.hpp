@@ -129,7 +129,7 @@ public:
      * @return True: success, otherwise False
 	 * @param  new_email
 	 */
-    bool editEmail(string new_email);
+    bool editEmail(const string& new_email);
 
 
 	/**
@@ -138,7 +138,7 @@ public:
      * @return True: success, otherwise False
 	 * @param  new_password
 	 */
-    bool editPassword(string new_password);
+    bool editPassword(const string& new_password);
 
 
 	/**

@@ -27,7 +27,7 @@ public:
     /**
      * @brief Set the value of email
      */
-    void setEmail(string& em);
+    void setEmail(const string& em);
 
     /**
      * @brief Get the value of email
@@ -37,7 +37,7 @@ public:
     /**
      * @brief Set the value of password
      */
-    void setPassword(string& pas);
+    void setPassword(const string& pas);
 
     /**
      * @brief Get the value of password

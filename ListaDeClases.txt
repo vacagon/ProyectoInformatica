@@ -102,7 +102,7 @@ LISTA DE CLASES:
 	-bool eraseCurrentMember (+)
 	-bool editUsername (+)
 	-bool editEmail (+)
-	-bool editPassword
+	-bool editPassword (+)
 	-bool addAddress, addCreditCard, addPaypal
 	-bool addProduct
 	-showMembers

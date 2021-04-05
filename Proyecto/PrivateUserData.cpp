@@ -7,7 +7,7 @@ PrivateUserData::PrivateUserData(const string &em, const string& pas) {
 
 PrivateUserData::~PrivateUserData() {}
 
-void PrivateUserData::setEmail(string& em) {
+void PrivateUserData::setEmail(const string& em) {
     email = em;
 }
 
@@ -15,7 +15,7 @@ const string& PrivateUserData::getEmail () const {
     return email;
 }
 
-void PrivateUserData::setPassword(string& pas) {
+void PrivateUserData::setPassword(const string& pas) {
     password = pas;
 }
 
