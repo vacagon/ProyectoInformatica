@@ -8,7 +8,10 @@ Manager::Manager() {
     current_member = -1;
 }
 
-Manager::~Manager() {}
+Manager::~Manager() {
+    users.clear();
+    products.clear();
+}
 
 vector<User*> Manager::getUsers() const {
     return users;

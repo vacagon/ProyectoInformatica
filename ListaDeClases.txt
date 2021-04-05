@@ -89,7 +89,7 @@ LISTA DE CLASES:
 ----------------------------------------------------------
 -Manager:
 	-Constructor vacío (+)
-	-Destructor
+	-Destructor (+)
 	-vector<User*> users, getUsers
 	-vector<Product*> product, getProductos
 	-int current_member
