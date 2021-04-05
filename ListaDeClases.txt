@@ -95,7 +95,7 @@ LISTA DE CLASES:
 	-int current_member (+)
 	-bool login (+)
 	-bool logout (+)
-	-bool isLogged
+	-bool isLogged (+)
 	-getCurrentMember
 	-bool addUser
 	-bool addAdministrator

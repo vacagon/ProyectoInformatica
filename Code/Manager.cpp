@@ -34,7 +34,7 @@ bool Manager::login(string em, string pas) {
 
 bool Manager::logout() {
     bool flag = false;
-    if (current_member != -1) {
+    if (isLogged()) {
         current_member = -1;
         flag = true;
     }
@@ -42,7 +42,11 @@ bool Manager::logout() {
 }
 
 bool Manager::isLogged() {
-    return false;
+    bool flag = false;
+    if (current_member != -1) {
+        flag = true;
+    }
+    return flag;
 }
 
 User* Manager::getCurrentMember() {
