@@ -166,11 +166,23 @@ bool Manager::addAddress(const string &a, const string &c, const string &p, unsi
 }
 
 bool Manager::addCreditCard(Address* a, unsigned long n, string& cholder) {
-    return false;
+    bool flag = false;
+    int id = users[current_member]->getPaymentMethods().size();
+    if (isLogged()) {
+        CreditCard* new_creditcard = new CreditCard(id, a, n, cholder);
+        users[current_member]->addPaymentMethod(new_creditcard);
+    }
+    return flag;
 }
 
 bool Manager::addPaypal(Address* a, string& em) {
-    return false;
+    bool flag = false;
+    int id = users[current_member]->getPaymentMethods().size();
+    if (isLogged()) {
+        Paypal* new_paypal = new Paypal(id, a, em);
+        users[current_member]->addPaymentMethod(new_paypal);
+    }
+    return flag;
 }
 
 //################# SEGUNDA ENTREGA ############################//

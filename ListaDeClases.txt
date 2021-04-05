@@ -108,8 +108,8 @@ LISTA DE CLASES:
 	-bool editEmail (+)
 	-bool editPassword (+)
 	-bool addAddress (+)
-	-bool addCreditCard
-	-bool addPaypal
+	-bool addCreditCard (+)
+	-bool addPaypal (+)
 ////////////////SEGUNDA ENTREGA/////////////////////////
 	-bool addProduct
 	-showMembers
