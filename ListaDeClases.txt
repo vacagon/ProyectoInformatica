@@ -81,11 +81,11 @@ LISTA DE CLASES:
 	-Constructor vacío (+)
 	-show (+)
 	-unsigned long id, getId (+)
-	-time_t date, getDate
-	-int rating, setRating, getRating
-	-string text, setText, getText
-	-int votes, getVotes, incrementVotes, decrementVotes
-	-PublicUserData* author, getAuthor
+	-time_t date, getDate (+)
+	-int rating, setRating, getRating (+)
+	-string text, setText, getText (+)
+	-int votes, getVotes, incrementVotes, decrementVotes (+)
+	-PublicUserData* author, getAuthor (+)
 ----------------------------------------------------------
 -Manager:
 	-Constructor vacío
