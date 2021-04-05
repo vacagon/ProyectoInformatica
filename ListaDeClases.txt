@@ -90,8 +90,8 @@ LISTA DE CLASES:
 -Manager:
 	-Constructor vacío (+)
 	-Destructor (+)
-	-vector<User*> users, getUsers
-	-vector<Product*> product, getProductos
+	-vector<User*> users, getUsers (+)
+	-vector<Product*> product, getProducts (+)
 	-int current_member
 	-bool login
 	-bool logout

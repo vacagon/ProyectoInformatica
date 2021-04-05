@@ -1,6 +1,9 @@
 #ifndef MANAGER_HPP
 #define MANAGER_HPP
 
+/**
+ * Header files
+ */
 #include <string>
 #include <vector>
 #include "User.hpp"
@@ -36,12 +39,14 @@ public:
 	virtual ~Manager();
 
     /**
-     * @brief Get all the users registered in the platform.
+     * @brief Get a vector with every
+     * user registered in the platform.
      */
     vector<User*> getUsers() const;
 
     /**
-     * @brief Get all products selled in the platform.
+     * @brief Get a vector with every
+     * product registered in the platform.
      */
     vector<Product*> getProducts() const;
 
