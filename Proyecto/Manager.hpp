@@ -121,7 +121,7 @@ public:
      * @return True: success, otherwise False
 	 * @param  new_username
 	 */
-    bool editUsername(string new_username);
+    bool editUsername(const string& new_username);
 
 	/**
      * @brief Allow the logger user to edit

@@ -108,8 +108,23 @@ bool Manager::eraseCurrentMember() {
     return flag;
 }
 
-bool Manager::editUsername(string new_username) {
-    return false;
+bool Manager::editUsername(const string& new_username) {
+    bool flag = true;
+    if (!isLogged()) {
+        return false;
+    } else {
+        for (unsigned long i = 0; i < users.size(); i++) {
+            if (users[i]->getEmail() == new_username) {
+                flag = false;
+            }
+        }
+        if (flag) {
+           users[current_member]->setUsername(new_username);
+           return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 bool Manager::editEmail(string new_email) {
