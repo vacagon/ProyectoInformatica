@@ -92,8 +92,8 @@ LISTA DE CLASES:
 	-Destructor (+)
 	-vector<User*> users, getUsers (+)
 	-vector<Product*> product, getProducts (+)
-	-int current_member
-	-bool login
+	-int current_member (+)
+	-bool login (+)
 	-bool logout
 	-bool isLogged
 	-getCurrentMember

@@ -22,7 +22,14 @@ vector<Product*> Manager::getProducts() const {
 }
 
 bool Manager::login(string em, string pas) {
-    return false;
+    bool flag = false;
+    for (unsigned long i = 0; i < users.size(); i++) {
+        if ((users[i]->getEmail() == em)&&(users[i]->getPassword() == pas)) {
+            flag = true;
+            break;
+        }
+    }
+    return flag;
 }
 
 bool Manager::logout() {
