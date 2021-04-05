@@ -6,6 +6,7 @@
  */
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "User.hpp"
 #include "Administrator.hpp"
 #include "PrivateUserData.hpp"

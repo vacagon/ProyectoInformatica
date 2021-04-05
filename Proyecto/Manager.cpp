@@ -82,6 +82,7 @@ bool Manager::addUser(const string& us, const string& em, const string& pas) {
 }
 
 bool Manager::addAdministrator(string us, string em, string pas, unsigned long emcode) {
+    //Falta comprobar que no haya otro administrador con el mismo codigo de empleado
     bool flag = true;
     for (unsigned long i = 0; i < users.size(); i++) {
         if ((users[i]->getEmail() == em)||(users[i]->getUsername() == us)) {
@@ -98,7 +99,13 @@ bool Manager::addAdministrator(string us, string em, string pas, unsigned long e
 }
 
 bool Manager::eraseCurrentMember() {
-    return false;
+    bool flag = false;
+    if ((isLogged()) && (current_member < (int)users.size())) {
+        delete users[current_member];
+        users.erase(users.begin() + current_member);
+        flag = true;
+    }
+    return flag;
 }
 
 bool Manager::editUsername(string new_username) {

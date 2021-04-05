@@ -99,8 +99,10 @@ LISTA DE CLASES:
 	-getCurrentMember (+)
 	-bool addUser (+)
 	-bool addAdministrator (+)
-	-bool eraseCurrentMember
-	-bool editUsername, editEmail, editPassword
+	-bool eraseCurrentMember (+)
+	-bool editUsername
+	-bool editEmail
+	-bool editPassword
 	-bool addAddress, addCreditCard, addPaypal
 	-bool addProduct
 	-showMembers
