@@ -1,6 +1,6 @@
 #include "PrivateUserData.hpp"
 
-PrivateUserData::PrivateUserData(string &em, string& pas) {
+PrivateUserData::PrivateUserData(const string &em, const string& pas) {
     email = em;
     password = pas;
 }

@@ -18,7 +18,7 @@ public:
      * @param us_name: Username
      * @param rep: Reputation, initialice to 0
      */
-    PublicUserData(string& us_name, int rep = 0);
+    PublicUserData(const string& us_name, int rep = 0);
 
 	/**
      * @brief Empty Destructor
@@ -33,7 +33,7 @@ public:
     /**
      * @brief Sets the username
      */
-    void setUsername(string& us);
+    void setUsername(const string& us);
 
 	/**
      * @brief Gets user's reputation

@@ -59,7 +59,7 @@ public:
 	 * @param  email
 	 * @param  password
 	 */
-    bool login(string em, string pas);
+    bool login(const string& em, const string& pas);
 
 	/**
      * @brief Close user's session in the platform.
@@ -79,7 +79,7 @@ public:
      * @return Pointer to the logged user in case there's one
      * otherwise nullptr.
 	 */
-    const User* getCurrentMember();
+    User* getCurrentMember();
 
 	/**
      * @brief Creates a new user
@@ -90,7 +90,7 @@ public:
      * @param  em: email
      * @param  pas: password
 	 */
-    bool addUser(string us, string em, string pas);
+    bool addUser(const string& us, const string& em, const string& pas);
 
 
 	/**

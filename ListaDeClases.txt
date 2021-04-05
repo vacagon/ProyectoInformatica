@@ -97,7 +97,7 @@ LISTA DE CLASES:
 	-bool logout (+)
 	-bool isLogged (+)
 	-getCurrentMember (+)
-	-bool addUser
+	-bool addUser (+)
 	-bool addAdministrator
 	-bool eraseCurrentMember
 	-bool editUsername, editEmail, editPassword

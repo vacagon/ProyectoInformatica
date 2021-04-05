@@ -9,6 +9,12 @@ Manager::Manager() {
 }
 
 Manager::~Manager() {
+    for (unsigned long i = 0; i < users.size(); i++) {
+        delete users[i];
+    }
+    for (unsigned long i = 0; i < products.size(); i++) {
+        delete products[i];
+    }
     users.clear();
     products.clear();
 }
@@ -21,7 +27,7 @@ vector<Product*> Manager::getProducts() const {
     return products;
 }
 
-bool Manager::login(string em, string pas) {
+bool Manager::login(const string& em,const string& pas) {
     bool flag = false;
     for (unsigned long i = 0; i < users.size(); i++) {
         if ((users[i]->getEmail() == em)&&(users[i]->getPassword() == pas)) {
@@ -49,7 +55,7 @@ bool Manager::isLogged() {
     return flag;
 }
 
-const User* Manager::getCurrentMember() {
+User* Manager::getCurrentMember() {
     User* cmember;
     if (isLogged()) {
         cmember = users[current_member];
@@ -59,8 +65,20 @@ const User* Manager::getCurrentMember() {
     return cmember;
 }
 
-bool Manager::addUser(string us, string em, string pas) {
-    return false;
+bool Manager::addUser(const string& us, const string& em, const string& pas) {
+    bool flag = true;
+    for (unsigned long i = 0; i < users.size(); i++) {
+        if ((users[i]->getEmail() == em)||(users[i]->getUsername() == us)) {
+            flag = false;
+        }
+    }
+    if (flag) {
+        User* new_user = new User(us,em,pas);
+        users.push_back(new_user);
+        return true;
+    } else {
+        return false;
+    }
 }
 
 bool Manager::addAdministrator(string us, string em, string pas, unsigned long emcode) {

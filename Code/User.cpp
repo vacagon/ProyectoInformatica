@@ -1,6 +1,6 @@
 #include "User.hpp"
 
-User::User(string& us, string& em, string& pas):
+User::User(const string& us, const string& em, const string& pas):
     PublicUserData(us), PrivateUserData(em, pas) {}
 
 User::~User() {}

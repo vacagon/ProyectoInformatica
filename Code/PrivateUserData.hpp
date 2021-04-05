@@ -19,7 +19,7 @@ public:
      * @param em: Email
      * @param pas: Password
      */
-    PrivateUserData(string &em, string& pas);
+    PrivateUserData(const string &em, const string& pas);
 
     /** @brief Empty Destructor */
 	virtual ~PrivateUserData();
