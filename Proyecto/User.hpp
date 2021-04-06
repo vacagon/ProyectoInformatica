@@ -16,7 +16,7 @@ class User: public PublicUserData, public PrivateUserData {
 
 public:
 
-    User(const string& us, const string& em, const string& pas);
+    User(string& us, string& em, string& pas);
 
 	virtual ~User();
 
@@ -25,6 +25,12 @@ public:
      * @return True if it's, false if it's not
 	 */
     virtual bool isAdmin();
+
+    /**
+     * @brief Virtual method to get employee code, in case
+     * it is not an employee, return 0
+     */
+    virtual unsigned long getEmployeeCode() const;
 
 protected:
 

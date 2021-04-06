@@ -65,37 +65,27 @@ User* Manager::getCurrentMember() {
     return cmember;
 }
 
-bool Manager::addUser(const string& us, const string& em, const string& pas) {
-    bool flag = true;
-    for (unsigned long i = 0; i < users.size(); i++) {
+bool Manager::addUser(string& us, string& em, string& pas) {
+    /*for (int i = 0; i < (int)users.size(); i++) {
         if ((users[i]->getEmail() == em)||(users[i]->getUsername() == us)) {
-            flag = false;
+            return false;
         }
     }
-    if (flag) {
-        User* new_user = new User(us,em,pas);
-        users.push_back(new_user);
-        return true;
-    } else {
-        return false;
-    }
+    User* new_user = new User(us,em,pas);
+    users.push_back(new_user);
+    return true;*/
+    return false;
 }
 
-bool Manager::addAdministrator(string us, string em, string pas, unsigned long emcode) {
-    //Falta comprobar que no haya otro administrador con el mismo codigo de empleado
-    bool flag = true;
+bool Manager::addAdministrator(string &us, string &em, string &pas, unsigned long emcode) {
     for (unsigned long i = 0; i < users.size(); i++) {
-        if ((users[i]->getEmail() == em)||(users[i]->getUsername() == us)) {
-            flag = false;
+        if ((users[i]->getEmail() == em)||(users[i]->getUsername() == us)||(users[i]->getEmployeeCode() == emcode)) {
+            return false;
         }
     }
-    if (flag) {
-        Administrator* new_admin = new Administrator(us,em,pas,emcode);
-        users.push_back(new_admin);
-        return true;
-    } else {
-        return false;
-    }
+    Administrator* new_admin = new Administrator(us,em,pas,emcode);
+    users.push_back(new_admin);
+    return true;
 }
 
 bool Manager::eraseCurrentMember() {
@@ -124,7 +114,7 @@ bool Manager::editUsername(const string& new_username) {
         } else {
             return false;
         }
-    }
+    };
 }
 
 bool Manager::editEmail(const string& new_email) {
@@ -143,7 +133,7 @@ bool Manager::editEmail(const string& new_email) {
         } else {
             return false;
         }
-    }
+    };
 }
 
 bool Manager::editPassword(const string& new_password) {
@@ -234,3 +224,4 @@ bool Manager::deleteReview(unsigned long i) {
 void Manager::saveToFile(string& route) {}
 
 void loadFromFile(string route) {}
+

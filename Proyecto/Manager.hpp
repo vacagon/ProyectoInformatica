@@ -91,7 +91,7 @@ public:
      * @param  em: email
      * @param  pas: password
 	 */
-    bool addUser(const string& us, const string& em, const string& pas);
+    bool addUser(string& us, string& em, string& pas);
 
 
 	/**
@@ -104,7 +104,7 @@ public:
      * @param  pas: password
      * @param  emcode: employee_code
 	 */
-    bool addAdministrator(string us, string em, string pas, unsigned long emcode);
+    bool addAdministrator(string& us, string& em, string& pas, unsigned long emcode);
 
 
 	/**

@@ -138,7 +138,6 @@ TEST_F(TestBasic, ManagerCannotDuplicateMember)
     ASSERT_EQ(1, members.size());
 }
 
-
 TEST_F(TestBasic, ManagerCanLoginMember)
 {
     Manager manager;
@@ -158,7 +157,6 @@ TEST_F(TestBasic, ManagerCanLoginMember)
     EXPECT_EQ(name1, logged_member->getUsername());
 }
 
-
 TEST_F(TestBasic, ManagerWrongMemberCannotLogin)
 {
     Manager manager;
@@ -170,7 +168,6 @@ TEST_F(TestBasic, ManagerWrongMemberCannotLogin)
     EXPECT_FALSE(manager.isLogged());
     EXPECT_EQ(nullptr, manager.getCurrentMember());
 }
-
 
 TEST_F(TestBasic, ManagerCannotLoginMemberTwice)
 {
@@ -195,7 +192,6 @@ TEST_F(TestBasic, ManagerCanLogoutMember)
     EXPECT_EQ(nullptr, manager.getCurrentMember());
 }
 
-
 TEST_F(TestBasic, ManagerCanEraseLoggedMember)
 {
     Manager manager;
@@ -211,7 +207,6 @@ TEST_F(TestBasic, ManagerCanEraseLoggedMember)
     EXPECT_EQ(email2, members[0]->getEmail());
     EXPECT_EQ(password2, members[0]->getPassword());
 }
-
 
 TEST_F(TestBasic, ManagerLoggedMemberCanEditProfile)
 {
@@ -247,7 +242,6 @@ TEST_F(TestBasic, ManagerLoggedMemberCanEditProfile)
     EXPECT_EQ(name3, manager.getCurrentMember()->getUsername());
 }
 
-
 TEST_F(TestBasic, ManagerCanCreateAddress)
 {
     Manager manager;
@@ -262,7 +256,6 @@ TEST_F(TestBasic, ManagerCanCreateAddress)
     EXPECT_EQ(province, manager.getCurrentMember()->getAddresses()[0]->getProvince());
     EXPECT_EQ(postal_code, manager.getCurrentMember()->getAddresses()[0]->getPostalCode());
 }
-
 
 TEST_F(TestBasic, ManagerCanCreatePaymentMethods)
 {
