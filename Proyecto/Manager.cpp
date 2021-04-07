@@ -154,6 +154,7 @@ bool Manager::addAddress(const string &a, const string &c, const string &p, unsi
     if (isLogged()) {
         Address* new_address = new Address(id, a, c, p, pcode);
         users[current_member]->addAddress(new_address);
+        flag = true;
     }
     return flag;
 }
@@ -164,6 +165,7 @@ bool Manager::addCreditCard(Address* a, unsigned long n, string& cholder) {
     if (isLogged()) {
         CreditCard* new_creditcard = new CreditCard(id, a, n, cholder);
         users[current_member]->addPaymentMethod(new_creditcard);
+        flag = true;
     }
     return flag;
 }
@@ -174,6 +176,7 @@ bool Manager::addPaypal(Address* a, string& em) {
     if (isLogged()) {
         Paypal* new_paypal = new Paypal(id, a, em);
         users[current_member]->addPaymentMethod(new_paypal);
+        flag = true;
     }
     return flag;
 }

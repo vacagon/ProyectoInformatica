@@ -42,6 +42,7 @@ CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PaymentMethod.cpp.o: Address.hp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PaymentMethod.cpp.o: Order.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PaymentMethod.cpp.o: PaymentMethod.cpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PaymentMethod.cpp.o: PaymentMethod.hpp
+CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PaymentMethod.cpp.o: PrivateUserData.hpp
 
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Paypal.cpp.o: Address.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Paypal.cpp.o: Order.hpp

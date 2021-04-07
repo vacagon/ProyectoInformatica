@@ -1,14 +1,15 @@
 #include "PaymentMethod.hpp"
+#include "PrivateUserData.hpp"
 
 PaymentMethod::PaymentMethod(int i, Address* baddress) {
-    id = i;
-    billing_address = baddress;
+    setId(i);
+    setBillingAddress(baddress);
 }
 
 PaymentMethod::~PaymentMethod() {};
 
 int PaymentMethod::getId() const {
-    return 0;
+    return id;
 }
 
 void PaymentMethod::setId(int i) {
@@ -16,7 +17,9 @@ void PaymentMethod::setId(int i) {
 }
 
 Address* PaymentMethod::getBillingAddress() const {
-    return nullptr;
+    return billing_address;
 }
 
-void PaymentMethod::setBillingAddress(const Address* a) {}
+void PaymentMethod::setBillingAddress(Address* baddress) {
+    billing_address = baddress;
+}

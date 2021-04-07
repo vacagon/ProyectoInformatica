@@ -35,7 +35,7 @@ public:
 
     Address* getBillingAddress() const;
 
-    void setBillingAddress(const Address* a);
+    void setBillingAddress(Address *badress);
 
 protected:
 
