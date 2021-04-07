@@ -62,10 +62,10 @@ User* Manager::getCurrentMember() {
     User* cmember;
     if (isLogged()) {
         cmember = users[current_member];
+        return cmember;
     } else {
-        cmember = nullptr;
+        return nullptr;
     }
-    return cmember;
 }
 
 bool Manager::addUser(const string &us, const string &em, const string &pas) {
@@ -95,6 +95,7 @@ bool Manager::eraseCurrentMember() {
     if (isLogged()) {
         delete users[current_member];
         users.erase(users.begin() + current_member);
+        current_member = -1;
         flag = true;
     }
     return flag;
