@@ -29,11 +29,13 @@ vector<Product*> Manager::getProducts() const {
 
 bool Manager::login(const string& em,const string& pas) {
     bool flag = false;
-    for (unsigned long i = 0; i < users.size(); i++) {
-        if ((users[i]->getEmail() == em)&&(users[i]->getPassword() == pas)) {
-            current_member = i;
-            flag = true;
-            break;
+    if (current_member == -1) {
+        for (unsigned long i = 0; i < users.size(); i++) {
+            if ((users[i]->getEmail() == em)&&(users[i]->getPassword() == pas)) {
+                current_member = i;
+                flag = true;
+                break;
+            }
         }
     }
     return flag;
