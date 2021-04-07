@@ -3,8 +3,8 @@
 //################# PRIMERA ENTREGA ############################//
 
 Manager::Manager() {
-    users.push_back(nullptr);
-    products.push_back(nullptr);
+    users = vector<User*> ();
+    products = vector<Product*> ();
     current_member = -1;
 }
 
@@ -65,16 +65,15 @@ User* Manager::getCurrentMember() {
     return cmember;
 }
 
-bool Manager::addUser(string& us, string& em, string& pas) {
-    /*for (int i = 0; i < (int)users.size(); i++) {
+bool Manager::addUser(const string &us, const string &em, const string &pas) {
+    for (int i = 0; i < (int)users.size(); i++) {
         if ((users[i]->getEmail() == em)||(users[i]->getUsername() == us)) {
             return false;
         }
     }
     User* new_user = new User(us,em,pas);
     users.push_back(new_user);
-    return true;*/
-    return false;
+    return true;
 }
 
 bool Manager::addAdministrator(string &us, string &em, string &pas, unsigned long emcode) {

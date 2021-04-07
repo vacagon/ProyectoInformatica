@@ -16,7 +16,7 @@ class User: public PublicUserData, public PrivateUserData {
 
 public:
 
-    User(string& us, string& em, string& pas);
+    User(const string& us, const string& em, const string& pas);
 
 	virtual ~User();
 

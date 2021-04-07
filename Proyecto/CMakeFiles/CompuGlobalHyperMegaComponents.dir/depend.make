@@ -4,5 +4,18 @@
 CMakeFiles/CompuGlobalHyperMegaComponents.dir/Interface.cpp.o: Interface.cpp
 CMakeFiles/CompuGlobalHyperMegaComponents.dir/Interface.cpp.o: Interface.hpp
 
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: Address.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: Administrator.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: CreditCard.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: Interface.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: Manager.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: Order.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: PaymentMethod.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: Paypal.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: PrivateUserData.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: Product.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: PublicUserData.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: Review.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: User.hpp
 CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: main.cpp
 

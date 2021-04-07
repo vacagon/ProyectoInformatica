@@ -91,7 +91,7 @@ public:
      * @param  em: email
      * @param  pas: password
 	 */
-    bool addUser(string& us, string& em, string& pas);
+    bool addUser(const string& us, const string& em, const string& pas);
 
 
 	/**
