@@ -3,8 +3,8 @@
 //################# PRIMERA ENTREGA ############################//
 
 Manager::Manager() {
-    users.push_back(nullptr);
-    products.push_back(nullptr);
+    users = vector<User*> ();
+    products = vector<Product*> ();
     current_member = -1;
 }
 
@@ -29,10 +29,13 @@ vector<Product*> Manager::getProducts() const {
 
 bool Manager::login(const string& em,const string& pas) {
     bool flag = false;
-    for (unsigned long i = 0; i < users.size(); i++) {
-        if ((users[i]->getEmail() == em)&&(users[i]->getPassword() == pas)) {
-            flag = true;
-            break;
+    if (current_member == -1) {
+        for (unsigned long i = 0; i < users.size(); i++) {
+            if ((users[i]->getEmail() == em)&&(users[i]->getPassword() == pas)) {
+                current_member = i;
+                flag = true;
+                break;
+            }
         }
     }
     return flag;
@@ -59,43 +62,32 @@ User* Manager::getCurrentMember() {
     User* cmember;
     if (isLogged()) {
         cmember = users[current_member];
+        return cmember;
     } else {
-        cmember = nullptr;
-    }
-    return cmember;
-}
-
-bool Manager::addUser(const string& us, const string& em, const string& pas) {
-    bool flag = true;
-    for (unsigned long i = 0; i < users.size(); i++) {
-        if ((users[i]->getEmail() == em)||(users[i]->getUsername() == us)) {
-            flag = false;
-        }
-    }
-    if (flag) {
-        User* new_user = new User(us,em,pas);
-        users.push_back(new_user);
-        return true;
-    } else {
-        return false;
+        return nullptr;
     }
 }
 
-bool Manager::addAdministrator(string us, string em, string pas, unsigned long emcode) {
-    //Falta comprobar que no haya otro administrador con el mismo codigo de empleado
-    bool flag = true;
-    for (unsigned long i = 0; i < users.size(); i++) {
+bool Manager::addUser(const string &us, const string &em, const string &pas) {
+    for (int i = 0; i < (int)users.size(); i++) {
         if ((users[i]->getEmail() == em)||(users[i]->getUsername() == us)) {
-            flag = false;
+            return false;
         }
     }
-    if (flag) {
-        Administrator* new_admin = new Administrator(us,em,pas,emcode);
-        users.push_back(new_admin);
-        return true;
-    } else {
-        return false;
+    User* new_user = new User(us,em,pas);
+    users.push_back(new_user);
+    return true;
+}
+
+bool Manager::addAdministrator(string &us, string &em, string &pas, unsigned long emcode) {
+    for (unsigned long i = 0; i < users.size(); i++) {
+        if ((users[i]->getEmail() == em)||(users[i]->getUsername() == us)||(users[i]->getEmployeeCode() == emcode)) {
+            return false;
+        }
     }
+    Administrator* new_admin = new Administrator(us,em,pas,emcode);
+    users.push_back(new_admin);
+    return true;
 }
 
 bool Manager::eraseCurrentMember() {
@@ -103,6 +95,7 @@ bool Manager::eraseCurrentMember() {
     if (isLogged()) {
         delete users[current_member];
         users.erase(users.begin() + current_member);
+        current_member = -1;
         flag = true;
     }
     return flag;
@@ -124,7 +117,7 @@ bool Manager::editUsername(const string& new_username) {
         } else {
             return false;
         }
-    }
+    };
 }
 
 bool Manager::editEmail(const string& new_email) {
@@ -143,7 +136,7 @@ bool Manager::editEmail(const string& new_email) {
         } else {
             return false;
         }
-    }
+    };
 }
 
 bool Manager::editPassword(const string& new_password) {
@@ -161,6 +154,7 @@ bool Manager::addAddress(const string &a, const string &c, const string &p, unsi
     if (isLogged()) {
         Address* new_address = new Address(id, a, c, p, pcode);
         users[current_member]->addAddress(new_address);
+        flag = true;
     }
     return flag;
 }
@@ -171,6 +165,7 @@ bool Manager::addCreditCard(Address* a, unsigned long n, string& cholder) {
     if (isLogged()) {
         CreditCard* new_creditcard = new CreditCard(id, a, n, cholder);
         users[current_member]->addPaymentMethod(new_creditcard);
+        flag = true;
     }
     return flag;
 }
@@ -181,6 +176,7 @@ bool Manager::addPaypal(Address* a, string& em) {
     if (isLogged()) {
         Paypal* new_paypal = new Paypal(id, a, em);
         users[current_member]->addPaymentMethod(new_paypal);
+        flag = true;
     }
     return flag;
 }
@@ -234,3 +230,4 @@ bool Manager::deleteReview(unsigned long i) {
 void Manager::saveToFile(string& route) {}
 
 void loadFromFile(string route) {}
+

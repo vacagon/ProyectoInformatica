@@ -26,6 +26,12 @@ public:
 	 */
     virtual bool isAdmin();
 
+    /**
+     * @brief Virtual method to get employee code, in case
+     * it is not an employee, return 0
+     */
+    virtual unsigned long getEmployeeCode() const;
+
 protected:
 
     User();

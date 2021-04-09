@@ -104,7 +104,7 @@ public:
      * @param  pas: password
      * @param  emcode: employee_code
 	 */
-    bool addAdministrator(string us, string em, string pas, unsigned long emcode);
+    bool addAdministrator(string& us, string& em, string& pas, unsigned long emcode);
 
 
 	/**
