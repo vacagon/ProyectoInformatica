@@ -28,7 +28,19 @@ string
 PaymentMethod.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
 
+/home/gonzalo/ProyectoInformatica/Proyecto/Interface.cpp
+Interface.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Interface.hpp
+
+/home/gonzalo/ProyectoInformatica/Proyecto/Interface.hpp
+iostream
+-
+string
+-
+iomanip
+-
+Manager.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Manager.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/Manager.hpp
 string
@@ -59,8 +71,6 @@ Product.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Product.hpp
 Review.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
-Interface.hpp
-/home/gonzalo/ProyectoInformatica/Proyecto/Interface.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
 string
@@ -129,10 +139,4 @@ PublicUserData.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
 PrivateUserData.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/PrivateUserData.hpp
-
-/home/gonzalo/ProyectoInformatica/Proyecto/main.cpp
-iostream
--
-Manager.hpp
-/home/gonzalo/ProyectoInformatica/Proyecto/Manager.hpp
 

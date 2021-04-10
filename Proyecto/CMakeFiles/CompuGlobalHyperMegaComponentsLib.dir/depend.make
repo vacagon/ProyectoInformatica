@@ -23,7 +23,6 @@ CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/CreditCard.cpp.o: PaymentMethod
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Manager.cpp.o: Address.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Manager.cpp.o: Administrator.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Manager.cpp.o: CreditCard.hpp
-CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Manager.cpp.o: Interface.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Manager.cpp.o: Manager.cpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Manager.cpp.o: Manager.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Manager.cpp.o: Order.hpp

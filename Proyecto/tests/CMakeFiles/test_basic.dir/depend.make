@@ -4,7 +4,6 @@
 tests/CMakeFiles/test_basic.dir/test_basic.cpp.o: Address.hpp
 tests/CMakeFiles/test_basic.dir/test_basic.cpp.o: Administrator.hpp
 tests/CMakeFiles/test_basic.dir/test_basic.cpp.o: CreditCard.hpp
-tests/CMakeFiles/test_basic.dir/test_basic.cpp.o: Interface.hpp
 tests/CMakeFiles/test_basic.dir/test_basic.cpp.o: Manager.hpp
 tests/CMakeFiles/test_basic.dir/test_basic.cpp.o: Order.hpp
 tests/CMakeFiles/test_basic.dir/test_basic.cpp.o: PaymentMethod.hpp

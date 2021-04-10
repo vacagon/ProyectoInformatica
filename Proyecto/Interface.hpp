@@ -1,11 +1,25 @@
 #ifndef INTERFACE_HPP
 #define INTERFACE_HPP
 
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include "Manager.hpp"
 
-class Interface
-{
+using namespace std;
+
+class Interface {
+
 public:
-    Interface();
+
+    Interface(Manager& m);
+
+    bool addAdministrator();
+
+private:
+
+    Manager* manager;
+
 };
 
 #endif // INTERFACE_HPP

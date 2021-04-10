@@ -28,8 +28,6 @@ string
 PaymentMethod.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
 
-/home/gonzalo/ProyectoInformatica/Proyecto/Interface.hpp
-
 /home/gonzalo/ProyectoInformatica/Proyecto/Manager.hpp
 string
 -
@@ -59,8 +57,6 @@ Product.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Product.hpp
 Review.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
-Interface.hpp
-/home/gonzalo/ProyectoInformatica/Proyecto/Interface.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
 string

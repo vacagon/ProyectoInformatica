@@ -71,6 +71,8 @@ User* Manager::getCurrentMember() {
 bool Manager::addUser(const string &us, const string &em, const string &pas) {
     for (int i = 0; i < (int)users.size(); i++) {
         if ((users[i]->getEmail() == em)||(users[i]->getUsername() == us)) {
+            cout << endl << "Another user already use that "
+                 << "username or email. Please try again" << endl;
             return false;
         }
     }
@@ -82,6 +84,8 @@ bool Manager::addUser(const string &us, const string &em, const string &pas) {
 bool Manager::addAdministrator(string &us, string &em, string &pas, unsigned long emcode) {
     for (unsigned long i = 0; i < users.size(); i++) {
         if ((users[i]->getEmail() == em)||(users[i]->getUsername() == us)||(users[i]->getEmployeeCode() == emcode)) {
+            cout << endl << "Another user already use that username, email, or employee code. "
+                 << "Please try again" << endl;
             return false;
         }
     }
