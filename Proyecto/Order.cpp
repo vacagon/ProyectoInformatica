@@ -1,7 +1,6 @@
-#include <ctime>                                      // CAMBIO: añadida librería
+#include <ctime>
 #include "Order.hpp"
 
-                                                      // CAMBIO: añadidos constructores
 Order::Order(unsigned long ref, vector<unsigned long> prod, int ad, int pm, float tot) {
     reference = ref;
     products = prod;

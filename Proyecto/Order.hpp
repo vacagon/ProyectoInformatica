@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-#include <ctime>                        // CAMBIO: añadida librería
+#include <ctime>
 
 using namespace std;
 
@@ -28,7 +28,7 @@ public:
 
     void addProduct(unsigned long ref);
 
-    time_t getDate(time_t* i = 0)  ;                    // CAMBIO: recibe argumento 0
+    time_t getDate(time_t* i = 0)  ;
 
     int getDeliveryAddress() const;
 

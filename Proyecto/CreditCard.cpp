@@ -24,7 +24,7 @@ const string& CreditCard::getCardholder() const {
     return cardholder;
 }
 
-const string CreditCard::show() const {             // CAMBIO: añadido
+const string CreditCard::show() const {
     string output, id_aux, num_aux, ba_aux;
     stringstream ss_id, ss_num, ss_ba;
     ss_id << id ;

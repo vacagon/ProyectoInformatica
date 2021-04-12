@@ -14,7 +14,7 @@ const string& Paypal::getEmail() const {
     return email;
 }
 
-const string Paypal::show() const {                         // CAMBIO: añadido
+const string Paypal::show() const {
     string output, id_aux, num_aux, ba_aux;
     stringstream ss_id, ss_num, ss_ba;
     ss_id << id ;

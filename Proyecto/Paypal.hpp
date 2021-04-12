@@ -2,7 +2,7 @@
 #define PAYPAL_HPP
 
 #include <string>
-#include <sstream>                          // CAMBIO: añadida librería
+#include <sstream>
 
 #include "PaymentMethod.hpp"
 
