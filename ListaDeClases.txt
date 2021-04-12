@@ -1,11 +1,11 @@
 LISTA DE CLASES:
 ---------------------------------------------------------
--User
+-User (+)
 	-Constructor paramétrico (+)
 	-Constructor vacío (+)
 	-Método virtual isAdmin (+)
 ----------------------------------------------------------
--PrivateUserData:
+-PrivateUserData: (+)
 	-String email, getEmail, setEmail. (+)
 	-String password, getPassword, setPassword. (+)
 	-vector<Address*> addresses, getAddresses. (+)
@@ -17,19 +17,19 @@ LISTA DE CLASES:
 	-Constructor paramétrico (+)
 	-Constructor vacío (+)
 ----------------------------------------------------------
--PublicUserData:
+-PublicUserData: (+)
 	-String username, getUsername, setUsername. (+)
 	-Int reputation, getReputation, increaseReputation, decreaseReputation. (+)
 	-Constructor paramétrico (+)
 	-Constructor vacío (+)
 ----------------------------------------------------------
--Administrator:
+-Administrator: (+) 
 	-Constructor paramétrico (+)
 	-Constructor vacío (+)
 	-Unsigned long employee_code (+)
 	-isAdmin (+)
 ----------------------------------------------------------
--Address:
+-Address: (+)
 	-Constructor paramétrico (+)
 	-Constructor vacío (+)
 	-int id, setId, getId (+)
@@ -39,27 +39,27 @@ LISTA DE CLASES:
 	-unsigned int postal_code, setPostalCode, getPostalCode (+)
 	-show (+)
 ----------------------------------------------------------
--PaymentMethod:
+-PaymentMethod: (+)
 	-Constructor paramétrico (+)
 	-Constructor vacío (+)
 	-show (+)
 	-int id, getId, setId (+)
 	-Address* billing_address, getBillingAddress, setBillingAddress (+)
 ----------------------------------------------------------
--CreditCard:
+-CreditCard: (+)
 	-Constructor paramétrico (+)
 	-Constructor vacío (+)
 	-show (+)
 	-unsigned long number, setNumber, getNumber (+)
 	-string cardholder, getCardholder, setCardholder (+)
 ----------------------------------------------------------
--Paypal:
+-Paypal: (+)
 	-Constructor paramétrico (+)
 	-Constructor vacío (+)
 	-show (+)
 	-string email, setEmail, getEmail (+)	
 ----------------------------------------------------------
--Order:
+-Order: (+)
 	-Constructor paramétrico1 (+)
 	-Constructor paramétrico2 (+)
 	-Constructor vacío (+)
