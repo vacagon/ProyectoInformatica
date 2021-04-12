@@ -1,74 +1,74 @@
 LISTA DE CLASES:
 ---------------------------------------------------------
 -User
-	-Constructor paramétrico
-	-Constructor vacío
-	-Método virtual isAdmin
+	-Constructor paramétrico (+)
+	-Constructor vacío (+)
+	-Método virtual isAdmin (+)
 ----------------------------------------------------------
 -PrivateUserData:
-	-String email, getEmail, setEmail.
-	-String password, getPassword, setPassword.
-	-vector<Address*> addresses, getAddresses.
+	-String email, getEmail, setEmail. (+)
+	-String password, getPassword, setPassword. (+)
+	-vector<Address*> addresses, getAddresses. (+)
 	-addAddress (+)
-	-vector<PaymentMethod*> payment_methods, getPaymentMethod.
+	-vector<PaymentMethod*> payment_methods, getPaymentMethod. (+)	
 	-addPaymentMethod (+)
-	-vector<Order*> orders, getOrders.
+	-vector<Order*> orders, getOrders. (+)
 	-addOrder (+)
-	-Constructor paramétrico
-	-Constructor vacío
+	-Constructor paramétrico (+)
+	-Constructor vacío (+)
 ----------------------------------------------------------
 -PublicUserData:
-	-String username, getUsername, setUsername.
-	-Int reputation, getReputation, increaseReputation, decreaseReputation.
-	-Constructor paramétrico
-	-Constructor vacío
+	-String username, getUsername, setUsername. (+)
+	-Int reputation, getReputation, increaseReputation, decreaseReputation. (+)
+	-Constructor paramétrico (+)
+	-Constructor vacío (+)
 ----------------------------------------------------------
 -Administrator:
-	-Constructor paramétrico
-	-Constructor vacío
-	-Unsigned long employee_code
-	-isAdmin
+	-Constructor paramétrico (+)
+	-Constructor vacío (+)
+	-Unsigned long employee_code (+)
+	-isAdmin (+)
 ----------------------------------------------------------
 -Address:
-	-Constructor paramétrico
-	-Constructor vacío
-	-int id, setId, getId
-	-string address, setAddress, getAddress
-	-string city, setCity, getCity
-	-string province, setProvince, getProvince
-	-unsigned int postal_code, setPostalCode, getPostalCode
-	-show
+	-Constructor paramétrico (+)
+	-Constructor vacío (+)
+	-int id, setId, getId (+)
+	-string address, setAddress, getAddress (+)
+	-string city, setCity, getCity (+)
+	-string province, setProvince, getProvince (+)
+	-unsigned int postal_code, setPostalCode, getPostalCode (+)
+	-show (+)
 ----------------------------------------------------------
 -PaymentMethod:
-	-Constructor paramétrico
-	-Constructor vacío
-	-show
-	-int id, getId, setId
-	-Address* billing_address, getBillingAddress, setBillingAddress
+	-Constructor paramétrico (+)
+	-Constructor vacío (+)
+	-show (+)
+	-int id, getId, setId (+)
+	-Address* billing_address, getBillingAddress, setBillingAddress (+)
 ----------------------------------------------------------
 -CreditCard:
-	-Constructor paramétrico
-	-Constructor vacío
-	-show
-	-unsigned long number, setNumber, getNumber
-	-string cardholder, getCardholder, setCardholder
+	-Constructor paramétrico (+)
+	-Constructor vacío (+)
+	-show (+)
+	-unsigned long number, setNumber, getNumber (+)
+	-string cardholder, getCardholder, setCardholder (+)
 ----------------------------------------------------------
 -Paypal:
-	-Constructor paramétrico
-	-Constructor vacío
-	-show
-	-string email, setEmail, getEmail
+	-Constructor paramétrico (+)
+	-Constructor vacío (+)
+	-show (+)
+	-string email, setEmail, getEmail (+)	
 ----------------------------------------------------------
 -Order:
-	-Constructor paramétrico1
-	-Constructor paramétrico2
-	-Constructor vacío
-	-Unsigned long reference, setReference, getReference
-	-vector<unsigned long> products, getProducts, addProduct.
-	-time_t date, getDate
-	-int delivery_address, setDeliveryAddress, getDeliveryAddress
-	-int payment_method, setPaymentMethod, getPaymentMethod
-	-float total, setTotal, getTotal
+	-Constructor paramétrico1 (+)
+	-Constructor paramétrico2 (+)
+	-Constructor vacío (+)
+	-Unsigned long reference, setReference, getReference (+)
+	-vector<unsigned long> products, getProducts, addProduct. (+)
+	-time_t date, getDate (+)
+	-int delivery_address, setDeliveryAddress, getDeliveryAddress (+)
+	-int payment_method, setPaymentMethod, getPaymentMethod (+)
+	-float total, setTotal, getTotal (+)
 ----------------------------------------------------------
 -Product: (+)
 	-Constructor paramétrico (+)
