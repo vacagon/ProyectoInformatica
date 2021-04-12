@@ -16,6 +16,16 @@ public:
 
     bool addAdministrator();
 
+    /**
+     * @brief Let the user chose if the
+     * wants to sign in (1) or sign up (2)
+     * @return Option selected by
+     * the user
+     */
+    int FrontPageMenu();
+
+    bool login();
+
 private:
 
     Manager* manager;
