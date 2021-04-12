@@ -2,6 +2,7 @@
 #define CREDITCARD_HPP
 
 #include <string>
+#include <sstream>                          // CAMBIO: añadida biblioteca
 #include "PaymentMethod.hpp"
 
 using namespace std;

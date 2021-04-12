@@ -24,6 +24,6 @@ void PublicUserData::increaseReputation() {
 }
 
 void PublicUserData::decreaseReputation() {
-    if (reputation < 0)
+    if (reputation > 0)                             // CAMBIO: "<" pasa a ser ">"
         reputation--;
 }

@@ -8,7 +8,7 @@ using namespace std;
 
 /**
   * @brief Users which are also employees of the compan. They get a 7.5% discount as
-  * costumers. They are identified by an employee code which has to be uniquee.
+  * costumers. They are identified by an employee code which has to be unique.
   */
 class Administrator: public User {
 

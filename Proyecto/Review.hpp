@@ -3,7 +3,8 @@
 
 #include <string>
 #include <sstream>
-#include <ctime>
+#include <ctime>                            // CAMBIO: añadida librería
+#include <vector>                           // CAMBIO: añadida librería
 #include <time.h>
 #include "PublicUserData.hpp"
 

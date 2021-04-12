@@ -1,8 +1,26 @@
+#include <ctime>                                      // CAMBIO: añadida librería
 #include "Order.hpp"
 
-Order::Order(unsigned long ref, vector<unsigned long> prod, int ad, int pm, float tot) {}
+                                                      // CAMBIO: añadidos constructores
+Order::Order(unsigned long ref, vector<unsigned long> prod, int ad, int pm, float tot) {
+    reference = ref;
+    products = prod;
+    delivery_address = ad;
+    payment_method = pm;
+    total = tot;
+    time_t t_now = getDate() ;
+}
 
-Order::Order(unsigned long ref, int ad, int pm) {}
+Order::Order(unsigned long ref, int ad, int pm) {
+    reference = ref;
+    delivery_address = ad;
+    payment_method = pm;
+    time_t t_now = getDate() ;
+}
+
+Order::Order() {
+    time_t t_now = getDate() ;
+}
 
 Order::~Order() {}
 
@@ -22,8 +40,9 @@ void Order::addProduct(unsigned long ref) {
     reference = ref;
 }
 
-time_t Order::getDate() const {
-    return date;
+time_t Order::getDate( time_t* i)  {                //CAMBIO: terminado método
+    time_t now = time(i);
+    return now;
 }
 
 int Order::getDeliveryAddress() const {

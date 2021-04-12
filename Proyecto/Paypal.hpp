@@ -2,6 +2,8 @@
 #define PAYPAL_HPP
 
 #include <string>
+#include <sstream>                          // CAMBIO: añadida librería
+
 #include "PaymentMethod.hpp"
 
 using namespace std;
