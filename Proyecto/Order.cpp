@@ -1,13 +1,15 @@
 #include <ctime>
 #include "Order.hpp"
 
-Order::Order(unsigned long ref, vector<unsigned long> prod, int ad, int pm, float tot) {
-    reference = ref;
-    products = prod;
-    delivery_address = ad;
-    payment_method = pm;
-    total = tot;
-    time_t t_now = getDate() ;
+Order::Order(unsigned long reference, vector<unsigned long> products, int address, int payment_method, float total) {
+    setReference(reference);
+    for (const unsigned long& product : products) {
+    addProduct(product);
+    }
+    setDeliveryAddress(address);
+    setPaymentMethod(payment_method);
+    setTotal(total);
+    date = time(0);
 }
 
 Order::Order(unsigned long ref, int ad, int pm) {
