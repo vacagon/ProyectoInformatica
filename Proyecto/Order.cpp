@@ -12,11 +12,11 @@ Order::Order(unsigned long reference, vector<unsigned long> products, int addres
     date = time(0);
 }
 
-Order::Order(unsigned long ref, int ad, int pm) {
-    reference = ref;
+Order::Order(unsigned long reference, int address, int payment_method) {
+    setReferece(reference);
     delivery_address = ad;
-    payment_method = pm;
-    time_t t_now = getDate() ;
+    setPaymentMethod(payment_method);
+    date = time(0);
 }
 
 Order::Order() {
