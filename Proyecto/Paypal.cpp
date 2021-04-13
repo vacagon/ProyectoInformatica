@@ -15,14 +15,9 @@ const string& Paypal::getEmail() const {
 }
 
 const string Paypal::show() const {
-    string output, id_aux, num_aux, ba_aux;
-    stringstream ss_id, ss_num, ss_ba;
-    ss_id << id ;
-    ss_id >> id_aux;
-    ss_ba << billing_address ;
-    ss_ba >> ba_aux;
-    output = "\t" + id_aux;
-    output += " - Paypal Account:\t" + ba_aux;
-    output += "\t" + email;
-    return output;
+    stringstream ss;
+    ss << "\t" << id << " - Paypal Account :" << endl
+         << "\tBilling address: " <<billing_address->show() << endl
+         << "\t" << email << endl;
+    return ss.str();
 }
