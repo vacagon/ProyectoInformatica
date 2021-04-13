@@ -49,7 +49,7 @@ private:
      * @brief Its value depends on the number of addresses registered by each user.
      * If it's the first one, id = 0, if it's the second one, id = 1, and so on.
      */
-    int id=0;                           // CAMBIO: ... = 0
+    int id = -1;                           // CAMBIO: ... = -1
 
 	string address;
 
