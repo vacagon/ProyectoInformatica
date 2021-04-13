@@ -16,13 +16,21 @@ public:
 
     bool addAdministrator();
 
+    bool addUser();
+
     /**
      * @brief Let the user chose if the
      * wants to sign in (1) or sign up (2)
-     * @return Option selected by
-     * the user
+     * or close the app (0)
      */
-    int FrontPageMenu();
+    void FrontPageMenu();
+
+    /**
+     * @brief Allow the logged user
+     * do all the actions allowed by
+     * the class manager
+     */
+    void HomeMenu();
 
     bool login();
 
