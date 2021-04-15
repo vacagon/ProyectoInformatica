@@ -1,7 +1,7 @@
 #include "PublicUserData.hpp"
 
-PublicUserData::PublicUserData(const string &us_name, int rep) {
-    setUsername(us_name);
+PublicUserData::PublicUserData(const string &usename, int rep) {
+    setUsername(usename);
     reputation = rep;
 }
 
