@@ -51,13 +51,7 @@ void Address::setPostalCode(unsigned int pcode) {
 }
 
 const string Address::show() const {
-    string output, postalcode;
     stringstream ss;
-    ss << postal_code;
-    ss >> postalcode;
-    output = address + ", ";
-    output += city + ", ";
-    output += province + ", ";
-    output += postalcode + "\n";
-    return output;
+    ss << address << ", " << city << ", " << province << ", " << postal_code << endl;
+    return ss.str();
 }

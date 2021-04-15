@@ -25,6 +25,10 @@ const string& CreditCard::getCardholder() const {
 }
 
 const string CreditCard::show() const {
-    string output;
-    return output;
+    stringstream ss;
+        ss << "\tid " << id << " - Credit Card:" << endl
+             << "\tBilling address: " << billing_address->show() << endl
+             << "\t" << number << " - "
+             << cardholder << endl;
+        return ss.str();
 }

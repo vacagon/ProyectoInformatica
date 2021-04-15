@@ -1,0 +1,23 @@
+# ninja log v5
+4	3768	1618333317968340546	CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Order.cpp.o	fa6b3c8e9ebf183f
+1	4581	1618333318780343282	CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/User.cpp.o	487d508965042704
+0	4705	1618333318908343714	CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Address.cpp.o	6a6df404fb2e3284
+3770	5664	1618333319868347095	CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PublicUserData.cpp.o	1b1c4ca605ae2a48
+4706	7684	1618333321884354674	CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Administrator.cpp.o	1f6d4a360a98b74c
+5665	8522	1618333322724358034	CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Paypal.cpp.o	efcf4287a61bd680
+4581	8861	1618333323052359360	CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PrivateUserData.cpp.o	23c984fa57659338
+7684	9920	1618333324124363861	CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PaymentMethod.cpp.o	17e976f40ca812b0
+8862	10838	1618333325040367843	CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/CreditCard.cpp.o	a49d8d9959531baf
+8522	12188	1618333326388373967	CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Manager.cpp.o	39ec2315a4ab7366
+10838	12543	1618333326740375606	CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Review.cpp.o	e2cf8d11fb7113a5
+9921	12685	1618333326876376239	CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Product.cpp.o	4f610f280caf164e
+12685	13072	1618333327268378106	libCompuGlobalHyperMegaComponentsLib.a	3c78df25a0aed92
+12189	14741	1618333328944386321	CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o	a7b4e4f3e6dcbeb9
+12544	15411	1618333329612389736	CMakeFiles/CompuGlobalHyperMegaComponents.dir/Interface.cpp.o	8e6a65b6b3532dde
+15411	16165	1618333330364393647	CompuGlobalHyperMegaComponents	8e7201d047bf5fec
+13072	19212	1618333333412410398	googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o	fb11e6d84c23a2c5
+16165	23029	1618333337228433369	tests/CMakeFiles/test_basic.dir/test_basic.cpp.o	95ed985ace1dac74
+14741	34330	1618333348508514030	googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o	c286e65f67ef1a4a
+34331	34714	1618333348736515849	lib/libgtestd.a	eaafcf6b4227a98e
+34714	34778	1618333348956517603	lib/libgtest_maind.a	460c0e4e7c65d1da
+34779	35662	1618333349856524906	tests/test_basic	98e6b9c5da08f900

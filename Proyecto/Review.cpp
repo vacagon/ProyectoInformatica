@@ -29,12 +29,12 @@ const string Review::show() const {
     strftime(dat, 24, "%c", timeinfo);
 
     //Turning different data types into strings
-    stringstream output;
-    output << "\t" << rating << " stars on "
+    stringstream ss;
+    ss << "\t" << rating << " stars on "
            << dat << " by " << getAuthor()->getUsername() << endl
            << "\t" << text << "\n"
            << "\t" << votes << " votes" << "\n";
-    return output.str();
+    return ss.str();
 }
 
 unsigned long Review::getId() const {
