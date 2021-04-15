@@ -47,7 +47,8 @@ private:
 
     /**
      * @brief Its value depends on the number of addresses registered by each user.
-     * If it's the first one, id = 0, if it's the second one, id = 1, and so on.
+     * If it's the first one, id = 0, if it's the second one, id = 1, and so on. If
+     * there is no registered address, id = -1;
      */
     int id;
 
