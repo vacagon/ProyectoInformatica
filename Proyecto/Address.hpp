@@ -15,13 +15,13 @@ class Address {
 
 public:
 
-    Address(int i, const string& ad, const string& cit, const string& prov, unsigned int pcode);
+    Address(const string& address, const string& city, const string& province, const unsigned int& postal_code, const int& id = -1);
 
 	virtual ~Address();
 
     int getId() const;
 
-    void setId(int i);
+    void setId(const int& i);
 
     const string& getAddress() const;
 
@@ -37,7 +37,7 @@ public:
 
     unsigned int getPostalCode() const;
 
-    void setPostalCode(unsigned int pcode);
+    void setPostalCode(const unsigned int& pcode);
 
     const string show() const;
 
@@ -49,7 +49,7 @@ private:
      * @brief Its value depends on the number of addresses registered by each user.
      * If it's the first one, id = 0, if it's the second one, id = 1, and so on.
      */
-    int id = -1;                           // CAMBIO: ... = -1
+    int id;
 
 	string address;
 

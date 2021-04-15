@@ -1,11 +1,11 @@
 #include "Address.hpp"
 
-Address::Address(int i, const string &ad, const string &cit, const string &prov, unsigned int pcode) {
-    setId(i);
-    setAddress(ad);
-    setCity(cit);
-    setProvince(prov);
-    setPostalCode(pcode);
+Address::Address(const string& address, const string& city, const string& province, const unsigned int& postal_code, const int& id) {
+    setAddress(address);
+    setCity(city);
+    setProvince(province);
+    setPostalCode(postal_code);
+    setId(id);
 }
 
 Address::~Address() {}
@@ -14,7 +14,7 @@ int Address::getId() const {
     return id;
 }
 
-void Address::setId(int i) {
+void Address::setId(const int& i) {
     id = i;
 }
 
@@ -46,7 +46,7 @@ unsigned int Address::getPostalCode() const {
     return postal_code;
 }
 
-void Address::setPostalCode(unsigned int pcode) {
+void Address::setPostalCode(const unsigned int &pcode) {
     postal_code = pcode;
 }
 

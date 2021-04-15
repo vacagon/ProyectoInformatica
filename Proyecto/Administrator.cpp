@@ -11,7 +11,7 @@ unsigned long Administrator::getEmployeeCode() const {
     return employee_code;
 }
 
-void Administrator::setEmployeeCode(unsigned long emcode){
+void Administrator::setEmployeeCode(const unsigned long &emcode){
     employee_code = emcode;
 }
 
