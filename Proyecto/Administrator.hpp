@@ -21,7 +21,7 @@ public:
      * @param pas: Password
      * @param emcode: Employee code
      */
-    Administrator(string& us, string& em, string& pas, unsigned long emcode);
+    Administrator(const string& username, const string& email, const string& password, const unsigned long& employee_code);
 
 	/**
      * @brief Empty Destructor
