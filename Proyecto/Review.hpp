@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <ctime>
+#include <vector>
 #include <time.h>
 #include "PublicUserData.hpp"
 

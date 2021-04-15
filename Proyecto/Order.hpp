@@ -28,7 +28,7 @@ public:
 
     void addProduct(unsigned long ref);
 
-    time_t getDate() const;
+    time_t getDate(time_t* i = 0)  ;
 
     int getDeliveryAddress() const;
 

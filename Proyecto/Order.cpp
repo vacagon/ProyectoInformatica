@@ -1,8 +1,27 @@
+#include <ctime>
 #include "Order.hpp"
 
-Order::Order(unsigned long ref, vector<unsigned long> prod, int ad, int pm, float tot) {}
+Order::Order(unsigned long reference, vector<unsigned long> products, int address, int payment_method, float total) {
+    setReference(reference);
+    for (const unsigned long& product : products) {
+    addProduct(product);
+    }
+    setDeliveryAddress(address);
+    setPaymentMethod(payment_method);
+    setTotal(total);
+    date = time(0);
+}
 
-Order::Order(unsigned long ref, int ad, int pm) {}
+Order::Order(unsigned long reference, int address, int payment_method) {
+    setReferece(reference);
+    delivery_address = ad;
+    setPaymentMethod(payment_method);
+    date = time(0);
+}
+
+Order::Order() {
+    time_t t_now = getDate() ;
+}
 
 Order::~Order() {}
 
@@ -22,8 +41,9 @@ void Order::addProduct(unsigned long ref) {
     reference = ref;
 }
 
-time_t Order::getDate() const {
-    return date;
+time_t Order::getDate( time_t* i)  {                //CAMBIO: terminado método
+    time_t now = time(i);
+    return now;
 }
 
 int Order::getDeliveryAddress() const {
