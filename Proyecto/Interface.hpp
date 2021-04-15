@@ -34,6 +34,24 @@ public:
 
     bool login();
 
+    void editAccountMenu();
+
+    bool editUsername();
+
+    bool editEmail();
+
+    bool editPassword();
+
+    void addAddress();
+
+    void addPaymentMethod();
+
+    void addCreditCard();
+
+    void addPaypal();
+
+    void showProfile();
+
 private:
 
     Manager* manager;
