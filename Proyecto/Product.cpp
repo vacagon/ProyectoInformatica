@@ -1,10 +1,10 @@
 #include "Product.hpp"
 
-Product::Product(const string& n, const string& d, unsigned long ref, float p) {
-    setName(n);
-    setDescription(d);
-    setReference(ref);
-    setPrice(p);
+Product::Product(const string& name, const string& description, const unsigned long &reference, const float &price) {
+    setName(name);
+    setDescription(description);
+    setReference(reference);
+    setPrice(price);
 }
 
 Product::~Product() {}
@@ -41,7 +41,7 @@ const float& Product::getPrice() const {
     return price;
 }
 
-vector<Review*> Product::getReviews() const {
+const vector<Review*>& Product::getReviews() const {
     return reviews;
 }
 
