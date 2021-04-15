@@ -1,6 +1,6 @@
 #include "Paypal.hpp"
 
-Paypal::Paypal(const int &id, Address* address, const string &email): PaymentMethod(address,id) {
+Paypal::Paypal(const int &id, const Address *address, const string &email): PaymentMethod(address,id) {
     setEmail(email);
 }
 

@@ -19,19 +19,19 @@ Manager::~Manager() {
     products.clear();
 }
 
-vector<User*> Manager::getUsers() const {
+const vector<User *> &Manager::getUsers() const {
     return users;
 }
 
-vector<Product*> Manager::getProducts() const {
+const vector<Product *> &Manager::getProducts() const {
     return products;
 }
 
-bool Manager::login(const string& em,const string& pas) {
+bool Manager::login(const string& email, const string& password) {
     bool flag = false;
     if (current_member == -1) {
         for (unsigned long i = 0; i < users.size(); i++) {
-            if ((users[i]->getEmail() == em)&&(users[i]->getPassword() == pas)) {
+            if ((users[i]->getEmail() == email)&&(users[i]->getPassword() == password)) {
                 current_member = i;
                 flag = true;
                 break;
@@ -68,28 +68,28 @@ User* Manager::getCurrentMember() {
     }
 }
 
-bool Manager::addUser(const string &us, const string &em, const string &pas) {
+bool Manager::addUser(const string &username, const string &email, const string &password) {
     for (int i = 0; i < (int)users.size(); i++) {
-        if ((users[i]->getEmail() == em)||(users[i]->getUsername() == us)) {
+        if ((users[i]->getEmail() == email)||(users[i]->getUsername() == username)) {
             cout << endl << "Another user already use that "
                  << "username or email. Please try again" << endl;
             return false;
         }
     }
-    User* new_user = new User(us,em,pas);
+    User* new_user = new User(username,email,password);
     users.push_back(new_user);
     return true;
 }
 
-bool Manager::addAdministrator(string &us, string &em, string &pas, unsigned long emcode) {
+bool Manager::addAdministrator(const string &username, const string &email, const string &password, const unsigned long &employee_code) {
     for (unsigned long i = 0; i < users.size(); i++) {
-        if ((users[i]->getEmail() == em)||(users[i]->getUsername() == us)||(users[i]->getEmployeeCode() == emcode)) {
+        if ((users[i]->getEmail() == email)||(users[i]->getUsername() == username)||(users[i]->getEmployeeCode() == employee_code)) {
             cout << endl << "Another user already use that username, email, or employee code. "
                  << "Please try again" << endl;
             return false;
         }
     }
-    Administrator* new_admin = new Administrator(us,em,pas,emcode);
+    Administrator* new_admin = new Administrator(username,email,password,employee_code);
     users.push_back(new_admin);
     return true;
 }
@@ -152,33 +152,33 @@ bool Manager::editPassword(const string& new_password) {
     }
 }
 
-bool Manager::addAddress(const string &a, const string &c, const string &p, unsigned int pcode) {
+bool Manager::addAddress(const string &address, const string &city, const string &province, const unsigned int &postal_code) {
     bool flag = false;
     int id = users[current_member]->getAddresses().size();
     if (isLogged()) {
-        Address* new_address = new Address(id, a, c, p, pcode);
+        Address* new_address = new Address(address, city, province, postal_code,id);
         users[current_member]->addAddress(new_address);
         flag = true;
     }
     return flag;
 }
 
-bool Manager::addCreditCard(Address* a, unsigned long n, string& cholder) {
+bool Manager::addCreditCard(const Address *address, const unsigned long &number, const string &cardholder) {
     bool flag = false;
     int id = users[current_member]->getPaymentMethods().size();
     if (isLogged()) {
-        CreditCard* new_creditcard = new CreditCard(id, a, n, cholder);
+        CreditCard* new_creditcard = new CreditCard(id, address, number, cardholder);
         users[current_member]->addPaymentMethod(new_creditcard);
         flag = true;
     }
     return flag;
 }
 
-bool Manager::addPaypal(Address* a, string& em) {
+bool Manager::addPaypal(const Address* address, string& email) {
     bool flag = false;
     int id = users[current_member]->getPaymentMethods().size();
     if (isLogged()) {
-        Paypal* new_paypal = new Paypal(id, a, em);
+        Paypal* new_paypal = new Paypal(id, address, email);
         users[current_member]->addPaymentMethod(new_paypal);
         flag = true;
     }

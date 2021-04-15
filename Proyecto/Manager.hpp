@@ -42,13 +42,13 @@ public:
      * @brief Get a vector with every
      * user registered in the platform.
      */
-    vector<User*> getUsers() const;
+    const vector<User*>& getUsers() const;
 
     /**
      * @brief Get a vector with every
      * product registered in the platform.
      */
-    vector<Product*> getProducts() const;
+    const vector<Product*>& getProducts() const;
 
 
 	/**
@@ -59,7 +59,7 @@ public:
 	 * @param  email
 	 * @param  password
 	 */
-    bool login(const string& em, const string& pas);
+    bool login(const string& email, const string& password);
 
 	/**
      * @brief Close user's session in the platform.
@@ -86,11 +86,8 @@ public:
      * it checks wether the mail, or username,
      * is already used.
      * @return True: succes; otherwise False
-     * @param  us: username
-     * @param  em: email
-     * @param  pas: password
 	 */
-    bool addUser(const string& us, const string& em, const string& pas);
+    bool addUser(const string& username, const string& email, const string& password);
 
 
 	/**
@@ -98,12 +95,8 @@ public:
      * but in this case it creates an Administrator instead.
      * It also takes employee code as parameter.
      * @return True: succes; otherwise False
-     * @param  us: username
-     * @param  em: email
-     * @param  pas: password
-     * @param  emcode: employee_code
 	 */
-    bool addAdministrator(string& us, string& em, string& pas, unsigned long emcode);
+    bool addAdministrator(const string& username, const string& email, const string& password, const unsigned long& employee_code);
 
 
 	/**
@@ -144,31 +137,22 @@ public:
      * @brief Allow currently logged user to
      * register a new address
      * @return True: success, otherwise False
-     * @param  a: address
-     * @param  c: city
-     * @param  p: province
-     * @param  pcode: postal_code
-	 */
-    bool addAddress(const string& a, const string& c, const string& p, unsigned int pcode);
+     */
+    bool addAddress(const string& address, const string& city, const string& province, const unsigned int& postal_code);
 
 	/**
      * @brief Allow currently logged user to
      * register a new credit card
      * @return True: success, otherwise False
-     * @param  a: billing address
-     * @param  n: credit card's number
-     * @param  cholder: cardholder
 	 */
-    bool addCreditCard(Address* a, unsigned long n, string& cholder);
+    bool addCreditCard(const Address* address, const unsigned long& number, const string& cardholder);
 
 	/**
      * @brief Allow currently logged user to
      * register a new paypal account
      * @return True: success, otherwise False
-     * @param  a: billing address
-     * @param  em: email
 	 */
-    bool addPaypal(Address* a, string& em);
+    bool addPaypal(const Address* address, string& email);
 
     //################# SEGUNDA ENTREGA ############################//
 

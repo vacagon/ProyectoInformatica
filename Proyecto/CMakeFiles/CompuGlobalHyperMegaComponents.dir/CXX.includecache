@@ -25,6 +25,8 @@ User.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/CreditCard.hpp
 string
 -
+sstream
+-
 PaymentMethod.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
 
@@ -89,6 +91,8 @@ Address.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Paypal.hpp
 string
 -
+sstream
+-
 PaymentMethod.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
 
@@ -124,6 +128,8 @@ string
 sstream
 -
 ctime
+-
+vector
 -
 time.h
 -

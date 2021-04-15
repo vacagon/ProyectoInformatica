@@ -36,7 +36,7 @@ public:
     /**
      * @brief Sets employee's uniquee code
      */
-    void setEmployeeCode(unsigned long emcode);
+    void setEmployeeCode(const unsigned long& emcode);
 
     bool isAdmin();
 

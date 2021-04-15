@@ -1,7 +1,7 @@
 #include "CreditCard.hpp"
 #include "PaymentMethod.hpp"
 
-CreditCard::CreditCard(const int &i, Address* address, const unsigned long &number, const string &cardholder): PaymentMethod(address, i) {
+CreditCard::CreditCard(const int &i, const Address* address, const unsigned long &number, const string &cardholder): PaymentMethod(address, i) {
     setNumber(number);
     setCardholder(cardholder);
 }

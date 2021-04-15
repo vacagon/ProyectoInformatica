@@ -46,7 +46,7 @@ public:
      * @brief Get the vector of
      * pointers to Address registered by the user
      */
-    vector<Address*> getAddresses() const;
+    vector<Address *> getAddresses() const;
 
     /**
      * @brief Let the manager add a new address
