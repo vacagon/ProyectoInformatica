@@ -8,7 +8,7 @@ using namespace std;
 
 /**
   * @brief Users which are also employees of the compan. They get a 7.5% discount as
-  * costumers. They are identified by an employee code which has to be uniquee.
+  * costumers. They are identified by an employee code which has to be unique.
   */
 class Administrator: public User {
 
@@ -21,7 +21,7 @@ public:
      * @param pas: Password
      * @param emcode: Employee code
      */
-    Administrator(string& us, string& em, string& pas, unsigned long emcode);
+    Administrator(const string& username, const string& email, const string& password, const unsigned long& employee_code);
 
 	/**
      * @brief Empty Destructor
@@ -36,7 +36,7 @@ public:
     /**
      * @brief Sets employee's uniquee code
      */
-    void setEmployeeCode(unsigned long emcode);
+    void setEmployeeCode(const unsigned long& emcode);
 
     bool isAdmin();
 

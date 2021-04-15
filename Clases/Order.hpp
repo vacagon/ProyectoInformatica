@@ -14,33 +14,33 @@ class Order {
 
 public:
 
-    Order(unsigned long ref, vector<unsigned long> prod, int ad, int pm, float tot);
+    Order(const unsigned long& reference, const vector<unsigned long>& products, const int& address, const int& payment_method, const float& total);
 
-    Order(unsigned long ref, int ad, int pm);
+    Order(const unsigned long& ref, const int& adress, const int& payment_method);
 
     ~Order();
 
-    void setReference (unsigned long ref);
+    void setReference (const unsigned long& ref);
 
-    unsigned long getReference() const;
+    const unsigned long& getReference() const;
 
-    vector<unsigned long> getProducts() const;
+    const vector<unsigned long>& getProducts() const;
 
-    void addProduct(unsigned long ref);
+    void addProduct(const unsigned long& ref);
 
-    time_t getDate() const;
+    const time_t& getDate() const;
 
-    int getDeliveryAddress() const;
+    const int& getDeliveryAddress() const;
 
-    void setDeliveryAddress(int ad);
+    void setDeliveryAddress(const int& ad);
 
-    int getPaymentMethod() const;
+    const int& getPaymentMethod() const;
 
-    void setPaymentMethod(int pm);
+    void setPaymentMethod(const int& pm);
 
-    float getTotal() const;
+    const float& getTotal() const;
 
-    void setTotal();
+    void setTotal(const float& t);
 
 private:
 

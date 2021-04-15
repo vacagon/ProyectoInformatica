@@ -16,10 +16,8 @@ public:
 
     /**
      * @brief Parametric constructor
-     * @param em: Email
-     * @param pas: Password
      */
-    PrivateUserData(const string &em, const string& pas);
+    PrivateUserData(const string &email, const string& password);
 
     /** @brief Empty Destructor */
 	virtual ~PrivateUserData();
@@ -48,7 +46,7 @@ public:
      * @brief Get the vector of
      * pointers to Address registered by the user
      */
-    vector<Address*> getAddresses() const;
+    vector<Address *> getAddresses() const;
 
     /**
      * @brief Let the manager add a new address

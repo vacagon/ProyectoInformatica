@@ -15,11 +15,8 @@ public:
 
     /**
      * @brief Parametric  constructor
-     * @param i: id
-     * @param baddress: index in the vector of
-     * registered addresses
      */
-    PaymentMethod(int i, Address* baddress);
+    PaymentMethod(const Address *billing_address, const int& id = -1);
 
     virtual ~PaymentMethod();
 
@@ -31,11 +28,11 @@ public:
 
     int getId() const;
 
-    void setId(int i);
+    void setId(const int& i);
 
-    Address* getBillingAddress() const;
+    const Address *getBillingAddress() const;
 
-    void setBillingAddress(Address *badress);
+    void setBillingAddress(const Address *badress);
 
 protected:
 
@@ -44,7 +41,9 @@ protected:
     /**
      * @brief Its value depends on the number of
      * payment methods registered by each user.
-     * If it's the first one, id = 0, if it's the second one, id = 1, and so on.
+     * If it's the first one, id = 0, if it's
+     * the second one, id = 1, and so on. If there
+     * is no registered payment method, id = -1
      */
     int id;
 
@@ -52,7 +51,7 @@ protected:
      * @brief Billing direction associated with a payment method
      * Pointer to one of the previously registered addresses
      */
-    Address* billing_address;
+    const Address* billing_address;
 
 };
 

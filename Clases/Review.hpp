@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <ctime>
+#include <vector>
 #include <time.h>
 #include "PublicUserData.hpp"
 
@@ -18,12 +19,8 @@ public:
 
     /**
      * @brief Parametric constructor
-     * @param i: ID
-     * @param r: Rating
-     * @param t: Text
-     * @param a: Author
      */
-    Review(unsigned long i, int r, const string& t, PublicUserData* a);
+    Review(const unsigned long& i, const int& rating, const string& text, const PublicUserData* a);
 
 	virtual ~Review();
 
@@ -34,23 +31,23 @@ public:
      */
     const string show() const;
 
-    unsigned long getId() const;
+    const unsigned long& getId() const;
 
     /**
      * @brief Get the value of date in which the review
      * was created
      */
-    time_t getDate() const;
+    const time_t& getDate() const;
 
-    void setRating(int rat);
+    void setRating(const int& rat);
 
-    int getRating() const;
+    const int& getRating() const;
 
     void setText(const string& t);
 
     const string& getText() const;
 
-    int getVotes() const;
+    const int& getVotes() const;
 
 	/**
      * @brief Adds one unit to votes
@@ -96,7 +93,7 @@ private:
     /**
      * @brief Pointer to the public information of the user making the review
      */
-    PublicUserData* author;
+    const PublicUserData* author;
 
 };
 

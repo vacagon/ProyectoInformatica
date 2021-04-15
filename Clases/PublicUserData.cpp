@@ -1,7 +1,7 @@
 #include "PublicUserData.hpp"
 
-PublicUserData::PublicUserData(const string &us_name, int rep) {
-    setUsername(us_name);
+PublicUserData::PublicUserData(const string &usename, int rep) {
+    setUsername(usename);
     reputation = rep;
 }
 
@@ -24,6 +24,6 @@ void PublicUserData::increaseReputation() {
 }
 
 void PublicUserData::decreaseReputation() {
-    if (reputation < 0)
+    if (reputation > 0)
         reputation--;
 }

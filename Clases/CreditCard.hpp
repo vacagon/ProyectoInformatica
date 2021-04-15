@@ -2,6 +2,7 @@
 #define CREDITCARD_HPP
 
 #include <string>
+#include <sstream>
 #include "PaymentMethod.hpp"
 
 using namespace std;
@@ -18,12 +19,12 @@ public:
     /**
      * @brief Parametric constructor
      */
-    CreditCard(int i, Address* ad, unsigned long num, string& carhol);
+    CreditCard(const int& i, const Address* address, const unsigned long& number, const string& cardholder);
 
     /**
      * @brief Set the value of number
      */
-    void setNumber(unsigned long num);
+    void setNumber(const unsigned long& num);
 
     /**
      * @brief Get the credit card number
@@ -33,7 +34,7 @@ public:
     /**
      * @brief Set the name of the card holder
      */
-    void setCardholder(string carhol);
+    void setCardholder(const string& carhol);
 
     /**
      * @brief Get the name of the card holder

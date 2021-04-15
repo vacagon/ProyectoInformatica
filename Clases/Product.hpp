@@ -17,12 +17,8 @@ public:
 
     /**
      * @brief Parametric constructor
-     * @param n: Name
-     * @param d: Description
-     * @param ref: Reference
-     * @param p: Price
      */
-    Product(const string& n, const string& d, unsigned long ref, float p);
+    Product(const string& name, const string& description, const unsigned long& reference, const float& price);
 
     ~Product();
 
@@ -42,7 +38,7 @@ public:
 
     const float& getPrice() const;
 
-    vector<Review*> getReviews() const;
+    const vector<Review*>& getReviews() const;
 
     void addReview(Review* r);
 

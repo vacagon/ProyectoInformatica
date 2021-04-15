@@ -2,6 +2,8 @@
 #define PAYPAL_HPP
 
 #include <string>
+#include <sstream>
+
 #include "PaymentMethod.hpp"
 
 using namespace std;
@@ -14,14 +16,14 @@ class Paypal: public PaymentMethod {
 
 public:
 
-    Paypal(int i, Address* ad, string& em);
+    Paypal(const int& id, const Address* address, const string& email);
 
     virtual ~Paypal();
 
     /**
      * @brief Email associated with the Paypal account
      */
-    void setEmail(string& em);
+    void setEmail(const string& em);
 
     /**
      * @brief Get the email associated with the Paypal account

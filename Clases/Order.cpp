@@ -1,51 +1,70 @@
+#include <ctime>
 #include "Order.hpp"
 
-Order::Order(unsigned long ref, vector<unsigned long> prod, int ad, int pm, float tot) {}
+Order::Order(const unsigned long &reference, const vector<unsigned long>& products, const int &address, const int &payment_method, const float &total) {
+    setReference(reference);
+    for (const unsigned long& product : products) {
+        addProduct(product);
+    }
+    setDeliveryAddress(address);
+    setPaymentMethod(payment_method);
+    setTotal(total);
+    date = time(0);
+}
 
-Order::Order(unsigned long ref, int ad, int pm) {}
+Order::Order(const unsigned long &reference, const int& address, const int& payment_method) {
+    setReference(reference);
+    setDeliveryAddress(address);
+    setPaymentMethod(payment_method);
+    date = time(0);
+}
+
+Order::Order() {
+    date = time(0);
+}
 
 Order::~Order() {}
 
-void Order::setReference (unsigned long ref) {
+void Order::setReference (const unsigned long &ref) {
     reference = ref;
 }
 
-unsigned long Order::getReference() const {
+const unsigned long &Order::getReference() const {
     return reference;
 }
 
-vector<unsigned long> Order::getProducts() const {
+const vector<unsigned long> &Order::getProducts() const {
     return products;
 }
 
-void Order::addProduct(unsigned long ref) {
+void Order::addProduct(const unsigned long &ref) {
     reference = ref;
 }
 
-time_t Order::getDate() const {
+const time_t &Order::getDate() const {
     return date;
 }
 
-int Order::getDeliveryAddress() const {
+const int &Order::getDeliveryAddress() const {
     return delivery_address;
 }
 
-void Order::setDeliveryAddress(int ad) {
+void Order::setDeliveryAddress(const int &ad) {
     delivery_address = ad;
 }
 
-int Order::getPaymentMethod() const {
+const int& Order::getPaymentMethod() const {
     return payment_method;
 }
 
-void Order::setPaymentMethod(int pm) {
+void Order::setPaymentMethod(const int &pm) {
     payment_method = pm;
 }
 
-float Order::getTotal() const {
+const float& Order::getTotal() const {
     return total;
 }
 
-void Order::setTotal() {
-    total = 0;
+void Order::setTotal(const float &t) {
+    total = t;
 }
