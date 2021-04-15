@@ -14,9 +14,9 @@ class Order {
 
 public:
 
-    Order(unsigned long ref, vector<unsigned long> prod, int ad, int pm, float tot);
+    Order(const unsigned long& ref, const vector<unsigned long>& prod, const int address, const int pm, const float tot);
 
-    Order(unsigned long ref, int ad, int pm);
+    Order(const unsigned long& ref, const int adress, const int payment_method);
 
     ~Order();
 
@@ -28,7 +28,7 @@ public:
 
     void addProduct(unsigned long ref);
 
-    time_t getDate(time_t* i = 0)  ;
+    time_t getDate() const;
 
     int getDeliveryAddress() const;
 
@@ -40,7 +40,7 @@ public:
 
     float getTotal() const;
 
-    void setTotal();
+    void setTotal(float t);
 
 private:
 

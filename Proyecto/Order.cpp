@@ -1,10 +1,10 @@
 #include <ctime>
 #include "Order.hpp"
 
-Order::Order(unsigned long reference, vector<unsigned long> products, int address, int payment_method, float total) {
+Order::Order(const unsigned long &reference, const vector<unsigned long>& products, const int address, const int payment_method, const float total) {
     setReference(reference);
     for (const unsigned long& product : products) {
-    addProduct(product);
+        addProduct(product);
     }
     setDeliveryAddress(address);
     setPaymentMethod(payment_method);
@@ -12,15 +12,15 @@ Order::Order(unsigned long reference, vector<unsigned long> products, int addres
     date = time(0);
 }
 
-Order::Order(unsigned long reference, int address, int payment_method) {
-    setReferece(reference);
-    delivery_address = ad;
+Order::Order(const unsigned long &reference, const int address, const int payment_method) {
+    setReference(reference);
+    setDeliveryAddress(address);
     setPaymentMethod(payment_method);
     date = time(0);
 }
 
 Order::Order() {
-    time_t t_now = getDate() ;
+    date = time(0);
 }
 
 Order::~Order() {}
@@ -41,9 +41,8 @@ void Order::addProduct(unsigned long ref) {
     reference = ref;
 }
 
-time_t Order::getDate( time_t* i)  {                //CAMBIO: terminado método
-    time_t now = time(i);
-    return now;
+time_t Order::getDate() const {
+    return date;
 }
 
 int Order::getDeliveryAddress() const {
@@ -66,6 +65,6 @@ float Order::getTotal() const {
     return total;
 }
 
-void Order::setTotal() {
-    total = 0;
+void Order::setTotal(float t) {
+    total = t;
 }
