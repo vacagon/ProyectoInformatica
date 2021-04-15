@@ -1,18 +1,18 @@
 #include "Review.hpp"
 
-Review::Review(unsigned long i, int r, const string& t, PublicUserData* a) {
+Review::Review(const unsigned long &i, const int &rating, const string& text, const PublicUserData *a) {
     id = i;
     //Making sure rating is between 0 and 5
-    if (r < 0) {
+    if (rating < 0) {
         setRating(0);
     } else {
-        if (r > 5) {
+        if (rating > 5) {
             setRating(5);
         } else {
-            setRating(r);
+            setRating(rating);
         }
     }
-    setText(t);
+    setText(text);
     author = a;
     votes = 0;
     date = time(0);
@@ -37,19 +37,19 @@ const string Review::show() const {
     return ss.str();
 }
 
-unsigned long Review::getId() const {
+const unsigned long& Review::getId() const {
     return id;
 }
 
-time_t Review::getDate() const {
+const time_t &Review::getDate() const {
     return date;
 }
 
-void Review::setRating(int rat) {
+void Review::setRating(const int &rat) {
     rating = rat;
 }
 
-int Review::getRating() const {
+const int &Review::getRating() const {
     return rating;
 }
 
@@ -61,7 +61,7 @@ const string& Review::getText() const {
     return text;
 }
 
-int Review::getVotes() const {
+const int &Review::getVotes() const {
     return votes;
 }
 
