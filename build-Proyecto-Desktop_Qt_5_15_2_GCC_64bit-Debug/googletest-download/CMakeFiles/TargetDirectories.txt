@@ -1,3 +1,0 @@
-/home/javier/ProyectoInformatica/build-Proyecto-Desktop_Qt_5_15_2_GCC_64bit-Debug/googletest-download/CMakeFiles/rebuild_cache.dir
-/home/javier/ProyectoInformatica/build-Proyecto-Desktop_Qt_5_15_2_GCC_64bit-Debug/googletest-download/CMakeFiles/edit_cache.dir
-/home/javier/ProyectoInformatica/build-Proyecto-Desktop_Qt_5_15_2_GCC_64bit-Debug/googletest-download/CMakeFiles/googletest.dir
