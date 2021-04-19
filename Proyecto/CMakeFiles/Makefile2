@@ -136,6 +136,7 @@ googletest-build/googletest/clean: googletest-build/googletest/CMakeFiles/gtest.
 # Directory level rules for directory tests
 
 # Recursive "all" directory target.
+tests/all: tests/CMakeFiles/test_orders.dir/all
 tests/all: tests/CMakeFiles/test_basic.dir/all
 
 .PHONY : tests/all
@@ -146,6 +147,7 @@ tests/preinstall:
 .PHONY : tests/preinstall
 
 # Recursive "clean" directory target.
+tests/clean: tests/CMakeFiles/test_orders.dir/clean
 tests/clean: tests/CMakeFiles/test_basic.dir/clean
 
 .PHONY : tests/clean
@@ -312,6 +314,35 @@ gtest: googletest-build/googletest/CMakeFiles/gtest.dir/rule
 googletest-build/googletest/CMakeFiles/gtest.dir/clean:
 	$(MAKE) -f googletest-build/googletest/CMakeFiles/gtest.dir/build.make googletest-build/googletest/CMakeFiles/gtest.dir/clean
 .PHONY : googletest-build/googletest/CMakeFiles/gtest.dir/clean
+
+#=============================================================================
+# Target rules for target tests/CMakeFiles/test_orders.dir
+
+# All Build rule for target.
+tests/CMakeFiles/test_orders.dir/all: CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/all
+tests/CMakeFiles/test_orders.dir/all: googletest-build/googletest/CMakeFiles/gtest_main.dir/all
+tests/CMakeFiles/test_orders.dir/all: googletest-build/googletest/CMakeFiles/gtest.dir/all
+	$(MAKE) -f tests/CMakeFiles/test_orders.dir/build.make tests/CMakeFiles/test_orders.dir/depend
+	$(MAKE) -f tests/CMakeFiles/test_orders.dir/build.make tests/CMakeFiles/test_orders.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gonzalo/ProyectoInformatica/Proyecto/CMakeFiles --progress-num=27,28 "Built target test_orders"
+.PHONY : tests/CMakeFiles/test_orders.dir/all
+
+# Build rule for subdir invocation for target.
+tests/CMakeFiles/test_orders.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gonzalo/ProyectoInformatica/Proyecto/CMakeFiles 19
+	$(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_orders.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gonzalo/ProyectoInformatica/Proyecto/CMakeFiles 0
+.PHONY : tests/CMakeFiles/test_orders.dir/rule
+
+# Convenience name for target.
+test_orders: tests/CMakeFiles/test_orders.dir/rule
+
+.PHONY : test_orders
+
+# clean rule for target.
+tests/CMakeFiles/test_orders.dir/clean:
+	$(MAKE) -f tests/CMakeFiles/test_orders.dir/build.make tests/CMakeFiles/test_orders.dir/clean
+.PHONY : tests/CMakeFiles/test_orders.dir/clean
 
 #=============================================================================
 # Target rules for target tests/CMakeFiles/test_basic.dir

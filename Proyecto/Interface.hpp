@@ -14,9 +14,7 @@ public:
 
     Interface(Manager& m);
 
-    bool addAdministrator();
-
-    bool addUser();
+    //*************MENÚS********************
 
     /**
      * @brief Let the user chose if the
@@ -31,6 +29,14 @@ public:
      * the class manager
      */
     void HomeMenu();
+
+    void HomeMenuAdministrator();
+
+    //*************FUNCIONES*****************
+
+    bool addAdministrator();
+
+    bool addUser();
 
     bool login();
 
@@ -50,11 +56,27 @@ public:
 
     void addPaypal();
 
-    void showProfile();
+    void showProfile() const;
+
+    void showMembers() const;
+
+    void addProduct();
+
+    void makeOrder();
+
+    void showProducts();
+
+    void showCart() const;
+
+    bool addProductToCart();
+
+    bool eraseProductFromCart();
 
 private:
 
     Manager* manager;
+
+    vector<Product*> shopping_cart;
 
 };
 
