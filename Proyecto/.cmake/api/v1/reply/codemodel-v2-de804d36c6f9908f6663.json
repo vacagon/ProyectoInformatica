@@ -86,7 +86,8 @@
 					"source" : "tests",
 					"targetIndexes" : 
 					[
-						6
+						6,
+						7
 					]
 				}
 			],
@@ -108,7 +109,8 @@
 					[
 						0,
 						1,
-						6
+						6,
+						7
 					]
 				},
 				{
@@ -203,6 +205,13 @@
 					"id" : "test_basic::@a44f0ac069e85531cdee",
 					"jsonFile" : "target-test_basic-Debug-3ae9daf4d0a18cc3b27f.json",
 					"name" : "test_basic",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "test_orders::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-test_orders-Debug-d2e7355933379f5cfabf.json",
+					"name" : "test_orders",
 					"projectIndex" : 0
 				}
 			]

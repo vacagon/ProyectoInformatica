@@ -157,6 +157,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+tests/CMakeFiles/test_orders.dir/rule:
+	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_orders.dir/rule
+.PHONY : tests/CMakeFiles/test_orders.dir/rule
+
+# Convenience name for target.
+test_orders: tests/CMakeFiles/test_orders.dir/rule
+
+.PHONY : test_orders
+
+# fast build rule for target.
+test_orders/fast:
+	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f tests/CMakeFiles/test_orders.dir/build.make tests/CMakeFiles/test_orders.dir/build
+.PHONY : test_orders/fast
+
+# Convenience name for target.
 tests/CMakeFiles/test_basic.dir/rule:
 	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_basic.dir/rule
 .PHONY : tests/CMakeFiles/test_basic.dir/rule
@@ -198,6 +213,33 @@ test_basic.cpp.s:
 	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f tests/CMakeFiles/test_basic.dir/build.make tests/CMakeFiles/test_basic.dir/test_basic.cpp.s
 .PHONY : test_basic.cpp.s
 
+test_orders.o: test_orders.cpp.o
+
+.PHONY : test_orders.o
+
+# target to build an object file
+test_orders.cpp.o:
+	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f tests/CMakeFiles/test_orders.dir/build.make tests/CMakeFiles/test_orders.dir/test_orders.cpp.o
+.PHONY : test_orders.cpp.o
+
+test_orders.i: test_orders.cpp.i
+
+.PHONY : test_orders.i
+
+# target to preprocess a source file
+test_orders.cpp.i:
+	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f tests/CMakeFiles/test_orders.dir/build.make tests/CMakeFiles/test_orders.dir/test_orders.cpp.i
+.PHONY : test_orders.cpp.i
+
+test_orders.s: test_orders.cpp.s
+
+.PHONY : test_orders.s
+
+# target to generate assembly for a file
+test_orders.cpp.s:
+	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f tests/CMakeFiles/test_orders.dir/build.make tests/CMakeFiles/test_orders.dir/test_orders.cpp.s
+.PHONY : test_orders.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -210,10 +252,14 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... test_orders"
 	@echo "... test_basic"
 	@echo "... test_basic.o"
 	@echo "... test_basic.i"
 	@echo "... test_basic.s"
+	@echo "... test_orders.o"
+	@echo "... test_orders.i"
+	@echo "... test_orders.s"
 .PHONY : help
 
 
