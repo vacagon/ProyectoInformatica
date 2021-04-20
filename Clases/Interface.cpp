@@ -612,7 +612,6 @@ void Interface::makeOrder() {
             continue;
         } else {
             valid_option = true;
-            system("clear");
         }
 
         //Implement the action requested by the user
@@ -702,12 +701,12 @@ void Interface::showCart() const {
                  << "-------------------------------------------" << endl
                  << "-------------------------------------------" << endl;
             for (Product* product: shopping_cart) {
-                cout << i << ". " << endl << product << endl;
+                cout << i << ". " << endl << *product << endl;
             }
         } else {
             cout << "Shopping cart is empty" << endl;
         }
-        cout << endl << "Enter a 0 to go back";
+        cout << endl << "Enter a 0 to go back: ";
         cin >> option;
         cin.ignore(100, '\n');
         cout << endl;
