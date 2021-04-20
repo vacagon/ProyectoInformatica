@@ -69,10 +69,8 @@ User* Manager::getCurrentMember() {
 }
 
 bool Manager::addUser(const string &username, const string &email, const string &password) {
-    for (int i = 0; i < (int)users.size(); i++) {
-        if ((users[i]->getEmail() == email)||(users[i]->getUsername() == username)) {
-            cout << endl << "Another user already use that "
-                 << "username or email. Please try again" << endl;
+    for (User* user: users) {
+        if ((user->getEmail() == email)||(user->getUsername() == username)) {
             return false;
         }
     }
@@ -82,10 +80,8 @@ bool Manager::addUser(const string &username, const string &email, const string 
 }
 
 bool Manager::addAdministrator(const string &username, const string &email, const string &password, const unsigned long &employee_code) {
-    for (unsigned long i = 0; i < users.size(); i++) {
-        if ((users[i]->getEmail() == email)||(users[i]->getUsername() == username)||(users[i]->getEmployeeCode() == employee_code)) {
-            cout << endl << "Another user already use that username, email, or employee code. "
-                 << "Please try again" << endl;
+    for (User* user: users) {
+        if ((user->getEmail() == email)||(user->getUsername() == username)||(user->getEmployeeCode() == employee_code)) {
             return false;
         }
     }
@@ -110,8 +106,8 @@ bool Manager::editUsername(const string& new_username) {
     if (!isLogged()) {
         return false;
     } else {
-        for (unsigned long i = 0; i < users.size(); i++) {
-            if (users[i]->getUsername() == new_username) {
+        for (User* user: users) {
+            if (user->getUsername() == new_username) {
                 flag = false;
             }
         }
@@ -129,8 +125,8 @@ bool Manager::editEmail(const string& new_email) {
     if (!isLogged()) {
         return false;
     } else {
-        for (unsigned long i = 0; i < users.size(); i++) {
-            if (users[i]->getEmail() == new_email) {
+        for (User* user: users) {
+            if (user->getEmail() == new_email) {
                 flag = false;
             }
         }
@@ -187,16 +183,30 @@ bool Manager::addPaypal(const Address* address, string& email) {
 
 //################# SEGUNDA ENTREGA ############################//
 
-bool Manager::addProduct(string n, string d, unsigned long r, float p) {
-    return false;
+bool Manager::addProduct(const string& name, const string& description, const unsigned long& reference, const float& price) {
+    bool flag = true;
+    for (Product* product: products) {
+        if(reference == product->getReference()) {
+            flag  = false;
+            break;
+        }
+    }
+    if (flag) {
+        Product* new_product = new Product(name,description,reference,price);
+        products.push_back(new_product);
+    }
+    return flag;
 }
 
 vector<PublicUserData*> Manager::showMembers() const {
-    vector<PublicUserData*> members;
+    vector<PublicUserData*> members = vector<PublicUserData*> ();
+    for (PublicUserData* public_data: users) {
+        members.push_back(public_data);
+    }
     return members;
 }
 
-bool Manager::makeOrder(vector<unsigned long> pr, int pm, int ddaddress) {
+bool Manager::makeOrder(const vector<unsigned long> products, int payment_method, int delivery_daddress) {
     return false;
 }
 

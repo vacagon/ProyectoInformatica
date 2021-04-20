@@ -158,14 +158,10 @@ public:
 
 	/**
      * @brief Adds a new product to the platform.
-     * Only logged users which are administrator con do it.
+     * Only logged users which are administrators con do it.
      * @return True: success, otherwise False
-     * @param  n: name
-     * @param  d: description
-     * @param  r: reference
-     * @param  p: price
      */
-    bool addProduct(string n, string d, unsigned long r, float p);
+    bool addProduct(const string& name, const string& description, const unsigned long& reference, const float& price);
 
 	/**
      * @brief It stores a vector of pointers to PublicUserData.
@@ -183,11 +179,8 @@ public:
      * A new order is created, and it is
      * added to the order history of the user currently logged.
      * @return True: success, false otherwise.
-     * @param  pr: products
-     * @param  pm: payment_method
-     * @param  ddaddress: delivery_address
 	 */
-    bool makeOrder(vector<unsigned long> pr, int pm, int ddaddress);
+    bool makeOrder(const vector<unsigned long> products, int payment_method, int delivery_daddress);
 
 	/**
      * @brief This allow the logged user to review a product
