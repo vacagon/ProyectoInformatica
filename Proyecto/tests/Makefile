@@ -51,22 +51,10 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/gonzalo/ProyectoInformatica/Proyecto
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/gonzalo/ProyectoInformatica/Proyecto
+CMAKE_BINARY_DIR = /home/gonzalo/ProyectoInformatica/Proyecto/tests
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -113,6 +101,18 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -126,14 +126,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(CMAKE_COMMAND) -E cmake_progress_start /home/gonzalo/ProyectoInformatica/Proyecto/CMakeFiles /home/gonzalo/ProyectoInformatica/Proyecto/tests/CMakeFiles/progress.marks
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f CMakeFiles/Makefile2 tests/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/gonzalo/ProyectoInformatica/Proyecto/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gonzalo/ProyectoInformatica/Proyecto/tests/CMakeFiles /home/gonzalo/ProyectoInformatica/Proyecto/tests/CMakeFiles/progress.marks
+	$(MAKE) -f CMakeFiles/Makefile2 all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gonzalo/ProyectoInformatica/Proyecto/tests/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f CMakeFiles/Makefile2 tests/clean
+	$(MAKE) -f CMakeFiles/Makefile2 clean
 .PHONY : clean
 
 # The main clean target
@@ -143,102 +143,487 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f CMakeFiles/Makefile2 tests/preinstall
+	$(MAKE) -f CMakeFiles/Makefile2 preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f CMakeFiles/Makefile2 tests/preinstall
+	$(MAKE) -f CMakeFiles/Makefile2 preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-# Convenience name for target.
-tests/CMakeFiles/test_orders.dir/rule:
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_orders.dir/rule
-.PHONY : tests/CMakeFiles/test_orders.dir/rule
+#=============================================================================
+# Target rules for targets named CompuGlobalHyperMegaComponents
 
-# Convenience name for target.
-test_orders: tests/CMakeFiles/test_orders.dir/rule
-
-.PHONY : test_orders
+# Build rule for target.
+CompuGlobalHyperMegaComponents: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CompuGlobalHyperMegaComponents
+.PHONY : CompuGlobalHyperMegaComponents
 
 # fast build rule for target.
-test_orders/fast:
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f tests/CMakeFiles/test_orders.dir/build.make tests/CMakeFiles/test_orders.dir/build
-.PHONY : test_orders/fast
+CompuGlobalHyperMegaComponents/fast:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponents.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponents.dir/build
+.PHONY : CompuGlobalHyperMegaComponents/fast
 
-# Convenience name for target.
-tests/CMakeFiles/test_basic.dir/rule:
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_basic.dir/rule
-.PHONY : tests/CMakeFiles/test_basic.dir/rule
+#=============================================================================
+# Target rules for targets named CompuGlobalHyperMegaComponentsLib
 
-# Convenience name for target.
-test_basic: tests/CMakeFiles/test_basic.dir/rule
+# Build rule for target.
+CompuGlobalHyperMegaComponentsLib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CompuGlobalHyperMegaComponentsLib
+.PHONY : CompuGlobalHyperMegaComponentsLib
 
+# fast build rule for target.
+CompuGlobalHyperMegaComponentsLib/fast:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build
+.PHONY : CompuGlobalHyperMegaComponentsLib/fast
+
+#=============================================================================
+# Target rules for targets named gmock_main
+
+# Build rule for target.
+gmock_main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gmock_main
+.PHONY : gmock_main
+
+# fast build rule for target.
+gmock_main/fast:
+	$(MAKE) -f googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make googletest-build/googlemock/CMakeFiles/gmock_main.dir/build
+.PHONY : gmock_main/fast
+
+#=============================================================================
+# Target rules for targets named gmock
+
+# Build rule for target.
+gmock: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gmock
+.PHONY : gmock
+
+# fast build rule for target.
+gmock/fast:
+	$(MAKE) -f googletest-build/googlemock/CMakeFiles/gmock.dir/build.make googletest-build/googlemock/CMakeFiles/gmock.dir/build
+.PHONY : gmock/fast
+
+#=============================================================================
+# Target rules for targets named gtest_main
+
+# Build rule for target.
+gtest_main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gtest_main
+.PHONY : gtest_main
+
+# fast build rule for target.
+gtest_main/fast:
+	$(MAKE) -f googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make googletest-build/googletest/CMakeFiles/gtest_main.dir/build
+.PHONY : gtest_main/fast
+
+#=============================================================================
+# Target rules for targets named gtest
+
+# Build rule for target.
+gtest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gtest
+.PHONY : gtest
+
+# fast build rule for target.
+gtest/fast:
+	$(MAKE) -f googletest-build/googletest/CMakeFiles/gtest.dir/build.make googletest-build/googletest/CMakeFiles/gtest.dir/build
+.PHONY : gtest/fast
+
+#=============================================================================
+# Target rules for targets named test_basic
+
+# Build rule for target.
+test_basic: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_basic
 .PHONY : test_basic
 
 # fast build rule for target.
 test_basic/fast:
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f tests/CMakeFiles/test_basic.dir/build.make tests/CMakeFiles/test_basic.dir/build
+	$(MAKE) -f tests/CMakeFiles/test_basic.dir/build.make tests/CMakeFiles/test_basic.dir/build
 .PHONY : test_basic/fast
 
-test_basic.o: test_basic.cpp.o
+Address.o: Address.cpp.o
 
-.PHONY : test_basic.o
-
-# target to build an object file
-test_basic.cpp.o:
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f tests/CMakeFiles/test_basic.dir/build.make tests/CMakeFiles/test_basic.dir/test_basic.cpp.o
-.PHONY : test_basic.cpp.o
-
-test_basic.i: test_basic.cpp.i
-
-.PHONY : test_basic.i
-
-# target to preprocess a source file
-test_basic.cpp.i:
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f tests/CMakeFiles/test_basic.dir/build.make tests/CMakeFiles/test_basic.dir/test_basic.cpp.i
-.PHONY : test_basic.cpp.i
-
-test_basic.s: test_basic.cpp.s
-
-.PHONY : test_basic.s
-
-# target to generate assembly for a file
-test_basic.cpp.s:
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f tests/CMakeFiles/test_basic.dir/build.make tests/CMakeFiles/test_basic.dir/test_basic.cpp.s
-.PHONY : test_basic.cpp.s
-
-test_orders.o: test_orders.cpp.o
-
-.PHONY : test_orders.o
+.PHONY : Address.o
 
 # target to build an object file
-test_orders.cpp.o:
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f tests/CMakeFiles/test_orders.dir/build.make tests/CMakeFiles/test_orders.dir/test_orders.cpp.o
-.PHONY : test_orders.cpp.o
+Address.cpp.o:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Address.cpp.o
+.PHONY : Address.cpp.o
 
-test_orders.i: test_orders.cpp.i
+Address.i: Address.cpp.i
 
-.PHONY : test_orders.i
+.PHONY : Address.i
 
 # target to preprocess a source file
-test_orders.cpp.i:
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f tests/CMakeFiles/test_orders.dir/build.make tests/CMakeFiles/test_orders.dir/test_orders.cpp.i
-.PHONY : test_orders.cpp.i
+Address.cpp.i:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Address.cpp.i
+.PHONY : Address.cpp.i
 
-test_orders.s: test_orders.cpp.s
+Address.s: Address.cpp.s
 
-.PHONY : test_orders.s
+.PHONY : Address.s
 
 # target to generate assembly for a file
-test_orders.cpp.s:
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(MAKE) -f tests/CMakeFiles/test_orders.dir/build.make tests/CMakeFiles/test_orders.dir/test_orders.cpp.s
-.PHONY : test_orders.cpp.s
+Address.cpp.s:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Address.cpp.s
+.PHONY : Address.cpp.s
+
+Administrator.o: Administrator.cpp.o
+
+.PHONY : Administrator.o
+
+# target to build an object file
+Administrator.cpp.o:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Administrator.cpp.o
+.PHONY : Administrator.cpp.o
+
+Administrator.i: Administrator.cpp.i
+
+.PHONY : Administrator.i
+
+# target to preprocess a source file
+Administrator.cpp.i:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Administrator.cpp.i
+.PHONY : Administrator.cpp.i
+
+Administrator.s: Administrator.cpp.s
+
+.PHONY : Administrator.s
+
+# target to generate assembly for a file
+Administrator.cpp.s:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Administrator.cpp.s
+.PHONY : Administrator.cpp.s
+
+CreditCard.o: CreditCard.cpp.o
+
+.PHONY : CreditCard.o
+
+# target to build an object file
+CreditCard.cpp.o:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/CreditCard.cpp.o
+.PHONY : CreditCard.cpp.o
+
+CreditCard.i: CreditCard.cpp.i
+
+.PHONY : CreditCard.i
+
+# target to preprocess a source file
+CreditCard.cpp.i:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/CreditCard.cpp.i
+.PHONY : CreditCard.cpp.i
+
+CreditCard.s: CreditCard.cpp.s
+
+.PHONY : CreditCard.s
+
+# target to generate assembly for a file
+CreditCard.cpp.s:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/CreditCard.cpp.s
+.PHONY : CreditCard.cpp.s
+
+Interface.o: Interface.cpp.o
+
+.PHONY : Interface.o
+
+# target to build an object file
+Interface.cpp.o:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponents.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponents.dir/Interface.cpp.o
+.PHONY : Interface.cpp.o
+
+Interface.i: Interface.cpp.i
+
+.PHONY : Interface.i
+
+# target to preprocess a source file
+Interface.cpp.i:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponents.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponents.dir/Interface.cpp.i
+.PHONY : Interface.cpp.i
+
+Interface.s: Interface.cpp.s
+
+.PHONY : Interface.s
+
+# target to generate assembly for a file
+Interface.cpp.s:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponents.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponents.dir/Interface.cpp.s
+.PHONY : Interface.cpp.s
+
+Manager.o: Manager.cpp.o
+
+.PHONY : Manager.o
+
+# target to build an object file
+Manager.cpp.o:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Manager.cpp.o
+.PHONY : Manager.cpp.o
+
+Manager.i: Manager.cpp.i
+
+.PHONY : Manager.i
+
+# target to preprocess a source file
+Manager.cpp.i:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Manager.cpp.i
+.PHONY : Manager.cpp.i
+
+Manager.s: Manager.cpp.s
+
+.PHONY : Manager.s
+
+# target to generate assembly for a file
+Manager.cpp.s:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Manager.cpp.s
+.PHONY : Manager.cpp.s
+
+Order.o: Order.cpp.o
+
+.PHONY : Order.o
+
+# target to build an object file
+Order.cpp.o:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Order.cpp.o
+.PHONY : Order.cpp.o
+
+Order.i: Order.cpp.i
+
+.PHONY : Order.i
+
+# target to preprocess a source file
+Order.cpp.i:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Order.cpp.i
+.PHONY : Order.cpp.i
+
+Order.s: Order.cpp.s
+
+.PHONY : Order.s
+
+# target to generate assembly for a file
+Order.cpp.s:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Order.cpp.s
+.PHONY : Order.cpp.s
+
+PaymentMethod.o: PaymentMethod.cpp.o
+
+.PHONY : PaymentMethod.o
+
+# target to build an object file
+PaymentMethod.cpp.o:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PaymentMethod.cpp.o
+.PHONY : PaymentMethod.cpp.o
+
+PaymentMethod.i: PaymentMethod.cpp.i
+
+.PHONY : PaymentMethod.i
+
+# target to preprocess a source file
+PaymentMethod.cpp.i:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PaymentMethod.cpp.i
+.PHONY : PaymentMethod.cpp.i
+
+PaymentMethod.s: PaymentMethod.cpp.s
+
+.PHONY : PaymentMethod.s
+
+# target to generate assembly for a file
+PaymentMethod.cpp.s:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PaymentMethod.cpp.s
+.PHONY : PaymentMethod.cpp.s
+
+Paypal.o: Paypal.cpp.o
+
+.PHONY : Paypal.o
+
+# target to build an object file
+Paypal.cpp.o:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Paypal.cpp.o
+.PHONY : Paypal.cpp.o
+
+Paypal.i: Paypal.cpp.i
+
+.PHONY : Paypal.i
+
+# target to preprocess a source file
+Paypal.cpp.i:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Paypal.cpp.i
+.PHONY : Paypal.cpp.i
+
+Paypal.s: Paypal.cpp.s
+
+.PHONY : Paypal.s
+
+# target to generate assembly for a file
+Paypal.cpp.s:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Paypal.cpp.s
+.PHONY : Paypal.cpp.s
+
+PrivateUserData.o: PrivateUserData.cpp.o
+
+.PHONY : PrivateUserData.o
+
+# target to build an object file
+PrivateUserData.cpp.o:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PrivateUserData.cpp.o
+.PHONY : PrivateUserData.cpp.o
+
+PrivateUserData.i: PrivateUserData.cpp.i
+
+.PHONY : PrivateUserData.i
+
+# target to preprocess a source file
+PrivateUserData.cpp.i:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PrivateUserData.cpp.i
+.PHONY : PrivateUserData.cpp.i
+
+PrivateUserData.s: PrivateUserData.cpp.s
+
+.PHONY : PrivateUserData.s
+
+# target to generate assembly for a file
+PrivateUserData.cpp.s:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PrivateUserData.cpp.s
+.PHONY : PrivateUserData.cpp.s
+
+Product.o: Product.cpp.o
+
+.PHONY : Product.o
+
+# target to build an object file
+Product.cpp.o:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Product.cpp.o
+.PHONY : Product.cpp.o
+
+Product.i: Product.cpp.i
+
+.PHONY : Product.i
+
+# target to preprocess a source file
+Product.cpp.i:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Product.cpp.i
+.PHONY : Product.cpp.i
+
+Product.s: Product.cpp.s
+
+.PHONY : Product.s
+
+# target to generate assembly for a file
+Product.cpp.s:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Product.cpp.s
+.PHONY : Product.cpp.s
+
+PublicUserData.o: PublicUserData.cpp.o
+
+.PHONY : PublicUserData.o
+
+# target to build an object file
+PublicUserData.cpp.o:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PublicUserData.cpp.o
+.PHONY : PublicUserData.cpp.o
+
+PublicUserData.i: PublicUserData.cpp.i
+
+.PHONY : PublicUserData.i
+
+# target to preprocess a source file
+PublicUserData.cpp.i:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PublicUserData.cpp.i
+.PHONY : PublicUserData.cpp.i
+
+PublicUserData.s: PublicUserData.cpp.s
+
+.PHONY : PublicUserData.s
+
+# target to generate assembly for a file
+PublicUserData.cpp.s:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PublicUserData.cpp.s
+.PHONY : PublicUserData.cpp.s
+
+Review.o: Review.cpp.o
+
+.PHONY : Review.o
+
+# target to build an object file
+Review.cpp.o:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Review.cpp.o
+.PHONY : Review.cpp.o
+
+Review.i: Review.cpp.i
+
+.PHONY : Review.i
+
+# target to preprocess a source file
+Review.cpp.i:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Review.cpp.i
+.PHONY : Review.cpp.i
+
+Review.s: Review.cpp.s
+
+.PHONY : Review.s
+
+# target to generate assembly for a file
+Review.cpp.s:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Review.cpp.s
+.PHONY : Review.cpp.s
+
+User.o: User.cpp.o
+
+.PHONY : User.o
+
+# target to build an object file
+User.cpp.o:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/User.cpp.o
+.PHONY : User.cpp.o
+
+User.i: User.cpp.i
+
+.PHONY : User.i
+
+# target to preprocess a source file
+User.cpp.i:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/User.cpp.i
+.PHONY : User.cpp.i
+
+User.s: User.cpp.s
+
+.PHONY : User.s
+
+# target to generate assembly for a file
+User.cpp.s:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/User.cpp.s
+.PHONY : User.cpp.s
+
+main.o: main.cpp.o
+
+.PHONY : main.o
+
+# target to build an object file
+main.cpp.o:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponents.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o
+.PHONY : main.cpp.o
+
+main.i: main.cpp.i
+
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponents.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponents.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -246,20 +631,61 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... install/strip"
+	@echo "... CompuGlobalHyperMegaComponents"
 	@echo "... edit_cache"
-	@echo "... test_orders"
+	@echo "... CompuGlobalHyperMegaComponentsLib"
+	@echo "... gmock_main"
+	@echo "... gmock"
+	@echo "... gtest_main"
+	@echo "... gtest"
 	@echo "... test_basic"
-	@echo "... test_basic.o"
-	@echo "... test_basic.i"
-	@echo "... test_basic.s"
-	@echo "... test_orders.o"
-	@echo "... test_orders.i"
-	@echo "... test_orders.s"
+	@echo "... Address.o"
+	@echo "... Address.i"
+	@echo "... Address.s"
+	@echo "... Administrator.o"
+	@echo "... Administrator.i"
+	@echo "... Administrator.s"
+	@echo "... CreditCard.o"
+	@echo "... CreditCard.i"
+	@echo "... CreditCard.s"
+	@echo "... Interface.o"
+	@echo "... Interface.i"
+	@echo "... Interface.s"
+	@echo "... Manager.o"
+	@echo "... Manager.i"
+	@echo "... Manager.s"
+	@echo "... Order.o"
+	@echo "... Order.i"
+	@echo "... Order.s"
+	@echo "... PaymentMethod.o"
+	@echo "... PaymentMethod.i"
+	@echo "... PaymentMethod.s"
+	@echo "... Paypal.o"
+	@echo "... Paypal.i"
+	@echo "... Paypal.s"
+	@echo "... PrivateUserData.o"
+	@echo "... PrivateUserData.i"
+	@echo "... PrivateUserData.s"
+	@echo "... Product.o"
+	@echo "... Product.i"
+	@echo "... Product.s"
+	@echo "... PublicUserData.o"
+	@echo "... PublicUserData.i"
+	@echo "... PublicUserData.s"
+	@echo "... Review.o"
+	@echo "... Review.i"
+	@echo "... Review.s"
+	@echo "... User.o"
+	@echo "... User.i"
+	@echo "... User.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 
@@ -271,6 +697,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/gonzalo/ProyectoInformatica/Proyecto && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
