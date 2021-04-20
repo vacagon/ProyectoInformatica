@@ -66,6 +66,7 @@ void Interface::FrontPageMenu() {
         switch (option) {
         case 0:
             system("clear");
+            shopping_cart.clear();
             cout << "See you soon!" << endl;
             break;
         case 1:
@@ -122,6 +123,7 @@ void Interface::HomeMenu() {
         case 0:
             system("clear");
             while (!manager->logout()) {}
+            shopping_cart.clear();
             break;
         case 1:
             editAccountMenu();
@@ -184,6 +186,7 @@ void Interface::HomeMenuAdministrator() {
         case 0:
             system("clear");
             while (!manager->logout()) {}
+            shopping_cart.clear();
             break;
         case 1:
             editAccountMenu();
@@ -519,6 +522,22 @@ void Interface::showProfile() const {
             }
         } else {
             cout << "No payment method registered yet" << endl << endl;
+        }
+        cout << "Previous orders: " << endl;
+        if (manager->getCurrentMember()->getOrders().size() > 0) {
+            for (Order* order: manager->getCurrentMember()->getOrders()) {
+                cout << "------------------------------" << endl;
+                for (unsigned long product_reference: order->getProducts()) {
+                    for (Product* products: manager->getProducts()) {
+                        if (products->getReference() == product_reference) {
+                            cout << products << endl;
+                        }
+                    }
+                }
+                cout << "------------------------------" << endl;
+            }
+        } else {
+            cout << "No orders made yet" << endl << endl;
         }
         cout << endl << "To go back to Home Menu enter 0" << endl;
         cin >> option;
