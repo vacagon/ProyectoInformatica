@@ -30,7 +30,20 @@ public:
      */
     void HomeMenu();
 
+    /**
+     * @brief Allow the logged admin
+     * do all the actions allowed by
+     * the class manager to a normal
+     * user plus those only allowed
+     * for admins
+     */
     void HomeMenuAdministrator();
+
+    void editAccountMenu();
+
+    void makeOrderMenu();
+
+    void editProductMenu();
 
     //*************FUNCIONES*****************
 
@@ -40,13 +53,15 @@ public:
 
     bool login();
 
-    void editAccountMenu();
-
     bool editUsername();
 
     bool editEmail();
 
     bool editPassword();
+
+    void editAddress();
+
+    void editPaymentMethod();
 
     void addAddress();
 
@@ -56,17 +71,23 @@ public:
 
     void addPaypal();
 
-    void showProfile() const;
+    const string showProfile() const;
 
-    void showMembers() const;
+    const string showUserData() const;
+
+    const string showAddresses() const;
+
+    const string showPaymentMethods() const;
+
+    const string showMembers() const;
+
+    const string showOrders() const;
 
     void addProduct();
 
-    void makeOrder();
+    const string showProducts();
 
-    void showProducts();
-
-    void showCart() const;
+    const string showCart() const;
 
     bool addProductToCart();
 

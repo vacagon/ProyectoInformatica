@@ -87,7 +87,6 @@ void Interface::FrontPageMenu() {
 void Interface::HomeMenu() {
     bool valid_option = false;
     int option = -1;
-
     while ((!valid_option) || (option != 0)) {
         system("clear");
         cout << "Welcome " << manager->getCurrentMember()->getUsername()
@@ -101,27 +100,22 @@ void Interface::HomeMenu() {
              << "2. Add address" << endl
              << "3. Add payment information" << endl
              << "4. Show profile" << endl
-             << "5. Make an order" << endl
+             << "5. Products"
+             << "6. Make an order" << endl
+             << "7. Shopping cart" << endl
              << "0. Log out" << endl;
         cin >> option;
         cin.ignore(10000,'\n');
-
-        //Check if its a valid option
-        if ((option < 0)||(option > 5)) {
+        if ((option < 0)||(option > 7)) {
             valid_option = false;
-            cout << "NOT A VALID OPTION"
-                 << ". TRY AGAIN" << endl;
             system("clear");
             continue;
         } else {
             valid_option = true;
             system("clear");
         }
-
-        //Implement the action requested by the user
         switch (option) {
         case 0:
-            system("clear");
             while (!manager->logout()) {}
             shopping_cart.clear();
             break;
@@ -135,10 +129,19 @@ void Interface::HomeMenu() {
             addPaymentMethod();
             break;
         case 4:
-            showProfile();
+            cout << showProfile() << endl;
+            cin.ignore(100, '\n');
             break;
         case 5:
-            makeOrder();
+            cout << showProducts() << endl;
+            cin.ignore(100, '\n');
+            break;
+        case 6:
+            makeOrderMenu();
+            break;
+        case 7:
+            cout << showCart() << endl;
+            cin.ignore(100, '\n');
             break;
         }
     }
@@ -147,7 +150,6 @@ void Interface::HomeMenu() {
 void Interface::HomeMenuAdministrator() {
     bool valid_option = false;
     int option = -1;
-
     while ((!valid_option) || (option != 0)) {
         system("clear");
         cout << "Welcome administrator " << manager->getCurrentMember()->getUsername()
@@ -163,28 +165,24 @@ void Interface::HomeMenuAdministrator() {
              << "3. Add payment information" << endl
              << "4. Show profile" << endl
              << "5. Show members" << endl
-             << "6. Add a new product" << endl
-             << "7. Make an order" << endl
+             << "6. Products" << endl
+             << "7. Add a new product" << endl
+             << "8. Edit a product" << endl
+             << "9. Make an order" << endl
+             << "10. Show shopping cart" << endl
              << "0. Log out" << endl;
         cin >> option;
         cin.ignore(10000,'\n');
-
-        //Check if its a valid option
-        if ((option < 0)||(option > 7)) {
+        if ((option < 0)||(option > 10)) {
             valid_option = false;
-            cout << "NOT A VALID OPTION"
-                 << ". TRY AGAIN" << endl;
             system("clear");
             continue;
         } else {
             valid_option = true;
             system("clear");
         }
-
-        //Implement the action requested by the user
         switch (option) {
         case 0:
-            system("clear");
             while (!manager->logout()) {}
             shopping_cart.clear();
             break;
@@ -198,16 +196,74 @@ void Interface::HomeMenuAdministrator() {
             addPaymentMethod();
             break;
         case 4:
-            showProfile();
+            cout << showProfile() << endl;
+            cin.ignore(100, '\n');
             break;
         case 5:
-            showMembers();
+            cout << showMembers() << endl;
+            cin.ignore(100, '\n');
             break;
         case 6:
-            addProduct();
+            cout << showProducts() << endl;
+            cin.ignore(100, '\n');
             break;
         case 7:
-            makeOrder();
+            addProduct();
+            break;
+        case 8:
+            //editProductMenu();
+            break;
+        case 9:
+            makeOrderMenu();
+            break;
+        case 10:
+            cout << showCart() << endl;
+            cin.ignore(100, '\n');
+            break;
+        }
+    }
+}
+
+void Interface::editAccountMenu() {
+    int option = -1;
+    bool valid_option = false;
+    while ((!valid_option)||(option != 0)) {
+        system("clear");
+        cout << "What do you want to edit?" << endl;
+        cout << "----------------------------------" << endl;
+        cout << "1. Edit username" << endl
+             << "2. Edit email" << endl
+             << "3. Edit password" << endl
+             << "4. Edit registered addresses" << endl
+             << "5. Edit registered payment method" << endl
+             << "0. Back to Home Menu" << endl;
+        cin >> option;
+        cin.ignore(100,'\n');
+        if ((option < 0)||(option > 5)) {
+            valid_option = false;
+            system("clear");
+            continue;
+        } else {
+            valid_option = true;
+            system("clear");
+        }
+        switch (option) {
+        case 0:
+            break;
+        case 1:
+            while (!editUsername()) {};
+            break;
+        case 2:
+            while (!editEmail()) {};
+            break;
+        case 3:
+            while (!editPassword()) {};
+            break;
+        case 4:
+            editAddress();
+            break;
+        case 5:
+            //editPaymentMethod();
             break;
         }
     }
@@ -223,18 +279,18 @@ bool Interface::login() {
     cin >> password;
     cin.ignore(10000,'\n');
     if (manager->login(email, password)) {
-        cout << "Contraseña correcta" << endl;
         return true;
     } else {
         cout << "Contraseña incorrecta"
              << ". Intentelo de nuevo" << endl;
+        cin.ignore(100, '\n');
         return false;
     }
 }
 
 bool Interface::addUser() {
     int option = -1;
-    bool valid_option = false;
+    bool valid_option = false, flag = false;
     string username, password, email;
     do {
         cout << endl << endl;
@@ -244,19 +300,15 @@ bool Interface::addUser() {
              << "1. Add a normal user" << endl
              << "2. Add an administrator" << endl;
         cin >> option;
-        cin.ignore(100000,'\n');
-
+        cin.ignore(100,'\n');
         if ((option != 1)&&(option != 2)) {
             valid_option = false;
-            cout << "NOT A VALID OPTION"
-                 << ". TRY AGAIN" << endl;
             system("clear");
             continue;
         } else {
             valid_option = true;
             system("clear");
         }
-
         switch (option) {
         case 1:
             cout << "Username: ";
@@ -265,60 +317,14 @@ bool Interface::addUser() {
             getline(cin>>ws,email);
             cout << "Password: ";
             getline(cin>>ws,password);
-            return manager->addUser(username,email,password);
+            flag = manager->addUser(username,email,password);
             break;
         case 2:
-            while(!addAdministrator()) {}
-            return addAdministrator();
+            flag = addAdministrator();
             break;
-        default:
-            return false;
         }
     } while (!valid_option);
-}
-
-void Interface::editAccountMenu() {
-    int option = -1;
-    bool valid_option = false;
-    while ((!valid_option)||(option != 0)) {
-        system("clear");
-        cout << "What do you want to edit?" << endl;
-        cout << "----------------------------------" << endl;
-        cout << "1. Edit username" << endl
-             << "2. Edit email" << endl
-             << "3. Edit password" << endl
-             << "0. Back to Home Menu" << endl;
-        cin >> option;
-        cin.ignore(10000,'\n');
-
-        //Check if its a valid option
-        if ((option < 0)||(option > 3)) {
-            valid_option = false;
-            cout << "NOT A VALID OPTION"
-                 << ". TRY AGAIN" << endl;
-            system("clear");
-            continue;
-        } else {
-            valid_option = true;
-            system("clear");
-        }
-
-        //Implement the action requested by the user
-        switch (option) {
-        case 0:
-            system("clear");
-            break;
-        case 1:
-            while (!editUsername()) {};
-            break;
-        case 2:
-            while (!editEmail()) {};
-            break;
-        case 3:
-            while (!editPassword()) {};
-            break;
-        }
-    }
+    return flag;
 }
 
 bool Interface::addAdministrator() {
@@ -392,6 +398,124 @@ bool Interface::editPassword() {
     return flag;
 }
 
+void Interface::editAddress() {
+    bool valid_option1 = false, valid_option2 = false, valid_option3 = false;
+    int option1 = -1, id = -1, option2 = -1;
+    string address, city, province;
+    unsigned int postal_code;
+    while (!valid_option1) {
+        cout << "Chose an option: " << endl
+             << "----------------------" << endl
+             << "1. Edit an existing address" << endl
+             << "2. Delete an address" << endl
+             << "3. Add a new address" << endl
+             << "0. Go back" << endl;
+        cin >> option1;
+        cin.ignore(100, '\n');
+        if ((option1 < 0)||(option1 > 3)) {
+            valid_option1 = false;
+        } else {
+            if ((option1 < 3) && (option1 != 0) && (manager->getCurrentMember()->getAddresses().size() == 0)) {
+                cout << "There are no registered options yet" << endl;
+                cin.ignore(100, '\n');
+                valid_option1 = false;
+            } else {
+                valid_option1 = true;
+            }
+        }
+        system("clear");
+    }
+    switch (option1) {
+    case 0:
+        break;
+    case 1:
+        while (!valid_option2) {
+            cout << "Chose an address: " << endl
+                 << showAddresses() << endl;
+            cin >> id;
+            cin.ignore(100, '\n');
+            if ((id < 0)||(id > (int)manager->getCurrentMember()->getAddresses().size())) {
+                valid_option2 = false;
+            } else {
+                valid_option2 = true;
+            }
+            system("clear");
+        }
+        id --;
+        while (!valid_option3) {
+            cout << "Address you chose to edit: " << manager->getCurrentMember()->getAddresses()[id]->show() << endl
+                 << "Chose what you want to edit from this address: " << endl
+                 << "1. Address" << endl
+                 << "2. City" << endl
+                 << "3. Province" << endl
+                 << "4. Postal code" << endl
+                 << "0. Go back" << endl;
+            cin >> option2;
+            if ((option2 < 0)||(option2 > 4)) {
+                valid_option3 = false;
+            } else {
+                valid_option3 = true;
+            }
+            system("clear");
+        }
+        switch (option2) {
+        case 0:
+            break;
+        case 1:
+            cout << "Introduce new address: ";
+            getline(cin >> ws, address);
+            cin.ignore(100, '\n');
+            manager->getCurrentMember()->getAddresses()[id]->setAddress(address);
+            break;
+        case 2:
+            cout << "Introduce new city: ";
+            getline(cin >> ws, city);
+            cin.ignore(100, '\n');
+            manager->getCurrentMember()->getAddresses()[id]->setCity(city);
+            break;
+        case 3:
+            cout << "Introduce new province: ";
+            getline(cin >> ws, province);
+            cin.ignore(100, '\n');
+            manager->getCurrentMember()->getAddresses()[id]->setProvince(province);
+            break;
+        case 4:
+            cout << "Introduce postal code: ";
+            cin >> postal_code;
+            cin.ignore(100, '\n');
+            manager->getCurrentMember()->getAddresses()[id]->setPostalCode(postal_code);
+            break;
+        }
+        break;
+    case 2:
+        while (!valid_option2) {
+            cout << "Chose an address: " << endl
+                 << showAddresses() << endl;
+            cin >> id;
+            cin.ignore(100, '\n');
+            if ((id < 0)||(id > (int)manager->getCurrentMember()->getAddresses().size())) {
+                valid_option2 = false;
+            } else {
+                valid_option2 = true;
+            }
+            system("clear");
+        }
+        id --;
+        manager->getCurrentMember()->getAddresses().erase(manager->getCurrentMember()->getAddresses().begin() + id);
+        for (unsigned int j = 0; j < manager->getCurrentMember()->getAddresses().size(); j++) {
+            manager->getCurrentMember()->getAddresses()[j]->setId(j);
+        }
+        if (manager->getCurrentMember()->getAddresses().size() > 0) {
+            cout << "Now the register addresses are: " << endl << showAddresses();
+        }
+        cin.ignore(100, '\n');
+        break;
+    case 3:
+        addAddress();
+        break;
+    }
+}
+
 void Interface::addAddress() {
     system("clear");
     string address, city, province;
@@ -463,7 +587,7 @@ void Interface::addCreditCard() {
     cin >> cardnumber;
     cin.ignore(100,'\n');
     cout << "Introduce the card holder: ";
-    getline(cin, cardholder);
+    getline(cin >> ws, cardholder);
     cin.ignore(100,'\n');
     id  = manager->getCurrentMember()->getPaymentMethods().size();
     CreditCard* new_card = new CreditCard(id, billing_address,cardnumber,cardholder);
@@ -498,68 +622,86 @@ void Interface::addPaypal() {
     manager->getCurrentMember()->addPaymentMethod(new_paypal);
 }
 
-void Interface::showProfile() const {
-    int option = -1;
-    while (option != 0) {
-        cout << "Username: " << manager->getCurrentMember()->getUsername() << endl << endl;
-        cout << "Email: " << manager->getCurrentMember()->getEmail() << endl << endl;
-        cout << "Password: " << manager->getCurrentMember()->getPassword() << endl << endl;
-        if (manager->getCurrentMember()->isAdmin()) {
-            cout << "Employee code: " << manager->getCurrentMember()->getEmployeeCode() << endl << endl;
-        }
-        cout << "Registered addresses: " << endl;
-        if (manager->getCurrentMember()->getAddresses().size() > 0) {
-            for (Address* address: manager->getCurrentMember()->getAddresses()) {
-                cout << address->show() << endl;
-            }
-        } else {
-            cout << "No address registered yet" << endl << endl;
-        }
-        cout << "Registered payment methods: " << endl;
-        if (manager->getCurrentMember()->getPaymentMethods().size() > 0) {
-            for (PaymentMethod* payment_method: manager->getCurrentMember()->getPaymentMethods()) {
-                cout << payment_method->show() << endl;
-            }
-        } else {
-            cout << "No payment method registered yet" << endl << endl;
-        }
-        cout << "Previous orders: " << endl;
-        if (manager->getCurrentMember()->getOrders().size() > 0) {
-            for (Order* order: manager->getCurrentMember()->getOrders()) {
-                cout << "------------------------------" << endl;
-                for (unsigned long product_reference: order->getProducts()) {
-                    for (Product* products: manager->getProducts()) {
-                        if (products->getReference() == product_reference) {
-                            cout << products << endl;
-                        }
-                    }
-                }
-                cout << "------------------------------" << endl;
-            }
-        } else {
-            cout << "No orders made yet" << endl << endl;
-        }
-        cout << endl << "To go back to Home Menu enter 0" << endl;
-        cin >> option;
-    }
+const string Interface::showProfile() const {
+    stringstream ss;
+    ss << showUserData() << endl;
+    ss << showAddresses() << endl;
+    ss << showPaymentMethods() << endl;
+    ss << showOrders() << endl;
+    return ss.str();
 }
 
-void Interface::showMembers() const {
-    int i = 0;
-    int option = -1;
-    system("clear");
-    cout << "The list of the registered users in the platform is:" << endl;
-    cout << "---------------------------------------------------------" << endl;
-    while (option != 0) {
-        for (PublicUserData* public_data: manager->showMembers()) {
-            cout << "User " << i+1 << " :" << endl
-                 << "Username: " << public_data->getUsername() << endl
-                 << "Reputation: " << public_data->getReputation() << endl << endl;
-            i++;
-        }
-        cout << "To go back to Home Menu enter 0" << endl;
-        cin >> option;
+const string Interface::showUserData() const {
+    stringstream ss;
+    ss << "Username: " << manager->getCurrentMember()->getUsername() << endl << endl;
+    ss << "Email: " << manager->getCurrentMember()->getEmail() << endl << endl;
+    ss << "Password: " << manager->getCurrentMember()->getPassword() << endl << endl;
+    if (manager->getCurrentMember()->isAdmin()) {
+        ss << "Employee code: " << manager->getCurrentMember()->getEmployeeCode() << endl << endl;
     }
+    return ss.str();
+}
+
+const string Interface::showAddresses() const {
+    stringstream ss;
+    int i = 0;
+    ss << "Registered addresses: " << endl;
+    if (manager->getCurrentMember()->getAddresses().size() > 0) {
+        for (Address* address: manager->getCurrentMember()->getAddresses()) {
+            ss << i+1 << ". " << address->show() << endl;
+        }
+    } else {
+        ss << "No address registered yet" << endl << endl;
+    }
+    return ss.str();
+}
+
+const string Interface::showPaymentMethods() const {
+    stringstream ss;
+    ss << "Registered payment methods: " << endl;
+    if (manager->getCurrentMember()->getPaymentMethods().size() > 0) {
+        for (PaymentMethod* payment_method: manager->getCurrentMember()->getPaymentMethods()) {
+            ss << payment_method->show() << endl;
+        }
+    } else {
+        ss << "No payment method registered yet" << endl << endl;
+    }
+    return ss.str();
+}
+
+const string Interface::showOrders() const {
+    stringstream ss;
+    ss << "Previous orders: " << endl;
+    if (manager->getCurrentMember()->getOrders().size() > 0) {
+        for (Order* order: manager->getCurrentMember()->getOrders()) {
+            ss << "------------------------------" << endl;
+            for (unsigned long product_reference: order->getProducts()) {
+                for (Product* products: manager->getProducts()) {
+                    if (products->getReference() == product_reference) {
+                        ss << products << endl;
+                    }
+                }
+            }
+            ss << "------------------------------" << endl;
+        }
+    } else {
+        ss << "No orders made yet" << endl << endl;
+    }
+    return ss.str();
+}
+
+const string Interface::showMembers() const {
+    stringstream ss;
+    int i = 0;
+    ss << "The list of the registered users in the platform is:" << endl;
+    ss << "---------------------------------------------------------" << endl;
+    for (PublicUserData* public_data: manager->showMembers()) {
+        ss << "User " << i+1 << " :" << endl
+             << "Username: " << public_data->getUsername() << endl
+             << "Reputation: " << public_data->getReputation() << endl << endl;
+        i++;
+    }
+    return ss.str();
 }
 
 void Interface::addProduct() {
@@ -583,7 +725,7 @@ void Interface::addProduct() {
     } while (!manager->addProduct(name,description,reference,price));
 }
 
-void Interface::makeOrder() {
+void Interface::makeOrderMenu() {
     vector<unsigned long> products = vector<unsigned long> ();
     bool valid_option = false;
     int option = -1, payment_method = 0, shipping_address = 0;
@@ -669,11 +811,13 @@ void Interface::makeOrder() {
     }
 }
 
-void Interface::showProducts() {
+const string Interface::showProducts() {
+    stringstream ss;
     for (Product* product: manager->getProducts()) {
-        cout << "------------------------------" << endl
+        ss << "------------------------------" << endl
              << product << endl;;
     }
+    return ss.str();
 }
 
 bool Interface::addProductToCart() {
@@ -692,25 +836,22 @@ bool Interface::addProductToCart() {
     return flag;
 }
 
-void Interface::showCart() const {
-    int option = -1;
+const string Interface::showCart() const {
     int i = 1;
-    while (option != 0) {
-        if (shopping_cart.size() > 0) {
-            cout << endl << endl << "****SHOPPING CART****" << endl
-                 << "-------------------------------------------" << endl
-                 << "-------------------------------------------" << endl;
-            for (Product* product: shopping_cart) {
-                cout << i << ". " << endl << *product << endl;
-            }
-        } else {
-            cout << "Shopping cart is empty" << endl;
+    stringstream ss;
+    if (shopping_cart.size() > 0) {
+        ss << endl << endl << "****SHOPPING CART****" << endl
+             << "-------------------------------------------" << endl
+             << "-------------------------------------------" << endl;
+        for (Product* product: shopping_cart) {
+            ss << i << ". " << endl << *product << endl;
+            i++;
         }
-        cout << endl << "Enter a 0 to go back: ";
-        cin >> option;
-        cin.ignore(100, '\n');
-        cout << endl;
+    } else {
+        ss << "Shopping cart is empty" << endl;
     }
+    ss << endl;
+    return ss.str();
 }
 
 bool Interface::eraseProductFromCart() {
