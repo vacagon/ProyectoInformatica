@@ -86,7 +86,8 @@
 					"source" : "tests",
 					"targetIndexes" : 
 					[
-						6
+						6,
+						7
 					]
 				}
 			],
@@ -108,7 +109,8 @@
 					[
 						0,
 						1,
-						6
+						6,
+						7
 					]
 				},
 				{
@@ -180,7 +182,7 @@
 				{
 					"directoryIndex" : 2,
 					"id" : "gmock_main::@645c719b6bb61ab77cfe",
-					"jsonFile" : "target-gmock_main-Debug-f56faa2c282a0bd64c5a.json",
+					"jsonFile" : "target-gmock_main-Debug-b437246c86f2ec60077a.json",
 					"name" : "gmock_main",
 					"projectIndex" : 2
 				},
@@ -201,8 +203,15 @@
 				{
 					"directoryIndex" : 4,
 					"id" : "test_basic::@a44f0ac069e85531cdee",
-					"jsonFile" : "target-test_basic-Debug-948a5df93a120d1165c6.json",
+					"jsonFile" : "target-test_basic-Debug-56e18b002ea08e80e3f1.json",
 					"name" : "test_basic",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "test_orders::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-test_orders-Debug-31663231af5137cf6cfd.json",
+					"name" : "test_orders",
 					"projectIndex" : 0
 				}
 			]
