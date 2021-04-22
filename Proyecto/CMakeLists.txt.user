@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD
 <!-- Written by QtCreator 4.13.2, 2021-04-21T21:47:13. -->
+=======
+<!-- Written by QtCreator 4.13.2, 2021-04-22T16:56:24. -->
+>>>>>>> interface
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -76,6 +80,15 @@
     <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_basic.cpp:ManagerLoggedMemberCanEditProfile">Checked</value>
     <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_basic.cpp:ManagerWrongMemberCannotLogin">Checked</value>
     <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_basic.cpp:TestBasic">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:ManagerCanAddProducts">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:ManagerCanCreateNewOrder">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:ManagerCanCreateReviews">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:ManagerCanDeleteReviews">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:ManagerCanGetReviewsByRating">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:ManagerCanModifyReviews">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:ManagerCanSHowMembers">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:ManagerCanUpvoteorDownvoteReviews">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:TestOrders">Checked</value>
    </valuemap>
    <value type="int" key="AutoTest.RunAfterBuild">0</value>
    <value type="bool" key="AutoTest.UseGlobal">true</value>

@@ -39,6 +39,7 @@ protected:
         owner1 = "Homer Simpson";
         owner2 = "Marge Simpson";
         emailp = "homer@aol.com";
+        address = nullptr;
         credit_card1 = nullptr;
         credit_card2 = nullptr;
         paypal = nullptr;
