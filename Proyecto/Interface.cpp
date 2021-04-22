@@ -269,6 +269,93 @@ void Interface::editAccountMenu() {
     }
 }
 
+void Interface::makeOrderMenu() {
+    vector<unsigned long> products = vector<unsigned long> ();
+    bool valid_option = false;
+    int option = -1, payment_method = 0, shipping_address = 0;
+    int i = 1;
+    cout << "Chose products from the list:" << endl;
+    showProducts();
+    while ((!valid_option) || (option != 0)) {
+        system("clear");
+        cout << "*********"
+             << "Select an option by tipping"
+             << " the corresponding digit"
+             << "*********" << endl
+             << "-----------------------------------" << endl
+             << "1. Add a new product to the cart" << endl
+             << "2. Erase a product from the cart" << endl
+             << "3. Show cart" << endl
+             << "4. Make order" << endl
+             << "0. Back to home menu" << endl;
+        cin >> option;
+        cin.ignore(10000,'\n');
+
+        //Check if its a valid option
+        if ((option < 0)||(option > 4)) {
+            valid_option = false;
+            system("clear");
+            continue;
+        } else {
+            valid_option = true;
+        }
+
+        //Implement the action requested by the user
+        switch (option) {
+        case 0:
+            break;
+        case 1:
+            while (!addProductToCart()) {}
+            break;
+        case 2:
+            while (!eraseProductFromCart()) {};
+            break;
+        case 3:
+            showCart();
+            break;
+        case 4:
+            for (Product* product: shopping_cart) {
+                products.push_back(product->getReference());
+            }
+            if (manager->getCurrentMember()->getAddresses().size() > 0) {
+                cout << "Chose a shipping address:" << endl;
+                for (Address* address: manager->getCurrentMember()->getAddresses()) {
+                    cout << i << ". " << address->show();
+                    i++;
+                }
+                cin >> shipping_address;
+                cin.ignore(100, '\n');
+                shipping_address--;
+            } else {
+                cout << "There are no registered address. First"
+                     << " you need to create one. It will be"
+                     << "selected as this order's shipping address." << endl;
+                addAddress();
+            }
+            if (manager->getCurrentMember()->getPaymentMethods().size() > 0) {
+                cout << "Chose a payment method:" << endl;
+                i = 1;
+                for (PaymentMethod* paymethod: manager->getCurrentMember()->getPaymentMethods()) {
+                    cout << i << ". " << paymethod->show();
+                    i++;
+                }
+                cin >> payment_method;
+                cin.ignore(100, '\n');
+                payment_method--;
+            } else {
+                cout << "There are no registered payment methods. First"
+                     << " you need to create one. It will be"
+                     << "selected as this order's payment method." << endl;
+                addPaymentMethod();
+            }
+            manager->makeOrder(products, payment_method, shipping_address);
+            shopping_cart.clear();
+            break;
+        }
+    }
+}
+
+
 bool Interface::login() {
     system("clear");
     string email, password;
@@ -652,6 +739,7 @@ const string Interface::showAddresses() const {
     if (manager->getCurrentMember()->getAddresses().size() > 0) {
         for (Address* address: manager->getCurrentMember()->getAddresses()) {
             ss << i+1 << ". " << address->show() << endl;
+            i++;
         }
     } else {
         ss << "No address registered yet" << endl << endl;
@@ -728,97 +816,17 @@ void Interface::addProduct() {
     } while (!manager->addProduct(name,description,reference,price));
 }
 
-void Interface::makeOrderMenu() {
-    vector<unsigned long> products = vector<unsigned long> ();
-    bool valid_option = false;
-    int option = -1, payment_method = 0, shipping_address = 0;
-    int i = 1;
-    cout << "Chose products from the list:" << endl;
-    showProducts();
-    while ((!valid_option) || (option != 0)) {
-        system("clear");
-        cout << "*********"
-             << "Select an option by tipping"
-             << " the corresponding digit"
-             << "*********" << endl
-             << "-----------------------------------" << endl
-             << "1. Add a new product to the cart" << endl
-             << "2. Erase a product from the cart" << endl
-             << "3. Show cart" << endl
-             << "4. Make order" << endl
-             << "0. Back to home menu" << endl;
-        cin >> option;
-        cin.ignore(10000,'\n');
-
-        //Check if its a valid option
-        if ((option < 0)||(option > 4)) {
-            valid_option = false;
-            system("clear");
-            continue;
-        } else {
-            valid_option = true;
-        }
-
-        //Implement the action requested by the user
-        switch (option) {
-        case 0:
-            break;
-        case 1:
-            while (!addProductToCart()) {}
-            break;
-        case 2:
-            while (!eraseProductFromCart()) {};
-            break;
-        case 3:
-            showCart();
-            break;
-        case 4:
-            for (Product* product: shopping_cart) {
-                products.push_back(product->getReference());
-            }
-            if (manager->getCurrentMember()->getAddresses().size() > 0) {
-                cout << "Chose a shipping address:" << endl;
-                for (Address* address: manager->getCurrentMember()->getAddresses()) {
-                    cout << i << ". " << address->show();
-                    i++;
-                }
-                cin >> shipping_address;
-                cin.ignore(100, '\n');
-                shipping_address--;
-            } else {
-                cout << "There are no registered address. First"
-                     << " you need to create one. It will be"
-                     << "selected as this order's shipping address." << endl;
-                addAddress();
-            }
-            if (manager->getCurrentMember()->getPaymentMethods().size() > 0) {
-                cout << "Chose a payment method:" << endl;
-                i = 1;
-                for (PaymentMethod* paymethod: manager->getCurrentMember()->getPaymentMethods()) {
-                    cout << i << ". " << paymethod->show();
-                    i++;
-                }
-                cin >> payment_method;
-                cin.ignore(100, '\n');
-                payment_method--;
-            } else {
-                cout << "There are no registered payment methods. First"
-                     << " you need to create one. It will be"
-                     << "selected as this order's payment method." << endl;
-                addPaymentMethod();
-            }
-            manager->makeOrder(products, payment_method, shipping_address);
-            shopping_cart.clear();
-            break;
-        }
-    }
-}
 
 const string Interface::showProducts() {
     stringstream ss;
-    for (Product* product: manager->getProducts()) {
-        ss << "------------------------------" << endl
-             << product << endl;;
+    if (manager->getProducts().size() > 0) {
+        for (Product* product: manager->getProducts()) {
+            ss << "------------------------------" << endl
+               << *product << endl;;
+        }
+    } else {
+        ss << "There are no products yet. "
+           << "Please, come back later" << endl;
     }
     return ss.str();
 }
