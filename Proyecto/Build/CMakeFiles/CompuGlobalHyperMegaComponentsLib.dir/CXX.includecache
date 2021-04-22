@@ -16,6 +16,10 @@ sstream
 Order.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
 
+/home/gonzalo/ProyectoInformatica/Proyecto/Administrator.cpp
+Administrator.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Administrator.hpp
+
 /home/gonzalo/ProyectoInformatica/Proyecto/Administrator.hpp
 string
 -
@@ -72,6 +76,12 @@ vector
 ctime
 -
 
+/home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.cpp
+PaymentMethod.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
+PrivateUserData.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/PrivateUserData.hpp
+
 /home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
 string
 -
@@ -86,6 +96,10 @@ sstream
 PaymentMethod.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
 
+/home/gonzalo/ProyectoInformatica/Proyecto/PrivateUserData.cpp
+PrivateUserData.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/PrivateUserData.hpp
+
 /home/gonzalo/ProyectoInformatica/Proyecto/PrivateUserData.hpp
 string
 -
@@ -97,6 +111,10 @@ Order.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
 PaymentMethod.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
+
+/home/gonzalo/ProyectoInformatica/Proyecto/Product.cpp
+Product.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Product.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/Product.hpp
 string
@@ -125,6 +143,10 @@ time.h
 -
 PublicUserData.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
+
+/home/gonzalo/ProyectoInformatica/Proyecto/User.cpp
+User.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/User.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/User.hpp
 string

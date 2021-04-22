@@ -53,7 +53,7 @@ ostream& operator<<(ostream& os, const Product& p) {
     os << p.getReference() << " - "
        << p.getName() << endl
        << p.getDescription() << endl
-       << p.getPrice() << endl;
+       << p.getPrice() << " [$]" <<endl;
     if (p.reviews.size() > 0) {
         os << "\t-- User reviews --" << endl;
         for (unsigned int i = 0; i < p.reviews.size(); i++) {

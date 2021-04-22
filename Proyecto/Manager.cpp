@@ -218,8 +218,8 @@ vector<PublicUserData*> Manager::showMembers() {
     return members;
 }
 
-bool Manager::makeOrder(const vector<unsigned long> products, int payment_method, int delivery_daddress) {
-    return false;
+bool Manager::makeOrder(const vector<unsigned long> products, const int& payment_method, const  int& delivery_daddress) {
+    return true;
 }
 
 bool Manager::createReview(const unsigned long &reference, const int &rating, const string& t) {
