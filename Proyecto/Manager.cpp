@@ -218,7 +218,7 @@ vector<PublicUserData*> Manager::showMembers() {
     return members;
 }
 
-bool Manager::makeOrder(const vector<unsigned long> products, int payment_method, int delivery_daddress) {
+bool Manager::makeOrder(const vector<unsigned long> products, const int& payment_method, const  int& delivery_daddress) {
     return false;
 }
 
