@@ -185,23 +185,30 @@ bool Manager::addPaypal(const Address* address, string& email) {
 
 bool Manager::addProduct(const string& name, const string& description, const unsigned long& reference, const float& price) {
     bool flag = true;
-    if ((!isLogged())||(!getCurrentMember()->isAdmin())) {
+    if (!isLogged()) {
         return false;
-    }
-    for (Product* product: products) {
-        if(reference == product->getReference()) {
-            flag  = false;
-            break;
+    } else {
+        if (!getCurrentMember()->isAdmin()) {
+            return false;
+        } else {
+            for (Product* product: products) {
+                if (product->getReference() == reference) {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag) {
+            Product* new_product = new Product(name, description, reference, price);
+            products.push_back(new_product);
+            return true;
+            } else {
+                return false;
+            }
         }
     }
-    if (flag) {
-        Product* new_product = new Product(name,description,reference,price);
-        products.push_back(new_product);
-    }
-    return flag;
 }
 
-vector<PublicUserData*> Manager::showMembers()  {
+vector<PublicUserData*> Manager::showMembers() {
     vector<PublicUserData*> members = vector<PublicUserData*> ();
     if ((isLogged())&&(getCurrentMember()->isAdmin())) {
         for (PublicUserData* public_data: users) {
@@ -211,36 +218,36 @@ vector<PublicUserData*> Manager::showMembers()  {
     return members;
 }
 
-bool Manager::makeOrder(const vector<unsigned long> products, int payment_method, int delivery_daddress) {
+bool Manager::makeOrder(const vector<unsigned long> products, const int& payment_method, const  int& delivery_daddress) {
+    return true;
+}
+
+bool Manager::createReview(const unsigned long &reference, const int &rating, const string& t) {
     return false;
 }
 
-bool Manager::createReview(unsigned long ref, int rat, string t) {
-    return false;
-}
-
-vector<Review*> Manager::getReviewsByRating(unsigned long ref, int rat) {
+vector<Review*> Manager::getReviewsByRating(const unsigned long &reference, const int &rating) {
     vector<Review*> rev;
     return rev;
 }
 
-bool Manager::upvoteReview(unsigned long i) {
+bool Manager::upvoteReview(const unsigned long& id) {
     return false;
 }
 
-bool Manager::downvoteReview(unsigned long i) {
+bool Manager::downvoteReview(const unsigned long& id) {
     return false;
 }
 
-bool Manager::modifyReviewRating(unsigned long i, int new_rating) {
+bool Manager::modifyReviewRating(const unsigned long &id, const int &new_rating) {
     return false;
 }
 
-bool Manager::modifyReviewText(unsigned long i, const string& new_text){
+bool Manager::modifyReviewText(const unsigned long &id, const string& new_text){
     return false;
 }
 
-bool Manager::deleteReview(unsigned long i) {
+bool Manager::deleteReview(const unsigned long &id) {
     return false;
 }
 

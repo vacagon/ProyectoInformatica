@@ -93,6 +93,8 @@ public:
 
     bool eraseProductFromCart();
 
+    bool makeOrder();
+
 private:
 
     Manager* manager;

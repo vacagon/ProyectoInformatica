@@ -180,7 +180,7 @@ public:
      * added to the order history of the user currently logged.
      * @return True: success, false otherwise.
 	 */
-    bool makeOrder(const vector<unsigned long> products, int payment_method, int delivery_daddress);
+    bool makeOrder(const vector<unsigned long> products, const int &payment_method, const int &delivery_daddress);
 
 	/**
      * @brief This allow the logged user to review a product
@@ -189,21 +189,14 @@ public:
      * Creates the review and adds it to the rest of the reviews of
 	 * the specific product, with a unique id.
      * @return True: success, false otherwise.
-     * @param  ref: Reference of the product to review
-     * @param  rat: rating 0-5
-     * @param  t: text
 	 */
-    bool createReview(unsigned long ref, int rat, string t);
+    bool createReview(const unsigned long& reference, const int& rating, const string& t);
 
 	/**
      * @brief Allows us to filter reviews of a product by rating.
      * @return Reviews with a given rating
-     * @param  ref: Reference of the product which
-     * reviews we are trying to filter
-     * @param  ret: Rating by which the user
-     * want to filter the ratings
 	 */
-    vector<Review*> getReviewsByRating(unsigned long ref, int rat);
+    vector<Review*> getReviewsByRating(const unsigned long& reference, const int& rating);
 
 	/**
      * @brief Increase votes of an specific review
@@ -211,9 +204,8 @@ public:
      * reputation. Any user can only vote once for each review,
      * and they can not vote for their own reviews.
      * @return True: succes, false otherwise
-     * @param  i: Id of the review
 	 */
-    bool upvoteReview(unsigned long i);
+    bool upvoteReview(const unsigned long& id);
 
 	/**
      * @brief Decrease votes of an specific review
@@ -221,34 +213,28 @@ public:
      * reputation. Any user can only vote once for each review,
      * and they can not vote for their own reviews
      * @return True: succes, false otherwise
-     * @param i: Id of the review voted
 	 */
-    bool downvoteReview(unsigned long i);
+    bool downvoteReview(const unsigned long& id);
 
 	/**
      * @brief Allows the logged user to change a review's rating.
      * @return True: success, otherwise false
-     * @param  i: ID of the review
-     * @param  new_rating: 0-5 stars
 	 */
-    bool modifyReviewRating(unsigned long i, int new_rating);
+    bool modifyReviewRating(const unsigned long& id, const int& new_rating);
 
 	/**
      * @brief Allows the logged user to change a review's text.
      * @return True: success, otherwise false.
-     * @param  i: ID of the review
-	 * @param  new_text
 	 */
-    bool modifyReviewText(unsigned long i, const string &new_text);
+    bool modifyReviewText(const unsigned long& id, const string &new_text);
 
 	/**
      * @brief Allow the currently logged user to delete
      * a review of his own. Only administrators can delete reviews
      * which are not made by them.
      * @return True success, otherwise false
-     * @param  i: ID of the review
 	 */
-    bool deleteReview(unsigned long i);
+    bool deleteReview(const unsigned long& id);
 
     //################# TERCERA ENTREGA ############################//
 

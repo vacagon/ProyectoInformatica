@@ -226,7 +226,6 @@ public:
      * @brief Allows the logged user to change a review's text.
      * @return True: success, otherwise false.
 	 */
-
     bool modifyReviewText(const unsigned long& id, const string &new_text);
 
 	/**
