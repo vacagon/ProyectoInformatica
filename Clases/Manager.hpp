@@ -170,7 +170,7 @@ public:
      * It can only be called by an Administrator, otherwise it
 	 * returns an empty vector.
 	 */
-    vector<PublicUserData*> showMembers() const;
+    vector<PublicUserData*> showMembers();
 
 	/**
      * @brief Calculates the price taking into account
@@ -239,7 +239,7 @@ public:
      * @param  i: ID of the review
 	 * @param  new_text
 	 */
-    bool modifyReviewText(unsigned long i, string& new_text);
+    bool modifyReviewText(unsigned long i, const string &new_text);
 
 	/**
      * @brief Allow the currently logged user to delete

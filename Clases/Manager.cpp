@@ -185,6 +185,9 @@ bool Manager::addPaypal(const Address* address, string& email) {
 
 bool Manager::addProduct(const string& name, const string& description, const unsigned long& reference, const float& price) {
     bool flag = true;
+    if ((!isLogged())||(!getCurrentMember()->isAdmin())) {
+        return false;
+    }
     for (Product* product: products) {
         if(reference == product->getReference()) {
             flag  = false;
@@ -198,10 +201,12 @@ bool Manager::addProduct(const string& name, const string& description, const un
     return flag;
 }
 
-vector<PublicUserData*> Manager::showMembers() const {
+vector<PublicUserData*> Manager::showMembers()  {
     vector<PublicUserData*> members = vector<PublicUserData*> ();
-    for (PublicUserData* public_data: users) {
-        members.push_back(public_data);
+    if ((isLogged())&&(getCurrentMember()->isAdmin())) {
+        for (PublicUserData* public_data: users) {
+            members.push_back(public_data);
+        }
     }
     return members;
 }
@@ -231,7 +236,7 @@ bool Manager::modifyReviewRating(unsigned long i, int new_rating) {
     return false;
 }
 
-bool Manager::modifyReviewText(unsigned long i, string& new_text){
+bool Manager::modifyReviewText(unsigned long i, const string& new_text){
     return false;
 }
 

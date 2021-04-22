@@ -135,8 +135,6 @@ PrivateUserData.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp
 gtest/gtest.h
 -
-time.h
--
 ../Manager.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Manager.hpp
 
