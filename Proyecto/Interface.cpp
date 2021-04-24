@@ -100,7 +100,7 @@ void Interface::HomeMenu() {
              << "2. Add address" << endl
              << "3. Add payment information" << endl
              << "4. Show profile" << endl
-             << "5. Products"
+             << "5. Products" << endl
              << "6. Make an order" << endl
              << "7. Shopping cart" << endl
              << "0. Log out" << endl;
@@ -273,7 +273,7 @@ void Interface::makeOrderMenu() {
     vector<unsigned long> products = vector<unsigned long> ();
     bool valid_option = false;
     int option = -1;
-    while ((!valid_option) || (option != 0)) {
+    while ((!valid_option) && (option != 0)) {
         system("clear");
         cout << "Chose products from the list:" << endl;
         showProducts();
@@ -294,14 +294,15 @@ void Interface::makeOrderMenu() {
             system("clear");
             continue;
         } else {
-            if (manager->getProducts().size() > 0) {
-                if (option < 3) {
+            if (manager->getProducts().size() == 0) {
+                if ((option == 1)||(option == 2)) {
                     cout << "No products added to the platform" << endl;
                     cin.ignore(100, '\n');
                     valid_option = false;
-                } else {
-                    valid_option = true;
+                    option = -1;
                 }
+            } else {
+                valid_option = true;
             }
         }
         switch (option) {
@@ -315,6 +316,7 @@ void Interface::makeOrderMenu() {
             break;
         case 3:
             cout << showCart() << endl;
+            cin.ignore(100, '\n');
             break;
         case 4:
             if (shopping_cart.size() > 0) {
@@ -523,19 +525,16 @@ void Interface::editAddress() {
         case 1:
             cout << "Introduce new address: ";
             getline(cin >> ws, address);
-            cin.ignore(100, '\n');
             manager->getCurrentMember()->getAddresses()[id]->setAddress(address);
             break;
         case 2:
             cout << "Introduce new city: ";
             getline(cin >> ws, city);
-            cin.ignore(100, '\n');
             manager->getCurrentMember()->getAddresses()[id]->setCity(city);
             break;
         case 3:
             cout << "Introduce new province: ";
             getline(cin >> ws, province);
-            cin.ignore(100, '\n');
             manager->getCurrentMember()->getAddresses()[id]->setProvince(province);
             break;
         case 4:
@@ -573,7 +572,7 @@ void Interface::addAddress() {
 
 void Interface::addPaymentMethod() {
     system("clear");
-    int option1 = -1, id = 0, i = 1, option2 = -1;
+    int option1 = -1, id_pm = 0, id_baddress = 0, i = 1, option2 = -1;
     Address* billing_address;
     bool valid_option1 = false, valid_option2 = false;
     while (!valid_option1) {
@@ -596,46 +595,50 @@ void Interface::addPaymentMethod() {
              << "2. Create a new address" << endl;
         cin >> option2;
         cin.ignore(100, '\n');
-        if ((option2 != 1)&&(option1 != 2)) {
+        if ((option2 < 1)||(option2 > 2)) {
             valid_option2 = false;
         } else {
             valid_option2 = true;
         }
         system("clear");
     }
-    if ((manager->getCurrentMember()->getAddresses().size() > 0)&&(option2 == 1)) {
-        for (Address* address: manager->getCurrentMember()->getAddresses()) {
-            cout << i << ". " << address->show();
-            i++;
-        }
-        cin >> id;
-        if (id > manager->getCurrentMember()->getAddresses().size()) {
-            id = manager->getCurrentMember()->getAddresses().size();
-        } else {
-            if (id < 1) {
-                id = 1;
+    switch (option2) {
+    case 1:
+        cout << showAddresses() << endl;
+        if (manager->getCurrentMember()->getAddresses().size() > 0) {
+            cin >> id_baddress;
+            if (id_baddress > manager->getCurrentMember()->getAddresses().size()) {
+                id_baddress = manager->getCurrentMember()->getAddresses().size();
             }
-        }
-        id--;
-        billing_address = manager->getCurrentMember()->getAddresses()[id];
-        id  = manager->getCurrentMember()->getPaymentMethods().size();
-    } else {
-        if (option1 != 0) {
-            cout << "There are no registered address. First"
-                 << " you need to create one." << endl;
+            if (id_baddress < 1) {
+                id_baddress = 1;
+            }
+            id_baddress--;
+            billing_address = manager->getCurrentMember()->getAddresses()[id_baddress];
+        } else {
+            cout << "You need to register a new address" << endl
+                 << "This address will be selected as this "
+                 << "payment method's you are about to register"
+                 << " billing address" << endl;
             cin.ignore(100, '\n');
             addAddress();
             billing_address = manager->getCurrentMember()->getAddresses()[0];
         }
+        break;
+    case 2:
+        addAddress();
+        billing_address = manager->getCurrentMember()->getAddresses()[manager->getCurrentMember()->getAddresses().size() - 1];
+        break;
     }
+    id_pm  = manager->getCurrentMember()->getPaymentMethods().size();
     switch (option1) {
     case 0:
         break;
     case 1:
-        addCreditCard(id, billing_address);
+        addCreditCard(id_pm, billing_address);
         break;
     case 2:
-        addPaypal(id, billing_address);
+        addPaypal(id_pm, billing_address);
         break;
     }
 }
@@ -643,14 +646,11 @@ void Interface::addPaymentMethod() {
 void Interface::addCreditCard(const int& id, const Address* billing_address) {
     unsigned long cardnumber = 0;
     string cardholder;
-
     cout << "Introduce credit card number: ";
     cin >> cardnumber;
     cin.ignore(100,'\n');
     cout << "Introduce the card holder: ";
     getline(cin >> ws, cardholder);
-    cin.ignore(100,'\n');
-
     CreditCard* new_card = new CreditCard(id, billing_address,cardnumber,cardholder);
     manager->getCurrentMember()->addPaymentMethod(new_card);
 }
@@ -687,7 +687,7 @@ const string Interface::showUserData() const {
 const string Interface::showAddresses() const {
     stringstream ss;
     int i = 1;
-    ss << "Registered addresses: " << endl;
+    ss << "Registered addresses: " << endl << endl;
     if (manager->getCurrentMember()->getAddresses().size() > 0) {
         for (Address* address: manager->getCurrentMember()->getAddresses()) {
             ss << i << ". " << address->show() << endl;
@@ -702,10 +702,10 @@ const string Interface::showAddresses() const {
 const string Interface::showPaymentMethods() const {
     stringstream ss;
     int i = 0;
-    ss << "Registered payment methods: " << endl;
+    ss << "Registered payment methods: " << endl << endl;
     if (manager->getCurrentMember()->getPaymentMethods().size() > 0) {
         for (PaymentMethod* payment_method: manager->getCurrentMember()->getPaymentMethods()) {
-            ss << i << ". " <<payment_method->show() << endl;
+            ss << i+1 << ". " <<payment_method->show() << endl;
             i++;
         }
     } else {
@@ -716,7 +716,7 @@ const string Interface::showPaymentMethods() const {
 
 const string Interface::showOrders() const {
     stringstream ss;
-    ss << "Previous orders: " << endl;
+    ss << "Previous orders: " << endl << endl;
     if (manager->getCurrentMember()->getOrders().size() > 0) {
         for (Order* order: manager->getCurrentMember()->getOrders()) {
             ss << "------------------------------" << endl;
@@ -741,9 +741,9 @@ const string Interface::showMembers() const {
     ss << "The list of the registered users in the platform is:" << endl;
     ss << "---------------------------------------------------------" << endl;
     for (PublicUserData* public_data: manager->showMembers()) {
-        ss << "User " << i+1 << " :" << endl
+        ss << "User " << i+1 << endl << "-------------------" << endl
              << "Username: " << public_data->getUsername() << endl
-             << "Reputation: " << public_data->getReputation() << endl << endl;
+             << "Reputation: " << public_data->getReputation() << endl << "********************" << endl;
         i++;
     }
     return ss.str();
@@ -787,8 +787,9 @@ const string Interface::showProducts() {
 bool Interface::addProductToCart() {
     unsigned long reference;
     bool flag = false;
+    cout << showProducts() << endl;
     cout << endl << "Introduce the reference of the "
-         << "product you want to add to the cart:";
+         << "product you want to add to the cart: ";
     cin >> reference;
     cin.ignore(100, '\n');
     for (Product* product: manager->getProducts()) {
