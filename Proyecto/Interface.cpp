@@ -170,10 +170,11 @@ void Interface::HomeMenuAdministrator() {
              << "8. Edit a product" << endl
              << "9. Make an order" << endl
              << "10. Show shopping cart" << endl
+             << "11. Edit a product" << endl
              << "0. Log out" << endl;
         cin >> option;
         cin.ignore(10000,'\n');
-        if ((option < 0)||(option > 10)) {
+        if ((option < 0)||(option > 11)) {
             valid_option = false;
             system("clear");
             continue;
@@ -220,6 +221,13 @@ void Interface::HomeMenuAdministrator() {
             cout << showCart() << endl;
             cin.ignore(100, '\n');
             break;
+        case 11:
+            if (manager->getProducts().size() > 0) {
+                editProductMenu();
+            } else {
+                cout << "No product added yet" << endl;
+                cin.ignore(100, '\n');
+            }
         }
     }
 }
@@ -235,11 +243,10 @@ void Interface::editAccountMenu() {
              << "2. Edit email" << endl
              << "3. Edit password" << endl
              << "4. Edit registered addresses" << endl
-             << "5. Edit registered payment method" << endl
              << "0. Back to Home Menu" << endl;
         cin >> option;
         cin.ignore(100,'\n');
-        if ((option < 0)||(option > 5)) {
+        if ((option < 0)||(option > 4)) {
             valid_option = false;
             system("clear");
             continue;
@@ -261,9 +268,6 @@ void Interface::editAccountMenu() {
             break;
         case 4:
             editAddress();
-            break;
-        case 5:
-            //editPaymentMethod();
             break;
         }
     }
@@ -476,7 +480,7 @@ void Interface::editAddress() {
         if ((option1 < 0)||(option1 > 2)) {
             valid_option1 = false;
         } else {
-            if ((option1 < 2) && (option1 != 0) && (manager->getCurrentMember()->getAddresses().size() == 0)) {
+            if ((option1 == 1) && (manager->getCurrentMember()->getAddresses().size() == 0)) {
                 cout << "There are no registered addresses yet" << endl;
                 cin.ignore(100, '\n');
                 valid_option1 = false;
@@ -549,6 +553,93 @@ void Interface::editAddress() {
         addAddress();
         break;
     }
+    system("clear");
+    cout << "The registered addresses are:" << endl
+         << showAddresses() << endl;
+    cin.ignore(100, '\n');
+}
+
+void Interface::editProductMenu() {
+    int option1 = -1, option2 = -1;
+    bool valid_option1 = false, valid_option2 = false, flag = true;
+    string name, description;
+    unsigned long reference;
+    float price;
+    while (!valid_option1) {
+        system("clear");
+        cout << "Chose the product to edit:" << endl
+             << showProducts() << endl;
+        cin >> option1;
+        cin.ignore(100, '\n');
+        if ((option1 < 1)||(option1 > manager->getProducts().size())) {
+                valid_option1 = false;
+        } else {
+            valid_option1 = true;
+        }
+    }
+    option1--;
+    while (!valid_option2) {
+        system("clear");
+        cout << "What do you want to edit?" << endl
+             << "1. Name" << endl
+             << "2. Description" << endl
+             << "3. Reference" << endl
+             << "4. Price" << endl;
+        cin >> option2;
+        cin.ignore(100, '\n');
+        if ((option2 < 1)||(option2 > 4)) {
+            valid_option2 = false;
+        } else {
+            valid_option2 = true;
+        }
+    }
+    switch (option2) {
+    case 1:
+        cout << "Actual name: " << manager->getProducts()[option1]->getName() << endl
+             << "Introduce the new name: ";
+        getline(cin >> ws, name);
+        manager->getProducts()[option1]->setName(name);
+        break;
+    case 2:
+        cout << "Actual description: " << manager->getProducts()[option1]->getDescription() << endl
+             << "Introduce the new description: ";
+        getline(cin >> ws, description);
+        manager->getProducts()[option1]->setDescription(description);
+        break;
+    case 3:
+        cout << "Actual reference: " << manager->getProducts()[option1]->getReference() << endl
+             << "Introduce the new reference: ";
+        cin >> reference;
+        cin.ignore(100, '\n');
+        for (Product* product : manager->getProducts()) {
+            if (reference == product->getReference()) {
+                flag = false;
+            }
+        }
+        if (flag) {
+            manager->getProducts()[option1]->setReference(reference);
+        } else {
+            cout << "There is other product with that reference" << endl;
+            cin.ignore(100, '\n');
+        }
+        break;
+    case 4:
+        cout << "Actual price: " << manager->getProducts()[option1]->getPrice() << endl
+             << "Introduce the new price: ";
+        cin >> price;
+        cin.ignore(100, '\n');
+        if (price > 0) {
+            manager->getProducts()[option1]->setPrice(price);
+        } else {
+            cout << "Price can't be negative" << endl;
+            cin.ignore(100, '\n');
+        }
+        break;
+    }
+    system("clear");
+    cout << "The new catalog of products is:" << endl
+         << showProducts() << endl;
+    cin.ignore(100, '\n');
 }
 
 void Interface::addAddress() {
@@ -572,7 +663,7 @@ void Interface::addAddress() {
 
 void Interface::addPaymentMethod() {
     system("clear");
-    int option1 = -1, id_pm = 0, id_baddress = 0, i = 1, option2 = -1;
+    int option1 = -1, id_pm = 0, id_baddress = 0, option2 = -1;
     Address* billing_address;
     bool valid_option1 = false, valid_option2 = false;
     while (!valid_option1) {
