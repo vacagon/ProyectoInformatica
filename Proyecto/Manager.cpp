@@ -218,8 +218,58 @@ vector<PublicUserData*> Manager::showMembers() {
     return members;
 }
 
-bool Manager::makeOrder(const vector<unsigned long> products, const int& payment_method, const  int& delivery_daddress) {
-    return true;
+bool Manager::makeOrder(const vector<unsigned long> ordered_products, const int& payment_method, const  int& delivery_daddress) {
+    bool flag = false, flag_daddres = false, flag_pmethod = false, flag_ref = true;
+    float amount = 0.0;
+    unsigned long reference;
+    Order* new_order;
+    if (!isLogged()) {
+        flag = false;
+    } else {
+        if ((users[current_member]->getAddresses().size() <= 0) || (users[current_member]->getPaymentMethods().size() <= 0)) {
+            flag = false;
+        } else {
+            for (int i = 0; i < users[current_member]->getAddresses().size(); i++) {
+                if (delivery_daddress == users[current_member]->getAddresses()[i]->getId()) {
+                    flag_daddres = true;
+                }
+            }
+            for (int i = 0; i < users[current_member]->getPaymentMethods().size(); i++) {
+                if (payment_method == users[current_member]->getPaymentMethods()[i]->getId()) {
+                    flag_pmethod = true;
+                }
+            }
+            if (flag_daddres && flag_pmethod) {
+                for (unsigned long prod_ref : ordered_products) {
+                    for (Product* prod : products) {
+                        if (prod_ref == prod->getReference()) {
+                            amount += prod->getPrice();
+                        }
+                    }
+                }
+                if (users[current_member]->isAdmin()) {
+                    amount *= (1 - 0.075);
+                }
+                do {
+                    reference = time(0);
+                    for (User* us : users) {
+                        for (Order* ord : us->getOrders()) {
+                            if (ord->getReference() == reference) {
+                                flag_ref = false;
+                            }
+                        }
+                    }
+                } while (!flag_ref);
+                new_order = new Order(reference, ordered_products, delivery_daddress, payment_method, amount);
+                users[current_member]->addOrder(new_order);
+                flag = true;
+            } else {
+                flag = false;
+            }
+            flag = true;
+        }
+    }
+    return flag;
 }
 
 bool Manager::createReview(const unsigned long &reference, const int &rating, const string& t) {

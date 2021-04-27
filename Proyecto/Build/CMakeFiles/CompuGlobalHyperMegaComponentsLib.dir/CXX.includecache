@@ -41,6 +41,8 @@ vector
 -
 algorithm
 -
+time.h
+-
 User.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/User.hpp
 Administrator.hpp
@@ -64,8 +66,16 @@ Product.hpp
 Review.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 
+/home/gonzalo/ProyectoInformatica/Proyecto/Order.cpp
+ctime
+-
+Order.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
+
 /home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
 string
+-
+sstream
 -
 vector
 -
@@ -97,10 +107,6 @@ Order.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
 PaymentMethod.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
-
-/home/gonzalo/ProyectoInformatica/Proyecto/Product.cpp
-Product.hpp
-/home/gonzalo/ProyectoInformatica/Proyecto/Product.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/Product.hpp
 string

@@ -277,10 +277,10 @@ void Interface::makeOrderMenu() {
     vector<unsigned long> products = vector<unsigned long> ();
     bool valid_option = false;
     int option = -1;
-    while ((!valid_option) && (option != 0)) {
+    while ((!valid_option) || (option != 0)) {
         system("clear");
         cout << "Chose products from the list:" << endl;
-        showProducts();
+        cout << showProducts() << endl;
         cout << "*********"
              << "Select an option by tipping"
              << " the corresponding digit"
@@ -302,12 +302,10 @@ void Interface::makeOrderMenu() {
                 if ((option == 1)||(option == 2)) {
                     cout << "No products added to the platform" << endl;
                     cin.ignore(100, '\n');
-                    valid_option = false;
-                    option = -1;
+                    option = 0;
                 }
-            } else {
-                valid_option = true;
             }
+            valid_option = true;
         }
         switch (option) {
         case 0:
@@ -325,6 +323,8 @@ void Interface::makeOrderMenu() {
         case 4:
             if (shopping_cart.size() > 0) {
                 while (!makeOrder()) {}
+                cout << showOrders() << endl;
+                cin.ignore(100, '\n');
                 shopping_cart.clear();
             } else {
                 cout << "Shopping cart is empty. Choose a product first" << endl;
@@ -811,13 +811,7 @@ const string Interface::showOrders() const {
     if (manager->getCurrentMember()->getOrders().size() > 0) {
         for (Order* order: manager->getCurrentMember()->getOrders()) {
             ss << "------------------------------" << endl;
-            for (unsigned long product_reference: order->getProducts()) {
-                for (Product* products: manager->getProducts()) {
-                    if (products->getReference() == product_reference) {
-                        ss << products << endl;
-                    }
-                }
-            }
+            ss << *order << endl;
             ss << "------------------------------" << endl;
         }
     } else {
@@ -878,7 +872,6 @@ const string Interface::showProducts() {
 bool Interface::addProductToCart() {
     unsigned long reference;
     bool flag = false;
-    cout << showProducts() << endl;
     cout << endl << "Introduce the reference of the "
          << "product you want to add to the cart: ";
     cin >> reference;
@@ -912,7 +905,6 @@ const string Interface::showCart() const {
 
 bool Interface::eraseProductFromCart() {
     int option = -1;
-    system("clear");
     showCart();
     if (shopping_cart.size() > 0) {
         cout << "Enter the product you want to erase by "
@@ -961,9 +953,13 @@ bool Interface::makeOrder() {
     switch (option_address) {
     case 1:
         cout << "Chose the address: " << endl << showAddresses() << endl;
-        while ((shipping_address < 0)||(shipping_address > manager->getCurrentMember()->getAddresses().size())) {
-               cin >> shipping_address;
-               cin.ignore(100, '\n');
+        cin >> shipping_address;
+        cin.ignore(100, '\n');
+        if (shipping_address < 0) {
+            shipping_address = 0;
+        }
+        if (shipping_address > (int)manager->getCurrentMember()->getAddresses().size()) {
+            shipping_address = (int)manager->getCurrentMember()->getAddresses().size();
         }
         shipping_address--;
         break;
@@ -972,6 +968,7 @@ bool Interface::makeOrder() {
              << "selected as this order's shipping address." << endl;
         cin.ignore(100, '\n');
         addAddress();
+        shipping_address = manager->getCurrentMember()->getAddresses().size() - 1;
         break;
     }
     while (!valid_option) {
@@ -996,9 +993,13 @@ bool Interface::makeOrder() {
     switch (option_pm) {
     case 1:
         cout << "Chose the payment method: " << endl << showPaymentMethods() << endl;
-        while ((payment_method < 0)||(payment_method > manager->getCurrentMember()->getPaymentMethods().size())) {
-               cin >> payment_method;
-               cin.ignore(100, '\n');
+        cin >> payment_method;
+        cin.ignore(100, '\n');
+        if(payment_method < 0) {
+            payment_method = 0;
+        }
+        if (payment_method > (int)manager->getCurrentMember()->getPaymentMethods().size()) {
+            payment_method = manager->getCurrentMember()->getPaymentMethods().size();
         }
         payment_method--;
         break;
@@ -1007,6 +1008,7 @@ bool Interface::makeOrder() {
              << "selected as this order's payment method." << endl;
         cin.ignore(100, '\n');
         addPaymentMethod();
+        payment_method = manager->getCurrentMember()->getPaymentMethods().size() - 1;
         break;
     }
     return manager->makeOrder(products, payment_method, shipping_address);

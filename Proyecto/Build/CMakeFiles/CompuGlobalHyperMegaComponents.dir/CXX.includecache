@@ -51,6 +51,8 @@ vector
 -
 algorithm
 -
+time.h
+-
 User.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/User.hpp
 Administrator.hpp
@@ -76,6 +78,8 @@ Review.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
 string
+-
+sstream
 -
 vector
 -

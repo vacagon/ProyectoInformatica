@@ -1,15 +1,15 @@
 #include <ctime>
 #include "Order.hpp"
 
-Order::Order(const unsigned long &reference, const vector<unsigned long>& products, const int &address, const int &payment_method, const float &total) {
+Order::Order(const unsigned long &reference, const vector<unsigned long>& prods, const int &address, const int &payment_method, const float &total) {
     setReference(reference);
-    for (const unsigned long& product : products) {
-        addProduct(product);
-    }
     setDeliveryAddress(address);
     setPaymentMethod(payment_method);
     setTotal(total);
     date = time(0);
+    for (unsigned long product: prods)  {
+        addProduct(product);
+    }
 }
 
 Order::Order(const unsigned long &reference, const int& address, const int& payment_method) {
@@ -38,7 +38,7 @@ const vector<unsigned long> &Order::getProducts() const {
 }
 
 void Order::addProduct(const unsigned long &ref) {
-    reference = ref;
+    products.push_back(ref);
 }
 
 const time_t &Order::getDate() const {
@@ -67,4 +67,11 @@ const float& Order::getTotal() const {
 
 void Order::setTotal(const float &t) {
     total = t;
+}
+
+ostream& operator << (ostream &os, const Order &O) {
+    os << "Reference: " << O.getReference() << " - Made on: " << O.getDate() << endl
+       << "---------------------------------------" << endl
+       << O.getTotal() << " [$]" << endl;
+    return os;
 }
