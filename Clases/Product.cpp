@@ -5,6 +5,7 @@ Product::Product(const string& name, const string& description, const unsigned l
     setDescription(description);
     setReference(reference);
     setPrice(price);
+    reviews = vector<Review*> ();
 }
 
 Product::~Product() {}

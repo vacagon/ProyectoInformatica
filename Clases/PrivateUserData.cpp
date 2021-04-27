@@ -3,6 +3,9 @@
 PrivateUserData::PrivateUserData(const string &email, const string& password) {
     setEmail(email);
     setPassword(password);
+    addresses = vector<Address*> ();
+    orders = vector<Order*> ();
+    payment_methods = vector<PaymentMethod*> ();
 }
 
 PrivateUserData::~PrivateUserData() {}

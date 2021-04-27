@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <time.h>
 #include "User.hpp"
 #include "Administrator.hpp"
 #include "PrivateUserData.hpp"
@@ -180,7 +181,7 @@ public:
      * added to the order history of the user currently logged.
      * @return True: success, false otherwise.
 	 */
-    bool makeOrder(const vector<unsigned long> products, const int &payment_method, const int &delivery_daddress);
+    bool makeOrder(const vector<unsigned long> ordered_products, const int &payment_method, const int &delivery_daddress);
 
 	/**
      * @brief This allow the logged user to review a product

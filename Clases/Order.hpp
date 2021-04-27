@@ -2,6 +2,7 @@
 #define ORDER_HPP
 
 #include <string>
+#include <sstream>
 #include <vector>
 #include <ctime>
 
@@ -14,7 +15,7 @@ class Order {
 
 public:
 
-    Order(const unsigned long& reference, const vector<unsigned long>& products, const int& address, const int& payment_method, const float& total);
+    Order(const unsigned long& reference, const vector<unsigned long>& prods, const int& address, const int& payment_method, const float& total);
 
     Order(const unsigned long& ref, const int& adress, const int& payment_method);
 
@@ -41,6 +42,8 @@ public:
     const float& getTotal() const;
 
     void setTotal(const float& t);
+
+    friend ostream& operator << (ostream &os, const Order &O);
 
 private:
 
