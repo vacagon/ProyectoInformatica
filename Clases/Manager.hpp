@@ -274,6 +274,8 @@ private:
      */
 	int current_member;
 
+    vector<unsigned long> order_references;
+
 };
 
 #endif // MANAGER_HPP

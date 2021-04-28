@@ -111,9 +111,9 @@ LISTA DE CLASES:
 	-bool addCreditCard (+)
 	-bool addPaypal (+)
 ////////////////SEGUNDA ENTREGA/////////////////////////
-	-bool addProduct
-	-showMembers
-	-bool makeOrder
+	-bool addProduct (+)
+	-showMembers (+)
+	-bool makeOrder (+)
 	-bool createReview
 	-getReviewsByRating
 	-upvoteReview

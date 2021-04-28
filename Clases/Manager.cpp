@@ -6,6 +6,7 @@ Manager::Manager() {
     users = vector<User*> ();
     products = vector<Product*> ();
     current_member = -1;
+    order_references = vector<unsigned long> ();
 }
 
 Manager::~Manager() {
@@ -223,19 +224,20 @@ bool Manager::makeOrder(const vector<unsigned long> ordered_products, const int&
     float amount = 0.0;
     unsigned long reference;
     Order* new_order;
+    srand(time(NULL));
     if (!isLogged()) {
         flag = false;
     } else {
         if ((users[current_member]->getAddresses().size() <= 0) || (users[current_member]->getPaymentMethods().size() <= 0)) {
             flag = false;
         } else {
-            for (int i = 0; i < users[current_member]->getAddresses().size(); i++) {
-                if (delivery_daddress == users[current_member]->getAddresses()[i]->getId()) {
+            for (Address* address : users[current_member]->getAddresses()) {
+                if (delivery_daddress == address->getId()) {
                     flag_daddres = true;
                 }
             }
-            for (int i = 0; i < users[current_member]->getPaymentMethods().size(); i++) {
-                if (payment_method == users[current_member]->getPaymentMethods()[i]->getId()) {
+            for (PaymentMethod* paymethod : users[current_member]->getPaymentMethods()) {
+                if (payment_method == paymethod->getId()) {
                     flag_pmethod = true;
                 }
             }
@@ -251,15 +253,15 @@ bool Manager::makeOrder(const vector<unsigned long> ordered_products, const int&
                     amount *= (1 - 0.075);
                 }
                 do {
-                    reference = time(0);
-                    for (User* us : users) {
-                        for (Order* ord : us->getOrders()) {
-                            if (ord->getReference() == reference) {
-                                flag_ref = false;
-                            }
+                    flag_ref = true;
+                    reference = rand();
+                    for(unsigned long refs: order_references) {
+                        if (reference == refs) {
+                            flag_ref = false;
                         }
                     }
                 } while (!flag_ref);
+                order_references.push_back(reference);
                 new_order = new Order(reference, ordered_products, delivery_daddress, payment_method, amount);
                 users[current_member]->addOrder(new_order);
                 flag = true;
