@@ -114,7 +114,7 @@ LISTA DE CLASES:
 	-bool addProduct (+)
 	-showMembers (+)
 	-bool makeOrder (+)
-	-bool createReview
+	-bool createReview (+)
 	-getReviewsByRating
 	-upvoteReview
 	-downvoteReview

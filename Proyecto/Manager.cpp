@@ -7,6 +7,7 @@ Manager::Manager() {
     products = vector<Product*> ();
     current_member = -1;
     order_references = vector<unsigned long> ();
+    id_reviews = vector<unsigned long> ();
 }
 
 Manager::~Manager() {
@@ -274,8 +275,41 @@ bool Manager::makeOrder(const vector<unsigned long> ordered_products, const int&
     return flag;
 }
 
-bool Manager::createReview(const unsigned long &reference, const int &rating, const string& t) {
-    return false;
+bool Manager::createReview(const unsigned long &reference, const int &rating, const string& text) {
+    bool flag = false, flag_id, flag_orderedproduct = false;
+    unsigned long id;
+    Review* new_review;
+    srand(time(NULL));
+    if (!isLogged()) {
+        flag = false;
+    } else {
+        do {
+            flag_id = true;
+            id = rand();
+            for (unsigned long ids : id_reviews) {
+                if (id == ids) flag_id = false;
+            }
+        } while(!flag_id);
+        for (Order* orders: users[current_member]->getOrders()) {
+            for (unsigned long products: orders->getProducts()) {
+                if (reference == products) flag_orderedproduct = true;
+            }
+        }
+        if (flag_orderedproduct) {
+            PublicUserData* author = users[current_member];
+            new_review = new Review(id, rating, text, author);
+            for (Product* product: products) {
+                if (product->getReference() == reference) {
+                    product->addReview(new_review);
+                }
+            }
+            id_reviews.push_back(id);
+            flag = true;
+        } else {
+            flag = false;
+        }
+    }
+    return flag;
 }
 
 vector<Review*> Manager::getReviewsByRating(const unsigned long &reference, const int &rating) {

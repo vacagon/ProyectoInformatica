@@ -191,7 +191,7 @@ public:
 	 * the specific product, with a unique id.
      * @return True: success, false otherwise.
 	 */
-    bool createReview(const unsigned long& reference, const int& rating, const string& t);
+    bool createReview(const unsigned long& reference, const int& rating, const string& text);
 
 	/**
      * @brief Allows us to filter reviews of a product by rating.
@@ -274,7 +274,17 @@ private:
      */
 	int current_member;
 
+    /**
+     * @brief Vector that store every order which has been made
+     * in the platform
+     */
     vector<unsigned long> order_references;
+
+    /**
+     * @brief Vector that store every review which has been made
+     * in the platform
+     */
+    vector<unsigned long> id_reviews;
 
 };
 
