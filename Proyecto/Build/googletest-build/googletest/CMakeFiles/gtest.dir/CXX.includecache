@@ -539,6 +539,8 @@ zircon/process.h
 -
 zircon/syscalls.h
 -
+Foundation/Foundation.h
+-
 gtest/gtest-spi.h
 googletest-src/googletest/src/gtest/gtest-spi.h
 gtest/gtest-message.h
