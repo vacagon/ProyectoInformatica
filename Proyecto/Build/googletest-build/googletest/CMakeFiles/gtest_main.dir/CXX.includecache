@@ -79,10 +79,6 @@ gtest/internal/gtest-internal.h
 googletest-src/googletest/include/gtest/gtest/internal/gtest-internal.h
 gtest/internal/gtest-port.h
 googletest-src/googletest/include/gtest/gtest/internal/gtest-port.h
-typeindex
--
-typeinfo
--
 gtest/internal/custom/gtest-printers.h
 googletest-src/googletest/include/gtest/gtest/internal/custom/gtest-printers.h
 
