@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.13.2, 2021-04-30T19:42:55. -->
+<!-- Written by QtCreator 4.13.2, 2021-04-30T19:45:09. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -64,7 +64,28 @@
     <value type="bool" key="AutoTest.Framework.QtQuickTest">true</value>
     <value type="bool" key="AutoTest.Framework.QtTest">true</value>
    </valuemap>
-   <valuemap type="QVariantMap" key="AutoTest.CheckStates"/>
+   <valuemap type="QVariantMap" key="AutoTest.CheckStates">
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_basic.cpp:ManagerCanCreateAddress">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_basic.cpp:ManagerCanCreateAndShowMembers">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_basic.cpp:ManagerCanCreatePaymentMethods">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_basic.cpp:ManagerCanEraseLoggedMember">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_basic.cpp:ManagerCanLoginMember">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_basic.cpp:ManagerCanLogoutMember">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_basic.cpp:ManagerCannotDuplicateMember">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_basic.cpp:ManagerCannotLoginMemberTwice">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_basic.cpp:ManagerLoggedMemberCanEditProfile">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_basic.cpp:ManagerWrongMemberCannotLogin">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_basic.cpp:TestBasic">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:ManagerCanAddProducts">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:ManagerCanCreateNewOrder">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:ManagerCanCreateReviews">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:ManagerCanDeleteReviews">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:ManagerCanGetReviewsByRating">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:ManagerCanModifyReviews">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:ManagerCanSHowMembers">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:ManagerCanUpvoteorDownvoteReviews">Checked</value>
+    <value type="Qt::CheckState" key="/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp:TestOrders">Checked</value>
+   </valuemap>
    <value type="int" key="AutoTest.RunAfterBuild">0</value>
    <value type="bool" key="AutoTest.UseGlobal">true</value>
    <valuelist type="QVariantList" key="ClangCodeModel.CustomCommandLineKey"/>
@@ -363,6 +384,7 @@
     <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseTerminal">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/gonzalo/ProyectoInformatica/Proyecto/Build</value>
    </valuemap>

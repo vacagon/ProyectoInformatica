@@ -103,10 +103,11 @@ void Interface::HomeMenu() {
              << "5. Products" << endl
              << "6. Make an order" << endl
              << "7. Shopping cart" << endl
+             << "8. Create review" << endl
              << "0. Log out" << endl;
         cin >> option;
         cin.ignore(10000,'\n');
-        if ((option < 0)||(option > 7)) {
+        if ((option < 0)||(option > 8)) {
             valid_option = false;
             system("clear");
             continue;
@@ -143,6 +144,8 @@ void Interface::HomeMenu() {
             cout << showCart() << endl;
             cin.ignore(100, '\n');
             break;
+        case 8:
+            createReview();
         }
     }
 }
@@ -171,10 +174,11 @@ void Interface::HomeMenuAdministrator() {
              << "9. Make an order" << endl
              << "10. Show shopping cart" << endl
              << "11. Edit a product" << endl
+             << "12. Create review" << endl
              << "0. Log out" << endl;
         cin >> option;
         cin.ignore(10000,'\n');
-        if ((option < 0)||(option > 11)) {
+        if ((option < 0)||(option > 12)) {
             valid_option = false;
             system("clear");
             continue;
@@ -212,7 +216,7 @@ void Interface::HomeMenuAdministrator() {
             addProduct();
             break;
         case 8:
-            //editProductMenu();
+            editProductMenu();
             break;
         case 9:
             makeOrderMenu();
@@ -228,6 +232,9 @@ void Interface::HomeMenuAdministrator() {
                 cout << "No product added yet" << endl;
                 cin.ignore(100, '\n');
             }
+        case 12:
+            createReview();
+            break;
         }
     }
 }
@@ -905,7 +912,7 @@ const string Interface::showCart() const {
 
 bool Interface::eraseProductFromCart() {
     int option = -1;
-    showCart();
+    cout << showCart() << endl;
     if (shopping_cart.size() > 0) {
         cout << "Enter the product you want to erase by "
              << "entering its number: ";
@@ -1012,4 +1019,50 @@ bool Interface::makeOrder() {
         break;
     }
     return manager->makeOrder(products, payment_method, shipping_address);
+}
+
+void Interface::createReview() {
+    system("clear");
+    unsigned long reference;
+    int rating;
+    string text;
+    bool valid_reference = false;
+    if (manager->getCurrentMember()->getOrders().size() > 0) {
+        do {
+            cout << showProducts() << endl;
+            cout << "Choose the product you want to review by introducing its reference:";
+            cin >> reference;
+            for (Product* products: manager->getProducts()) {
+                if (reference == products->getReference()) {
+                    valid_reference = true;
+                }
+            }
+            if (!valid_reference) {
+                cout << "That reference doesn't correspond to any registered product" << endl;
+                cin.ignore(100, '\n');
+                system("clear");
+            }
+        } while(!valid_reference);
+        cout << "Rate the product from 0 to 5:";
+        cin >> rating;
+        cin.ignore(100, '\n');
+        cout << "Introduce your review of the product: " << endl;
+        getline(cin >> ws, text);
+        cin.ignore(100, '\n');
+    } else {
+        cout << "You haven't ordered any product yet" << endl;
+        cin.ignore(100, '\n');
+    }
+    if(manager->createReview(reference, rating, text)) {
+        cout << "Your review has been succesfully created" << endl;
+        for(Product* products: manager->getProducts()) {
+            if (products->getReference() == reference) {
+                cout << *products << endl;
+            }
+        }
+        cin.ignore(100, '\n');
+    } else {
+        cout << "You need to buy the product in order to review it" << endl;
+        cin.ignore(100, '\n');
+    }
 }
