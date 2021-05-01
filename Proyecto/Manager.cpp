@@ -313,29 +313,143 @@ bool Manager::createReview(const unsigned long &reference, const int &rating, co
 }
 
 vector<Review*> Manager::getReviewsByRating(const unsigned long &reference, const int &rating) {
-    vector<Review*> rev;
-    return rev;
+    vector<Review*> filtered_reviews;
+    for (Product* product: products){
+        if (reference == product->getReference()){
+            vector <Review*> rev = product->getReviews();
+            for (Review* reviews: rev ){
+                if (rating == reviews->getRating())
+                    filtered_reviews.push_back(reviews);
+            }
+        }
+    }
+    return filtered_reviews;
 }
 
 bool Manager::upvoteReview(const unsigned long& id) {
-    return false;
+    bool flag = false;
+    for (Product* product: products){
+        vector <Review*> rev = product->getReviews();
+        for (Review* reviews: rev){
+            if(id == reviews->getId() ){
+                if (reviews->getAuthor()->getUsername() == users[current_member]->getUsername()){
+                    flag = false;
+                }else {
+                    reviews->incrementVotes();
+                    reviews->getAuthor()->increaseReputation();
+                    flag = true;
+                }
+            }
+        }
+    }
+    return flag;
 }
 
 bool Manager::downvoteReview(const unsigned long& id) {
-    return false;
+    bool flag = false;
+    for (Product* product: products){
+        vector <Review*> rev = product->getReviews();
+        for (Review* reviews: rev){
+            if(id == reviews->getId() ){
+                if (reviews->getAuthor()->getUsername() == users[current_member]->getUsername()){
+                    flag = false;
+                }else {
+                    reviews->decremVotes();
+                    reviews->getAuthor()->decreaseReputation();
+                    flag = true;
+                }
+            }
+        }
+    }
+    return flag;
 }
 
 bool Manager::modifyReviewRating(const unsigned long &id, const int &new_rating) {
-    return false;
+    bool flag = false;
+    Review* new_review;
+    unsigned long reference;
+    if (!isLogged()) {
+        return flag;
+    } else {
+        for (Product* product: products){
+            vector <Review*> rev = product->getReviews();
+            for (Review* reviews: rev){
+                if(id == reviews->getId() ){
+                    reference = product->getReference();
+                    if (reviews->getAuthor()->getUsername() == users[current_member]->getUsername()){
+                        new_review = new Review(id, new_rating, reviews->getText(), getCurrentMember());
+                        for (Product* product: products) {
+                            if (product->getReference() == reference) {
+                                product->addReview(new_review);
+                            }
+                        }
+                        id_reviews.push_back(id);
+                        flag = true;
+                       }
+                    }
+                }
+            }
+        }
+        return flag;
 }
 
 bool Manager::modifyReviewText(const unsigned long &id, const string& new_text){
-    return false;
+    bool flag = false;
+    Review* new_review;
+    unsigned long reference;
+    if (!isLogged()) {
+        return flag;
+    } else {
+        for (Product* product: products){
+            vector <Review*> rev = product->getReviews();
+            for (Review* reviews: rev){
+                if(id == reviews->getId() ){
+                    reference = product->getReference();
+                    if (reviews->getAuthor()->getUsername() == users[current_member]->getUsername()){
+                        new_review = new Review(id, reviews->getRating(), new_text, getCurrentMember());
+                        for (Product* product: products) {
+                            if (product->getReference() == reference) {
+                                product->addReview(new_review);
+                            }
+                        }
+                        id_reviews.push_back(id);
+                        flag = true;
+                       }
+                    }
+                }
+            }
+        }
+        return flag;
 }
 
 bool Manager::deleteReview(const unsigned long &id) {
-    return false;
+    bool flag = false;
+    if (!isLogged()) {
+        return flag;
+    } else {
+        for (Product* product: products){
+            vector <Review*> rev = product->getReviews();
+            for (Review* reviews: rev){
+                if(id == reviews->getId() ){
+                    if (!getCurrentMember()->isAdmin()) {
+                        reviews->~Review();
+                        return flag;
+                    }else{
+                        if (reviews->getAuthor()->getUsername() == users[current_member]->getUsername()){
+                            reviews->~Review();
+                            flag = true;
+                            return flag;
+                         }else{
+                            return flag;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return flag;
 }
+
 
 //################# TERCERA ENTREGA ############################//
 
