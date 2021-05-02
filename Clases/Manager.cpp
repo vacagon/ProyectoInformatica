@@ -117,6 +117,22 @@ bool Manager::addAdministrator(const string &username, const string &email, cons
 bool Manager::eraseCurrentMember() {
     bool flag = false;
     if (isLogged()) {
+        for (Order* order: users[current_member]->getOrders()) {
+            delete order;
+        }
+        users[current_member]->getOrders().clear();
+        for (PaymentMethod* payment_methods: users[current_member]->getPaymentMethods()) {
+            delete payment_methods;
+        }
+        users[current_member]->getPaymentMethods().clear();
+        for (Address* addresses: users[current_member]->getAddresses()) {
+            delete addresses;
+        }
+        users[current_member]->getAddresses().clear();
+        for (Review* reviews: users[current_member]->getUserReviews()) {
+            delete reviews;
+        }
+        users[current_member]->getUserReviews().clear();
         delete users[current_member];
         users.erase(users.begin() + current_member);
         current_member = -1;

@@ -25,7 +25,6 @@ Interface::Interface(Manager &m) {
 void Interface::FrontPageMenu() {
     bool valid_option = false;
     int option = -1;
-
     while ((!valid_option) || (option != 0)) {
         system("clear");
         cout << "*********"
@@ -37,14 +36,13 @@ void Interface::FrontPageMenu() {
              << "2. Sign up" << endl
              << "0. Quit the app" << endl;
         cin >> option;
-        cin.ignore(10000,'\n');
-
-        //Check if its a valid option
+        cin.ignore(100,'\n');
         if ((option != 1)&&(option != 2)&&(option != 0)) {
             valid_option = false;
             cout << "NOT A VALID OPTION"
                  << ". TRY AGAIN" << endl;
-            continue;;
+            continue;
+            cin.ignore(100,'\n');
             system("clear");
         } else {
             if (!manager->isLogged()) {
@@ -61,8 +59,6 @@ void Interface::FrontPageMenu() {
                 }
             }
         }
-
-        //Implement the action requested by the user
         switch (option) {
         case 0:
             system("clear");
@@ -87,7 +83,7 @@ void Interface::FrontPageMenu() {
 void Interface::HomeMenu() {
     bool valid_option = false;
     int option = -1;
-    while ((!valid_option) || (option != 0)) {
+    while (((!valid_option)||(option != 0))&&(manager->isLogged())) {
         system("clear");
         cout << "Welcome " << manager->getCurrentMember()->getUsername()
              << "!" << endl << endl;
@@ -104,10 +100,11 @@ void Interface::HomeMenu() {
              << "6. Make an order" << endl
              << "7. Shopping cart" << endl
              << "8. Create review" << endl
+             << "9. Delete account" << endl
              << "0. Log out" << endl;
         cin >> option;
         cin.ignore(10000,'\n');
-        if ((option < 0)||(option > 8)) {
+        if ((option < 0)||(option > 9)) {
             valid_option = false;
             system("clear");
             continue;
@@ -146,14 +143,17 @@ void Interface::HomeMenu() {
             break;
         case 8:
             createReview();
+        case 9:
+            manager->eraseCurrentMember();
         }
     }
+    FrontPageMenu();
 }
 
 void Interface::HomeMenuAdministrator() {
     bool valid_option = false;
     int option = -1;
-    while ((!valid_option) || (option != 0)) {
+    while ((!valid_option) || (option != 0)||(manager->isLogged())) {
         system("clear");
         cout << "Welcome administrator " << manager->getCurrentMember()->getUsername()
              << ", with employee code " << manager->getCurrentMember()->getEmployeeCode()
@@ -175,10 +175,11 @@ void Interface::HomeMenuAdministrator() {
              << "10. Show shopping cart" << endl
              << "11. Edit a product" << endl
              << "12. Create review" << endl
+             << "13. Delete account" << endl
              << "0. Log out" << endl;
         cin >> option;
         cin.ignore(10000,'\n');
-        if ((option < 0)||(option > 12)) {
+        if ((option < 0)||(option > 13)) {
             valid_option = false;
             system("clear");
             continue;
@@ -235,7 +236,13 @@ void Interface::HomeMenuAdministrator() {
         case 12:
             createReview();
             break;
+        case 13:
+            manager->eraseCurrentMember();
+            break;
         }
+    }
+    if(!manager->isLogged()) {
+        FrontPageMenu();
     }
 }
 
@@ -253,7 +260,7 @@ void Interface::editAccountMenu() {
              << "0. Back to Home Menu" << endl;
         cin >> option;
         cin.ignore(100,'\n');
-        if ((option < 0)||(option > 4)) {
+        if ((option < 0)||(option > 5)) {
             valid_option = false;
             system("clear");
             continue;
@@ -578,7 +585,7 @@ void Interface::editProductMenu() {
              << showProducts() << endl;
         cin >> option1;
         cin.ignore(100, '\n');
-        if ((option1 < 1)||(option1 > manager->getProducts().size())) {
+        if ((option1 < 1)||(option1 > (int)manager->getProducts().size())) {
                 valid_option1 = false;
         } else {
             valid_option1 = true;
@@ -705,7 +712,7 @@ void Interface::addPaymentMethod() {
         cout << showAddresses() << endl;
         if (manager->getCurrentMember()->getAddresses().size() > 0) {
             cin >> id_baddress;
-            if (id_baddress > manager->getCurrentMember()->getAddresses().size()) {
+            if (id_baddress > (int)manager->getCurrentMember()->getAddresses().size()) {
                 id_baddress = manager->getCurrentMember()->getAddresses().size();
             }
             if (id_baddress < 1) {
