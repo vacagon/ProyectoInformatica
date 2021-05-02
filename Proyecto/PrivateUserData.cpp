@@ -58,3 +58,7 @@ vector<Review*> PrivateUserData::getUserReviews() const {
 void PrivateUserData::addReview(Review *new_review) {
     reviews_made.push_back(new_review);
 }
+
+void PrivateUserData::deleteReview(Review *r) {
+    reviews_made.erase(std::remove(reviews_made.begin(), reviews_made.end(), r), reviews_made.end());
+}

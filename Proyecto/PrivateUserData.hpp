@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "Address.hpp"
 #include "Order.hpp"
 #include "PaymentMethod.hpp"
@@ -79,6 +80,8 @@ public:
     vector<Review*> getUserReviews() const;
 
     void addReview(Review* new_review);
+
+    void deleteReview(Review* r);
 
     friend PaymentMethod;
 

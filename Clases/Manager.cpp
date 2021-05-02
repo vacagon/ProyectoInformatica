@@ -471,11 +471,17 @@ bool Manager::deleteReview(const unsigned long &id) {
                 if (every_review->getId() == id) {
                     if (users[current_member]->isAdmin()) {
                         every_product->deleteReview(every_review);
+                        for (int i = 0; i < users.size(); i++) {
+                            if (users[i]->getUsername() == every_review->getAuthor()->getUsername()) {
+                                users[i]->deleteReview(every_review);
+                            }
+                        }
                         valid_id = true;
                         break;
                     } else {
                         if (every_review->getAuthor()->getUsername() == users[current_member]->getUsername()) {
                             every_product->deleteReview(every_review);
+                            users[current_member]->deleteReview(every_review);
                             valid_id = true;
                             break;
                         }
