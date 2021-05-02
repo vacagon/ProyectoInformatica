@@ -59,7 +59,7 @@ public:
 	 */
     void decremVotes();
 
-    const PublicUserData* getAuthor() const;
+    PublicUserData* getAuthor() ;
 
 private:
 
@@ -93,7 +93,7 @@ private:
     /**
      * @brief Pointer to the public information of the user making the review
      */
-    const PublicUserData* author;
+    PublicUserData* author;
 
 };
 

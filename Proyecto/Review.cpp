@@ -75,7 +75,7 @@ void Review::decremVotes() {
     }
 }
 
-const PublicUserData* Review::getAuthor() const {
+ PublicUserData* Review::getAuthor()  {
     return author;
 }
 
