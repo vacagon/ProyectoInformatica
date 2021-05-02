@@ -11,6 +11,26 @@ Manager::Manager() {
 }
 
 Manager::~Manager() {
+    for (User* every_user: users) {
+        for (Order* every_order: every_user->getOrders()) {
+            delete every_order;
+        }
+        for (PaymentMethod* every_paymentmethod: every_user->getPaymentMethods()) {
+            delete every_paymentmethod;
+        }
+        for (Address* every_address: every_user->getAddresses()) {
+            delete every_address;
+        }
+        every_user->getOrders().clear();
+        every_user->getPaymentMethods().clear();
+        every_user->getAddresses().clear();
+    }
+    for (Product* every_product: products) {
+        for (Review* every_review: every_product->getReviews()) {
+            delete every_review;
+        }
+        every_product->getReviews().clear();
+    }
     for (unsigned long i = 0; i < users.size(); i++) {
         delete users[i];
     }
@@ -19,6 +39,8 @@ Manager::~Manager() {
     }
     users.clear();
     products.clear();
+    order_references.clear();
+    id_reviews.clear();
 }
 
 const vector<User *> &Manager::getUsers() const {
