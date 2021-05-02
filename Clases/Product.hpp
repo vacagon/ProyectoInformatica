@@ -38,7 +38,7 @@ public:
 
     const float& getPrice() const;
 
-    const vector<Review*>& getReviews() const;
+    vector<Review *> getReviews();
 
     void addReview(Review* r);
 
