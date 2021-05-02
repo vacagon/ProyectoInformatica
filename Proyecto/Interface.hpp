@@ -63,6 +63,8 @@ public:
 
     void editPaymentMethod();
 
+    void eraseCurrentMember();
+
     void addAddress();
 
     void addPaymentMethod();
