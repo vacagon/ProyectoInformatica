@@ -22,14 +22,10 @@ Review::Review(const unsigned long &i, const int &rating, const string& text, Pu
 Review::~Review() {}
 
 const string Review::show() const {
-
-    //Giving format to date
     struct tm* timeinfo;
     timeinfo = localtime(&date);
     char dat[24];
     strftime(dat, 24, "%c", timeinfo);
-
-    //Turning different data types into strings
     stringstream ss;
     ss << "\t" << rating << " stars on "
            << dat << " by " << getAuthor()->getUsername() << endl
