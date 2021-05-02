@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "User.hpp"
 #include "Review.hpp"
 
@@ -41,6 +42,8 @@ public:
     vector<Review *> getReviews();
 
     void addReview(Review* r);
+
+    void deleteReview(Review* r);
 
     /**
      * @brief {reference} - {name}

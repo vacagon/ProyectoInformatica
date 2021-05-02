@@ -463,8 +463,6 @@ bool Manager::modifyReviewText(const unsigned long &id, const string& new_text){
 
 bool Manager::deleteReview(const unsigned long &id) {
     bool flag = false, valid_id = false;
-    Product* selected_product;
-    Review* selected_review;
     if (!isLogged()) {
         flag = false;
     } else {
@@ -472,14 +470,12 @@ bool Manager::deleteReview(const unsigned long &id) {
             for (Review* every_review: every_product->getReviews()) {
                 if (every_review->getId() == id) {
                     if (users[current_member]->isAdmin()) {
-                        selected_product = every_product;
-                        selected_review = every_review;
+                        every_product->deleteReview(every_review);
                         valid_id = true;
                         break;
                     } else {
                         if (every_review->getAuthor()->getUsername() == users[current_member]->getUsername()) {
-                            selected_review = every_review;
-                            selected_product = every_product;
+                            every_product->deleteReview(every_review);
                             valid_id = true;
                             break;
                         }
@@ -493,7 +489,6 @@ bool Manager::deleteReview(const unsigned long &id) {
         if (!valid_id) {
             flag = false;
         } else {
-            selected_product->getReviews().erase(std::remove(selected_product->getReviews().begin(), selected_product->getReviews().end(), selected_review),selected_product->getReviews().end());
             flag = true;
         }
     }

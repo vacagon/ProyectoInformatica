@@ -50,6 +50,10 @@ void Product::addReview(Review* r) {
     reviews.push_back(r);
 }
 
+void Product::deleteReview(Review *r) {
+    reviews.erase(std::remove(reviews.begin(), reviews.end(), r), reviews.end());
+}
+
 ostream& operator<<(ostream& os, const Product& p) {
     os << p.getReference() << " - "
        << p.getName() << endl
