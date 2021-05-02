@@ -912,13 +912,15 @@ const string Interface::showCart() const {
 
 bool Interface::eraseProductFromCart() {
     int option = -1;
-    cout << showCart() << endl;
+    system("clear");
+    cout << showCart() << endl
+         << "----------------------" << endl;
     if (shopping_cart.size() > 0) {
         cout << "Enter the product you want to erase by "
              << "entering its number: ";
         cin >> option;
         cin.ignore(100, '\n');
-        if (option < (int)shopping_cart.size()) {
+        if (option <= (int)shopping_cart.size()) {
             option --;
             shopping_cart.erase(shopping_cart.begin() + option);
             return true;
@@ -926,6 +928,8 @@ bool Interface::eraseProductFromCart() {
             return false;
         }
     } else {
+        cout << "There is no product added to shopping cart" << endl;
+        cin.ignore(100, '\n');
         return true;
     }
 }
