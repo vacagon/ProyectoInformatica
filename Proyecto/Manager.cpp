@@ -462,28 +462,39 @@ bool Manager::modifyReviewText(const unsigned long &id, const string& new_text){
 }
 
 bool Manager::deleteReview(const unsigned long &id) {
-    bool flag = false;
+    bool flag = false, valid_id = false;
+    Product* selected_product;
+    Review* selected_review;
     if (!isLogged()) {
-        return flag;
+        flag = false;
     } else {
-        for (Product* product: products){
-            vector <Review*> rev = product->getReviews();
-            for (Review* reviews: rev){
-                if(id == reviews->getId() ){
-                    if (!getCurrentMember()->isAdmin()) {
-                        reviews->~Review();
-                        return flag;
-                    }else{
-                        if (reviews->getAuthor()->getUsername() == users[current_member]->getUsername()){
-                            reviews->~Review();
-                            flag = true;
-                            return flag;
-                         }else{
-                            return flag;
+        for (Product* every_product: products) {
+            for (Review* every_review: every_product->getReviews()) {
+                if (every_review->getId() == id) {
+                    if (users[current_member]->isAdmin()) {
+                        selected_product = every_product;
+                        selected_review = every_review;
+                        valid_id = true;
+                        break;
+                    } else {
+                        if (every_review->getAuthor()->getUsername() == users[current_member]->getUsername()) {
+                            selected_review = every_review;
+                            selected_product = every_product;
+                            valid_id = true;
+                            break;
                         }
                     }
                 }
             }
+            if (valid_id) {
+                break;
+            }
+        }
+        if (!valid_id) {
+            flag = false;
+        } else {
+            selected_product->getReviews().erase(std::remove(selected_product->getReviews().begin(), selected_product->getReviews().end(), selected_review),selected_product->getReviews().end());
+            flag = true;
         }
     }
     return flag;

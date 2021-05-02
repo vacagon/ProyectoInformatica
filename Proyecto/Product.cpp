@@ -42,7 +42,7 @@ const float& Product::getPrice() const {
     return price;
 }
 
-const vector<Review*>& Product::getReviews() const {
+vector<Review*> Product::getReviews() {
     return reviews;
 }
 
