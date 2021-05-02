@@ -13,6 +13,7 @@ CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Administrator.cpp.o
  /home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
  /home/gonzalo/ProyectoInformatica/Proyecto/PrivateUserData.hpp
  /home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
+ /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
  /home/gonzalo/ProyectoInformatica/Proyecto/User.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/CreditCard.cpp.o
  /home/gonzalo/ProyectoInformatica/Proyecto/Address.hpp
@@ -43,6 +44,8 @@ CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PaymentMethod.cpp.o
  /home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.cpp
  /home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
  /home/gonzalo/ProyectoInformatica/Proyecto/PrivateUserData.hpp
+ /home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
+ /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Paypal.cpp.o
  /home/gonzalo/ProyectoInformatica/Proyecto/Address.hpp
  /home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
@@ -55,6 +58,8 @@ CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PrivateUserData.cpp.o
  /home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
  /home/gonzalo/ProyectoInformatica/Proyecto/PrivateUserData.cpp
  /home/gonzalo/ProyectoInformatica/Proyecto/PrivateUserData.hpp
+ /home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
+ /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Product.cpp.o
  /home/gonzalo/ProyectoInformatica/Proyecto/Address.hpp
  /home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
@@ -78,5 +83,6 @@ CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/User.cpp.o
  /home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
  /home/gonzalo/ProyectoInformatica/Proyecto/PrivateUserData.hpp
  /home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
+ /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
  /home/gonzalo/ProyectoInformatica/Proyecto/User.cpp
  /home/gonzalo/ProyectoInformatica/Proyecto/User.hpp

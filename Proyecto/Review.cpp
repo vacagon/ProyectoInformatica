@@ -1,6 +1,6 @@
 #include "Review.hpp"
 
-Review::Review(const unsigned long &i, const int &rating, const string& text, const PublicUserData *a) {
+Review::Review(const unsigned long &i, const int &rating, const string& text, PublicUserData *a) {
     id = i;
     //Making sure rating is between 0 and 5
     if (rating < 0) {
@@ -16,6 +16,7 @@ Review::Review(const unsigned long &i, const int &rating, const string& text, co
     author = a;
     votes = 0;
     date = time(0);
+    users_vote = vector<PublicUserData*> ();
 }
 
 Review::~Review() {}
@@ -70,12 +71,17 @@ void Review::incrementVotes() {
 }
 
 void Review::decremVotes() {
-    if (votes>0) {
         --votes;
-    }
 }
 
- PublicUserData* Review::getAuthor()  {
+ PublicUserData* Review::getAuthor() const {
     return author;
 }
 
+ vector<PublicUserData*> Review::getUserVotedReview() const {
+     return users_vote;
+ }
+
+void Review::setUserVotedReview(PublicUserData* user) {
+     users_vote.push_back(user);
+ }

@@ -304,6 +304,7 @@ bool Manager::createReview(const unsigned long &reference, const int &rating, co
                 }
             }
             id_reviews.push_back(id);
+            users[current_member]->addReview(new_review);
             flag = true;
         } else {
             flag = false;
@@ -327,41 +328,91 @@ vector<Review*> Manager::getReviewsByRating(const unsigned long &reference, cons
 }
 
 bool Manager::upvoteReview(const unsigned long& id) {
-    bool flag = false;
-    for (Product* product: products){
-        vector <Review*> rev = product->getReviews();
-        for (Review* reviews: rev){
-            if(id == reviews->getId() ){
-                if (reviews->getAuthor()->getUsername() == users[current_member]->getUsername()){
-                    flag = false;
-                }else {
-                    reviews->incrementVotes();
-                    reviews->getAuthor()->increaseReputation();
-                    flag = true;
-                }
+    bool flag = false, valid_id = false;
+    Review* selected_review = nullptr;
+    for (Product* product: products) {
+        for (Review* rev: product->getReviews()) {
+            if (rev->getId() == id) {
+                selected_review = rev;
+                valid_id = true;
+                break;
             }
         }
+        if (valid_id) {
+            break;
+        }
     }
-    return flag;
+    if (!valid_id) {
+        return false;
+    } else {
+        if (!isLogged()) {
+            flag = false;
+        } else {
+            //Author of the review and voter are different users
+            if (users[current_member]->getUserReviews().size() > 0) {
+                for (Review* reviews_madebyuser: users[current_member]->getUserReviews()) {
+                    if (reviews_madebyuser->getId() == id) {
+                        return false;
+                    }
+                }
+            }
+            //Reviewer can only vote review once
+            for(PublicUserData* users_alreadyvoted: selected_review->getUserVotedReview()) {
+                if (users_alreadyvoted->getUsername() == users[current_member]->getUsername()) {
+                    return false;
+                }
+            }
+            selected_review->incrementVotes();
+            selected_review->getAuthor()->increaseReputation();
+            selected_review->setUserVotedReview(users[current_member]);
+            flag = true;
+        }
+        return flag;
+    }
 }
 
 bool Manager::downvoteReview(const unsigned long& id) {
-    bool flag = false;
-    for (Product* product: products){
-        vector <Review*> rev = product->getReviews();
-        for (Review* reviews: rev){
-            if(id == reviews->getId() ){
-                if (reviews->getAuthor()->getUsername() == users[current_member]->getUsername()){
-                    flag = false;
-                }else {
-                    reviews->decremVotes();
-                    reviews->getAuthor()->decreaseReputation();
-                    flag = true;
-                }
+    bool flag = false, valid_id = false;
+    Review* selected_review = nullptr;
+    for (Product* product: products) {
+        for (Review* rev: product->getReviews()) {
+            if (rev->getId() == id) {
+                selected_review = rev;
+                valid_id = true;
+                break;
             }
         }
+        if (valid_id) {
+            break;
+        }
     }
-    return flag;
+    if (!valid_id) {
+        return false;
+    } else {
+        if (!isLogged()) {
+            flag = false;
+        } else {
+            //Author of the review and voter are different users
+            if (users[current_member]->getUserReviews().size() > 0) {
+                for (Review* reviews_madebyuser: users[current_member]->getUserReviews()) {
+                    if (reviews_madebyuser->getId() == id) {
+                        return false;
+                    }
+                }
+            }
+            //Reviewer can only vote review once
+            for(PublicUserData* users_alreadyvoted: selected_review->getUserVotedReview()) {
+                if (users_alreadyvoted->getUsername() == users[current_member]->getUsername()) {
+                    return false;
+                }
+            }
+            selected_review->decremVotes();
+            selected_review->getAuthor()->decreaseReputation();
+            selected_review->setUserVotedReview(users[current_member]);
+            flag = true;
+        }
+        return flag;
+    }
 }
 
 bool Manager::modifyReviewRating(const unsigned long &id, const int &new_rating) {

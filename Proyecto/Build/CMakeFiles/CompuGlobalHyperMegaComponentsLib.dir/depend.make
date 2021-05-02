@@ -12,6 +12,7 @@ CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Administrator.cpp.o: ../Order.h
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Administrator.cpp.o: ../PaymentMethod.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Administrator.cpp.o: ../PrivateUserData.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Administrator.cpp.o: ../PublicUserData.hpp
+CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Administrator.cpp.o: ../Review.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Administrator.cpp.o: ../User.hpp
 
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/CreditCard.cpp.o: ../Address.hpp
@@ -42,6 +43,8 @@ CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PaymentMethod.cpp.o: ../Order.h
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PaymentMethod.cpp.o: ../PaymentMethod.cpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PaymentMethod.cpp.o: ../PaymentMethod.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PaymentMethod.cpp.o: ../PrivateUserData.hpp
+CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PaymentMethod.cpp.o: ../PublicUserData.hpp
+CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PaymentMethod.cpp.o: ../Review.hpp
 
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Paypal.cpp.o: ../Address.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Paypal.cpp.o: ../Order.hpp
@@ -54,6 +57,8 @@ CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PrivateUserData.cpp.o: ../Order
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PrivateUserData.cpp.o: ../PaymentMethod.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PrivateUserData.cpp.o: ../PrivateUserData.cpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PrivateUserData.cpp.o: ../PrivateUserData.hpp
+CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PrivateUserData.cpp.o: ../PublicUserData.hpp
+CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/PrivateUserData.cpp.o: ../Review.hpp
 
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Product.cpp.o: ../Address.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Product.cpp.o: ../Order.hpp
@@ -77,6 +82,7 @@ CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/User.cpp.o: ../Order.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/User.cpp.o: ../PaymentMethod.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/User.cpp.o: ../PrivateUserData.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/User.cpp.o: ../PublicUserData.hpp
+CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/User.cpp.o: ../Review.hpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/User.cpp.o: ../User.cpp
 CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/User.cpp.o: ../User.hpp
 
