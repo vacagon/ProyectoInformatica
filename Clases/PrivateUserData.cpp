@@ -6,6 +6,7 @@ PrivateUserData::PrivateUserData(const string &email, const string& password) {
     addresses = vector<Address*> ();
     orders = vector<Order*> ();
     payment_methods = vector<PaymentMethod*> ();
+    reviews_made = vector<Review*> ();
 }
 
 PrivateUserData::~PrivateUserData() {}
@@ -48,4 +49,12 @@ vector<Order *> PrivateUserData::getOrders() const {
 
 void PrivateUserData::addOrder(Order *new_order) {
     orders.push_back(new_order);
+}
+
+vector<Review*> PrivateUserData::getUserReviews() const {
+    return reviews_made;
+}
+
+void PrivateUserData::addReview(Review *new_review) {
+    reviews_made.push_back(new_review);
 }

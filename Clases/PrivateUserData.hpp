@@ -6,6 +6,7 @@
 #include "Address.hpp"
 #include "Order.hpp"
 #include "PaymentMethod.hpp"
+#include "Review.hpp"
 
 using namespace std;
 
@@ -75,6 +76,10 @@ public:
      */
     void addOrder(Order* new_order);
 
+    vector<Review*> getUserReviews() const;
+
+    void addReview(Review* new_review);
+
     friend PaymentMethod;
 
 protected:
@@ -104,6 +109,12 @@ protected:
      * by the user
      */
     vector<Order*> orders;
+
+    /**
+     * @brief Store the reviews made
+     * by the user
+     */
+    vector<Review*> reviews_made;
 
 };
 

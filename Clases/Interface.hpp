@@ -95,6 +95,8 @@ public:
 
     bool makeOrder();
 
+    void createReview();
+
 private:
 
     Manager* manager;

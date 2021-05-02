@@ -20,7 +20,7 @@ public:
     /**
      * @brief Parametric constructor
      */
-    Review(const unsigned long& i, const int& rating, const string& text, const PublicUserData* a);
+    Review(const unsigned long& i, const int& rating, const string& text, PublicUserData *a);
 
 	virtual ~Review();
 
@@ -59,7 +59,11 @@ public:
 	 */
     void decremVotes();
 
-    const PublicUserData* getAuthor() const;
+    PublicUserData* getAuthor() const;
+
+    vector<PublicUserData*> getUserVotedReview() const;
+
+    void setUserVotedReview(PublicUserData *user);
 
 private:
 
@@ -93,7 +97,13 @@ private:
     /**
      * @brief Pointer to the public information of the user making the review
      */
-    const PublicUserData* author;
+    PublicUserData* author;
+
+    /**
+     * @brief Vector of pointers to the public information of users who have
+     * voted for the review so they can only do it once
+     */
+    vector<PublicUserData*> users_vote;
 
 };
 
