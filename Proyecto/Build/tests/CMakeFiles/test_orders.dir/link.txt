@@ -1,1 +1,0 @@
-/usr/bin/g++  -g   CMakeFiles/test_orders.dir/test_orders.cpp.o  -o test_orders  ../lib/libgtest_maind.a ../libCompuGlobalHyperMegaComponentsLib.a ../lib/libgtestd.a -lpthread 
