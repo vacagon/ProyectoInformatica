@@ -153,7 +153,7 @@ void Interface::HomeMenu() {
 void Interface::HomeMenuAdministrator() {
     bool valid_option = false;
     int option = -1;
-    while (((!valid_option) || (option != 0))&&(manager->isLogged())) {
+    while ((!valid_option) || (option != 0)||(manager->isLogged())) {
         system("clear");
         cout << "Welcome administrator " << manager->getCurrentMember()->getUsername()
              << ", with employee code " << manager->getCurrentMember()->getEmployeeCode()
@@ -241,7 +241,9 @@ void Interface::HomeMenuAdministrator() {
             break;
         }
     }
-    FrontPageMenu();
+    if(!manager->isLogged()) {
+        FrontPageMenu();
+    }
 }
 
 void Interface::editAccountMenu() {

@@ -62,7 +62,7 @@ ostream& operator<<(ostream& os, const Product& p) {
     if (p.reviews.size() > 0) {
         os << "\t-- User reviews --" << endl;
         for (unsigned int i = 0; i < p.reviews.size(); i++) {
-            os << p.reviews[i]->show() << endl;
+            os << "\t" << p.reviews[i]->show() << endl;
         }
     }
     return os;
