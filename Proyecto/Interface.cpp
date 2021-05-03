@@ -99,7 +99,7 @@ void Interface::HomeMenu() {
              << "5. Products" << endl
              << "6. Make an order" << endl
              << "7. Shopping cart" << endl
-             << "8. Create review" << endl
+             << "8. Reviews" << endl
              << "9. Delete account" << endl
              << "0. Log out" << endl;
         cin >> option;
@@ -142,7 +142,7 @@ void Interface::HomeMenu() {
             cin.ignore(100, '\n');
             break;
         case 8:
-            createReview();
+            reviewsMenu();
         case 9:
             manager->eraseCurrentMember();
         }
@@ -174,7 +174,7 @@ void Interface::HomeMenuAdministrator() {
              << "9. Make an order" << endl
              << "10. Show shopping cart" << endl
              << "11. Edit a product" << endl
-             << "12. Create review" << endl
+             << "12. Reviews" << endl
              << "13. Delete account" << endl
              << "0. Log out" << endl;
         cin >> option;
@@ -234,7 +234,7 @@ void Interface::HomeMenuAdministrator() {
                 cin.ignore(100, '\n');
             }
         case 12:
-            createReview();
+            reviewsMenu();
             break;
         case 13:
             manager->eraseCurrentMember();
@@ -342,6 +342,49 @@ void Interface::makeOrderMenu() {
                 cout << "Shopping cart is empty. Choose a product first" << endl;
                 cin.ignore(100, '\n');
             }
+            break;
+        }
+    }
+}
+
+void Interface::reviewsMenu() {
+    bool valid_option = false;
+    int option = -1;
+    while ((!valid_option) || (option != 0)) {
+        system("clear");
+        cout << "Select an option by tipping"
+             << " the corresponding digit"
+             << "*********" << endl
+             << "-----------------------------------" << endl
+             << "1. Make a review" << endl
+             << "2. Show reviews by rating" << endl
+             << "3. Vote review" << endl
+             << "4. Delete review" << endl
+             << "0. Back to home menu" << endl;
+        cin >> option;
+        cin.ignore(100,'\n');
+        if ((option < 0)||(option > 4)) {
+            valid_option = false;
+            system("clear");
+            continue;
+        } else {
+            valid_option = true;
+        }
+        switch (option) {
+        case 0:
+            break;
+        case 1:
+            createReview();
+            break;
+        case 2:
+            cout << showReviewsByRating() << endl;
+            cin.ignore(100, '\n');
+            break;
+        case 3:
+            //voteReview();
+            break;
+        case 4:
+            //deleteReview();
             break;
         }
     }
@@ -867,7 +910,7 @@ void Interface::addProduct() {
     } while (!manager->addProduct(name,description,reference,price));
 }
 
-const string Interface::showProducts() {
+const string Interface::showProducts() const {
     stringstream ss;
     if (manager->getProducts().size() > 0) {
         for (Product* product: manager->getProducts()) {
@@ -1074,4 +1117,45 @@ void Interface::createReview() {
         cout << "You need to buy the product in order to review it" << endl;
         cin.ignore(100, '\n');
     }
+}
+
+const string Interface::showReviews() const{
+    stringstream ss;
+    ss << "Reviews made in the platform:" << endl
+       << "-------------------------------" << endl;
+    for(Product* every_product: manager->getProducts()) {
+        for (Review* every_review: every_product->getReviews()) {
+            ss << every_review->show() << endl;
+        }
+    }
+    return ss.str();
+}
+
+const string Interface::showReviewsByRating() const {
+    int rating = -1;
+    stringstream ss;
+    unsigned long reference;
+    vector<Review*> reviews_rating = vector<Review*> ();
+    cout << showProducts() << endl;
+    cout << endl << "Introduce the reference of the product whose "
+         << "reviews you want to filter by rating: ";
+    cin >> reference;
+    cin.ignore(100, '\n');
+    system("clear");
+    cout << showReviews() << endl;
+    cout << endl << "By which rating you want to filter the reviews? "
+         << "Introduce a number from 0 to 5: ";
+    cin >> rating;
+    cin.ignore(100, '\n');
+    if (rating < 0) rating = 0;
+    if (rating > 5) rating = 5;
+    reviews_rating = manager->getReviewsByRating(reference, rating);
+    if (reviews_rating.size() > 0) {
+        for (Review* review: reviews_rating) {
+            ss << review->show() << endl;
+        }
+    } else {
+        ss << "Wrong reference, or no review with that rating" << endl;
+    }
+    return ss.str();
 }

@@ -15,20 +15,17 @@ Review::Review(const unsigned long &i, const int &rating, const string& text, Pu
     setText(text);
     author = a;
     votes = 0;
-    date = time(0);
+    date = time(nullptr);
     users_vote = vector<PublicUserData*> ();
 }
 
 Review::~Review() {}
 
 const string Review::show() const {
-    struct tm* timeinfo;
-    timeinfo = localtime(&date);
-    char dat[24];
-    strftime(dat, 24, "%c", timeinfo);
+    tm tm = *localtime(&date);
     stringstream ss;
     ss << "\t" << rating << " stars on "
-           << dat << " by " << getAuthor()->getUsername() << endl
+           << put_time(&tm, "%c %Z") << " by " << getAuthor()->getUsername() << endl
            << "\t" << text << "\n"
            << "\t" << votes << " votes" << "\n";
     return ss.str();
