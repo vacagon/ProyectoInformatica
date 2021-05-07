@@ -158,9 +158,17 @@ User.hpp
 Review.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 
+/home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.cpp
+PublicUserData.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
+
 /home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
 string
 -
+
+/home/gonzalo/ProyectoInformatica/Proyecto/Review.cpp
+Review.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 string
