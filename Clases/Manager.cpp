@@ -545,3 +545,8 @@ void Manager::saveToFile(string& route) {}
 
 void loadFromFile(string route) {}
 
+//################# MÉTODOS PROPIOS ############################//
+
+vector<unsigned long> Manager::getIdReviews() const {
+    return id_reviews;
+}

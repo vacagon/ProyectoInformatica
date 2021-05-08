@@ -6,7 +6,7 @@ Order::Order(const unsigned long &reference, const vector<unsigned long>& prods,
     setDeliveryAddress(address);
     setPaymentMethod(payment_method);
     setTotal(total);
-    date = time(0);
+    date = time(nullptr);
     for (unsigned long product: prods)  {
         addProduct(product);
     }
@@ -70,7 +70,8 @@ void Order::setTotal(const float &t) {
 }
 
 ostream& operator << (ostream &os, const Order &O) {
-    os << "Reference: " << O.getReference() << " - Made on: " << O.getDate() << endl
+    tm tm = *localtime(&O.date);
+    os << "Reference: " << O.getReference() << " - Made on: " << put_time(&tm, "%c %Z") << endl
        << "---------------------------------------" << endl
        << O.getTotal() << " [$]" << endl;
     return os;
