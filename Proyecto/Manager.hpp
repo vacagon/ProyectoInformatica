@@ -255,6 +255,10 @@ public:
 	 */
     void loadFromFile(string route);
 
+    //################# MÉTODOS PROPIOS ############################//
+
+    vector<unsigned long> getIdReviews() const;
+
 private:
 
     /**

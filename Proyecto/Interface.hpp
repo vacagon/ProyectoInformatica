@@ -47,6 +47,8 @@ public:
 
     void reviewsMenu();
 
+    void modifyReviewMenu();
+
     //*************FUNCIONES*****************
 
     bool addAdministrator();

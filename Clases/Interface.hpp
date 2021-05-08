@@ -45,6 +45,10 @@ public:
 
     void editProductMenu();
 
+    void reviewsMenu();
+
+    void modifyReviewMenu();
+
     //*************FUNCIONES*****************
 
     bool addAdministrator();
@@ -87,7 +91,7 @@ public:
 
     void addProduct();
 
-    const string showProducts();
+    const string showProducts() const;
 
     const string showCart() const;
 
@@ -98,6 +102,14 @@ public:
     bool makeOrder();
 
     void createReview();
+
+    const string showReviews() const;
+
+    const string showReviewsByRating() const;
+
+    void voteReview();
+
+    void deleteReview();
 
 private:
 

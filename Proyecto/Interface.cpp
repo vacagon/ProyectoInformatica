@@ -81,11 +81,12 @@ void Interface::FrontPageMenu() {
 }
 
 void Interface::HomeMenu() {
-    bool valid_option = false;
-    int option = -1;
-    while (((!valid_option)||(option != 0))&&(manager->isLogged())) {
+    bool valid_option = false, delete_account = false;
+    int option = -1, del;
+    while ((!valid_option)||(option != 0)) {
         system("clear");
-        cout << "Welcome " << manager->getCurrentMember()->getUsername()
+        cout << "Welcome administrator " << manager->getCurrentMember()->getUsername()
+             << ", with employee code " << manager->getCurrentMember()->getEmployeeCode()
              << "!" << endl << endl;
         cout << "*********"
              << "Select an option by tipping"
@@ -98,13 +99,12 @@ void Interface::HomeMenu() {
              << "4. Show profile" << endl
              << "5. Products" << endl
              << "6. Make an order" << endl
-             << "7. Shopping cart" << endl
+             << "7. Show shopping cart" << endl
              << "8. Reviews" << endl
-             << "9. Delete account" << endl
-             << "0. Log out" << endl;
+             << "0. Log out/Delete account" << endl;
         cin >> option;
         cin.ignore(10000,'\n');
-        if ((option < 0)||(option > 9)) {
+        if ((option < 0)||(option > 8)) {
             valid_option = false;
             system("clear");
             continue;
@@ -114,8 +114,26 @@ void Interface::HomeMenu() {
         }
         switch (option) {
         case 0:
-            while (!manager->logout()) {}
-            shopping_cart.clear();
+            do {
+                system("clear");
+                cout << "Do you want to delete your account?" << endl
+                     << "1. Yes" << endl
+                     << "0. No" << endl;
+                cin.clear();
+                cin >> del;
+                cin.ignore(100, '\n');
+                if ((del != 1)&&(del != 0)) {
+                    delete_account = false;
+                } else {
+                    delete_account = true;
+                }
+            } while ((cin.fail())||(!delete_account));
+            if (del == 1) {
+                manager->eraseCurrentMember();
+            } else {
+                manager->logout();
+                shopping_cart.clear();
+            }
             break;
         case 1:
             editAccountMenu();
@@ -143,17 +161,15 @@ void Interface::HomeMenu() {
             break;
         case 8:
             reviewsMenu();
-        case 9:
-            manager->eraseCurrentMember();
+            break;
         }
     }
-    FrontPageMenu();
 }
 
 void Interface::HomeMenuAdministrator() {
-    bool valid_option = false;
-    int option = -1;
-    while (((!valid_option) || (option != 0))&&(manager->isLogged())) {
+    bool valid_option = false, delete_account = false;
+    int option = -1, del;
+    while ((!valid_option)||(option != 0)) {
         system("clear");
         cout << "Welcome administrator " << manager->getCurrentMember()->getUsername()
              << ", with employee code " << manager->getCurrentMember()->getEmployeeCode()
@@ -175,11 +191,10 @@ void Interface::HomeMenuAdministrator() {
              << "10. Show shopping cart" << endl
              << "11. Edit a product" << endl
              << "12. Reviews" << endl
-             << "13. Delete account" << endl
-             << "0. Log out" << endl;
+             << "0. Log out/Delete account" << endl;
         cin >> option;
         cin.ignore(10000,'\n');
-        if ((option < 0)||(option > 13)) {
+        if ((option < 0)||(option > 12)) {
             valid_option = false;
             system("clear");
             continue;
@@ -189,8 +204,26 @@ void Interface::HomeMenuAdministrator() {
         }
         switch (option) {
         case 0:
-            while (!manager->logout()) {}
-            shopping_cart.clear();
+            do {
+                system("clear");
+                cout << "Do you want to delete your account?" << endl
+                     << "1. Yes" << endl
+                     << "0. No" << endl;
+                cin.clear();
+                cin >> del;
+                cin.ignore(100, '\n');
+                if ((del != 1)&&(del != 0)) {
+                    delete_account = false;
+                } else {
+                    delete_account = true;
+                }
+            } while ((cin.fail())||(!delete_account));
+            if (del == 1) {
+                manager->eraseCurrentMember();
+            } else {
+                manager->logout();
+                shopping_cart.clear();
+            }
             break;
         case 1:
             editAccountMenu();
@@ -236,12 +269,8 @@ void Interface::HomeMenuAdministrator() {
         case 12:
             reviewsMenu();
             break;
-        case 13:
-            manager->eraseCurrentMember();
-            break;
         }
     }
-    FrontPageMenu();
 }
 
 void Interface::editAccountMenu() {
@@ -351,15 +380,16 @@ void Interface::reviewsMenu() {
     bool valid_option = false;
     int option = -1;
     while ((!valid_option) || (option != 0)) {
-        system("clear");
-        cout << "Select an option by tipping"
+        system("clear");  
+        cout << "*********" << endl
+             << "Select an option by tipping"
              << " the corresponding digit"
              << "*********" << endl
              << "-----------------------------------" << endl
              << "1. Make a review" << endl
              << "2. Show reviews by rating" << endl
              << "3. Vote review" << endl
-             << "4. Delete review" << endl
+             << "4. Modify review" << endl
              << "0. Back to home menu" << endl;
         cin >> option;
         cin.ignore(100,'\n');
@@ -381,10 +411,20 @@ void Interface::reviewsMenu() {
             cin.ignore(100, '\n');
             break;
         case 3:
-            //voteReview();
+            if (manager->getIdReviews().size() > 0) {
+                voteReview();
+            } else {
+                cout << "No review has been made in the platform yet" << endl;
+                cin.ignore(100, '\n');
+            }
             break;
         case 4:
-            //deleteReview();
+            if (manager->getIdReviews().size() > 0) {
+                modifyReviewMenu();
+            } else {
+                cout << "No review has been made in the platform yet" << endl;
+                cin.ignore(100, '\n');
+            }
             break;
         }
     }
@@ -824,6 +864,7 @@ const string Interface::showUserData() const {
     ss << "Username: " << manager->getCurrentMember()->getUsername() << endl << endl;
     ss << "Email: " << manager->getCurrentMember()->getEmail() << endl << endl;
     ss << "Password: " << manager->getCurrentMember()->getPassword() << endl << endl;
+    ss << "Reputation: " << manager->getCurrentMember()->getReputation() << endl << endl;
     if (manager->getCurrentMember()->isAdmin()) {
         ss << "Employee code: " << manager->getCurrentMember()->getEmployeeCode() << endl << endl;
     }
@@ -1082,7 +1123,7 @@ void Interface::createReview() {
     if (manager->getCurrentMember()->getOrders().size() > 0) {
         do {
             cout << showProducts() << endl;
-            cout << "Choose the product you want to review by introducing its reference:";
+            cout << "Choose the product you want to review by introducing its reference: ";
             cin >> reference;
             for (Product* products: manager->getProducts()) {
                 if (reference == products->getReference()) {
@@ -1095,11 +1136,11 @@ void Interface::createReview() {
                 system("clear");
             }
         } while(!valid_reference);
-        cout << "Rate the product from 0 to 5:";
+        cout << "Rate the product from 0 to 5: ";
         cin >> rating;
         cin.ignore(100, '\n');
         cout << "Introduce your review of the product: " << endl;
-        getline(cin >> ws, text);
+        getline(cin, text);
         cin.ignore(100, '\n');
     } else {
         cout << "You haven't ordered any product yet" << endl;
@@ -1125,7 +1166,8 @@ const string Interface::showReviews() const{
        << "-------------------------------" << endl;
     for(Product* every_product: manager->getProducts()) {
         for (Review* every_review: every_product->getReviews()) {
-            ss << every_review->show() << endl;
+            ss << "Id: " << every_review->getId() << endl
+               << every_review->show() << endl;
         }
     }
     return ss.str();
@@ -1152,10 +1194,135 @@ const string Interface::showReviewsByRating() const {
     reviews_rating = manager->getReviewsByRating(reference, rating);
     if (reviews_rating.size() > 0) {
         for (Review* review: reviews_rating) {
-            ss << review->show() << endl;
+            ss << "Id: " << review->getId() << endl
+               << review->show() << endl;
         }
     } else {
         ss << "Wrong reference, or no review with that rating" << endl;
     }
     return ss.str();
+}
+
+void Interface::voteReview() {
+    unsigned long id;
+    int option = -1;
+    bool valid_option = false;
+    system("clear");
+    cout << showReviews() << endl
+         << endl << "Enter the id of the review "
+         << "you want to vote: ";
+    cin >> id;
+    cin.ignore(100, '\n');
+    do {
+        cin.clear();
+        cout << "Choose an option" << endl
+             << "1. Up vote" << endl
+             << "2. Down vote" << endl;
+        cin >> option;
+        cin.ignore(100, '\n');
+        if ((option != 1)&&(option != 2)) {
+            valid_option = false;
+        } else {
+            valid_option = true;
+        }
+    } while (cin.fail()||(!valid_option));
+    switch (option) {
+    case 1:
+        if(manager->upvoteReview(id)) {
+            cout << "Your vote has been registered" << endl;
+            cin.ignore(100, '\n');
+        } else {
+            cout << "Something went wrong. Maybe the introduced id does "
+                 << "not correspond to any existing review, and remember, "
+                 << "you can not vote your own reviews" << endl;
+            cin.ignore(100, '\n');
+        }
+        break;
+    case 2:
+        if(manager->downvoteReview(id)) {
+            cout << "Your vote has been registered" << endl;
+            cin.ignore(100, '\n');
+        } else {
+            cout << "Something went wrong. Maybe the introduced id does "
+                 << "not correspond to any existing review, and remember, "
+                 << "you can not vote your own reviews" << endl;
+            cin.ignore(100, '\n');
+        }
+        break;
+    }
+}
+
+void Interface::modifyReviewMenu() {
+    bool valid_option = false;
+    int option = -1;
+    unsigned long id;
+    int new_rating = 0;
+    string new_text;
+    system("clear");
+    cin.clear();
+    cout << showReviews() << endl
+         << endl << "Enter the id of the review "
+         << "you want to modify: ";
+    cin >> id;
+    cin.ignore(100, '\n');
+    do {
+        cin.clear();
+        cout << "Choose an option" << endl
+             << "1. Rating" << endl
+             << "2. Text" << endl
+             << "3. Delete review" << endl;
+        cin >> option;
+        cin.ignore(100, '\n');
+        if ((option != 1)&&(option != 2)&&(option != 3)) {
+            valid_option = false;
+        } else {
+            valid_option = true;
+        }
+    } while (cin.fail()||(!valid_option));
+    system("clear");
+    switch (option) {
+    case 1:
+        do {
+            cin.clear();
+            cout << "Introduce the new rating: ";
+            cin >> new_rating;
+            cin.ignore(100, '\n');
+        } while (cin.fail());
+        if (manager->modifyReviewRating(id, new_rating)) {
+            cout << "Your have modified the rating to " << new_rating << endl;
+            cin.ignore(100, '\n');
+        } else {
+            cout << "Something went wrong. Maybe the introduced id does "
+                 << "not correspond to any existing review, and remember, "
+                 << "you can not modify other user's reviews" << endl;
+            cin.ignore(100, '\n');
+        }
+        break;
+    case 2:
+        cin.clear();
+        cout << "Introduce the new text: ";
+        getline(cin, new_text);
+        if (manager->modifyReviewText(id, new_text)) {
+            cout << "Your have modified the text of the review to: " << new_text << endl;
+            cin.ignore(100, '\n');
+        } else {
+            cout << "Something went wrong. Maybe the introduced id does "
+                 << "not correspond to any existing review, and remember, "
+                 << "you can not modify other user's reviews" << endl;
+            cin.ignore(100, '\n');
+        }
+        break;
+    case 3:
+        if(manager->deleteReview(id)) {
+            cout << "You have deleted review with id " << id << endl;
+            cin.ignore(100, '\n');
+        } else {
+            cout << "Something went wrong. Maybe the introduced id does "
+                 << "not correspond to any existing review, and remember, "
+                 << "you can not delete other user's reviews unless"
+                 << " you're an administrator" << endl;
+            cin.ignore(100, '\n');
+        }
+        break;
+    }
 }
