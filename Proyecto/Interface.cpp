@@ -287,7 +287,7 @@ void Interface::editAccountMenu() {
              << "0. Back to Home Menu" << endl;
         cin >> option;
         cin.ignore(100,'\n');
-        if ((option < 0)||(option > 5)) {
+        if ((option < 0)||(option > 4)) {
             valid_option = false;
             system("clear");
             continue;
