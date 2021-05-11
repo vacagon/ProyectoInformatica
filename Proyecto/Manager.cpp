@@ -543,7 +543,7 @@ bool Manager::deleteReview(const unsigned long &id) {
 
 void Manager::saveToFile(const string route) {}
 
-void loadFromFile(const string route) {}
+void Manager::loadFromFile(const string route) {}
 
 //################# MÉTODOS PROPIOS ############################//
 
