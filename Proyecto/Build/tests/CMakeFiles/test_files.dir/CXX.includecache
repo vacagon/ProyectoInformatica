@@ -146,11 +146,23 @@ PublicUserData.hpp
 PrivateUserData.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/PrivateUserData.hpp
 
-/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_orders.cpp
+/home/gonzalo/ProyectoInformatica/Proyecto/tests/test_files.cpp
 gtest/gtest.h
+-
+time.h
 -
 ../Manager.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Manager.hpp
+iostream
+-
+string
+-
+sstream
+-
+fstream
+-
+sstream
+-
 
 googletest-src/googletest/include/gtest/gtest-death-test.h
 gtest/internal/gtest-death-test-internal.h

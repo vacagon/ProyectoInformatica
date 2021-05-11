@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/test_files.dir/test_files.cpp.o  -o test_files  ../lib/libgtest_maind.a ../libCompuGlobalHyperMegaComponentsLib.a ../lib/libgtestd.a -lpthread 

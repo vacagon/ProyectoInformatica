@@ -56,18 +56,6 @@ CMAKE_BINARY_DIR = /home/gonzalo/ProyectoInformatica/Proyecto/Build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -113,6 +101,18 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -155,6 +155,21 @@ preinstall/fast:
 depend:
 	cd /home/gonzalo/ProyectoInformatica/Proyecto/Build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+# Convenience name for target.
+tests/CMakeFiles/test_files.dir/rule:
+	cd /home/gonzalo/ProyectoInformatica/Proyecto/Build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_files.dir/rule
+.PHONY : tests/CMakeFiles/test_files.dir/rule
+
+# Convenience name for target.
+test_files: tests/CMakeFiles/test_files.dir/rule
+
+.PHONY : test_files
+
+# fast build rule for target.
+test_files/fast:
+	cd /home/gonzalo/ProyectoInformatica/Proyecto/Build && $(MAKE) -f tests/CMakeFiles/test_files.dir/build.make tests/CMakeFiles/test_files.dir/build
+.PHONY : test_files/fast
 
 # Convenience name for target.
 tests/CMakeFiles/test_orders.dir/rule:
@@ -213,6 +228,33 @@ test_basic.cpp.s:
 	cd /home/gonzalo/ProyectoInformatica/Proyecto/Build && $(MAKE) -f tests/CMakeFiles/test_basic.dir/build.make tests/CMakeFiles/test_basic.dir/test_basic.cpp.s
 .PHONY : test_basic.cpp.s
 
+test_files.o: test_files.cpp.o
+
+.PHONY : test_files.o
+
+# target to build an object file
+test_files.cpp.o:
+	cd /home/gonzalo/ProyectoInformatica/Proyecto/Build && $(MAKE) -f tests/CMakeFiles/test_files.dir/build.make tests/CMakeFiles/test_files.dir/test_files.cpp.o
+.PHONY : test_files.cpp.o
+
+test_files.i: test_files.cpp.i
+
+.PHONY : test_files.i
+
+# target to preprocess a source file
+test_files.cpp.i:
+	cd /home/gonzalo/ProyectoInformatica/Proyecto/Build && $(MAKE) -f tests/CMakeFiles/test_files.dir/build.make tests/CMakeFiles/test_files.dir/test_files.cpp.i
+.PHONY : test_files.cpp.i
+
+test_files.s: test_files.cpp.s
+
+.PHONY : test_files.s
+
+# target to generate assembly for a file
+test_files.cpp.s:
+	cd /home/gonzalo/ProyectoInformatica/Proyecto/Build && $(MAKE) -f tests/CMakeFiles/test_files.dir/build.make tests/CMakeFiles/test_files.dir/test_files.cpp.s
+.PHONY : test_files.cpp.s
+
 test_orders.o: test_orders.cpp.o
 
 .PHONY : test_orders.o
@@ -246,17 +288,21 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... install/strip"
+	@echo "... test_files"
 	@echo "... edit_cache"
 	@echo "... test_orders"
 	@echo "... test_basic"
 	@echo "... test_basic.o"
 	@echo "... test_basic.i"
 	@echo "... test_basic.s"
+	@echo "... test_files.o"
+	@echo "... test_files.i"
+	@echo "... test_files.s"
 	@echo "... test_orders.o"
 	@echo "... test_orders.i"
 	@echo "... test_orders.s"

@@ -28,11 +28,12 @@
 /home/gonzalo/ProyectoInformatica/Proyecto/Build/googletest-build/googletest/CMakeFiles/edit_cache.dir
 /home/gonzalo/ProyectoInformatica/Proyecto/Build/googletest-build/googletest/CMakeFiles/gtest_main.dir
 /home/gonzalo/ProyectoInformatica/Proyecto/Build/googletest-build/googletest/CMakeFiles/gtest.dir
-/home/gonzalo/ProyectoInformatica/Proyecto/Build/tests/CMakeFiles/install/strip.dir
 /home/gonzalo/ProyectoInformatica/Proyecto/Build/tests/CMakeFiles/install/local.dir
 /home/gonzalo/ProyectoInformatica/Proyecto/Build/tests/CMakeFiles/install.dir
 /home/gonzalo/ProyectoInformatica/Proyecto/Build/tests/CMakeFiles/list_install_components.dir
 /home/gonzalo/ProyectoInformatica/Proyecto/Build/tests/CMakeFiles/rebuild_cache.dir
+/home/gonzalo/ProyectoInformatica/Proyecto/Build/tests/CMakeFiles/install/strip.dir
+/home/gonzalo/ProyectoInformatica/Proyecto/Build/tests/CMakeFiles/test_files.dir
 /home/gonzalo/ProyectoInformatica/Proyecto/Build/tests/CMakeFiles/edit_cache.dir
 /home/gonzalo/ProyectoInformatica/Proyecto/Build/tests/CMakeFiles/test_orders.dir
 /home/gonzalo/ProyectoInformatica/Proyecto/Build/tests/CMakeFiles/test_basic.dir

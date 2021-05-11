@@ -199,7 +199,7 @@ bool Manager::addAddress(const string &address, const string &city, const string
     return flag;
 }
 
-bool Manager::addCreditCard(const Address *address, const unsigned long &number, const string &cardholder) {
+bool Manager::addCreditCard(Address *address, const unsigned long &number, const string &cardholder) {
     bool flag = false;
     int id = users[current_member]->getPaymentMethods().size();
     if (isLogged()) {
@@ -210,7 +210,7 @@ bool Manager::addCreditCard(const Address *address, const unsigned long &number,
     return flag;
 }
 
-bool Manager::addPaypal(const Address* address, string& email) {
+bool Manager::addPaypal(Address* address, string& email) {
     bool flag = false;
     int id = users[current_member]->getPaymentMethods().size();
     if (isLogged()) {
@@ -541,9 +541,9 @@ bool Manager::deleteReview(const unsigned long &id) {
 
 //################# TERCERA ENTREGA ############################//
 
-void Manager::saveToFile(string& route) {}
+void Manager::saveToFile(const string route) {}
 
-void loadFromFile(string route) {}
+void loadFromFile(const string route) {}
 
 //################# MÉTODOS PROPIOS ############################//
 

@@ -235,6 +235,19 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
+# Target rules for targets named test_files
+
+# Build rule for target.
+test_files: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_files
+.PHONY : test_files
+
+# fast build rule for target.
+test_files/fast:
+	$(MAKE) -f tests/CMakeFiles/test_files.dir/build.make tests/CMakeFiles/test_files.dir/build
+.PHONY : test_files/fast
+
+#=============================================================================
 # Target rules for targets named test_orders
 
 # Build rule for target.
@@ -656,6 +669,7 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
+	@echo "... test_files"
 	@echo "... test_orders"
 	@echo "... test_basic"
 	@echo "... Address.o"

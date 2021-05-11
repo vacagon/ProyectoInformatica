@@ -146,14 +146,14 @@ public:
      * register a new credit card
      * @return True: success, otherwise False
 	 */
-    bool addCreditCard(const Address* address, const unsigned long& number, const string& cardholder);
+    bool addCreditCard(Address *address, const unsigned long& number, const string& cardholder);
 
 	/**
      * @brief Allow currently logged user to
      * register a new paypal account
      * @return True: success, otherwise False
 	 */
-    bool addPaypal(const Address* address, string& email);
+    bool addPaypal(Address *address, string& email);
 
     //################# SEGUNDA ENTREGA ############################//
 
@@ -246,14 +246,14 @@ public:
      * @param route: Route to the file where
      * the information is gonna be stored
 	 */
-    void saveToFile(string& route);
+    void saveToFile(const string route);
 
 	/**
      * @brief Restores all the system's information
      * stored in a given file
      * @param route: Route to the file where the information is stored
 	 */
-    void loadFromFile(string route);
+    void loadFromFile(const string route);
 
     //################# MÉTODOS PROPIOS ############################//
 

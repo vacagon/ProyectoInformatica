@@ -16,7 +16,7 @@ public:
     /**
      * @brief Parametric  constructor
      */
-    PaymentMethod(const Address *billing_address, const int& id = -1);
+    PaymentMethod(Address *billing_address, const int& id = -1);
 
     virtual ~PaymentMethod();
 
@@ -30,9 +30,9 @@ public:
 
     void setId(const int& i);
 
-    const Address *getBillingAddress() const;
+    Address* getBillingAddress() const;
 
-    void setBillingAddress(const Address *badress);
+    void setBillingAddress(Address *badress);
 
 protected:
 
@@ -51,7 +51,7 @@ protected:
      * @brief Billing direction associated with a payment method
      * Pointer to one of the previously registered addresses
      */
-    const Address* billing_address;
+    Address* billing_address;
 
 };
 

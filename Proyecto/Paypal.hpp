@@ -16,7 +16,7 @@ class Paypal: public PaymentMethod {
 
 public:
 
-    Paypal(const int& id, const Address* address, const string& email);
+    Paypal(const int& id, Address* address, const string& email);
 
     virtual ~Paypal();
 
