@@ -41,6 +41,7 @@ public:
      */
     const string& getCardholder() const;
 
+    bool isCreditCard() const;
 
 	/**
      * @brief \tid {id} - Credit Card:

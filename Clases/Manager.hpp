@@ -8,6 +8,7 @@
 #include <vector>
 #include <algorithm>
 #include <time.h>
+#include <fstream>
 #include "User.hpp"
 #include "Administrator.hpp"
 #include "PrivateUserData.hpp"

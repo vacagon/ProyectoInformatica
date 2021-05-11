@@ -205,6 +205,7 @@ bool Manager::addCreditCard(Address *address, const unsigned long &number, const
     if (isLogged()) {
         CreditCard* new_creditcard = new CreditCard(id, address, number, cardholder);
         users[current_member]->addPaymentMethod(new_creditcard);
+        users[current_member]->addCreditCard(new_creditcard);
         flag = true;
     }
     return flag;
@@ -216,6 +217,7 @@ bool Manager::addPaypal(Address* address, string& email) {
     if (isLogged()) {
         Paypal* new_paypal = new Paypal(id, address, email);
         users[current_member]->addPaymentMethod(new_paypal);
+        users[current_member]->addPaypal(new_paypal);
         flag = true;
     }
     return flag;
@@ -541,7 +543,78 @@ bool Manager::deleteReview(const unsigned long &id) {
 
 //################# TERCERA ENTREGA ############################//
 
-void Manager::saveToFile(const string route) {}
+void Manager::saveToFile(const string route) {
+    ofstream ofile(route, ios::out|ios::app);
+    for (User* every_user: users) {
+        ofile << "User:" << endl
+              << every_user->getUsername() << endl
+              << every_user->getEmail() << endl
+              << every_user->getPassword() << endl
+              << every_user->getReputation() << endl;
+        if (every_user->isAdmin()) {
+            ofile << every_user->getEmployeeCode() << endl;
+        } else {
+            ofile << "-1" << endl;
+        }
+        for (Address* every_address: every_user->getAddresses()) {
+            ofile << every_address->getId() << endl
+                  << every_address->getAddress() << endl
+                  << every_address->getCity() << endl
+                  << every_address->getProvince() << endl
+                  << every_address->getPostalCode() << endl;
+        }
+        if (every_user->getCreditCards().size() > 0) {
+            for (CreditCard* every_creditcard: every_user->getCreditCards()) {
+               ofile << "CreditCard:" << endl
+                     << every_creditcard->getId() << endl
+                     << every_creditcard->getBillingAddress()->getId() << endl
+                     << every_creditcard->getNumber() << endl
+                     << every_creditcard->getCardholder() << endl;
+            }
+        }
+        if (every_user->getPaypals().size() > 0) {
+            for (Paypal* every_paypal: every_user->getPaypals()) {
+                ofile << "Paypal:" << endl
+                      << every_paypal->getId() << endl
+                      << every_paypal->getBillingAddress()->getId() << endl
+                      << every_paypal->getEmail() << endl;
+            }
+        }
+        if (every_user->getOrders().size() > 0) {
+            for (Order* every_order: every_user->getOrders()) {
+                ofile << "Order:" << endl
+                      << every_order->getReference() << endl;
+                if (every_order->getProducts().size() > 0) {
+                    for (unsigned long every_product: every_order->getProducts()) {
+                        ofile << "order_product:" << endl
+                              << every_product << endl;
+                    }
+                }
+                ofile << every_order->getDate() << endl
+                      << every_order->getDeliveryAddress() << endl
+                      << every_order->getPaymentMethod() << endl
+                      << every_order->getTotal() << endl;
+            }
+        }
+    }
+    for (Product* every_product: products) {
+        ofile << "Product:" << endl
+              << every_product->getName() << endl
+              << every_product->getDescription() << endl
+              << every_product->getReference() << endl
+              << every_product->getPrice() << endl;
+        if (every_product->getReviews().size() > 0) {
+            for (Review* every_review: every_product->getReviews()) {
+                ofile << every_review->getId() << endl
+                      << every_review->getDate() << endl
+                      << every_review->getRating() << endl
+                      << every_review->getText() << endl
+                      << every_review->getVotes() << endl
+                      << every_review->getAuthor()->getUsername() << endl;
+            }
+        }
+    }
+}
 
 void Manager::loadFromFile(const string route) {}
 

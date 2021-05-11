@@ -7,6 +7,8 @@ PrivateUserData::PrivateUserData(const string &email, const string& password) {
     orders = vector<Order*> ();
     payment_methods = vector<PaymentMethod*> ();
     reviews_made = vector<Review*> ();
+    creditcards = vector<CreditCard*> ();
+    paypals = vector<Paypal*> ();
 }
 
 PrivateUserData::~PrivateUserData() {}
@@ -39,9 +41,26 @@ vector<PaymentMethod *> PrivateUserData::getPaymentMethods() const {
     return payment_methods;
 }
 
+vector<CreditCard*> PrivateUserData::getCreditCards() const {
+    return creditcards;
+}
+
+vector<Paypal*> PrivateUserData::getPaypals() const {
+    return paypals;
+}
+
 void PrivateUserData::addPaymentMethod(PaymentMethod* new_paymentmethod) {
     payment_methods.push_back(new_paymentmethod);
 }
+
+void PrivateUserData::addCreditCard(CreditCard* new_creditcard) {
+    creditcards.push_back(new_creditcard);
+}
+
+void PrivateUserData::addPaypal(Paypal *new_paypal) {
+    paypals.push_back(new_paypal);
+}
+
 
 vector<Order *> PrivateUserData::getOrders() const {
     return orders;

@@ -37,6 +37,8 @@ public:
 	 */
      const string show() const;
 
+     bool isCreditCard() const;
+
 private:
 
     Paypal();

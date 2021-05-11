@@ -21,3 +21,7 @@ const string Paypal::show() const {
        << "\t" << email << endl;
     return ss.str();
 }
+
+bool Paypal::isCreditCard() const {
+    return false;
+}
