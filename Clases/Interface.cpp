@@ -829,7 +829,7 @@ void Interface::addPaymentMethod() {
     }
 }
 
-void Interface::addCreditCard(const int& id, const Address* billing_address) {
+void Interface::addCreditCard(const int& id, Address* billing_address) {
     unsigned long cardnumber = 0;
     string cardholder;
     cout << "Introduce credit card number: ";
@@ -841,7 +841,7 @@ void Interface::addCreditCard(const int& id, const Address* billing_address) {
     manager->getCurrentMember()->addPaymentMethod(new_card);
 }
 
-void Interface::addPaypal(const int& id, const Address* billing_address) {
+void Interface::addPaypal(const int& id, Address* billing_address) {
     string email;
     cout << "Introduce email corresponding to your paypal account: ";
     cin >> email;

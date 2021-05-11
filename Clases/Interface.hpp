@@ -73,9 +73,9 @@ public:
 
     void addPaymentMethod();
 
-    void addCreditCard(const int &id, const Address *billing_address);
+    void addCreditCard(const int &id, Address *billing_address);
 
-    void addPaypal(const int& id, const Address* billing_address);
+    void addPaypal(const int& id, Address *billing_address);
 
     const string showProfile() const;
 
