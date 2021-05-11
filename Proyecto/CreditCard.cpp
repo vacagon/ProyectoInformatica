@@ -33,3 +33,7 @@ const string CreditCard::show() const {
         return ss.str();
 
 }
+
+bool CreditCard::isCreditCard() const {
+    return true;
+}

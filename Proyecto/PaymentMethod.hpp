@@ -26,6 +26,12 @@ public:
      */
     virtual const string show() const = 0;
 
+    /**
+     * @return True: Payment method is a credit card
+     * False: Payment method is a Paypal account
+     */
+    virtual bool isCreditCard() const = 0;
+
     int getId() const;
 
     void setId(const int& i);

@@ -8,6 +8,8 @@
 #include "Order.hpp"
 #include "PaymentMethod.hpp"
 #include "Review.hpp"
+#include "CreditCard.hpp"
+#include "Paypal.hpp"
 
 using namespace std;
 
@@ -61,10 +63,18 @@ public:
      */
     vector<PaymentMethod*> getPaymentMethods () const;
 
+    vector<CreditCard*> getCreditCards() const;
+
+    vector<Paypal*> getPaypals() const;
+
     /**
      * @brief Let the manager add a new payment method
      */
     void addPaymentMethod(PaymentMethod* new_paymentmethod);
+
+    void addCreditCard(CreditCard* new_creditcard);
+
+    void addPaypal(Paypal* new_paypal);
 
     /**
      * @brief Get the vector of pointers
@@ -106,6 +116,17 @@ protected:
      */
     vector<PaymentMethod*> payment_methods;
 
+    /**
+     * @brief Store all the credit cards
+     * recorded by the user
+     */
+    vector<CreditCard*> creditcards;
+
+    /**
+     * @brief Store all the paypal accounts
+     * recorded by the user
+     */
+    vector<Paypal*> paypals;
 
     /**
      * @brief Stores the orders made
