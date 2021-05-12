@@ -556,12 +556,15 @@ void Manager::saveToFile(const string route) {
         } else {
             ofile << "-1" << endl;
         }
-        for (Address* every_address: every_user->getAddresses()) {
-            ofile << every_address->getId() << endl
-                  << every_address->getAddress() << endl
-                  << every_address->getCity() << endl
-                  << every_address->getProvince() << endl
-                  << every_address->getPostalCode() << endl;
+        if (every_user->getAddresses().size() > 0) {
+            for (Address* every_address: every_user->getAddresses()) {
+                ofile << "Address:" << endl
+                      << every_address->getId() << endl
+                      << every_address->getAddress() << endl
+                      << every_address->getCity() << endl
+                      << every_address->getProvince() << endl
+                      << every_address->getPostalCode() << endl;
+            }
         }
         if (every_user->getCreditCards().size() > 0) {
             for (CreditCard* every_creditcard: every_user->getCreditCards()) {
@@ -616,7 +619,95 @@ void Manager::saveToFile(const string route) {
     }
 }
 
-void Manager::loadFromFile(const string route) {}
+void Manager::loadFromFile(const string route) {
+    ifstream ifile(route, ios::in);
+    ifile.seekg(0, ios::beg);
+    string titulo, titulo2;
+    ifile >> titulo;
+    while (titulo == "User:") {
+        logout();
+        string username, email, password, sreputation, check;
+        int reputation;
+        bool isAdmin = false;
+        unsigned long employee_code;
+        vector<PaymentMethod*> payment_methods;
+        vector<CreditCard*> creditcards;
+        vector<Paypal*> paypals;
+        vector<Order*> orders;
+        getline(ifile, username, '\n');
+        getline(ifile, email, '\n');
+        getline(ifile, password, '\n');
+        getline(ifile, sreputation, '\n');
+        reputation = stoi(sreputation);
+        getline(ifile, check, '\n');
+        if (check != "-1") {
+            employee_code = stoul(check);
+            isAdmin = true;
+            Administrator* new_admin = new Administrator(username, email, password, employee_code);
+            users.push_back(new_admin);
+        } else {
+            isAdmin = false;
+            User* new_user = new User(username, email, password);
+            users.push_back(new_user);
+        }
+        login(email, password);
+        getline(ifile, titulo2, '\n');
+        while (titulo2 == "Address:") {
+            int id;
+            unsigned int postal_code;
+            string address, city, province, sid, spostal_code;
+            getline(ifile, sid, '\n');
+            id = stoi(sid);
+            getline(ifile, address, '\n');
+            getline(ifile, city, '\n');
+            getline(ifile, province, '\n');
+            getline(ifile, spostal_code, '\n');
+            postal_code = stoi(spostal_code);
+            Address* new_address = new Address(address, city, province, postal_code, id);
+            getCurrentMember()->addAddress(new_address);
+            getline(ifile, titulo2, '\n');
+        }
+        while ((titulo2 == "CreditCard:")||(titulo2 == "Paypal:")) {
+            if (titulo2 == "CreditCard:") {
+                int id, billing_address;
+                string cardholder, sid, sbilling_address, snumber;
+                Address* billing_add;
+                unsigned long number;
+                getline(ifile, sid, '\n');
+                id = stoi(sid);
+                getline(ifile, sbilling_address, '\n');
+                billing_address = stoi(sbilling_address);
+                for (Address* address: getCurrentMember()->getAddresses()) {
+                    if (id == address->getId()) {
+                        billing_add = address;
+                    }
+                }
+                getline(ifile, snumber, '\n');
+                number = stoul(snumber);
+                getline(ifile, cardholder, '\n');
+                CreditCard* new_creditcard = new CreditCard(id, billing_add, number, cardholder);
+                getCurrentMember()->addCreditCard(new_creditcard);
+            }
+            if (titulo2 == "Paypal:") {
+                int id, billing_address;
+                string email, sid, sbilling_address;
+                Address* billing_add;
+                getline(ifile, sid, '\n');
+                id = stoi(sid);
+                getline(ifile, sbilling_address, '\n');
+                billing_address = stoi(sbilling_address);
+                for (Address* address: getCurrentMember()->getAddresses()) {
+                    if (id == address->getId()) {
+                        billing_add = address;
+                    }
+                }
+                getline(ifile, email, '\n');
+                Paypal* new_paypal = new Paypal(id, billing_add, email);
+                getCurrentMember()->addPaypal(new_paypal);
+            }
+        }
+    }
+}
 
 //################# MÉTODOS PROPIOS ############################//
 
