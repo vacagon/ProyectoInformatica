@@ -587,11 +587,9 @@ void Manager::saveToFile(const string route) {
             for (Order* every_order: every_user->getOrders()) {
                 ofile << "Order:" << endl
                       << every_order->getReference() << endl;
-                if (every_order->getProducts().size() > 0) {
-                    for (unsigned long every_product: every_order->getProducts()) {
-                        ofile << "order_product:" << endl
-                              << every_product << endl;
-                    }
+                for (unsigned long every_product: every_order->getProducts()) {
+                    ofile << "order_product:" << endl
+                          << every_product << endl;
                 }
                 ofile << every_order->getDate() << endl
                       << every_order->getDeliveryAddress() << endl
@@ -617,23 +615,20 @@ void Manager::saveToFile(const string route) {
             }
         }
     }
+    ofile.close();
 }
 
 void Manager::loadFromFile(const string route) {
     ifstream ifile(route, ios::in);
     ifile.seekg(0, ios::beg);
-    string titulo, titulo2;
-    ifile >> titulo;
+    string titulo, titulo2, titulo3;
+    getline(ifile, titulo, '\n');
     while (titulo == "User:") {
         logout();
         string username, email, password, sreputation, check;
         int reputation;
         bool isAdmin = false;
         unsigned long employee_code;
-        vector<PaymentMethod*> payment_methods;
-        vector<CreditCard*> creditcards;
-        vector<Paypal*> paypals;
-        vector<Order*> orders;
         getline(ifile, username, '\n');
         getline(ifile, email, '\n');
         getline(ifile, password, '\n');
@@ -705,8 +700,84 @@ void Manager::loadFromFile(const string route) {
                 Paypal* new_paypal = new Paypal(id, billing_add, email);
                 getCurrentMember()->addPaypal(new_paypal);
             }
+            getline(ifile, titulo2, '\n');
         }
+        while (titulo2 == "Order:") {
+            unsigned long reference_order;
+            vector<unsigned long> products;
+            string product, reference, spayment_method, sfloat, reference_product, saddress;
+            int payment_method, delivery_address;
+            float total;
+            time_t date;
+            getline(ifile, reference, '\n');
+            reference_order = stoul(reference);
+            getline(ifile, titulo3, '\n');
+            while (titulo3 == "order_product:") {
+                getline(ifile, reference_product, '\n');
+                products.push_back(stoul(reference_product));
+                getline(ifile, titulo3, '\n');
+            }
+            date = stoul(titulo3);
+            getline(ifile, saddress, '\n');
+            delivery_address = stoi(saddress);
+            getline(ifile, spayment_method, '\n');
+            payment_method = stoi(spayment_method);
+            getline(ifile, sfloat, '\n');
+            total = stof(sfloat);
+            Order* new_order = new Order(reference_order, products, delivery_address, payment_method, total);
+            getCurrentMember()->addOrder(new_order);
+            getline(ifile, titulo2, '\n');
+        }
+     titulo = titulo2;
+     logout();
     }
+    while ((titulo == "Product:")&&(!ifile.eof())) {
+        string name, description, sreference, sprice;
+        unsigned long reference;
+        float price;
+        vector<Review*> reviews = vector<Review*> ();
+        getline(ifile, name, '\n');
+        getline(ifile, description, '\n');
+        getline(ifile, sreference, '\n');
+        reference = stoul(sreference);
+        getline(ifile, sprice, '\n');
+        price = stof(sprice);
+        getline(ifile, titulo2, '\n');
+        while (titulo2 == "Review:") {
+            unsigned long id_review;
+            string sid_review, sdate, srating, text, svotes, username;
+            time_t date;
+            int rating, votes;
+            PublicUserData* author;
+            getline(ifile, sid_review, '\n');
+            id_review = stoul(sid_review);
+            getline(ifile, sdate, '\n');
+            date = stoul(sdate);
+            getline(ifile, srating, '\n');
+            rating = stoi(srating);
+            getline(ifile, text, '\n');
+            getline(ifile, svotes, '\n');
+            votes = stoi(svotes);
+            getline(ifile, username, '\n');
+            getline(ifile, titulo2, '\n');
+            for (User* user: users) {
+                if (user->getUsername() == username) {
+                    author = user;
+                }
+            }
+            Review* new_review = new Review(id_review, rating, text, author);
+            reviews.push_back(new_review);
+        }
+        Product* new_product = new Product(name, description, reference, price);
+        if (reviews.size() > 0) {
+            for (Review* product_reviews: reviews) {
+                new_product->addReview(product_reviews);
+            }
+        }
+        products.push_back(new_product);
+        titulo = titulo2;
+    }
+    ifile.close();
 }
 
 //################# MÉTODOS PROPIOS ############################//

@@ -33,6 +33,8 @@ PaymentMethod.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Manager.hpp
 string
 -
+cstring
+-
 vector
 -
 algorithm

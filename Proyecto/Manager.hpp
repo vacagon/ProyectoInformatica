@@ -5,6 +5,7 @@
  * Header files
  */
 #include <string>
+#include <cstring>
 #include <vector>
 #include <algorithm>
 #include <time.h>

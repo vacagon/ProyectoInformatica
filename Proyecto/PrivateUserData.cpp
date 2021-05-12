@@ -61,13 +61,12 @@ void PrivateUserData::addPaypal(Paypal *new_paypal) {
     paypals.push_back(new_paypal);
 }
 
+void PrivateUserData::addOrder(Order *new_order) {
+    orders.push_back(new_order);
+}
 
 vector<Order *> PrivateUserData::getOrders() const {
     return orders;
-}
-
-void PrivateUserData::addOrder(Order *new_order) {
-    orders.push_back(new_order);
 }
 
 vector<Review*> PrivateUserData::getUserReviews() const {
