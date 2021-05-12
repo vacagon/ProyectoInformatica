@@ -14,6 +14,8 @@ public:
 
     Interface(Manager& m);
 
+    ~Interface();
+
     //*************MENÚS********************
 
     /**

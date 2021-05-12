@@ -3,15 +3,11 @@
 Interface::Interface(Manager &m) {
     manager = &m;
     shopping_cart = vector<Product*> ();
-
-    //Flag to check the user is correctly created
     bool flag = false;
     cout << "*****************"
          << "WELCOME TO CompuGlobalHyperMegaComponents"
          << "*****************" << endl << endl;
-
-    //Make sure is the first time the app is ejecuted,
-    //and add an administrator
+    manager->loadFromFile("manager_data.dat");
     if (manager->getUsers().size() == 0) {
         cout << endl << "In order to get under way "
              << "first you need to create"
@@ -19,6 +15,12 @@ Interface::Interface(Manager &m) {
         do {
             flag = addAdministrator();
         } while (!flag);
+    }
+}
+
+Interface::~Interface() {
+    for (Product* card: shopping_cart) {
+        delete card;
     }
 }
 
