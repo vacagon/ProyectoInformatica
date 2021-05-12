@@ -72,15 +72,15 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "CompuGlobalHyperMegaComponentsLib::@6890427a1f51a3e7e1df"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "gtest_main::@32fe1c6cd3a65a2fab56"
 		},
 		{
 			"backtrace" : 2,
 			"id" : "gtest::@32fe1c6cd3a65a2fab56"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "CompuGlobalHyperMegaComponentsLib::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "test_orders::@a44f0ac069e85531cdee",

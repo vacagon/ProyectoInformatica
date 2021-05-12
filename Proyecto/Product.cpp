@@ -8,7 +8,11 @@ Product::Product(const string& name, const string& description, const unsigned l
     reviews = vector<Review*> ();
 }
 
-Product::~Product() {}
+Product::~Product() {
+    for (Review* product_reviews: reviews) {
+        delete product_reviews;
+    }
+}
 
 void Product::setName(const string& n) {
     name = n;

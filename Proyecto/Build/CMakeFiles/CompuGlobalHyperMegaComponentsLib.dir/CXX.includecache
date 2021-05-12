@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/home/gonzalo/ProyectoInformatica/Proyecto/Address.cpp
+Address.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Address.hpp
+
 /home/gonzalo/ProyectoInformatica/Proyecto/Address.hpp
 iostream
 -
@@ -16,11 +20,21 @@ sstream
 Order.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
 
+/home/gonzalo/ProyectoInformatica/Proyecto/Administrator.cpp
+Administrator.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Administrator.hpp
+
 /home/gonzalo/ProyectoInformatica/Proyecto/Administrator.hpp
 string
 -
 User.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/User.hpp
+
+/home/gonzalo/ProyectoInformatica/Proyecto/CreditCard.cpp
+CreditCard.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/CreditCard.hpp
+PaymentMethod.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/CreditCard.hpp
 string
@@ -70,6 +84,12 @@ Product.hpp
 Review.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 
+/home/gonzalo/ProyectoInformatica/Proyecto/Order.cpp
+ctime
+-
+Order.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
+
 /home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
 string
 -
@@ -82,11 +102,21 @@ ctime
 iomanip
 -
 
+/home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.cpp
+PaymentMethod.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
+PrivateUserData.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/PrivateUserData.hpp
+
 /home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
 string
 -
 Address.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Address.hpp
+
+/home/gonzalo/ProyectoInformatica/Proyecto/Paypal.cpp
+Paypal.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Paypal.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/Paypal.hpp
 string
@@ -95,6 +125,10 @@ sstream
 -
 PaymentMethod.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/PaymentMethod.hpp
+
+/home/gonzalo/ProyectoInformatica/Proyecto/PrivateUserData.cpp
+PrivateUserData.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/PrivateUserData.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/PrivateUserData.hpp
 string
@@ -116,6 +150,10 @@ CreditCard.hpp
 Paypal.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Paypal.hpp
 
+/home/gonzalo/ProyectoInformatica/Proyecto/Product.cpp
+Product.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Product.hpp
+
 /home/gonzalo/ProyectoInformatica/Proyecto/Product.hpp
 string
 -
@@ -128,9 +166,17 @@ User.hpp
 Review.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 
+/home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.cpp
+PublicUserData.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
+
 /home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
 string
 -
+
+/home/gonzalo/ProyectoInformatica/Proyecto/Review.cpp
+Review.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 string
@@ -147,6 +193,10 @@ iomanip
 -
 PublicUserData.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
+
+/home/gonzalo/ProyectoInformatica/Proyecto/User.cpp
+User.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/User.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/User.hpp
 string

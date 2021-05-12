@@ -11,7 +11,20 @@ PrivateUserData::PrivateUserData(const string &email, const string& password) {
     paypals = vector<Paypal*> ();
 }
 
-PrivateUserData::~PrivateUserData() {}
+PrivateUserData::~PrivateUserData() {
+    for (Address* user_address: addresses) {
+        delete user_address;
+    }
+    for (CreditCard* user_cards: creditcards) {
+        delete user_cards;
+    }
+    for (Paypal* user_paypals: paypals) {
+        delete user_paypals;
+    }
+    for (Order* user_orders: orders) {
+        delete user_orders;
+    }
+}
 
 void PrivateUserData::setEmail(const string& em) {
     email = em;
