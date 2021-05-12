@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/home/gonzalo/ProyectoInformatica/Proyecto/Address.cpp
+Address.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Address.hpp
+
 /home/gonzalo/ProyectoInformatica/Proyecto/Address.hpp
 iostream
 -
@@ -77,6 +81,12 @@ Product.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Product.hpp
 Review.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
+
+/home/gonzalo/ProyectoInformatica/Proyecto/Order.cpp
+ctime
+-
+Order.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/Order.hpp
 string
@@ -154,9 +164,17 @@ User.hpp
 Review.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 
+/home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.cpp
+PublicUserData.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
+
 /home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
 string
 -
+
+/home/gonzalo/ProyectoInformatica/Proyecto/Review.cpp
+Review.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 string
