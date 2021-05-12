@@ -544,7 +544,7 @@ bool Manager::deleteReview(const unsigned long &id) {
 //################# TERCERA ENTREGA ############################//
 
 void Manager::saveToFile(const string route) {
-    ofstream ofile(route, ios::out|ios::app);
+    ofstream ofile(route, ios::out);
     for (User* every_user: users) {
         ofile << "User:" << endl
               << every_user->getUsername() << endl
@@ -606,7 +606,8 @@ void Manager::saveToFile(const string route) {
               << every_product->getPrice() << endl;
         if (every_product->getReviews().size() > 0) {
             for (Review* every_review: every_product->getReviews()) {
-                ofile << every_review->getId() << endl
+                ofile << "Review:" << endl
+                      << every_review->getId() << endl
                       << every_review->getDate() << endl
                       << every_review->getRating() << endl
                       << every_review->getText() << endl
@@ -623,7 +624,7 @@ void Manager::loadFromFile(const string route) {
     ifile.seekg(0, ios::beg);
     string titulo, titulo2, titulo3;
     getline(ifile, titulo, '\n');
-    while (titulo == "User:") {
+    while (titulo.find("User:") != string::npos) {
         logout();
         string username, email, password, sreputation, check;
         int reputation;
@@ -682,6 +683,7 @@ void Manager::loadFromFile(const string route) {
                 getline(ifile, cardholder, '\n');
                 CreditCard* new_creditcard = new CreditCard(id, billing_add, number, cardholder);
                 getCurrentMember()->addCreditCard(new_creditcard);
+                getCurrentMember()->addPaymentMethod(new_creditcard);
             }
             if (titulo2 == "Paypal:") {
                 int id, billing_address;
@@ -699,6 +701,7 @@ void Manager::loadFromFile(const string route) {
                 getline(ifile, email, '\n');
                 Paypal* new_paypal = new Paypal(id, billing_add, email);
                 getCurrentMember()->addPaypal(new_paypal);
+                getCurrentMember()->addPaymentMethod(new_paypal);
             }
             getline(ifile, titulo2, '\n');
         }
@@ -725,13 +728,14 @@ void Manager::loadFromFile(const string route) {
             getline(ifile, sfloat, '\n');
             total = stof(sfloat);
             Order* new_order = new Order(reference_order, products, delivery_address, payment_method, total);
+            new_order->setDate(date);
             getCurrentMember()->addOrder(new_order);
             getline(ifile, titulo2, '\n');
         }
      titulo = titulo2;
      logout();
     }
-    while ((titulo == "Product:")&&(!ifile.eof())) {
+    while ((titulo == "Product:")&&(ifile)) {
         string name, description, sreference, sprice;
         unsigned long reference;
         float price;

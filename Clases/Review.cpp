@@ -39,6 +39,10 @@ const time_t &Review::getDate() const {
     return date;
 }
 
+void Review::setDate(time_t &d) {
+    date = d;
+}
+
 void Review::setRating(const int &rat) {
     rating = rat;
 }

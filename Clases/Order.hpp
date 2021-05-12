@@ -32,6 +32,8 @@ public:
 
     const time_t& getDate() const;
 
+    void setDate(time_t& d);
+
     const int& getDeliveryAddress() const;
 
     void setDeliveryAddress(const int& ad);

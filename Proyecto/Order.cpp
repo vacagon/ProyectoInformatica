@@ -45,6 +45,10 @@ const time_t &Order::getDate() const {
     return date;
 }
 
+void Order::setDate(time_t& d) {
+    date = d;
+}
+
 const int &Order::getDeliveryAddress() const {
     return delivery_address;
 }

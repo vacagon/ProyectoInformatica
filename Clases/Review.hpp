@@ -40,6 +40,8 @@ public:
      */
     const time_t& getDate() const;
 
+    void setDate(time_t& d);
+
     void setRating(const int &rat);
 
     const int& getRating() const;
