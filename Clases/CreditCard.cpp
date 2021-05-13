@@ -40,7 +40,7 @@ bool CreditCard::isCreditCard() const {
 
 ostream& operator << (ostream& os, CreditCard& CC) {
     os << "Id: " << CC.getId() << endl
-       << "Billing address" << CC.getBillingAddress()->show()
+       << "Billing address: " << CC.getBillingAddress()->show()
        << CC.getCardholder() << endl
        << CC.getNumber() << endl
        << "----------------" << endl;

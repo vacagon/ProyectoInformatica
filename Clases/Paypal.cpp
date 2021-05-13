@@ -27,8 +27,8 @@ bool Paypal::isCreditCard() const {
 }
 
 ostream& operator << (ostream& os, Paypal& PP) {
-    os << "Id: " << PP.getId()
-       << "Billing address" << PP.getBillingAddress()->show() << endl
+    os << "Id: " << PP.getId() << endl
+       << "Billing address: " << PP.getBillingAddress()->show()
        << PP.getEmail() << endl
        << "----------------" << endl;
     return os;

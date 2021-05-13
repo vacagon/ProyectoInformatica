@@ -5,7 +5,7 @@ Order::Order(const unsigned long &reference, const vector<unsigned long>& prods,
     setDeliveryAddress(address);
     setPaymentMethod(payment_method);
     setTotal(total);
-    date = time(nullptr);
+    date = time(NULL);
     for (unsigned long product: prods)  {
         addProduct(product);
     }

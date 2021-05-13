@@ -702,52 +702,52 @@ void Interface::addPaymentMethod() {
          << "2. Paypal account" << endl
          << "0. Back to Home Menu" << endl;
     option1 = ValidOption(0, 2);
-    while (option1 != 0) {
+    if (option1 != 0) {
         cout << "Chose an option" << endl
              << "1. Chose an already registered address" << endl
              << "2. Create a new address" << endl;
         option2 = ValidOption(1, 2);
         system("clear");
-    }
-    switch (option2) {
-    case 1:
-        cout << showAddresses() << endl;
-        if (manager->getCurrentMember()->getAddresses().size() > 0) {
-            cout << "Introduce the number of the address: ";
-            cin >> id_baddress;
-            if (id_baddress > (int)manager->getCurrentMember()->getAddresses().size()) {
-                id_baddress = manager->getCurrentMember()->getAddresses().size();
+        switch (option2) {
+        case 1:
+            cout << showAddresses() << endl;
+            if (manager->getCurrentMember()->getAddresses().size() > 0) {
+                cout << "Introduce the number of the address: ";
+                cin >> id_baddress;
+                if (id_baddress > (int)manager->getCurrentMember()->getAddresses().size()) {
+                    id_baddress = manager->getCurrentMember()->getAddresses().size();
+                }
+                if (id_baddress < 1) {
+                    id_baddress = 1;
+                }
+                id_baddress--;
+                billing_address = manager->getCurrentMember()->getAddresses()[id_baddress];
+            } else {
+                cout << "You need to register a new address" << endl
+                     << "This address will be selected as this "
+                     << "payment method's you are about to register"
+                     << " billing address" << endl;
+                cin.ignore(100, '\n');
+                addAddress();
+                billing_address = manager->getCurrentMember()->getAddresses()[0];
             }
-            if (id_baddress < 1) {
-                id_baddress = 1;
-            }
-            id_baddress--;
-            billing_address = manager->getCurrentMember()->getAddresses()[id_baddress];
-        } else {
-            cout << "You need to register a new address" << endl
-                 << "This address will be selected as this "
-                 << "payment method's you are about to register"
-                 << " billing address" << endl;
-            cin.ignore(100, '\n');
+            break;
+        case 2:
             addAddress();
-            billing_address = manager->getCurrentMember()->getAddresses()[0];
+            billing_address = manager->getCurrentMember()->getAddresses()[manager->getCurrentMember()->getAddresses().size() - 1];
+            break;
         }
-        break;
-    case 2:
-        addAddress();
-        billing_address = manager->getCurrentMember()->getAddresses()[manager->getCurrentMember()->getAddresses().size() - 1];
-        break;
-    }
-    id_pm  = manager->getCurrentMember()->getPaymentMethods().size();
-    switch (option1) {
-    case 0:
-        break;
-    case 1:
-        addCreditCard(id_pm, billing_address);
-        break;
-    case 2:
-        addPaypal(id_pm, billing_address);
-        break;
+        id_pm  = manager->getCurrentMember()->getPaymentMethods().size();
+        switch (option1) {
+        case 0:
+            break;
+        case 1:
+            addCreditCard(id_pm, billing_address);
+            break;
+        case 2:
+            addPaypal(id_pm, billing_address);
+            break;
+        }
     }
 }
 
@@ -761,6 +761,7 @@ void Interface::addCreditCard(const int& id, Address* billing_address) {
     getline(cin >> ws, cardholder);
     CreditCard* new_card = new CreditCard(id, billing_address,cardnumber,cardholder);
     manager->getCurrentMember()->addPaymentMethod(new_card);
+    manager->getCurrentMember()->addCreditCard(new_card);
 }
 
 void Interface::addPaypal(const int& id, Address* billing_address) {
@@ -770,6 +771,7 @@ void Interface::addPaypal(const int& id, Address* billing_address) {
     cin.ignore(100,'\n');
     Paypal* new_paypal = new Paypal(id,billing_address,email);
     manager->getCurrentMember()->addPaymentMethod(new_paypal);
+    manager->getCurrentMember()->addPaypal(new_paypal);
 }
 
 const string Interface::showProfile() {
@@ -784,7 +786,7 @@ const string Interface::showAddresses() const {
     ss << "Registered addresses: " << endl << endl;
     if (manager->getCurrentMember()->getAddresses().size() > 0) {
         for (Address* address: manager->getCurrentMember()->getAddresses()) {
-            ss << i << ". " << address->show() << endl;
+            ss << i << ". " << *address << endl;
             i++;
         }
     } else {
@@ -799,7 +801,7 @@ const string Interface::showPaymentMethods() const {
     ss << "Registered payment methods: " << endl << endl;
     if (manager->getCurrentMember()->getPaymentMethods().size() > 0) {
         for (PaymentMethod* payment_method: manager->getCurrentMember()->getPaymentMethods()) {
-            ss << i+1 << ". " <<payment_method->show() << endl;
+            ss << i+1 << ". " << payment_method->show() << endl;
             i++;
         }
     } else {
