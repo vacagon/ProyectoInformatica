@@ -56,6 +56,7 @@ void Interface::FrontPageMenu() {
         case 0:
             system("clear");
             shopping_cart.clear();
+            manager->saveToFile("manager_data.dat");
             cout << "See you soon!" << endl;
             break;
         case 1:
