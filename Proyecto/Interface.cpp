@@ -94,10 +94,11 @@ void Interface::HomeMenu() {
              << "4. Show profile" << endl
              << "5. Products" << endl
              << "6. Make an order" << endl
-             << "7. Show shopping cart" << endl
-             << "8. Reviews" << endl
+             << "7. Show previous orders" << endl
+             << "8. Show shopping cart" << endl
+             << "9. Reviews" << endl
              << "0. Log out/Delete account" << endl;
-        option = ValidOption(0, 8);
+        option = ValidOption(0, 9);
         switch (option) {
         case 0:
             system("clear");
@@ -138,11 +139,16 @@ void Interface::HomeMenu() {
             makeOrderMenu();
             break;
         case 7:
-            cout << showCart() << endl;
+            cout << showOrders() << endl;
             cin.ignore(100, '\n');
             cin.ignore(100, '\n');
             break;
         case 8:
+            cout << showCart() << endl;
+            cin.ignore(100, '\n');
+            cin.ignore(100, '\n');
+            break;
+        case 9:
             reviewsMenu();
             break;
         }
@@ -170,11 +176,12 @@ void Interface::HomeMenuAdministrator() {
              << "7. Add a new product" << endl
              << "8. Edit a product" << endl
              << "9. Make an order" << endl
-             << "10. Show shopping cart" << endl
-             << "11. Edit a product" << endl
-             << "12. Reviews" << endl
+             << "10. Show previous orders" << endl
+             << "11. Show shopping cart" << endl
+             << "12. Edit a product" << endl
+             << "13. Reviews" << endl
              << "0. Log out/Delete account" << endl;
-        option = ValidOption(0, 12);
+        option = ValidOption(0, 13);
         system("clear");
         switch (option) {
         case 0:
@@ -227,18 +234,23 @@ void Interface::HomeMenuAdministrator() {
             makeOrderMenu();
             break;
         case 10:
-            cout << showCart() << endl;
+            cout << showOrders() << endl;
             cin.ignore(100, '\n');
             cin.ignore(100, '\n');
             break;
         case 11:
+            cout << showCart() << endl;
+            cin.ignore(100, '\n');
+            cin.ignore(100, '\n');
+            break;
+        case 12:
             if (manager->getProducts().size() > 0) {
                 editProductMenu();
             } else {
                 cout << "No product added yet" << endl;
                 cin.ignore(100, '\n');
             }
-        case 12:
+        case 13:
             reviewsMenu();
             break;
         }
@@ -814,8 +826,26 @@ const string Interface::showOrders() {
     ss << "Previous orders: " << endl << endl;
     if (manager->getCurrentMember()->getOrders().size() > 0) {
         for (Order* order: manager->getCurrentMember()->getOrders()) {
-            ss << "------------------------------" << endl;
-            ss << *order << endl;
+            struct tm *timeinfo;
+            time(&order->getDate());
+            timeinfo = localtime(&order->getDate());
+            vector<Product*> order_products = vector<Product*> ();
+            for (unsigned long order_product: order->getProducts()) {
+                for (Product* all_products: manager->getProducts()) {
+                    if (all_products->getReference() == order_product) {
+                        order_products.push_back(all_products);
+                        break;
+                    }
+                }
+            }
+            ss << "------------------------------" << endl
+               << "Reference: " << order->getReference() << " - Made on: " << asctime(timeinfo)
+               << "---------------------------------------" << endl;
+            for (Product* product: order_products) {
+                ss << *product << endl;
+            }
+            ss << "---------------------------------------" << endl
+               << order->getTotal() << " [$]" << endl;
             ss << "------------------------------" << endl;
         }
     } else {
