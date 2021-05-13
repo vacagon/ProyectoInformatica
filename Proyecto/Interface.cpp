@@ -340,11 +340,12 @@ void Interface::reviewsMenu() {
              << "*********" << endl
              << "-----------------------------------" << endl
              << "1. Make a review" << endl
-             << "2. Show reviews by rating" << endl
-             << "3. Vote review" << endl
-             << "4. Modify review" << endl
+             << "2. Show all reviews" << endl
+             << "3. Show reviews by rating" << endl
+             << "4. Vote review" << endl
+             << "5. Modify review" << endl
              << "0. Back to home menu" << endl;
-        option  = ValidOption(0, 4);
+        option  = ValidOption(0, 5);
         cout << endl;
         switch (option) {
         case 0:
@@ -353,10 +354,15 @@ void Interface::reviewsMenu() {
             createReview();
             break;
         case 2:
-            cout << showReviewsByRating() << endl;
+            cout << showReviews() << endl;
+            cin.ignore(100, '\n');
             cin.ignore(100, '\n');
             break;
         case 3:
+            cout << showReviewsByRating() << endl;
+            cin.ignore(100, '\n');
+            break;
+        case 4:
             if (manager->getIdReviews().size() > 0) {
                 voteReview();
             } else {
@@ -364,7 +370,7 @@ void Interface::reviewsMenu() {
                 cin.ignore(100, '\n');
             }
             break;
-        case 4:
+        case 5:
             if (manager->getIdReviews().size() > 0) {
                 modifyReviewMenu();
             } else {
@@ -766,24 +772,9 @@ void Interface::addPaypal(const int& id, Address* billing_address) {
     manager->getCurrentMember()->addPaymentMethod(new_paypal);
 }
 
-const string Interface::showProfile() const {
+const string Interface::showProfile() {
     stringstream ss;
-    ss << showUserData() << endl;
-    ss << showAddresses() << endl;
-    ss << showPaymentMethods() << endl;
-    ss << showOrders() << endl;
-    return ss.str();
-}
-
-const string Interface::showUserData() const {
-    stringstream ss;
-    ss << "Username: " << manager->getCurrentMember()->getUsername() << endl << endl;
-    ss << "Email: " << manager->getCurrentMember()->getEmail() << endl << endl;
-    ss << "Password: " << manager->getCurrentMember()->getPassword() << endl << endl;
-    ss << "Reputation: " << manager->getCurrentMember()->getReputation() << endl << endl;
-    if (manager->getCurrentMember()->isAdmin()) {
-        ss << "Employee code: " << manager->getCurrentMember()->getEmployeeCode() << endl << endl;
-    }
+    ss << *manager->getCurrentMember() << endl;
     return ss.str();
 }
 
@@ -817,7 +808,7 @@ const string Interface::showPaymentMethods() const {
     return ss.str();
 }
 
-const string Interface::showOrders() const {
+const string Interface::showOrders() {
     stringstream ss;
     ss << "Previous orders: " << endl << endl;
     if (manager->getCurrentMember()->getOrders().size() > 0) {

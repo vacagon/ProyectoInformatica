@@ -79,7 +79,7 @@ public:
 
     void addPaypal(const int& id, Address *billing_address);
 
-    const string showProfile() const;
+    const string showProfile();
 
     const string showUserData() const;
 
@@ -89,7 +89,7 @@ public:
 
     const string showMembers() const;
 
-    const string showOrders() const;
+    const string showOrders();
 
     void addProduct();
 

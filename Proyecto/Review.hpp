@@ -2,6 +2,7 @@
 #define REVIEW_HPP
 
 #include <string>
+#include <cstring>
 #include <sstream>
 #include <ctime>
 #include <vector>
@@ -30,7 +31,7 @@ public:
      * \t{text}
      * {votes} votes
      */
-    const string show() const;
+    const string show();
 
     const unsigned long& getId() const;
 

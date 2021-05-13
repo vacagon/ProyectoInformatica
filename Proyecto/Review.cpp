@@ -2,7 +2,6 @@
 
 Review::Review(const unsigned long &i, const int &rating, const string& text, PublicUserData *a) {
     id = i;
-    //Making sure rating is between 0 and 5
     if (rating < 0) {
         setRating(0);
     } else {
@@ -21,11 +20,13 @@ Review::Review(const unsigned long &i, const int &rating, const string& text, Pu
 
 Review::~Review() {}
 
-const string Review::show() const {
-    tm tm = *localtime(&date);
+const string Review::show() {
+    struct tm *timeinfo;
+    time(&date);
+    timeinfo = localtime(&date);
     stringstream ss;
     ss << "\t" << rating << " stars on "
-           << put_time(&tm, "%c %Z") << " by " << getAuthor()->getUsername() << endl
+           << strtok(asctime(timeinfo), "\n") << " by " << getAuthor()->getUsername() << endl
            << "\t" << text << "\n"
            << "\t" << votes << " votes" << "\n";
     return ss.str();

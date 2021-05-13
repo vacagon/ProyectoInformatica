@@ -78,7 +78,7 @@ void PrivateUserData::addOrder(Order *new_order) {
     orders.push_back(new_order);
 }
 
-vector<Order *> PrivateUserData::getOrders() const {
+vector<Order *> PrivateUserData::getOrders() {
     return orders;
 }
 

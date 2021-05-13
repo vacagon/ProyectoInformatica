@@ -50,7 +50,7 @@ public:
 	 */
     const string show() const;
 
-
+    friend ostream& operator << (ostream& os, CreditCard& CC);
 
 private:
 

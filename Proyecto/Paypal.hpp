@@ -39,6 +39,8 @@ public:
 
      bool isCreditCard() const;
 
+     friend ostream& operator << (ostream& os, Paypal& PP);
+
 private:
 
     Paypal();

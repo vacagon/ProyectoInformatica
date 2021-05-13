@@ -37,3 +37,12 @@ const string CreditCard::show() const {
 bool CreditCard::isCreditCard() const {
     return true;
 }
+
+ostream& operator << (ostream& os, CreditCard& CC) {
+    os << "Id: " << CC.getId() << endl
+       << "Billing address" << CC.getBillingAddress()->show()
+       << CC.getCardholder() << endl
+       << CC.getNumber() << endl
+       << "----------------" << endl;
+    return os;
+}

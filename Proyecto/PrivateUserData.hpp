@@ -80,7 +80,7 @@ public:
      * @brief Get the vector of pointers
      * to Order made by the user
      */
-    vector<Order*> getOrders() const;
+    vector<Order*> getOrders();
 
     /**
      * @brief Let the manager add a new order

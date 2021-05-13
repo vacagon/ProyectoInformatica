@@ -1,4 +1,3 @@
-#include <ctime>
 #include "Order.hpp"
 
 Order::Order(const unsigned long &reference, const vector<unsigned long>& prods, const int &address, const int &payment_method, const float &total) {
@@ -41,7 +40,7 @@ void Order::addProduct(const unsigned long &ref) {
     products.push_back(ref);
 }
 
-const time_t &Order::getDate() const {
+time_t &Order::getDate() {
     return date;
 }
 
@@ -73,10 +72,17 @@ void Order::setTotal(const float &t) {
     total = t;
 }
 
-ostream& operator << (ostream &os, const Order &O) {
-    tm tm = *localtime(&O.date);
-    os << "Reference: " << O.getReference() << " - Made on: " << put_time(&tm, "%c %Z") << endl
+ostream& operator << (ostream &os, Order &O) {
+    struct tm *timeinfo;
+    time(&O.getDate());
+    timeinfo = localtime(&O.getDate());
+    os << "Reference: " << O.getReference() << " - Made on: " << asctime(timeinfo)
        << "---------------------------------------" << endl
+       << "Product references:" << endl;
+    for (unsigned long product: O.getProducts()) {
+        os << product << endl;
+    }
+    os << "---------------------------------------" << endl
        << O.getTotal() << " [$]" << endl;
     return os;
 }

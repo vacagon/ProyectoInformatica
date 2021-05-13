@@ -75,6 +75,8 @@ vector
 -
 ctime
 -
+time.h
+-
 iomanip
 -
 
@@ -130,6 +132,8 @@ string
 
 /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 string
+-
+cstring
 -
 sstream
 -

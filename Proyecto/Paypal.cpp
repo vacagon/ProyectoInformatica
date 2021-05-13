@@ -25,3 +25,11 @@ const string Paypal::show() const {
 bool Paypal::isCreditCard() const {
     return false;
 }
+
+ostream& operator << (ostream& os, Paypal& PP) {
+    os << "Id: " << PP.getId()
+       << "Billing address" << PP.getBillingAddress()->show() << endl
+       << PP.getEmail() << endl
+       << "----------------" << endl;
+    return os;
+}

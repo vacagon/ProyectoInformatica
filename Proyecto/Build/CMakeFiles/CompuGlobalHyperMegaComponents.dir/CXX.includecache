@@ -89,6 +89,8 @@ vector
 -
 ctime
 -
+time.h
+-
 iomanip
 -
 
@@ -145,6 +147,8 @@ string
 /home/gonzalo/ProyectoInformatica/Proyecto/Review.hpp
 string
 -
+cstring
+-
 sstream
 -
 ctime
@@ -167,4 +171,12 @@ PublicUserData.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
 PrivateUserData.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/PrivateUserData.hpp
+
+/home/gonzalo/ProyectoInformatica/Proyecto/main.cpp
+iostream
+-
+Manager.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Manager.hpp
+Interface.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Interface.hpp
 
