@@ -14,6 +14,8 @@ public:
 
     Interface(Manager& m);
 
+    ~Interface();
+
     //*************MENÚS********************
 
     /**
@@ -110,6 +112,8 @@ public:
     void voteReview();
 
     void deleteReview();
+
+    int ValidOption(int lower_bound, int upperbound);
 
 private:
 
