@@ -25,28 +25,20 @@ Interface::~Interface() {
 }
 
 void Interface::FrontPageMenu() {
-    bool valid_option = false;
+    bool valid_option= false;
     int option = -1;
     while ((!valid_option) || (option != 0)) {
-        system("clear");
-        cout << "*********"
-             << "Select an option by tipping"
-             << " the corresponding digit"
-             << "*********" << endl
-             << "-----------------------------------" << endl
-             << "1. Sign in" << endl
-             << "2. Sign up" << endl
-             << "0. Quit the app" << endl;
-        cin >> option;
-        cin.ignore(100,'\n');
-        if ((option != 1)&&(option != 2)&&(option != 0)) {
-            valid_option = false;
-            cout << "NOT A VALID OPTION"
-                 << ". TRY AGAIN" << endl;
-            continue;
-            cin.ignore(100,'\n');
+            cin.ignore(100, '\n');
             system("clear");
-        } else {
+            cout << "*********"
+                 << "Select an option by tipping"
+                 << " the corresponding digit"
+                 << "*********" << endl
+                 << "-----------------------------------" << endl
+                 << "1. Sign in" << endl
+                 << "2. Sign up" << endl
+                 << "0. Quit the app" << endl;
+            option = ValidOption(0, 2);
             if (!manager->isLogged()) {
                 valid_option = true;
             } else {
@@ -60,7 +52,6 @@ void Interface::FrontPageMenu() {
                     valid_option = true;
                 }
             }
-        }
         switch (option) {
         case 0:
             system("clear");
@@ -78,17 +69,18 @@ void Interface::FrontPageMenu() {
         case 2:
             while (!addUser()) {}
             break;
+        default:
+            valid_option = false;
+            break;
         }
     }
 }
 
 void Interface::HomeMenu() {
-    bool valid_option = false, delete_account = false;
-    int option = -1, del;
-    while ((!valid_option)||(option != 0)) {
+    int option = -1, delete_account;
+    while (option != 0) {
         system("clear");
         cout << "Welcome administrator " << manager->getCurrentMember()->getUsername()
-             << ", with employee code " << manager->getCurrentMember()->getEmployeeCode()
              << "!" << endl << endl;
         cout << "*********"
              << "Select an option by tipping"
@@ -104,38 +96,23 @@ void Interface::HomeMenu() {
              << "7. Show shopping cart" << endl
              << "8. Reviews" << endl
              << "0. Log out/Delete account" << endl;
-        cin >> option;
-        cin.ignore(10000,'\n');
-        if ((option < 0)||(option > 8)) {
-            valid_option = false;
-            system("clear");
-            continue;
-        } else {
-            valid_option = true;
-            system("clear");
-        }
+        option = ValidOption(0, 8);
         switch (option) {
         case 0:
-            do {
-                system("clear");
-                cout << "Do you want to delete your account?" << endl
-                     << "1. Yes" << endl
-                     << "0. No" << endl;
-                cin.clear();
-                cin >> del;
-                cin.ignore(100, '\n');
-                if ((del != 1)&&(del != 0)) {
-                    delete_account = false;
-                } else {
-                    delete_account = true;
-                }
-            } while ((cin.fail())||(!delete_account));
-            if (del == 1) {
-                manager->eraseCurrentMember();
-            } else {
+            system("clear");
+            cout << "Do you want to delete your account?" << endl
+                 << "1. Yes" << endl
+                 << "0. No" << endl;
+            delete_account = ValidOption(0, 1);
+            switch (delete_account) {
+            case 0:
                 manager->logout();
-                shopping_cart.clear();
+                break;
+            case 1:
+                manager->eraseCurrentMember();
+                break;
             }
+            shopping_cart.clear();
             break;
         case 1:
             editAccountMenu();
@@ -169,9 +146,8 @@ void Interface::HomeMenu() {
 }
 
 void Interface::HomeMenuAdministrator() {
-    bool valid_option = false, delete_account = false;
-    int option = -1, del;
-    while ((!valid_option)||(option != 0)) {
+    int option = -1, delete_account = -1;
+    while (option != 0) {
         system("clear");
         cout << "Welcome administrator " << manager->getCurrentMember()->getUsername()
              << ", with employee code " << manager->getCurrentMember()->getEmployeeCode()
@@ -194,38 +170,24 @@ void Interface::HomeMenuAdministrator() {
              << "11. Edit a product" << endl
              << "12. Reviews" << endl
              << "0. Log out/Delete account" << endl;
-        cin >> option;
-        cin.ignore(10000,'\n');
-        if ((option < 0)||(option > 12)) {
-            valid_option = false;
-            system("clear");
-            continue;
-        } else {
-            valid_option = true;
-            system("clear");
-        }
+        option = ValidOption(0, 12);
+        system("clear");
         switch (option) {
         case 0:
-            do {
-                system("clear");
-                cout << "Do you want to delete your account?" << endl
-                     << "1. Yes" << endl
-                     << "0. No" << endl;
-                cin.clear();
-                cin >> del;
-                cin.ignore(100, '\n');
-                if ((del != 1)&&(del != 0)) {
-                    delete_account = false;
-                } else {
-                    delete_account = true;
-                }
-            } while ((cin.fail())||(!delete_account));
-            if (del == 1) {
-                manager->eraseCurrentMember();
-            } else {
+            system("clear");
+            cout << "Do you want to delete your account?" << endl
+                 << "1. Yes" << endl
+                 << "0. No" << endl;
+            delete_account = ValidOption(0, 1);
+            switch (delete_account) {
+            case 0:
                 manager->logout();
-                shopping_cart.clear();
+                break;
+            case 1:
+                manager->eraseCurrentMember();
+                break;
             }
+            shopping_cart.clear();
             break;
         case 1:
             editAccountMenu();
@@ -277,8 +239,7 @@ void Interface::HomeMenuAdministrator() {
 
 void Interface::editAccountMenu() {
     int option = -1;
-    bool valid_option = false;
-    while ((!valid_option)||(option != 0)) {
+    while (option != 0) {
         system("clear");
         cout << "What do you want to edit?" << endl;
         cout << "----------------------------------" << endl;
@@ -287,16 +248,8 @@ void Interface::editAccountMenu() {
              << "3. Edit password" << endl
              << "4. Edit registered addresses" << endl
              << "0. Back to Home Menu" << endl;
-        cin >> option;
-        cin.ignore(100,'\n');
-        if ((option < 0)||(option > 4)) {
-            valid_option = false;
-            system("clear");
-            continue;
-        } else {
-            valid_option = true;
-            system("clear");
-        }
+        option = ValidOption(0, 4);
+        system("clear");
         switch (option) {
         case 0:
             break;
@@ -318,11 +271,9 @@ void Interface::editAccountMenu() {
 
 void Interface::makeOrderMenu() {
     vector<unsigned long> products = vector<unsigned long> ();
-    bool valid_option = false;
     int option = -1;
-    while ((!valid_option) || (option != 0)) {
+    while (option != 0) {
         system("clear");
-        cout << "Chose products from the list:" << endl;
         cout << showProducts() << endl;
         cout << "*********"
              << "Select an option by tipping"
@@ -334,21 +285,13 @@ void Interface::makeOrderMenu() {
              << "3. Show cart" << endl
              << "4. Make order" << endl
              << "0. Back to home menu" << endl;
-        cin >> option;
-        cin.ignore(100,'\n');
-        if ((option < 0)||(option > 4)) {
-            valid_option = false;
-            system("clear");
-            continue;
-        } else {
-            if (manager->getProducts().size() == 0) {
-                if ((option == 1)||(option == 2)) {
-                    cout << "No products added to the platform" << endl;
-                    cin.ignore(100, '\n');
-                    option = 0;
-                }
+        option = ValidOption(0, 4);
+        if (manager->getProducts().size() == 0) {
+            if ((option == 1)||(option == 2)) {
+                cout << "No products added to the platform" << endl;
+                cin.ignore(100, '\n');
+                option = 0;
             }
-            valid_option = true;
         }
         switch (option) {
         case 0:
@@ -379,9 +322,8 @@ void Interface::makeOrderMenu() {
 }
 
 void Interface::reviewsMenu() {
-    bool valid_option = false;
     int option = -1;
-    while ((!valid_option) || (option != 0)) {
+    while (option != 0) {
         system("clear");  
         cout << "*********" << endl
              << "Select an option by tipping"
@@ -393,15 +335,8 @@ void Interface::reviewsMenu() {
              << "3. Vote review" << endl
              << "4. Modify review" << endl
              << "0. Back to home menu" << endl;
-        cin >> option;
-        cin.ignore(100,'\n');
-        if ((option < 0)||(option > 4)) {
-            valid_option = false;
-            system("clear");
-            continue;
-        } else {
-            valid_option = true;
-        }
+        option  = ValidOption(0, 4);
+        cout << endl;
         switch (option) {
         case 0:
             break;
@@ -444,56 +379,55 @@ bool Interface::login() {
     if (manager->login(email, password)) {
         return true;
     } else {
-        cout << "Contraseña incorrecta"
-             << ". Intentelo de nuevo" << endl;
-        cin.ignore(100, '\n');
+        for (User* users: manager->getUsers()) {
+            if (users->getEmail() == email) {
+                cout << "Wrong password"
+                     << ". Try again" << endl;
+                cin.ignore(100, '\n');
+            }
+            if (users->getPassword() == password) {
+                cout << "Wrong email"
+                     << ". Try again" << endl;
+                cin.ignore(100, '\n');
+            }
+        }
         return false;
     }
 }
 
 bool Interface::addUser() {
     int option = -1;
-    bool valid_option = false, flag = false;
+    bool flag = false;
     string username, password, email;
-    do {
-        cout << endl << endl;
-        cout << "**CREATE A USER ACCOUNT**" << endl;
-        cout << endl << endl;
-        cout << "Select an option:" << endl
-             << "1. Add a normal user" << endl
-             << "2. Add an administrator" << endl;
-        cin >> option;
-        cin.ignore(100,'\n');
-        if ((option != 1)&&(option != 2)) {
-            valid_option = false;
-            system("clear");
-            continue;
-        } else {
-            valid_option = true;
-            system("clear");
-        }
-        switch (option) {
-        case 1:
-            cout << "Username: ";
-            getline(cin>>ws,username);
-            cout << "Email: ";
-            getline(cin>>ws,email);
-            cout << "Password: ";
-            getline(cin>>ws,password);
-            flag = manager->addUser(username,email,password);
-            break;
-        case 2:
-            flag = addAdministrator();
-            break;
-        }
-    } while (!valid_option);
+    system("clear");
+    cout << "**CREATE A USER ACCOUNT**" << endl;
+    cout << endl << endl;
+    cout << "Select an option:" << endl
+         << "1. Add a normal user" << endl
+         << "2. Add an administrator" << endl;
+    option = ValidOption(1, 2);
+    system("clear");
+    switch (option) {
+    case 1:
+        cout << "Username: ";
+        getline(cin>>ws, username);
+        cout << "Email: ";
+        getline(cin>>ws, email);
+        cout << "Password: ";
+        getline(cin>>ws, password);
+        flag = manager->addUser(username,email,password);
+        break;
+    case 2:
+        flag = addAdministrator();
+        break;
+    }
     return flag;
 }
 
 bool Interface::addAdministrator() {
     string username, password, email;
     unsigned long employee_code;
-    cout << endl << endl;
+    system("clear");
     cout << "**CREATE AN ADMINISTRATOR ACCOUNT**" << endl;
     cout << "Username: ";
     getline(cin>>ws,username);
@@ -543,21 +477,25 @@ bool Interface::editEmail() {
 }
 
 bool Interface::editPassword() {
-    string new_password, old_password;
+    string new_password, new_password2;
     bool flag = false;
-    cout << "Introduce your actual password: ";
-    cin >> old_password;
-    cin.ignore(100, '\n');
-    if (old_password == manager->getCurrentMember()->getPassword()) {
+    do {
+        system("clear");
         cout << "Introduce a new password: ";
         cin >> new_password;
-        cin.ignore(100,'\n');
-        manager->getCurrentMember()->setPassword(new_password);
-        flag = true;
-    } else {
-        cout << "Wrong password. Try again" << endl;
-        flag = false;
-    }
+        cin.ignore(100, '\n');
+        cout << "Confirm the new password: ";
+        cin >> new_password2;
+        cin.ignore(100, '\n');
+        if (new_password == new_password2) {
+            manager->getCurrentMember()->setPassword(new_password);
+            flag = true;
+        } else {
+            cout << "Wrong password. Try again" << endl;
+            cin.ignore(100, '\n');
+            flag = false;
+        }
+    } while (!flag);
     return flag;
 }
 
@@ -955,6 +893,8 @@ void Interface::addProduct() {
 
 const string Interface::showProducts() const {
     stringstream ss;
+    ss << "***PRODUCT CATALOG***" << endl
+       << "---------------------" << endl;
     if (manager->getProducts().size() > 0) {
         for (Product* product: manager->getProducts()) {
             ss << "------------------------------" << endl
@@ -1327,4 +1267,16 @@ void Interface::modifyReviewMenu() {
         }
         break;
     }
+}
+
+int Interface::ValidOption(int lower_bound, int upperbound) {
+    int x = -1;
+    cin >> x;
+    while ((cin.fail())||(x < lower_bound)||(x > upperbound)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Bad entry. Enter a number" << endl;
+        cin >> x;
+    }
+    return x;
 }

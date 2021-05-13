@@ -113,6 +113,8 @@ public:
 
     void deleteReview();
 
+    int ValidOption(int lower_bound, int upperbound);
+
 private:
 
     Manager* manager;
