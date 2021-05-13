@@ -14,7 +14,7 @@ Review::Review(const unsigned long &i, const int &rating, const string& text, Pu
     setText(text);
     author = a;
     votes = 0;
-    date = time(nullptr);
+    date = time(NULL);
     users_vote = vector<PublicUserData*> ();
 }
 

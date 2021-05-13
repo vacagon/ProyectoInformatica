@@ -1,2 +1,3 @@
 1. Darle formato a las fechas que se imprimen por pantalla
 2. Añadida la sobrecarga del operador << en las clases Order, CreditCard, Paypal y User.
+3. Comprobar y dar formato a los datos utilizados por el usuario

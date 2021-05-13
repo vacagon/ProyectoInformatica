@@ -115,6 +115,10 @@ public:
 
     int ValidOption(int lower_bound, int upperbound);
 
+    unsigned long ValidFormatCreditCard();
+
+    unsigned int ValidFormatPostalCode();
+
 private:
 
     Manager* manager;
