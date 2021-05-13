@@ -583,7 +583,7 @@ void Interface::editAddress() {
             break;
         case 4:
             cout << "Introduce postal code: ";
-            cin >> postal_code;
+            postal_code = ValidFormatPostalCode();
             cin.ignore(100, '\n');
             manager->getCurrentMember()->getAddresses()[id]->setPostalCode(postal_code);
             break;
@@ -686,7 +686,7 @@ void Interface::addAddress() {
     cout << "Introduce province: ";
     getline(cin >> ws, province);
     cout << "Introduce postal code: ";
-    cin >> postal_code;
+    postal_code = ValidFormatPostalCode();
     id = manager->getCurrentMember()->getAddresses().size();
     Address* new_address = new Address(address,city,province,postal_code,id);
     manager->getCurrentMember()->addAddress(new_address);
@@ -755,8 +755,7 @@ void Interface::addCreditCard(const int& id, Address* billing_address) {
     unsigned long cardnumber = 0;
     string cardholder;
     cout << "Introduce credit card number: ";
-    cin >> cardnumber;
-    cin.ignore(100,'\n');
+    cardnumber = ValidFormatCreditCard();
     cout << "Introduce the card holder: ";
     getline(cin >> ws, cardholder);
     CreditCard* new_card = new CreditCard(id, billing_address,cardnumber,cardholder);
@@ -1208,4 +1207,52 @@ int Interface::ValidOption(int lower_bound, int upperbound) {
         cin >> x;
     }
     return x;
+}
+
+unsigned long Interface::ValidFormatCreditCard() {
+    string scard_number;
+    char aux[16];
+    unsigned long card_number = 0;
+    cin >> scard_number;
+    for (int i = 0; i < 16; i++) {
+        if (i < (int)scard_number.size()) {
+            if (isdigit(scard_number[i])) {
+                aux[i] = scard_number[i];
+            } else {
+                if (i == 0) {
+                    aux[i] = '1';
+                } else {
+                    aux[i] = '0';
+                }
+            }
+        } else {
+            aux[i] = '0';
+        }
+    }
+    card_number = stoul(aux);
+    return card_number;
+}
+
+unsigned int Interface::ValidFormatPostalCode() {
+    string spostalcode;
+    char aux[5];
+    unsigned int postal_code = 0;
+    cin >> spostalcode;
+    for (int i = 0; i < 5; i++) {
+        if (i < (int)spostalcode.size()) {
+            if (isdigit(spostalcode[i])&&(isdigit(spostalcode[i]) > 0)) {
+                aux[i] = spostalcode[i];
+            } else {
+                if (i == 0) {
+                    aux[i] = '1';
+                } else {
+                    aux[i] = '0';
+                }
+            }
+        } else {
+            aux[i] = '0';
+        }
+    }
+    postal_code = stoi(aux);
+    return postal_code;
 }
