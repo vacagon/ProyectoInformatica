@@ -597,6 +597,33 @@ Review.cpp.s:
 	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponentsLib.dir/Review.cpp.s
 .PHONY : Review.cpp.s
 
+ShoppingCart.o: ShoppingCart.cpp.o
+
+.PHONY : ShoppingCart.o
+
+# target to build an object file
+ShoppingCart.cpp.o:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponents.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.o
+.PHONY : ShoppingCart.cpp.o
+
+ShoppingCart.i: ShoppingCart.cpp.i
+
+.PHONY : ShoppingCart.i
+
+# target to preprocess a source file
+ShoppingCart.cpp.i:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponents.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.i
+.PHONY : ShoppingCart.cpp.i
+
+ShoppingCart.s: ShoppingCart.cpp.s
+
+.PHONY : ShoppingCart.s
+
+# target to generate assembly for a file
+ShoppingCart.cpp.s:
+	$(MAKE) -f CMakeFiles/CompuGlobalHyperMegaComponents.dir/build.make CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.s
+.PHONY : ShoppingCart.cpp.s
+
 User.o: User.cpp.o
 
 .PHONY : User.o
@@ -708,6 +735,9 @@ help:
 	@echo "... Review.o"
 	@echo "... Review.i"
 	@echo "... Review.s"
+	@echo "... ShoppingCart.o"
+	@echo "... ShoppingCart.i"
+	@echo "... ShoppingCart.s"
 	@echo "... User.o"
 	@echo "... User.i"
 	@echo "... User.s"

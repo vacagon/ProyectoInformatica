@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/CompuGlobalHyperMegaComponents.dir/Interface.cpp.o"
+  "CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.o"
   "CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o"
   "CompuGlobalHyperMegaComponents"
   "CompuGlobalHyperMegaComponents.pdb"

@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/gonzalo/ProyectoInformatica/Proyecto/Interface.cpp" "/home/gonzalo/ProyectoInformatica/Proyecto/Build/CMakeFiles/CompuGlobalHyperMegaComponents.dir/Interface.cpp.o"
+  "/home/gonzalo/ProyectoInformatica/Proyecto/ShoppingCart.cpp" "/home/gonzalo/ProyectoInformatica/Proyecto/Build/CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.o"
   "/home/gonzalo/ProyectoInformatica/Proyecto/main.cpp" "/home/gonzalo/ProyectoInformatica/Proyecto/Build/CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

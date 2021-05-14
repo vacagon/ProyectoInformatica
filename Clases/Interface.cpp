@@ -2,7 +2,7 @@
 
 Interface::Interface(Manager &m) {
     manager = &m;
-    shopping_cart = vector<Product*> ();
+    shopping_cart = nullptr;
     bool flag = false;
     cout << "*****************"
          << "WELCOME TO CompuGlobalHyperMegaComponents"
@@ -18,11 +18,9 @@ Interface::Interface(Manager &m) {
     }
 }
 
-Interface::~Interface() {
-    for (Product* card: shopping_cart) {
-        delete card;
-    }
-}
+//*************MENÚS********************
+
+Interface::~Interface() {}
 
 void Interface::FrontPageMenu() {
     bool valid_option= false;
@@ -55,7 +53,6 @@ void Interface::FrontPageMenu() {
         switch (option) {
         case 0:
             system("clear");
-            shopping_cart.clear();
             manager->saveToFile("manager_data.dat");
             cout << "See you soon!" << endl;
             break;
@@ -114,7 +111,7 @@ void Interface::HomeMenu() {
                 manager->eraseCurrentMember();
                 break;
             }
-            shopping_cart.clear();
+            delete shopping_cart;
             break;
         case 1:
             editAccountMenu();
@@ -144,7 +141,7 @@ void Interface::HomeMenu() {
             cin.ignore(100, '\n');
             break;
         case 8:
-            cout << showCart() << endl;
+            cout << *shopping_cart << endl;
             cin.ignore(100, '\n');
             cin.ignore(100, '\n');
             break;
@@ -198,7 +195,7 @@ void Interface::HomeMenuAdministrator() {
                 manager->eraseCurrentMember();
                 break;
             }
-            shopping_cart.clear();
+            delete shopping_cart;
             break;
         case 1:
             editAccountMenu();
@@ -239,7 +236,7 @@ void Interface::HomeMenuAdministrator() {
             cin.ignore(100, '\n');
             break;
         case 11:
-            cout << showCart() << endl;
+            cout << *shopping_cart << endl;
             cin.ignore(100, '\n');
             cin.ignore(100, '\n');
             break;
@@ -291,7 +288,7 @@ void Interface::editAccountMenu() {
 
 void Interface::makeOrderMenu() {
     vector<unsigned long> products = vector<unsigned long> ();
-    int option = -1;
+    int option = -1, k = 0;
     while (option != 0) {
         system("clear");
         cout << showProducts() << endl;
@@ -320,19 +317,24 @@ void Interface::makeOrderMenu() {
             while (!addProductToCart()) {}
             break;
         case 2:
-            while (!eraseProductFromCart()) {};
+            eraseProductFromCart();
             break;
         case 3:
-            cout << showCart() << endl;
+            cout << *shopping_cart << endl;
             cin.ignore(100, '\n');
             cin.ignore(100, '\n');
             break;
         case 4:
-            if (shopping_cart.size() > 0) {
+            if (shopping_cart->getProducts().size() > 0) {
                 while (!makeOrder()) {}
                 cout << showOrders() << endl;
                 cin.ignore(100, '\n');
-                shopping_cart.clear();
+                cin.ignore(100, '\n');
+                k = (int)shopping_cart->getProducts().size();
+                for (int i = 0; i < k; i++) {
+                    shopping_cart->eraseProduct(shopping_cart->getProducts()[i]);
+                }
+                shopping_cart->setTotal(0);
             } else {
                 cout << "Shopping cart is empty. Choose a product first" << endl;
                 cin.ignore(100, '\n');
@@ -340,6 +342,81 @@ void Interface::makeOrderMenu() {
             break;
         }
     }
+}
+
+void Interface::editProductMenu() {
+    int option1 = -1, option2 = -1;
+    bool valid_option1 = false, flag = true;
+    string name, description;
+    unsigned long reference;
+    float price;
+    while (!valid_option1) {
+        system("clear");
+        cout << "Chose the product to edit:" << endl
+             << showProducts() << endl;
+        cin >> option1;
+        cin.ignore(100, '\n');
+        if ((option1 < 1)||(option1 > (int)manager->getProducts().size())) {
+                valid_option1 = false;
+        } else {
+            valid_option1 = true;
+        }
+    }
+    option1--;
+        system("clear");
+        cout << "What do you want to edit?" << endl
+             << "1. Name" << endl
+             << "2. Description" << endl
+             << "3. Reference" << endl
+             << "4. Price" << endl;
+        option2 = ValidOption(1, 4);
+    switch (option2) {
+    case 1:
+        cout << "Actual name: " << manager->getProducts()[option1]->getName() << endl
+             << "Introduce the new name: ";
+        getline(cin >> ws, name);
+        manager->getProducts()[option1]->setName(name);
+        break;
+    case 2:
+        cout << "Actual description: " << manager->getProducts()[option1]->getDescription() << endl
+             << "Introduce the new description: ";
+        getline(cin >> ws, description);
+        manager->getProducts()[option1]->setDescription(description);
+        break;
+    case 3:
+        cout << "Actual reference: " << manager->getProducts()[option1]->getReference() << endl
+             << "Introduce the new reference: ";
+        cin >> reference;
+        cin.ignore(100, '\n');
+        for (Product* product : manager->getProducts()) {
+            if (reference == product->getReference()) {
+                flag = false;
+            }
+        }
+        if (flag) {
+            manager->getProducts()[option1]->setReference(reference);
+        } else {
+            cout << "There is other product with that reference" << endl;
+            cin.ignore(100, '\n');
+        }
+        break;
+    case 4:
+        cout << "Actual price: " << manager->getProducts()[option1]->getPrice() << endl
+             << "Introduce the new price: ";
+        cin >> price;
+        cin.ignore(100, '\n');
+        if (price > 0) {
+            manager->getProducts()[option1]->setPrice(price);
+        } else {
+            cout << "Price can't be negative" << endl;
+            cin.ignore(100, '\n');
+        }
+        break;
+    }
+    system("clear");
+    cout << "The new catalog of products is:" << endl
+         << showProducts() << endl;
+    cin.ignore(100, '\n');
 }
 
 void Interface::reviewsMenu() {
@@ -394,6 +471,69 @@ void Interface::reviewsMenu() {
     }
 }
 
+void Interface::modifyReviewMenu() {
+    int option = -1;
+    unsigned long id;
+    int new_rating = 0;
+    string new_text;
+    system("clear");
+    cin.clear();
+    cout << showReviews() << endl
+         << endl << "Enter the id of the review "
+         << "you want to modify: ";
+    cin >> id;
+    cin.ignore(100, '\n');
+    cout << "Choose an option" << endl
+         << "1. Rating" << endl
+         << "2. Text" << endl
+         << "3. Delete review" << endl;
+    option = ValidOption(1, 3);
+    system("clear");
+    switch (option) {
+    case 1:
+        cout << "Introduce the new rating: ";
+        new_rating = ValidOption(0, 5);
+        if (manager->modifyReviewRating(id, new_rating)) {
+            cout << "Your have modified the rating to " << new_rating << endl;
+            cin.ignore(100, '\n');
+        } else {
+            cout << "Something went wrong. Maybe the introduced id does "
+                 << "not correspond to any existing review, and remember, "
+                 << "you can not modify other user's reviews" << endl;
+            cin.ignore(100, '\n');
+        }
+        break;
+    case 2:
+        cin.clear();
+        cout << "Introduce the new text: ";
+        getline(cin, new_text);
+        if (manager->modifyReviewText(id, new_text)) {
+            cout << "Your have modified the text of the review to: " << new_text << endl;
+            cin.ignore(100, '\n');
+        } else {
+            cout << "Something went wrong. Maybe the introduced id does "
+                 << "not correspond to any existing review, and remember, "
+                 << "you can not modify other user's reviews" << endl;
+            cin.ignore(100, '\n');
+        }
+        break;
+    case 3:
+        if(manager->deleteReview(id)) {
+            cout << "You have deleted review with id " << id << endl;
+            cin.ignore(100, '\n');
+        } else {
+            cout << "Something went wrong. Maybe the introduced id does "
+                 << "not correspond to any existing review, and remember, "
+                 << "you can not delete other user's reviews unless"
+                 << " you're an administrator" << endl;
+            cin.ignore(100, '\n');
+        }
+        break;
+    }
+}
+
+//*************FUNCIONES*****************
+
 bool Interface::login() {
     system("clear");
     string email, password;
@@ -404,6 +544,7 @@ bool Interface::login() {
     cin >> password;
     cin.ignore(100,'\n');
     if (manager->login(email, password)) {
+        shopping_cart = new ShoppingCart(manager->getCurrentMember());
         return true;
     } else {
         for (User* users: manager->getUsers()) {
@@ -611,81 +752,6 @@ void Interface::editAddress() {
     cin.ignore(100, '\n');
 }
 
-void Interface::editProductMenu() {
-    int option1 = -1, option2 = -1;
-    bool valid_option1 = false, flag = true;
-    string name, description;
-    unsigned long reference;
-    float price;
-    while (!valid_option1) {
-        system("clear");
-        cout << "Chose the product to edit:" << endl
-             << showProducts() << endl;
-        cin >> option1;
-        cin.ignore(100, '\n');
-        if ((option1 < 1)||(option1 > (int)manager->getProducts().size())) {
-                valid_option1 = false;
-        } else {
-            valid_option1 = true;
-        }
-    }
-    option1--;
-        system("clear");
-        cout << "What do you want to edit?" << endl
-             << "1. Name" << endl
-             << "2. Description" << endl
-             << "3. Reference" << endl
-             << "4. Price" << endl;
-        option2 = ValidOption(1, 4);
-    switch (option2) {
-    case 1:
-        cout << "Actual name: " << manager->getProducts()[option1]->getName() << endl
-             << "Introduce the new name: ";
-        getline(cin >> ws, name);
-        manager->getProducts()[option1]->setName(name);
-        break;
-    case 2:
-        cout << "Actual description: " << manager->getProducts()[option1]->getDescription() << endl
-             << "Introduce the new description: ";
-        getline(cin >> ws, description);
-        manager->getProducts()[option1]->setDescription(description);
-        break;
-    case 3:
-        cout << "Actual reference: " << manager->getProducts()[option1]->getReference() << endl
-             << "Introduce the new reference: ";
-        cin >> reference;
-        cin.ignore(100, '\n');
-        for (Product* product : manager->getProducts()) {
-            if (reference == product->getReference()) {
-                flag = false;
-            }
-        }
-        if (flag) {
-            manager->getProducts()[option1]->setReference(reference);
-        } else {
-            cout << "There is other product with that reference" << endl;
-            cin.ignore(100, '\n');
-        }
-        break;
-    case 4:
-        cout << "Actual price: " << manager->getProducts()[option1]->getPrice() << endl
-             << "Introduce the new price: ";
-        cin >> price;
-        cin.ignore(100, '\n');
-        if (price > 0) {
-            manager->getProducts()[option1]->setPrice(price);
-        } else {
-            cout << "Price can't be negative" << endl;
-            cin.ignore(100, '\n');
-        }
-        break;
-    }
-    system("clear");
-    cout << "The new catalog of products is:" << endl
-         << showProducts() << endl;
-    cin.ignore(100, '\n');
-}
-
 void Interface::addAddress() {
     system("clear");
     string address, city, province;
@@ -823,7 +889,7 @@ const string Interface::showPaymentMethods() const {
 
 const string Interface::showOrders() {
     stringstream ss;
-    ss << "Previous orders: " << endl << endl;
+    ss << endl << "Previous orders: " << endl << endl;
     if (manager->getCurrentMember()->getOrders().size() > 0) {
         for (Order* order: manager->getCurrentMember()->getOrders()) {
             struct tm *timeinfo;
@@ -845,6 +911,7 @@ const string Interface::showOrders() {
                 ss << *product << endl;
             }
             ss << "---------------------------------------" << endl
+               << setprecision(2) << fixed
                << order->getTotal() << " [$]" << endl;
             ss << "------------------------------" << endl;
         }
@@ -911,62 +978,43 @@ bool Interface::addProductToCart() {
     cout << endl << "Introduce the reference of the "
          << "product you want to add to the cart: ";
     cin >> reference;
+    while (cin.fail()) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Bad entry. Enter a number" << endl;
+        cin >> reference;
+    }
     cin.ignore(100, '\n');
     for (Product* product: manager->getProducts()) {
         if (reference == product->getReference()) {
             flag = true;
-            shopping_cart.push_back(product);
+            shopping_cart->addProduct(product);
         }
     }
     return flag;
 }
 
-const string Interface::showCart() const {
-    int i = 1;
-    stringstream ss;
-    if (shopping_cart.size() > 0) {
-        ss << endl << endl << "****SHOPPING CART****" << endl
-             << "-------------------------------------------" << endl
-             << "-------------------------------------------" << endl;
-        for (Product* product: shopping_cart) {
-            ss << i << ". " << endl << *product << endl;
-            i++;
-        }
-    } else {
-        ss << "Shopping cart is empty" << endl;
-    }
-    ss << endl;
-    return ss.str();
-}
-
-bool Interface::eraseProductFromCart() {
+void Interface::eraseProductFromCart() {
     int option = -1;
     system("clear");
-    cout << showCart() << endl
+    cout << *shopping_cart << endl
          << "----------------------" << endl;
-    if (shopping_cart.size() > 0) {
+    if (shopping_cart->getProducts().size() > 0) {
         cout << "Enter the product you want to erase by "
              << "entering its number: ";
-        cin >> option;
-        cin.ignore(100, '\n');
-        if (option <= (int)shopping_cart.size()) {
-            option --;
-            shopping_cart.erase(shopping_cart.begin() + option);
-            return true;
-        } else {
-            return false;
-        }
+        option = ValidOption(1, (int)shopping_cart->getProducts().size());
+        option --;
+        shopping_cart->eraseProduct(shopping_cart->getProducts()[option]);
     } else {
         cout << "There is no product added to shopping cart" << endl;
         cin.ignore(100, '\n');
-        return true;
     }
 }
 
 bool Interface::makeOrder() {
     vector<unsigned long> products = vector<unsigned long> ();
     int payment_method = -1, shipping_address = -1, option_address = -1, option_pm = -1;
-    for (Product* product: shopping_cart) {
+    for (Product* product: shopping_cart->getProducts()) {
         products.push_back(product->getReference());
     }
     system("clear");
@@ -984,14 +1032,7 @@ bool Interface::makeOrder() {
     switch (option_address) {
     case 1:
         cout << "Chose the address: " << endl << showAddresses() << endl;
-        cin >> shipping_address;
-        cin.ignore(100, '\n');
-        if (shipping_address < 0) {
-            shipping_address = 0;
-        }
-        if (shipping_address > (int)manager->getCurrentMember()->getAddresses().size()) {
-            shipping_address = (int)manager->getCurrentMember()->getAddresses().size();
-        }
+        shipping_address = ValidOption(1, (int)manager->getCurrentMember()->getAddresses().size());
         shipping_address--;
         break;
     case 2:
@@ -1017,14 +1058,7 @@ bool Interface::makeOrder() {
     switch (option_pm) {
     case 1:
         cout << "Chose the payment method: " << endl << showPaymentMethods() << endl;
-        cin >> payment_method;
-        cin.ignore(100, '\n');
-        if(payment_method < 0) {
-            payment_method = 0;
-        }
-        if (payment_method > (int)manager->getCurrentMember()->getPaymentMethods().size()) {
-            payment_method = manager->getCurrentMember()->getPaymentMethods().size();
-        }
+        payment_method = ValidOption(1, (int)manager->getCurrentMember()->getPaymentMethods().size());
         payment_method--;
         break;
     case 2:
@@ -1166,66 +1200,7 @@ void Interface::voteReview() {
     }
 }
 
-void Interface::modifyReviewMenu() {
-    int option = -1;
-    unsigned long id;
-    int new_rating = 0;
-    string new_text;
-    system("clear");
-    cin.clear();
-    cout << showReviews() << endl
-         << endl << "Enter the id of the review "
-         << "you want to modify: ";
-    cin >> id;
-    cin.ignore(100, '\n');
-    cout << "Choose an option" << endl
-         << "1. Rating" << endl
-         << "2. Text" << endl
-         << "3. Delete review" << endl;
-    option = ValidOption(1, 3);
-    system("clear");
-    switch (option) {
-    case 1:
-        cout << "Introduce the new rating: ";
-        new_rating = ValidOption(0, 5);
-        if (manager->modifyReviewRating(id, new_rating)) {
-            cout << "Your have modified the rating to " << new_rating << endl;
-            cin.ignore(100, '\n');
-        } else {
-            cout << "Something went wrong. Maybe the introduced id does "
-                 << "not correspond to any existing review, and remember, "
-                 << "you can not modify other user's reviews" << endl;
-            cin.ignore(100, '\n');
-        }
-        break;
-    case 2:
-        cin.clear();
-        cout << "Introduce the new text: ";
-        getline(cin, new_text);
-        if (manager->modifyReviewText(id, new_text)) {
-            cout << "Your have modified the text of the review to: " << new_text << endl;
-            cin.ignore(100, '\n');
-        } else {
-            cout << "Something went wrong. Maybe the introduced id does "
-                 << "not correspond to any existing review, and remember, "
-                 << "you can not modify other user's reviews" << endl;
-            cin.ignore(100, '\n');
-        }
-        break;
-    case 3:
-        if(manager->deleteReview(id)) {
-            cout << "You have deleted review with id " << id << endl;
-            cin.ignore(100, '\n');
-        } else {
-            cout << "Something went wrong. Maybe the introduced id does "
-                 << "not correspond to any existing review, and remember, "
-                 << "you can not delete other user's reviews unless"
-                 << " you're an administrator" << endl;
-            cin.ignore(100, '\n');
-        }
-        break;
-    }
-}
+//*************FORMATO*****************
 
 int Interface::ValidOption(int lower_bound, int upperbound) {
     int x = -1;
