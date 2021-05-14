@@ -83,6 +83,7 @@ ostream& operator << (ostream &os, Order &O) {
         os << product << endl;
     }
     os << "---------------------------------------" << endl
+       << setprecision(2) << fixed
        << O.getTotal() << " [$]" << endl;
     return os;
 }

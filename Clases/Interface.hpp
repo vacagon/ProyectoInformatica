@@ -5,6 +5,7 @@
 #include <string>
 #include <iomanip>
 #include "Manager.hpp"
+#include "ShoppingCart.hpp"
 
 using namespace std;
 
@@ -185,12 +186,6 @@ public:
     const string showProducts() const;
 
     /**
-     * @brief Show every product in
-     * the shopping cart
-     */
-    const string showCart() const;
-
-    /**
      * @brief Allow logged user to add
      * a product to shopping cart
      */
@@ -200,7 +195,7 @@ public:
      * @brief Allow logged user to delete
      * a product to shopping cart
      */
-    bool eraseProductFromCart();
+    void eraseProductFromCart();
 
     /**
      * @brief Allow logged user to buy
@@ -240,6 +235,8 @@ public:
      */
     void deleteReview();
 
+    //*************FORMATO*****************
+
     /**
      * @brief Makes sure that the option
      * introduce by user is a number and
@@ -278,9 +275,10 @@ private:
 
     /**
      * @brief Store the products selected
-     * by user to buy, but not already bought
+     * by user to buy, but not already bought,
+     * and the import of the order
      */
-    vector<Product*> shopping_cart;
+    ShoppingCart* shopping_cart;
 
 };
 

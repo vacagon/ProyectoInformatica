@@ -43,6 +43,8 @@ iomanip
 -
 Manager.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/Manager.hpp
+ShoppingCart.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/ShoppingCart.hpp
 
 /home/gonzalo/ProyectoInformatica/Proyecto/Manager.hpp
 string
@@ -161,6 +163,14 @@ iomanip
 -
 PublicUserData.hpp
 /home/gonzalo/ProyectoInformatica/Proyecto/PublicUserData.hpp
+
+/home/gonzalo/ProyectoInformatica/Proyecto/ShoppingCart.hpp
+Product.hpp
+/home/gonzalo/ProyectoInformatica/Proyecto/Product.hpp
+algorithm
+/home/gonzalo/ProyectoInformatica/Proyecto/algorithm
+iomanip
+/home/gonzalo/ProyectoInformatica/Proyecto/iomanip
 
 /home/gonzalo/ProyectoInformatica/Proyecto/User.hpp
 string

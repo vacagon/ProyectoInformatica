@@ -14,7 +14,21 @@ CMakeFiles/CompuGlobalHyperMegaComponents.dir/Interface.cpp.o: ../PrivateUserDat
 CMakeFiles/CompuGlobalHyperMegaComponents.dir/Interface.cpp.o: ../Product.hpp
 CMakeFiles/CompuGlobalHyperMegaComponents.dir/Interface.cpp.o: ../PublicUserData.hpp
 CMakeFiles/CompuGlobalHyperMegaComponents.dir/Interface.cpp.o: ../Review.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/Interface.cpp.o: ../ShoppingCart.hpp
 CMakeFiles/CompuGlobalHyperMegaComponents.dir/Interface.cpp.o: ../User.hpp
+
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.o: ../Address.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.o: ../CreditCard.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.o: ../Order.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.o: ../PaymentMethod.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.o: ../Paypal.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.o: ../PrivateUserData.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.o: ../Product.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.o: ../PublicUserData.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.o: ../Review.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.o: ../ShoppingCart.cpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.o: ../ShoppingCart.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/ShoppingCart.cpp.o: ../User.hpp
 
 CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: ../Address.hpp
 CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: ../Administrator.hpp
@@ -28,6 +42,7 @@ CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: ../PrivateUserData.hpp
 CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: ../Product.hpp
 CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: ../PublicUserData.hpp
 CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: ../Review.hpp
+CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: ../ShoppingCart.hpp
 CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: ../User.hpp
 CMakeFiles/CompuGlobalHyperMegaComponents.dir/main.cpp.o: ../main.cpp
 
