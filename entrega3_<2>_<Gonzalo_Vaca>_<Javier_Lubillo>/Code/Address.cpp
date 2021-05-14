@@ -55,3 +55,13 @@ const string Address::show() const {
     ss << address << ", " << city << ", " << province << ", " << postal_code << endl;
     return ss.str();
 }
+
+ostream& operator << (ostream& os, Address& A) {
+    os << "Id: " << A.getId() << endl
+       << A.getAddress() << endl
+       << A.getCity() << endl
+       << A.getProvince() << endl
+       << A.getPostalCode() << endl
+       << "------------" << endl;
+    return os;
+}

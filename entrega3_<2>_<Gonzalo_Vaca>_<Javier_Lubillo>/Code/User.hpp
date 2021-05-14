@@ -32,6 +32,8 @@ public:
      */
     virtual unsigned long getEmployeeCode() const;
 
+    friend ostream& operator << (ostream& os, User& U);
+
 protected:
 
     User();

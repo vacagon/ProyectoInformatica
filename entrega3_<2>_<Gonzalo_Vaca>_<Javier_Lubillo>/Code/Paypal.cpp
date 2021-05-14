@@ -1,6 +1,6 @@
 #include "Paypal.hpp"
 
-Paypal::Paypal(const int &id, const Address *address, const string &email): PaymentMethod(address,id) {
+Paypal::Paypal(const int &id, Address *address, const string &email): PaymentMethod(address,id) {
     setEmail(email);
 }
 
@@ -20,4 +20,16 @@ const string Paypal::show() const {
        << "\tBilling address: " << billing_address->show()
        << "\t" << email << endl;
     return ss.str();
+}
+
+bool Paypal::isCreditCard() const {
+    return false;
+}
+
+ostream& operator << (ostream& os, Paypal& PP) {
+    os << "Id: " << PP.getId() << endl
+       << "Billing address: " << PP.getBillingAddress()->show()
+       << PP.getEmail() << endl
+       << "----------------" << endl;
+    return os;
 }

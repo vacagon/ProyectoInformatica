@@ -5,6 +5,8 @@
 #include <sstream>
 #include <vector>
 #include <ctime>
+#include <time.h>
+#include <iomanip>
 
 using namespace std;
 
@@ -29,7 +31,9 @@ public:
 
     void addProduct(const unsigned long& ref);
 
-    const time_t& getDate() const;
+    time_t &getDate();
+
+    void setDate(time_t& d);
 
     const int& getDeliveryAddress() const;
 
@@ -43,7 +47,7 @@ public:
 
     void setTotal(const float& t);
 
-    friend ostream& operator << (ostream &os, const Order &O);
+    friend ostream& operator << (ostream &os, Order &O);
 
 private:
 

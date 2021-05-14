@@ -7,9 +7,24 @@ PrivateUserData::PrivateUserData(const string &email, const string& password) {
     orders = vector<Order*> ();
     payment_methods = vector<PaymentMethod*> ();
     reviews_made = vector<Review*> ();
+    creditcards = vector<CreditCard*> ();
+    paypals = vector<Paypal*> ();
 }
 
-PrivateUserData::~PrivateUserData() {}
+PrivateUserData::~PrivateUserData() {
+    for (Address* user_address: addresses) {
+        delete user_address;
+    }
+    for (CreditCard* user_cards: creditcards) {
+        delete user_cards;
+    }
+    for (Paypal* user_paypals: paypals) {
+        delete user_paypals;
+    }
+    for (Order* user_orders: orders) {
+        delete user_orders;
+    }
+}
 
 void PrivateUserData::setEmail(const string& em) {
     email = em;
@@ -39,16 +54,32 @@ vector<PaymentMethod *> PrivateUserData::getPaymentMethods() const {
     return payment_methods;
 }
 
+vector<CreditCard*> PrivateUserData::getCreditCards() const {
+    return creditcards;
+}
+
+vector<Paypal*> PrivateUserData::getPaypals() const {
+    return paypals;
+}
+
 void PrivateUserData::addPaymentMethod(PaymentMethod* new_paymentmethod) {
     payment_methods.push_back(new_paymentmethod);
 }
 
-vector<Order *> PrivateUserData::getOrders() const {
-    return orders;
+void PrivateUserData::addCreditCard(CreditCard* new_creditcard) {
+    creditcards.push_back(new_creditcard);
+}
+
+void PrivateUserData::addPaypal(Paypal *new_paypal) {
+    paypals.push_back(new_paypal);
 }
 
 void PrivateUserData::addOrder(Order *new_order) {
     orders.push_back(new_order);
+}
+
+vector<Order *> PrivateUserData::getOrders() {
+    return orders;
 }
 
 vector<Review*> PrivateUserData::getUserReviews() const {

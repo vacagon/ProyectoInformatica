@@ -16,7 +16,7 @@ class Paypal: public PaymentMethod {
 
 public:
 
-    Paypal(const int& id, const Address* address, const string& email);
+    Paypal(const int& id, Address* address, const string& email);
 
     virtual ~Paypal();
 
@@ -36,6 +36,10 @@ public:
 	 * \{email}
 	 */
      const string show() const;
+
+     bool isCreditCard() const;
+
+     friend ostream& operator << (ostream& os, Paypal& PP);
 
 private:
 

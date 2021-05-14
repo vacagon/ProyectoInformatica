@@ -11,26 +11,6 @@ Manager::Manager() {
 }
 
 Manager::~Manager() {
-    for (User* every_user: users) {
-        for (Order* every_order: every_user->getOrders()) {
-            delete every_order;
-        }
-        for (PaymentMethod* every_paymentmethod: every_user->getPaymentMethods()) {
-            delete every_paymentmethod;
-        }
-        for (Address* every_address: every_user->getAddresses()) {
-            delete every_address;
-        }
-        every_user->getOrders().clear();
-        every_user->getPaymentMethods().clear();
-        every_user->getAddresses().clear();
-    }
-    for (Product* every_product: products) {
-        for (Review* every_review: every_product->getReviews()) {
-            delete every_review;
-        }
-        every_product->getReviews().clear();
-    }
     for (unsigned long i = 0; i < users.size(); i++) {
         delete users[i];
     }
@@ -199,23 +179,25 @@ bool Manager::addAddress(const string &address, const string &city, const string
     return flag;
 }
 
-bool Manager::addCreditCard(const Address *address, const unsigned long &number, const string &cardholder) {
+bool Manager::addCreditCard(Address *address, const unsigned long &number, const string &cardholder) {
     bool flag = false;
     int id = users[current_member]->getPaymentMethods().size();
     if (isLogged()) {
         CreditCard* new_creditcard = new CreditCard(id, address, number, cardholder);
         users[current_member]->addPaymentMethod(new_creditcard);
+        users[current_member]->addCreditCard(new_creditcard);
         flag = true;
     }
     return flag;
 }
 
-bool Manager::addPaypal(const Address* address, string& email) {
+bool Manager::addPaypal(Address* address, string& email) {
     bool flag = false;
     int id = users[current_member]->getPaymentMethods().size();
     if (isLogged()) {
         Paypal* new_paypal = new Paypal(id, address, email);
         users[current_member]->addPaymentMethod(new_paypal);
+        users[current_member]->addPaypal(new_paypal);
         flag = true;
     }
     return flag;
@@ -541,7 +523,249 @@ bool Manager::deleteReview(const unsigned long &id) {
 
 //################# TERCERA ENTREGA ############################//
 
-void Manager::saveToFile(string& route) {}
+void Manager::saveToFile(const string route) {
+    ofstream ofile(route, ios::out);
+    for (User* every_user: users) {
+        ofile << "User:" << endl
+              << every_user->getUsername() << endl
+              << every_user->getEmail() << endl
+              << every_user->getPassword() << endl
+              << every_user->getReputation() << endl;
+        if (every_user->isAdmin()) {
+            ofile << every_user->getEmployeeCode() << endl;
+        } else {
+            ofile << "-1" << endl;
+        }
+        if (every_user->getAddresses().size() > 0) {
+            for (Address* every_address: every_user->getAddresses()) {
+                ofile << "Address:" << endl
+                      << every_address->getId() << endl
+                      << every_address->getAddress() << endl
+                      << every_address->getCity() << endl
+                      << every_address->getProvince() << endl
+                      << every_address->getPostalCode() << endl;
+            }
+        }
+        if (every_user->getCreditCards().size() > 0) {
+            for (CreditCard* every_creditcard: every_user->getCreditCards()) {
+               ofile << "CreditCard:" << endl
+                     << every_creditcard->getId() << endl
+                     << every_creditcard->getBillingAddress()->getId() << endl
+                     << every_creditcard->getNumber() << endl
+                     << every_creditcard->getCardholder() << endl;
+            }
+        }
+        if (every_user->getPaypals().size() > 0) {
+            for (Paypal* every_paypal: every_user->getPaypals()) {
+                ofile << "Paypal:" << endl
+                      << every_paypal->getId() << endl
+                      << every_paypal->getBillingAddress()->getId() << endl
+                      << every_paypal->getEmail() << endl;
+            }
+        }
+        if (every_user->getOrders().size() > 0) {
+            for (Order* every_order: every_user->getOrders()) {
+                ofile << "Order:" << endl
+                      << every_order->getReference() << endl;
+                for (unsigned long every_product: every_order->getProducts()) {
+                    ofile << "order_product:" << endl
+                          << every_product << endl;
+                }
+                ofile << every_order->getDate() << endl
+                      << every_order->getDeliveryAddress() << endl
+                      << every_order->getPaymentMethod() << endl
+                      << every_order->getTotal() << endl;
+            }
+        }
+    }
+    for (Product* every_product: products) {
+        ofile << "Product:" << endl
+              << every_product->getName() << endl
+              << every_product->getDescription() << endl
+              << every_product->getReference() << endl
+              << every_product->getPrice() << endl;
+        if (every_product->getReviews().size() > 0) {
+            for (Review* every_review: every_product->getReviews()) {
+                ofile << "Review:" << endl
+                      << every_review->getId() << endl
+                      << every_review->getDate() << endl
+                      << every_review->getRating() << endl
+                      << every_review->getText() << endl
+                      << every_review->getVotes() << endl
+                      << every_review->getAuthor()->getUsername() << endl;
+            }
+        }
+    }
+    ofile.close();
+}
 
-void loadFromFile(string route) {}
+void Manager::loadFromFile(const string route) {
+    ifstream ifile(route, ios::in);
+    ifile.seekg(0, ios::beg);
+    string titulo, titulo2, titulo3;
+    getline(ifile, titulo, '\n');
+    while (titulo.find("User:") != string::npos) {
+        logout();
+        string username, email, password, sreputation, check;
+        int reputation;
+        bool isAdmin = false;
+        unsigned long employee_code;
+        getline(ifile, username, '\n');
+        getline(ifile, email, '\n');
+        getline(ifile, password, '\n');
+        getline(ifile, sreputation, '\n');
+        reputation = stoi(sreputation);
+        getline(ifile, check, '\n');
+        if (check != "-1") {
+            employee_code = stoul(check);
+            isAdmin = true;
+            Administrator* new_admin = new Administrator(username, email, password, employee_code);
+            users.push_back(new_admin);
+        } else {
+            isAdmin = false;
+            User* new_user = new User(username, email, password);
+            users.push_back(new_user);
+        }
+        login(email, password);
+        getline(ifile, titulo2, '\n');
+        while (titulo2 == "Address:") {
+            int id;
+            unsigned int postal_code;
+            string address, city, province, sid, spostal_code;
+            getline(ifile, sid, '\n');
+            id = stoi(sid);
+            getline(ifile, address, '\n');
+            getline(ifile, city, '\n');
+            getline(ifile, province, '\n');
+            getline(ifile, spostal_code, '\n');
+            postal_code = stoi(spostal_code);
+            Address* new_address = new Address(address, city, province, postal_code, id);
+            getCurrentMember()->addAddress(new_address);
+            getline(ifile, titulo2, '\n');
+        }
+        while ((titulo2 == "CreditCard:")||(titulo2 == "Paypal:")) {
+            if (titulo2 == "CreditCard:") {
+                int id, billing_address;
+                string cardholder, sid, sbilling_address, snumber;
+                Address* billing_add;
+                unsigned long number;
+                getline(ifile, sid, '\n');
+                id = stoi(sid);
+                getline(ifile, sbilling_address, '\n');
+                billing_address = stoi(sbilling_address);
+                for (Address* address: getCurrentMember()->getAddresses()) {
+                    if (id == address->getId()) {
+                        billing_add = address;
+                    }
+                }
+                getline(ifile, snumber, '\n');
+                number = stoul(snumber);
+                getline(ifile, cardholder, '\n');
+                CreditCard* new_creditcard = new CreditCard(id, billing_add, number, cardholder);
+                getCurrentMember()->addCreditCard(new_creditcard);
+                getCurrentMember()->addPaymentMethod(new_creditcard);
+            }
+            if (titulo2 == "Paypal:") {
+                int id, billing_address;
+                string email, sid, sbilling_address;
+                Address* billing_add;
+                getline(ifile, sid, '\n');
+                id = stoi(sid);
+                getline(ifile, sbilling_address, '\n');
+                billing_address = stoi(sbilling_address);
+                for (Address* address: getCurrentMember()->getAddresses()) {
+                    if (id == address->getId()) {
+                        billing_add = address;
+                    }
+                }
+                getline(ifile, email, '\n');
+                Paypal* new_paypal = new Paypal(id, billing_add, email);
+                getCurrentMember()->addPaypal(new_paypal);
+                getCurrentMember()->addPaymentMethod(new_paypal);
+            }
+            getline(ifile, titulo2, '\n');
+        }
+        while (titulo2 == "Order:") {
+            unsigned long reference_order;
+            vector<unsigned long> products;
+            string product, reference, spayment_method, sfloat, reference_product, saddress;
+            int payment_method, delivery_address;
+            float total;
+            time_t date;
+            getline(ifile, reference, '\n');
+            reference_order = stoul(reference);
+            getline(ifile, titulo3, '\n');
+            while (titulo3 == "order_product:") {
+                getline(ifile, reference_product, '\n');
+                products.push_back(stoul(reference_product));
+                getline(ifile, titulo3, '\n');
+            }
+            date = stoul(titulo3);
+            getline(ifile, saddress, '\n');
+            delivery_address = stoi(saddress);
+            getline(ifile, spayment_method, '\n');
+            payment_method = stoi(spayment_method);
+            getline(ifile, sfloat, '\n');
+            total = stof(sfloat);
+            Order* new_order = new Order(reference_order, products, delivery_address, payment_method, total);
+            new_order->setDate(date);
+            getCurrentMember()->addOrder(new_order);
+            getline(ifile, titulo2, '\n');
+        }
+     titulo = titulo2;
+     logout();
+    }
+    while ((titulo == "Product:")&&(ifile)) {
+        string name, description, sreference, sprice;
+        unsigned long reference;
+        float price;
+        vector<Review*> reviews = vector<Review*> ();
+        getline(ifile, name, '\n');
+        getline(ifile, description, '\n');
+        getline(ifile, sreference, '\n');
+        reference = stoul(sreference);
+        getline(ifile, sprice, '\n');
+        price = stof(sprice);
+        getline(ifile, titulo2, '\n');
+        while (titulo2 == "Review:") {
+            unsigned long id_review;
+            string sid_review, sdate, srating, text, svotes, username;
+            time_t date;
+            int rating, votes;
+            PublicUserData* author;
+            getline(ifile, sid_review, '\n');
+            id_review = stoul(sid_review);
+            getline(ifile, sdate, '\n');
+            date = stoul(sdate);
+            getline(ifile, srating, '\n');
+            rating = stoi(srating);
+            getline(ifile, text, '\n');
+            getline(ifile, svotes, '\n');
+            votes = stoi(svotes);
+            getline(ifile, username, '\n');
+            getline(ifile, titulo2, '\n');
+            for (User* user: users) {
+                if (user->getUsername() == username) {
+                    author = user;
+                }
+            }
+            Review* new_review = new Review(id_review, rating, text, author);
+            reviews.push_back(new_review);
+        }
+        Product* new_product = new Product(name, description, reference, price);
+        if (reviews.size() > 0) {
+            for (Review* product_reviews: reviews) {
+                new_product->addReview(product_reviews);
+            }
+        }
+        products.push_back(new_product);
+        titulo = titulo2;
+    }
+    ifile.close();
+}
 
+//################# MÉTODOS PROPIOS ############################//
+
+vector<unsigned long> Manager::getIdReviews() const {
+    return id_reviews;
+}

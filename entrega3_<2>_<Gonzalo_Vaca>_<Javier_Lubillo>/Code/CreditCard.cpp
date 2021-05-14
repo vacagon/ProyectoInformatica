@@ -1,7 +1,7 @@
 #include "CreditCard.hpp"
 #include "PaymentMethod.hpp"
 
-CreditCard::CreditCard(const int &i, const Address* address, const unsigned long &number, const string &cardholder): PaymentMethod(address, i) {
+CreditCard::CreditCard(const int &i, Address* address, const unsigned long &number, const string &cardholder): PaymentMethod(address, i) {
     setNumber(number);
     setCardholder(cardholder);
 }
@@ -32,4 +32,17 @@ const string CreditCard::show() const {
              << cardholder << endl;
         return ss.str();
 
+}
+
+bool CreditCard::isCreditCard() const {
+    return true;
+}
+
+ostream& operator << (ostream& os, CreditCard& CC) {
+    os << "Id: " << CC.getId() << endl
+       << "Billing address: " << CC.getBillingAddress()->show()
+       << CC.getCardholder() << endl
+       << CC.getNumber() << endl
+       << "----------------" << endl;
+    return os;
 }

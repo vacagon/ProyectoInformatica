@@ -2,7 +2,6 @@
 
 Review::Review(const unsigned long &i, const int &rating, const string& text, PublicUserData *a) {
     id = i;
-    //Making sure rating is between 0 and 5
     if (rating < 0) {
         setRating(0);
     } else {
@@ -15,20 +14,19 @@ Review::Review(const unsigned long &i, const int &rating, const string& text, Pu
     setText(text);
     author = a;
     votes = 0;
-    date = time(0);
+    date = time(NULL);
     users_vote = vector<PublicUserData*> ();
 }
 
 Review::~Review() {}
 
-const string Review::show() const {
-    struct tm* timeinfo;
+const string Review::show() {
+    struct tm *timeinfo;
+    time(&date);
     timeinfo = localtime(&date);
-    char dat[24];
-    strftime(dat, 24, "%c", timeinfo);
     stringstream ss;
     ss << "\t" << rating << " stars on "
-           << dat << " by " << getAuthor()->getUsername() << endl
+           << strtok(asctime(timeinfo), "\n") << " by " << getAuthor()->getUsername() << endl
            << "\t" << text << "\n"
            << "\t" << votes << " votes" << "\n";
     return ss.str();
@@ -40,6 +38,10 @@ const unsigned long& Review::getId() const {
 
 const time_t &Review::getDate() const {
     return date;
+}
+
+void Review::setDate(time_t &d) {
+    date = d;
 }
 
 void Review::setRating(const int &rat) {

@@ -51,6 +51,6 @@ add_library(CompuGlobalHyperMegaComponentsLib
 
 add_subdirectory(tests)
 
-add_executable(CompuGlobalHyperMegaComponents Interface.hpp Interface.cpp main.cpp)
+add_executable(CompuGlobalHyperMegaComponents Interface.hpp Interface.cpp ShoppingCart.cpp ShoppingCart.hpp main.cpp)
 
 target_link_libraries(CompuGlobalHyperMegaComponents CompuGlobalHyperMegaComponentsLib)

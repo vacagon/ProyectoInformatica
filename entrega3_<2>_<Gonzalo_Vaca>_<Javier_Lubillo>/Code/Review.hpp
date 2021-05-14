@@ -2,10 +2,12 @@
 #define REVIEW_HPP
 
 #include <string>
+#include <cstring>
 #include <sstream>
 #include <ctime>
 #include <vector>
 #include <time.h>
+#include <iomanip>
 #include "PublicUserData.hpp"
 
 using namespace std;
@@ -29,7 +31,7 @@ public:
      * \t{text}
      * {votes} votes
      */
-    const string show() const;
+    const string show();
 
     const unsigned long& getId() const;
 
@@ -38,6 +40,8 @@ public:
      * was created
      */
     const time_t& getDate() const;
+
+    void setDate(time_t& d);
 
     void setRating(const int &rat);
 

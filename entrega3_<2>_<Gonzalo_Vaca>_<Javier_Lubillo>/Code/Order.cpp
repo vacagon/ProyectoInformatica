@@ -1,4 +1,3 @@
-#include <ctime>
 #include "Order.hpp"
 
 Order::Order(const unsigned long &reference, const vector<unsigned long>& prods, const int &address, const int &payment_method, const float &total) {
@@ -6,7 +5,7 @@ Order::Order(const unsigned long &reference, const vector<unsigned long>& prods,
     setDeliveryAddress(address);
     setPaymentMethod(payment_method);
     setTotal(total);
-    date = time(0);
+    date = time(NULL);
     for (unsigned long product: prods)  {
         addProduct(product);
     }
@@ -41,8 +40,12 @@ void Order::addProduct(const unsigned long &ref) {
     products.push_back(ref);
 }
 
-const time_t &Order::getDate() const {
+time_t &Order::getDate() {
     return date;
+}
+
+void Order::setDate(time_t& d) {
+    date = d;
 }
 
 const int &Order::getDeliveryAddress() const {
@@ -69,9 +72,18 @@ void Order::setTotal(const float &t) {
     total = t;
 }
 
-ostream& operator << (ostream &os, const Order &O) {
-    os << "Reference: " << O.getReference() << " - Made on: " << O.getDate() << endl
+ostream& operator << (ostream &os, Order &O) {
+    struct tm *timeinfo;
+    time(&O.getDate());
+    timeinfo = localtime(&O.getDate());
+    os << "Reference: " << O.getReference() << " - Made on: " << asctime(timeinfo)
        << "---------------------------------------" << endl
+       << "Product references:" << endl;
+    for (unsigned long product: O.getProducts()) {
+        os << product << endl;
+    }
+    os << "---------------------------------------" << endl
+       << setprecision(2) << fixed
        << O.getTotal() << " [$]" << endl;
     return os;
 }
