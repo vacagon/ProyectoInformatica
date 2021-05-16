@@ -78,7 +78,7 @@ void Interface::HomeMenu() {
     int option = -1, delete_account;
     while (option != 0) {
         system("clear");
-        cout << "Welcome administrator " << manager->getCurrentMember()->getUsername()
+        cout << "Welcome user " << manager->getCurrentMember()->getUsername()
              << "!" << endl << endl;
         cout << "*********"
              << "Select an option by tipping"
